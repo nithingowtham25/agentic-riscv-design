@@ -1,0 +1,46 @@
+======================================================================
+RTL VERSION 0
+======================================================================
+
+RTL: results/regfile/direct/run1/initial_rtl.sv
+
+======================================================================
+GENERATED TESTBENCH
+======================================================================
+
+
+FAIL: reset clears regs, x0 zero rd1 exp=00000000 got=00000000 rd2 exp=00000000 got=xxxxxxxx a1=0 a2=5
+FAIL: eset clears upper and lower regs rd1 exp=00000000 got=xxxxxxxx rd2 exp=00000000 got=xxxxxxxx a1=31 a2=1
+FAIL: write x5 and read back rd1 exp=deadbeef got=00000000 rd2 exp=00000000 got=00000000 a1=5 a2=0
+FAIL: independent read ports x0/x5 rd1 exp=00000000 got=00000000 rd2 exp=deadbeef got=00000000 a1=0 a2=5
+FAIL: econd register write independent rd1 exp=12345678 got=00000000 rd2 exp=deadbeef got=deadbeef a1=7 a2=5
+FAIL: pre-edge read before overwrite exp rd1=12345678 got=00000000 rd2=deadbeef got=deadbeef
+FAIL: no write until falling edge rd1 exp=12345678 got=00000000 rd2 exp=deadbeef got=deadbeef a1=7 a2=5
+FAIL: ite takes effect on falling edge rd1 exp=cafebabe got=12345678 rd2 exp=deadbeef got=deadbeef a1=7 a2=5
+FAIL:  priority over write clears regs rd1 exp=00000000 got=deadbeef rd2 exp=00000000 got=cafebabe a1=5 a2=7
+FAIL: write/read boundary reg x31 rd1 exp=80000001 got=00000000 rd2 exp=00000000 got=00000000 a1=31 a2=0
+FAIL: write/read boundary reg x1 rd1 exp=00000001 got=00000000 rd2 exp=80000001 got=80000001 a1=1 a2=31
+TESTS_PASSED: 4
+TESTS_FAILED: 11
+TESTS_TOTAL: 15
+RESULT: FAIL
+results/regfile/direct/run1/regfile_tb.sv:142: $finish called at 18 (1s)
+
+======================================================================
+INSTRUCTOR SAMPLE TESTS
+======================================================================
+
+DUT:     results/regfile/direct/run1/initial_rtl.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/regfile/vectors/sample/regfile_sample.txt
+============================================================
+Assignment 1 RV32I Register File Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/regfile/vectors/sample/regfile_sample.txt
+============================================================
+------------------------------------------------------------
+Passed: 39
+Failed: 0
+Total : 39
+Score : 100.00%
+------------------------------------------------------------
+PASS
+>>> RESULT: PASS

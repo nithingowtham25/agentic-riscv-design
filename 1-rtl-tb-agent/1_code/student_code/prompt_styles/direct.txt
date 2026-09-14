@@ -1,0 +1,10 @@
+Generate the SystemVerilog RTL for the following hardware specification.
+
+Top module: {top_module}
+
+Hardware specification:
+{content}
+
+Implement the specification exactly. Preserve the specified module
+interface and all defined behavior. Return the complete RTL implementation
+in a single fenced code block.

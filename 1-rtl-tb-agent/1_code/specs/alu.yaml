@@ -1,0 +1,60 @@
+alu:
+  description: >
+    Combinational 32-bit RV32I Arithmetic Logic Unit for the course processor.
+    Performs integer arithmetic, comparison, logical, and shift operations.
+    It has no state, clock, or reset. It also produces a separate Sum output
+    (A+B or A-B) reused by the datapath for address generation and comparisons.
+  tech_node: ASAP7 / SkyWater 130HD (course flow)
+  clock_period: combinational (no clock)
+  ports:
+    - {name: A,         direction: input,  type: "logic [31:0]", description: First operand}
+    - {name: B,         direction: input,  type: "logic [31:0]", description: Second operand}
+    - {name: ALUSelect, direction: input,  type: "logic [2:0]",  description: Selects the ALU operation}
+    - {name: SubArith,  direction: input,  type: "logic",        description: Selects subtraction / arithmetic behavior where applicable}
+    - {name: ALUResult, direction: output, type: "logic [31:0]", description: Result of the selected operation}
+    - {name: Sum,       direction: output, type: "logic [31:0]", description: A+B when SubArith=0, A-B when SubArith=1}
+  module_signature: |
+    module alu (
+        input  logic [31:0] A,
+        input  logic [31:0] B,
+        input  logic [2:0]  ALUSelect,
+        input  logic        SubArith,
+        output logic [31:0] ALUResult,
+        output logic [31:0] Sum
+    );
+  behavior:
+    operations: |
+      ALUSelect  SubArith  Operation  ALUResult
+      000        0         ADD        A + B
+      000        1         SUB        A - B
+      001        0         SLL        A << B[4:0]  (fill zeros)
+      010        1         SLT        (signed A < signed B) ? 1 : 0
+      011        1         SLTU       (unsigned A < unsigned B) ? 1 : 0
+      100        0         XOR        A ^ B
+      101        0         SRL        A >> B[4:0]  (logical, zero fill)
+      101        1         SRA        A >>> B[4:0] (arithmetic, replicate A[31])
+      110        0         OR         A | B
+      111        0         AND        A & B
+    comparison: >
+      SLT/SLTU return 32'h00000001 when true, 32'h00000000 when false.
+      SLT treats operands as signed two's-complement; SLTU as unsigned.
+    shift_amount: Only B[4:0] is used as the shift amount (0..31).
+    sum_output: >
+      Sum is independent of ALUResult. SubArith=0 -> Sum=A+B; SubArith=1 -> Sum=A-B.
+      For ADD/SUB, ALUResult and Sum are equal. All arithmetic is 32-bit modular
+      (wraparound, no overflow flag).
+    timing: >
+      Purely combinational; no latches, no clocked always_ff. Outputs respond to
+      input changes without a clock event. Synthesizable SystemVerilog.
+    out_of_scope: >
+      No mul/div, RV64 W-type, compressed, bit-manip, crypto, FP, saturation, or
+      status/exception logic.
+  sample_usage:
+    description: Representative and corner-case operations the design must satisfy.
+    cases:
+      - {A: "0x0000000A", B: "0x00000003", ALUSelect: "000", SubArith: 0, ALUResult: "0x0000000D", note: ADD}
+      - {A: "0x0000000A", B: "0x00000003", ALUSelect: "000", SubArith: 1, ALUResult: "0x00000007", note: SUB}
+      - {A: "0xFFFFFFFF", B: "0x00000001", ALUSelect: "010", SubArith: 1, ALUResult: "0x00000001", note: "SLT signed (-1 < 1)"}
+      - {A: "0xFFFFFFFF", B: "0x00000001", ALUSelect: "011", SubArith: 1, ALUResult: "0x00000000", note: "SLTU unsigned"}
+      - {A: "0x80000000", B: "0x00000001", ALUSelect: "101", SubArith: 1, ALUResult: "0xC0000000", note: "SRA of negative"}
+      - {A: "0x0000000F", B: "0x0000001F", ALUSelect: "001", SubArith: 0, ALUResult: "0x80000000", note: "SLL by 31"}

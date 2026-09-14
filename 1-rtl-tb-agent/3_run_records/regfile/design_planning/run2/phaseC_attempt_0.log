@@ -1,0 +1,35 @@
+======================================================================
+RTL VERSION 0
+======================================================================
+
+RTL: results/regfile/design_planning/run2/initial_rtl.sv
+
+======================================================================
+GENERATED TESTBENCH
+======================================================================
+
+
+TESTS_PASSED: 14
+TESTS_FAILED: 0
+TESTS_TOTAL: 14
+RESULT: PASS
+results/regfile/design_planning/run2/regfile_tb.sv:151: $finish called at 10300 (1ps)
+
+======================================================================
+INSTRUCTOR SAMPLE TESTS
+======================================================================
+
+DUT:     results/regfile/design_planning/run2/initial_rtl.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/regfile/vectors/sample/regfile_sample.txt
+============================================================
+Assignment 1 RV32I Register File Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/regfile/vectors/sample/regfile_sample.txt
+============================================================
+------------------------------------------------------------
+Passed: 39
+Failed: 0
+Total : 39
+Score : 100.00%
+------------------------------------------------------------
+PASS
+>>> RESULT: PASS

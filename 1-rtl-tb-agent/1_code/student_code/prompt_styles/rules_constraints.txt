@@ -1,0 +1,26 @@
+Generate the SystemVerilog RTL for the following hardware specification.
+
+Top module: {top_module}
+
+Hardware specification:
+{content}
+
+Implement the specification exactly and follow these requirements:
+
+1. Preserve the exact module name, port names, directions, and widths
+   specified in the hardware specification.
+
+2. Implement all operations, control conditions, and behavior defined in
+   the specification.
+
+3. Pay careful attention to bit widths, signedness, arithmetic,
+   comparisons, and boundary conditions.
+
+4. Use combinational or sequential logic according to the behavior
+   specified.
+
+5. Do not introduce behavior that is not specified.
+
+6. Produce synthesizable SystemVerilog compatible with Icarus Verilog.
+
+Return the complete RTL implementation in a single fenced code block.

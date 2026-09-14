@@ -1,0 +1,79 @@
+controller:
+  description: >
+    Pure combinational RV32I instruction decoder for the course processor. Takes a
+    32-bit instruction and produces datapath control signals. Uses opcode/funct3/
+    funct7 to identify the instruction, enforces strict RV32I legality, and
+    suppresses side effects on illegal instructions.
+  tech_node: ASAP7 / SkyWater 130HD (course flow)
+  clock_period: combinational (no clock)
+  ports:
+    - {name: InstrD,        direction: input,  type: "logic [31:0]", description: "32-bit instruction"}
+    - {name: RegWriteD,     direction: output, type: "logic",        description: 1 => instruction writes rd}
+    - {name: ImmSrcD,       direction: output, type: "logic [2:0]",  description: Immediate format select}
+    - {name: ALUSrcAD,      direction: output, type: "logic",        description: 0=>rs1, 1=>PC}
+    - {name: ALUSrcBD,      direction: output, type: "logic",        description: 0=>rs2, 1=>immediate}
+    - {name: MemRWD,        direction: output, type: "logic [1:0]",  description: 00=none, 01=store, 10=load}
+    - {name: ResultSrcD,    direction: output, type: "logic [2:0]",  description: 000=IEU result, 001=load data}
+    - {name: BranchD,       direction: output, type: "logic",        description: 1 => conditional branch}
+    - {name: JumpD,         direction: output, type: "logic",        description: 1 => JAL/JALR}
+    - {name: ALUResultSrcD, direction: output, type: "logic",        description: 0=>ALU result, 1=>alternate (imm / PC+4)}
+    - {name: ALUSelectD,    direction: output, type: "logic [2:0]",  description: ALU operation class}
+    - {name: SubArithD,     direction: output, type: "logic",        description: subtraction/arith-shift/compare select}
+    - {name: IllegalInstrD, direction: output, type: "logic",        description: 1 => unsupported or illegally encoded}
+  module_signature: |
+    module controller (
+        input  logic [31:0] InstrD,
+        output logic        RegWriteD,
+        output logic [2:0]  ImmSrcD,
+        output logic        ALUSrcAD,
+        output logic        ALUSrcBD,
+        output logic [1:0]  MemRWD,
+        output logic [2:0]  ResultSrcD,
+        output logic        BranchD,
+        output logic        JumpD,
+        output logic        ALUResultSrcD,
+        output logic [2:0]  ALUSelectD,
+        output logic        SubArithD,
+        output logic        IllegalInstrD
+    );
+  behavior:
+    fields: |
+      opcode=InstrD[6:0]  rd=[11:7]  funct3=[14:12]  rs1=[19:15]  rs2=[24:20]  funct7=[31:25]
+    main_control: |
+      Class        opcode    RegWrite ImmSrc ALUSrcA ALUSrcB MemRW ResultSrc Branch Jump ALUResultSrc ALUSelect(base)
+      Load         0000011   1        000    0       1       10    001       0      0    0            000
+      I-type ALU   0010011   1        000    0       1       00    000       0      0    0            funct3
+      AUIPC        0010111   1        100    1       1       00    000       0      0    0            000
+      Store        0100011   0        001    0       1       01    000       0      0    0            000
+      R-type ALU   0110011   1        000    0       0       00    000       0      0    0            funct3
+      LUI          0110111   1        100    0       1       00    000       0      0    1            000
+      Branch       1100011   0        010    1       1       00    000       1      0    0            000
+      JALR         1100111   1        000    0       1       00    000       0      1    1            000
+      JAL          1101111   1        011    1       1       00    000       0      1    1            000
+    alu_select_class: |
+      000 ADD/SUB | 001 SLL | 010 SLT | 011 SLTU | 100 XOR | 101 SRL/SRA | 110 OR | 111 AND
+      (address/PC-relative calcs use 000 = ADD)
+    subarith: >
+      SubArithD=1 for SUB, SRA, SLT, SLTU. SubArithD=0 for ADD, SLL, XOR, SRL, OR,
+      AND, and for loads/stores/AUIPC/JAL/JALR.
+    r_type_decode: >
+      For opcode 0110011: ALUSelectD=funct3; SUB (funct3=000, funct7=0100000) and
+      SRA (funct3=101, funct7=0100000) set SubArithD=1; other legal funct7=0000000.
+    legality: >
+      STRICT RV32I legality (deterministic grading). Reject invalid load/store
+      funct3, invalid branch funct3, JALR with funct3!=000, illegal R-type funct7,
+      and illegal shift-immediate encodings. FENCE/FENCE.I/ECALL/EBREAK/CSR/other
+      extensions => IllegalInstrD=1.
+    illegal_side_effects: >
+      When IllegalInstrD=1: RegWriteD=0, MemRWD=00, BranchD=0, JumpD=0. Other
+      outputs may take safe defaults.
+    timing: Purely combinational; no clocked state; synthesizable SystemVerilog.
+  sample_usage:
+    description: One representative instruction per class plus an illegal case.
+    cases:
+      - {instr: "add x1,x2,x3", opcode: "0110011", expect: "RegWrite=1 ALUSelect=000 SubArith=0 Illegal=0"}
+      - {instr: "sub x1,x2,x3", opcode: "0110011", funct7: "0100000", expect: "ALUSelect=000 SubArith=1"}
+      - {instr: "lw x1,0(x2)",  opcode: "0000011", expect: "RegWrite=1 MemRW=10 ResultSrc=001 ALUSrcB=1"}
+      - {instr: "sw x1,0(x2)",  opcode: "0100011", expect: "RegWrite=0 MemRW=01 ImmSrc=001"}
+      - {instr: "beq x1,x2",    opcode: "1100011", expect: "Branch=1 ImmSrc=010 ALUSrcA=1"}
+      - {instr: "illegal",      opcode: "1111111", expect: "Illegal=1 RegWrite=0 MemRW=00 Branch=0 Jump=0"}

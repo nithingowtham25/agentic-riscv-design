@@ -1,0 +1,373 @@
+module controller (
+    input  logic [31:0] InstrD,
+    output logic        RegWriteD,
+    output logic [2:0]  ImmSrcD,
+    output logic        ALUSrcAD,
+    output logic        ALUSrcBD,
+    output logic [1:0]  MemRWD,
+    output logic [2:0]  ResultSrcD,
+    output logic        BranchD,
+    output logic        JumpD,
+    output logic        ALUResultSrcD,
+    output logic [2:0]  ALUSelectD,
+    output logic        SubArithD,
+    output logic        IllegalInstrD
+);
+
+    logic [6:0] opcode;
+    logic [2:0] funct3;
+    logic [6:0] funct7;
+
+    always_comb begin
+        opcode = InstrD[6:0];
+        funct3 = InstrD[14:12];
+        funct7 = InstrD[31:25];
+
+        // Safe defaults
+        RegWriteD     = 1'b0;
+        ImmSrcD       = 3'b000;
+        ALUSrcAD      = 1'b0;
+        ALUSrcBD      = 1'b0;
+        MemRWD        = 2'b00;
+        ResultSrcD    = 3'b000;
+        BranchD       = 1'b0;
+        JumpD         = 1'b0;
+        ALUResultSrcD = 1'b0;
+        ALUSelectD    = 3'b000;
+        SubArithD     = 1'b0;
+        IllegalInstrD = 1'b0;
+
+        case (opcode)
+            7'b0000011: begin
+                // Load
+                // Legal RV32I loads: LB, LH, LW, LBU, LHU
+                if ((funct3 == 3'b000) || (funct3 == 3'b001) || (funct3 == 3'b010) ||
+                    (funct3 == 3'b100) || (funct3 == 3'b101)) begin
+                    RegWriteD     = 1'b1;
+                    ImmSrcD       = 3'b000;
+                    ALUSrcAD      = 1'b0;
+                    ALUSrcBD      = 1'b1;
+                    MemRWD        = 2'b10;
+                    ResultSrcD    = 3'b001;
+                    BranchD       = 1'b0;
+                    JumpD         = 1'b0;
+                    ALUResultSrcD = 1'b0;
+                    ALUSelectD    = 3'b000;
+                    SubArithD     = 1'b0;
+                end else begin
+                    IllegalInstrD = 1'b1;
+                end
+            end
+
+            7'b0010011: begin
+                // I-type ALU
+                // Legal RV32I: ADDI, SLLI, SLTI, SLTIU, XORI, SRLI, SRAI, ORI, ANDI
+                case (funct3)
+                    3'b000, // ADDI
+                    3'b010, // SLTI
+                    3'b011, // SLTIU
+                    3'b100, // XORI
+                    3'b110, // ORI
+                    3'b111: begin // ANDI
+                        RegWriteD     = 1'b1;
+                        ImmSrcD       = 3'b000;
+                        ALUSrcAD      = 1'b0;
+                        ALUSrcBD      = 1'b1;
+                        MemRWD        = 2'b00;
+                        ResultSrcD    = 3'b000;
+                        BranchD       = 1'b0;
+                        JumpD         = 1'b0;
+                        ALUResultSrcD = 1'b0;
+                        ALUSelectD    = funct3;
+                        SubArithD     = (funct3 == 3'b010) || (funct3 == 3'b011);
+                    end
+
+                    3'b001: begin
+                        // SLLI: funct7 must be 0000000
+                        if (funct7 == 7'b0000000) begin
+                            RegWriteD     = 1'b1;
+                            ImmSrcD       = 3'b000;
+                            ALUSrcAD      = 1'b0;
+                            ALUSrcBD      = 1'b1;
+                            MemRWD        = 2'b00;
+                            ResultSrcD    = 3'b000;
+                            BranchD       = 1'b0;
+                            JumpD         = 1'b0;
+                            ALUResultSrcD = 1'b0;
+                            ALUSelectD    = 3'b001;
+                            SubArithD     = 1'b0;
+                        end else begin
+                            IllegalInstrD = 1'b1;
+                        end
+                    end
+
+                    3'b101: begin
+                        // SRLI/SRAI
+                        if (funct7 == 7'b0000000) begin
+                            RegWriteD     = 1'b1;
+                            ImmSrcD       = 3'b000;
+                            ALUSrcAD      = 1'b0;
+                            ALUSrcBD      = 1'b1;
+                            MemRWD        = 2'b00;
+                            ResultSrcD    = 3'b000;
+                            BranchD       = 1'b0;
+                            JumpD         = 1'b0;
+                            ALUResultSrcD = 1'b0;
+                            ALUSelectD    = 3'b101;
+                            SubArithD     = 1'b0;
+                        end else if (funct7 == 7'b0100000) begin
+                            RegWriteD     = 1'b1;
+                            ImmSrcD       = 3'b000;
+                            ALUSrcAD      = 1'b0;
+                            ALUSrcBD      = 1'b1;
+                            MemRWD        = 2'b00;
+                            ResultSrcD    = 3'b000;
+                            BranchD       = 1'b0;
+                            JumpD         = 1'b0;
+                            ALUResultSrcD = 1'b0;
+                            ALUSelectD    = 3'b101;
+                            SubArithD     = 1'b1;
+                        end else begin
+                            IllegalInstrD = 1'b1;
+                        end
+                    end
+
+                    default: begin
+                        IllegalInstrD = 1'b1;
+                    end
+                endcase
+            end
+
+            7'b0010111: begin
+                // AUIPC
+                RegWriteD     = 1'b1;
+                ImmSrcD       = 3'b100;
+                ALUSrcAD      = 1'b1;
+                ALUSrcBD      = 1'b1;
+                MemRWD        = 2'b00;
+                ResultSrcD    = 3'b000;
+                BranchD       = 1'b0;
+                JumpD         = 1'b0;
+                ALUResultSrcD = 1'b0;
+                ALUSelectD    = 3'b000;
+                SubArithD     = 1'b0;
+            end
+
+            7'b0100011: begin
+                // Store
+                // Legal RV32I stores: SB, SH, SW
+                if ((funct3 == 3'b000) || (funct3 == 3'b001) || (funct3 == 3'b010)) begin
+                    RegWriteD     = 1'b0;
+                    ImmSrcD       = 3'b001;
+                    ALUSrcAD      = 1'b0;
+                    ALUSrcBD      = 1'b1;
+                    MemRWD        = 2'b01;
+                    ResultSrcD    = 3'b000;
+                    BranchD       = 1'b0;
+                    JumpD         = 1'b0;
+                    ALUResultSrcD = 1'b0;
+                    ALUSelectD    = 3'b000;
+                    SubArithD     = 1'b0;
+                end else begin
+                    IllegalInstrD = 1'b1;
+                end
+            end
+
+            7'b0110011: begin
+                // R-type ALU
+                // Legal funct7:
+                // 0000000 for ADD,SLL,SLT,SLTU,XOR,SRL,OR,AND
+                // 0100000 for SUB,SRA only
+                case (funct3)
+                    3'b000: begin
+                        if (funct7 == 7'b0000000) begin
+                            RegWriteD     = 1'b1;
+                            ImmSrcD       = 3'b000;
+                            ALUSrcAD      = 1'b0;
+                            ALUSrcBD      = 1'b0;
+                            MemRWD        = 2'b00;
+                            ResultSrcD    = 3'b000;
+                            BranchD       = 1'b0;
+                            JumpD         = 1'b0;
+                            ALUResultSrcD = 1'b0;
+                            ALUSelectD    = 3'b000;
+                            SubArithD     = 1'b0;
+                        end else if (funct7 == 7'b0100000) begin
+                            RegWriteD     = 1'b1;
+                            ImmSrcD       = 3'b000;
+                            ALUSrcAD      = 1'b0;
+                            ALUSrcBD      = 1'b0;
+                            MemRWD        = 2'b00;
+                            ResultSrcD    = 3'b000;
+                            BranchD       = 1'b0;
+                            JumpD         = 1'b0;
+                            ALUResultSrcD = 1'b0;
+                            ALUSelectD    = 3'b000;
+                            SubArithD     = 1'b1;
+                        end else begin
+                            IllegalInstrD = 1'b1;
+                        end
+                    end
+
+                    3'b001, // SLL
+                    3'b100, // XOR
+                    3'b110, // OR
+                    3'b111: begin // AND
+                        if (funct7 == 7'b0000000) begin
+                            RegWriteD     = 1'b1;
+                            ImmSrcD       = 3'b000;
+                            ALUSrcAD      = 1'b0;
+                            ALUSrcBD      = 1'b0;
+                            MemRWD        = 2'b00;
+                            ResultSrcD    = 3'b000;
+                            BranchD       = 1'b0;
+                            JumpD         = 1'b0;
+                            ALUResultSrcD = 1'b0;
+                            ALUSelectD    = funct3;
+                            SubArithD     = 1'b0;
+                        end else begin
+                            IllegalInstrD = 1'b1;
+                        end
+                    end
+
+                    3'b010, // SLT
+                    3'b011: begin // SLTU
+                        if (funct7 == 7'b0000000) begin
+                            RegWriteD     = 1'b1;
+                            ImmSrcD       = 3'b000;
+                            ALUSrcAD      = 1'b0;
+                            ALUSrcBD      = 1'b0;
+                            MemRWD        = 2'b00;
+                            ResultSrcD    = 3'b000;
+                            BranchD       = 1'b0;
+                            JumpD         = 1'b0;
+                            ALUResultSrcD = 1'b0;
+                            ALUSelectD    = funct3;
+                            SubArithD     = 1'b1;
+                        end else begin
+                            IllegalInstrD = 1'b1;
+                        end
+                    end
+
+                    3'b101: begin
+                        if (funct7 == 7'b0000000) begin
+                            RegWriteD     = 1'b1;
+                            ImmSrcD       = 3'b000;
+                            ALUSrcAD      = 1'b0;
+                            ALUSrcBD      = 1'b0;
+                            MemRWD        = 2'b00;
+                            ResultSrcD    = 3'b000;
+                            BranchD       = 1'b0;
+                            JumpD         = 1'b0;
+                            ALUResultSrcD = 1'b0;
+                            ALUSelectD    = 3'b101;
+                            SubArithD     = 1'b0;
+                        end else if (funct7 == 7'b0100000) begin
+                            RegWriteD     = 1'b1;
+                            ImmSrcD       = 3'b000;
+                            ALUSrcAD      = 1'b0;
+                            ALUSrcBD      = 1'b0;
+                            MemRWD        = 2'b00;
+                            ResultSrcD    = 3'b000;
+                            BranchD       = 1'b0;
+                            JumpD         = 1'b0;
+                            ALUResultSrcD = 1'b0;
+                            ALUSelectD    = 3'b101;
+                            SubArithD     = 1'b1;
+                        end else begin
+                            IllegalInstrD = 1'b1;
+                        end
+                    end
+
+                    default: begin
+                        IllegalInstrD = 1'b1;
+                    end
+                endcase
+            end
+
+            7'b0110111: begin
+                // LUI
+                RegWriteD     = 1'b1;
+                ImmSrcD       = 3'b100;
+                ALUSrcAD      = 1'b0;
+                ALUSrcBD      = 1'b1;
+                MemRWD        = 2'b00;
+                ResultSrcD    = 3'b000;
+                BranchD       = 1'b0;
+                JumpD         = 1'b0;
+                ALUResultSrcD = 1'b1;
+                ALUSelectD    = 3'b000;
+                SubArithD     = 1'b0;
+            end
+
+            7'b1100011: begin
+                // Branch
+                // Legal RV32I branches: BEQ, BNE, BLT, BGE, BLTU, BGEU
+                if ((funct3 == 3'b000) || (funct3 == 3'b001) || (funct3 == 3'b100) ||
+                    (funct3 == 3'b101) || (funct3 == 3'b110) || (funct3 == 3'b111)) begin
+                    RegWriteD     = 1'b0;
+                    ImmSrcD       = 3'b010;
+                    ALUSrcAD      = 1'b1;
+                    ALUSrcBD      = 1'b1;
+                    MemRWD        = 2'b00;
+                    ResultSrcD    = 3'b000;
+                    BranchD       = 1'b1;
+                    JumpD         = 1'b0;
+                    ALUResultSrcD = 1'b0;
+                    ALUSelectD    = 3'b000;
+                    SubArithD     = 1'b0;
+                end else begin
+                    IllegalInstrD = 1'b1;
+                end
+            end
+
+            7'b1100111: begin
+                // JALR
+                // funct3 must be 000
+                if (funct3 == 3'b000) begin
+                    RegWriteD     = 1'b1;
+                    ImmSrcD       = 3'b000;
+                    ALUSrcAD      = 1'b0;
+                    ALUSrcBD      = 1'b1;
+                    MemRWD        = 2'b00;
+                    ResultSrcD    = 3'b000;
+                    BranchD       = 1'b0;
+                    JumpD         = 1'b1;
+                    ALUResultSrcD = 1'b1;
+                    ALUSelectD    = 3'b000;
+                    SubArithD     = 1'b0;
+                end else begin
+                    IllegalInstrD = 1'b1;
+                end
+            end
+
+            7'b1101111: begin
+                // JAL
+                RegWriteD     = 1'b1;
+                ImmSrcD       = 3'b011;
+                ALUSrcAD      = 1'b1;
+                ALUSrcBD      = 1'b1;
+                MemRWD        = 2'b00;
+                ResultSrcD    = 3'b000;
+                BranchD       = 1'b0;
+                JumpD         = 1'b1;
+                ALUResultSrcD = 1'b1;
+                ALUSelectD    = 3'b000;
+                SubArithD     = 1'b0;
+            end
+
+            default: begin
+                IllegalInstrD = 1'b1;
+            end
+        endcase
+
+        // Suppress side effects on illegal instructions
+        if (IllegalInstrD) begin
+            RegWriteD = 1'b0;
+            MemRWD    = 2'b00;
+            BranchD   = 1'b0;
+            JumpD     = 1'b0;
+        end
+    end
+
+endmodule

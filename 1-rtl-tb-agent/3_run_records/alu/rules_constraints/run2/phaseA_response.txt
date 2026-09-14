@@ -1,0 +1,78 @@
+```systemverilog
+module alu (
+    input  logic [31:0] A,
+    input  logic [31:0] B,
+    input  logic [2:0]  ALUSelect,
+    input  logic        SubArith,
+    output logic [31:0] ALUResult,
+    output logic [31:0] Sum
+);
+
+    logic [4:0] shamt;
+
+    assign shamt = B[4:0];
+
+    always_comb begin
+        // Independent sum output: add when SubArith=0, subtract when SubArith=1
+        if (SubArith) begin
+            Sum = A - B;
+        end else begin
+            Sum = A + B;
+        end
+
+        // Default to avoid inferred latches for unspecified control combinations
+        ALUResult = 32'h00000000;
+
+        unique case (ALUSelect)
+            3'b000: begin
+                // ADD / SUB
+                ALUResult = Sum;
+            end
+
+            3'b001: begin
+                // SLL (specified for SubArith=0)
+                ALUResult = A << shamt;
+            end
+
+            3'b010: begin
+                // SLT (specified for SubArith=1)
+                ALUResult = ($signed(A) < $signed(B)) ? 32'h00000001 : 32'h00000000;
+            end
+
+            3'b011: begin
+                // SLTU (specified for SubArith=1)
+                ALUResult = (A < B) ? 32'h00000001 : 32'h00000000;
+            end
+
+            3'b100: begin
+                // XOR (specified for SubArith=0)
+                ALUResult = A ^ B;
+            end
+
+            3'b101: begin
+                // SRL / SRA selected by SubArith
+                if (SubArith) begin
+                    ALUResult = $signed(A) >>> shamt;
+                end else begin
+                    ALUResult = A >> shamt;
+                end
+            end
+
+            3'b110: begin
+                // OR (specified for SubArith=0)
+                ALUResult = A | B;
+            end
+
+            3'b111: begin
+                // AND (specified for SubArith=0)
+                ALUResult = A & B;
+            end
+
+            default: begin
+                ALUResult = 32'h00000000;
+            end
+        endcase
+    end
+
+endmodule
+```

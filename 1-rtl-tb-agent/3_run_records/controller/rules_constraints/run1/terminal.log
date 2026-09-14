@@ -1,0 +1,65 @@
+Using spec: specs/controller.yaml
+Top module: controller
+Model: gpt-5.4
+Suggested output directory: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/results/controller/rules_constraints/run1
+Phase A: generated RTL saved to results/controller/rules_constraints/run1/initial_rtl.sv
+Phase A: model returned: gpt-5.4-2026-03-05
+Phase A: usage: {'completion_tokens': 3528, 'prompt_tokens': 1953, 'total_tokens': 5481, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 1664}, 'latency_checkpoint': {'engine_tbt_ms': 8, 'engine_ttft_ms': 91, 'engine_ttlt_ms': 29953, 'pre_inference_ms': 232, 'service_tbt_ms': 8, 'service_ttft_ms': 488, 'service_ttlt_ms': 30344, 'user_visible_ttft_ms': 256}}
+Phase B: generated testbench saved to results/controller/rules_constraints/run1/controller_tb.sv
+Phase B: model returned: gpt-5.4-2026-03-05
+Phase B: usage: {'completion_tokens': 3290, 'prompt_tokens': 2481, 'total_tokens': 5771, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}, 'latency_checkpoint': {'engine_tbt_ms': 8, 'engine_ttft_ms': 123, 'engine_ttlt_ms': 26848, 'pre_inference_ms': 245, 'service_tbt_ms': 8, 'service_ttft_ms': 669, 'service_ttlt_ms': 27398, 'user_visible_ttft_ms': 424}}
+
+======================================================================
+Phase C: RTL version 0
+RTL: results/controller/rules_constraints/run1/initial_rtl.sv
+======================================================================
+Running generated testbench...
+results/controller/rules_constraints/run1/initial_rtl.sv:22: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+results/controller/rules_constraints/run1/initial_rtl.sv:23: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+results/controller/rules_constraints/run1/initial_rtl.sv:24: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+FAIL: I-type SLLI illegal encoding instr=40511093
+  Expected: RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=1 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=001 SubArith=0 Illegal=1
+  Actual:   RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=0 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+FAIL: Load illegal funct3 instr=00017083
+  Expected: RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=1 MemRW=00 ResultSrc=001 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+  Actual:   RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=0 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+FAIL: Store illegal funct3 instr=00113023
+  Expected: RegWrite=0 ImmSrc=001 ALUSrcA=0 ALUSrcB=1 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+  Actual:   RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=0 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+FAIL: Branch illegal funct3 instr=00312063
+  Expected: RegWrite=0 ImmSrc=010 ALUSrcA=1 ALUSrcB=1 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+  Actual:   RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=0 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+FAIL: JALR illegal funct3 instr=000110e7
+  Expected: RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=1 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=1 ALUSelect=000 SubArith=0 Illegal=1
+  Actual:   RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=0 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+TESTS_PASSED: 17
+TESTS_FAILED: 5
+TESTS_TOTAL: 22
+RESULT: FAIL
+results/controller/rules_constraints/run1/controller_tb.sv:207: $finish called at 22 (1s)
+Running instructor sample tests...
+DUT:     results/controller/rules_constraints/run1/initial_rtl.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/controller/vectors/sample/controller_sample.txt
+============================================================
+Assignment 1 RV32I Controller Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/controller/vectors/sample/controller_sample.txt
+============================================================
+------------------------------------------------------------
+Passed: 40
+Failed: 0
+Total : 40
+Score : 100.00%
+------------------------------------------------------------
+PASS
+>>> RESULT: PASS
+results/controller/rules_constraints/run1/initial_rtl.sv:22: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+results/controller/rules_constraints/run1/initial_rtl.sv:23: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+results/controller/rules_constraints/run1/initial_rtl.sv:24: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+
+Phase C: RTL version 0 PASSED the instructor sample tests.
+Phase C: final RTL saved to results/controller/rules_constraints/run1/final_rtl.sv
+
+======================================================================
+Run complete.
+Clean run log saved to: results/controller/rules_constraints/run1/run.log
+======================================================================

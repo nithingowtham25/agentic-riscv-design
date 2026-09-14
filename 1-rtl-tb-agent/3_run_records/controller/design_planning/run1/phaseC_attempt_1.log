@@ -1,0 +1,35 @@
+======================================================================
+RTL VERSION 1
+======================================================================
+
+RTL: results/controller/design_planning/run1/revised_rtl_1.sv
+
+======================================================================
+GENERATED TESTBENCH
+======================================================================
+
+
+TESTS_PASSED: 21
+TESTS_FAILED: 0
+TESTS_TOTAL: 21
+RESULT: PASS
+results/controller/design_planning/run1/controller_tb.sv:193: $finish called at 21 (1s)
+
+======================================================================
+INSTRUCTOR SAMPLE TESTS
+======================================================================
+
+DUT:     results/controller/design_planning/run1/revised_rtl_1.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/337001954_A1_test/1_code/module_packages/controller/vectors/sample/controller_sample.txt
+============================================================
+Assignment 1 RV32I Controller Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/337001954_A1_test/1_code/module_packages/controller/vectors/sample/controller_sample.txt
+============================================================
+------------------------------------------------------------
+Passed: 40
+Failed: 0
+Total : 40
+Score : 100.00%
+------------------------------------------------------------
+PASS
+>>> RESULT: PASS

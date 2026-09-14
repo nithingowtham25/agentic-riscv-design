@@ -1,0 +1,72 @@
+Using spec: specs/alu.yaml
+Top module: alu
+Model: gpt-5.4
+Suggested output directory: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/results/alu/design_planning/run2
+Phase A: generated RTL saved to results/alu/design_planning/run2/initial_rtl.sv
+Phase A: model returned: gpt-5.4-2026-03-05
+Phase A: usage: {'completion_tokens': 1144, 'prompt_tokens': 1382, 'total_tokens': 2526, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}, 'latency_checkpoint': {'engine_tbt_ms': 9, 'engine_ttft_ms': 110, 'engine_ttlt_ms': 9856, 'pre_inference_ms': 278, 'service_tbt_ms': 9, 'service_ttft_ms': 687, 'service_ttlt_ms': 10428, 'user_visible_ttft_ms': 409}}
+Phase B: generated testbench saved to results/alu/design_planning/run2/alu_tb.sv
+Phase B: model returned: gpt-5.4-2026-03-05
+Phase B: usage: {'completion_tokens': 1585, 'prompt_tokens': 1893, 'total_tokens': 3478, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}, 'latency_checkpoint': {'engine_tbt_ms': 9, 'engine_ttft_ms': 90, 'engine_ttlt_ms': 13755, 'pre_inference_ms': 138, 'service_tbt_ms': 9, 'service_ttft_ms': 469, 'service_ttlt_ms': 14129, 'user_visible_ttft_ms': 331}}
+
+======================================================================
+Phase C: RTL version 0
+RTL: results/alu/design_planning/run2/initial_rtl.sv
+======================================================================
+Running generated testbench...
+results/alu/design_planning/run2/initial_rtl.sv:79: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'B[31:0]').
+results/alu/design_planning/run2/initial_rtl.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'B[31:0]').
+results/alu/design_planning/run2/initial_rtl.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'B[31:0]').
+results/alu/design_planning/run2/initial_rtl.sv:70: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+FAIL:  result but Sum uses subtraction
+  Inputs: A=0x12345678 B=0x00000004 ALUSelect=001 SubArith=1
+  Expected: ALUResult=0x23456780 Sum=0x12345674
+  Actual  : ALUResult=0x00000000 Sum=0x12345674
+FAIL: SRA negative by 1
+  Inputs: A=0x80000000 B=0x00000001 ALUSelect=101 SubArith=1
+  Expected: ALUResult=0x40000000 Sum=0x7fffffff
+  Actual  : ALUResult=0xc0000000 Sum=0x7fffffff
+FAIL: SRA negative by 31
+  Inputs: A=0x80000000 B=0x0000001f ALUSelect=101 SubArith=1
+  Expected: ALUResult=0x00000001 Sum=0x7fffffe1
+  Actual  : ALUResult=0xffffffff Sum=0x7fffffe1
+FAIL: ith for result but Sum subtracts
+  Inputs: A=0x11111111 B=0x22222222 ALUSelect=110 SubArith=1
+  Expected: ALUResult=0x33333333 Sum=0xeeeeeeef
+  Actual  : ALUResult=0x00000000 Sum=0xeeeeeeef
+FAIL: ith for result but Sum subtracts
+  Inputs: A=0x33333333 B=0x11111111 ALUSelect=111 SubArith=1
+  Expected: ALUResult=0x11111111 Sum=0x22222222
+  Actual  : ALUResult=0x00000000 Sum=0x22222222
+TESTS_PASSED: 15
+TESTS_FAILED: 5
+TESTS_TOTAL: 20
+RESULT: FAIL
+results/alu/design_planning/run2/alu_tb.sv:115: $finish called at 20 (1s)
+Running instructor sample tests...
+DUT:     results/alu/design_planning/run2/initial_rtl.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/alu/vectors/sample/alu_sample.txt
+============================================================
+Assignment 1 RV32I ALU Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/alu/vectors/sample/alu_sample.txt
+============================================================
+------------------------------------------------------------
+Passed: 40
+Failed: 0
+Total : 40
+Score : 100.00%
+------------------------------------------------------------
+PASS
+>>> RESULT: PASS
+results/alu/design_planning/run2/initial_rtl.sv:79: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'B[31:0]').
+results/alu/design_planning/run2/initial_rtl.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'B[31:0]').
+results/alu/design_planning/run2/initial_rtl.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'B[31:0]').
+results/alu/design_planning/run2/initial_rtl.sv:70: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+
+Phase C: RTL version 0 PASSED the instructor sample tests.
+Phase C: final RTL saved to results/alu/design_planning/run2/final_rtl.sv
+
+======================================================================
+Run complete.
+Clean run log saved to: results/alu/design_planning/run2/run.log
+======================================================================

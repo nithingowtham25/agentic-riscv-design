@@ -1,0 +1,391 @@
+Repair the following SystemVerilog RTL.
+
+Top module: controller
+
+Hardware specification:
+{'description': 'Pure combinational RV32I instruction decoder for the course processor. Takes a 32-bit instruction and produces datapath control signals. Uses opcode/funct3/ funct7 to identify the instruction, enforces strict RV32I legality, and suppresses side effects on illegal instructions.\n', 'tech_node': 'ASAP7 / SkyWater 130HD (course flow)', 'clock_period': 'combinational (no clock)', 'ports': [{'name': 'InstrD', 'direction': 'input', 'type': 'logic [31:0]', 'description': '32-bit instruction'}, {'name': 'RegWriteD', 'direction': 'output', 'type': 'logic', 'description': '1 => instruction writes rd'}, {'name': 'ImmSrcD', 'direction': 'output', 'type': 'logic [2:0]', 'description': 'Immediate format select'}, {'name': 'ALUSrcAD', 'direction': 'output', 'type': 'logic', 'description': '0=>rs1', '1=>PC': None}, {'name': 'ALUSrcBD', 'direction': 'output', 'type': 'logic', 'description': '0=>rs2', '1=>immediate': None}, {'name': 'MemRWD', 'direction': 'output', 'type': 'logic [1:0]', 'description': '00=none', '01=store': None, '10=load': None}, {'name': 'ResultSrcD', 'direction': 'output', 'type': 'logic [2:0]', 'description': '000=IEU result', '001=load data': None}, {'name': 'BranchD', 'direction': 'output', 'type': 'logic', 'description': '1 => conditional branch'}, {'name': 'JumpD', 'direction': 'output', 'type': 'logic', 'description': '1 => JAL/JALR'}, {'name': 'ALUResultSrcD', 'direction': 'output', 'type': 'logic', 'description': '0=>ALU result', '1=>alternate (imm / PC+4)': None}, {'name': 'ALUSelectD', 'direction': 'output', 'type': 'logic [2:0]', 'description': 'ALU operation class'}, {'name': 'SubArithD', 'direction': 'output', 'type': 'logic', 'description': 'subtraction/arith-shift/compare select'}, {'name': 'IllegalInstrD', 'direction': 'output', 'type': 'logic', 'description': '1 => unsupported or illegally encoded'}], 'module_signature': 'module controller (\n    input  logic [31:0] InstrD,\n    output logic        RegWriteD,\n    output logic [2:0]  ImmSrcD,\n    output logic        ALUSrcAD,\n    output logic        ALUSrcBD,\n    output logic [1:0]  MemRWD,\n    output logic [2:0]  ResultSrcD,\n    output logic        BranchD,\n    output logic        JumpD,\n    output logic        ALUResultSrcD,\n    output logic [2:0]  ALUSelectD,\n    output logic        SubArithD,\n    output logic        IllegalInstrD\n);\n', 'behavior': {'fields': 'opcode=InstrD[6:0]  rd=[11:7]  funct3=[14:12]  rs1=[19:15]  rs2=[24:20]  funct7=[31:25]\n', 'main_control': 'Class        opcode    RegWrite ImmSrc ALUSrcA ALUSrcB MemRW ResultSrc Branch Jump ALUResultSrc ALUSelect(base)\nLoad         0000011   1        000    0       1       10    001       0      0    0            000\nI-type ALU   0010011   1        000    0       1       00    000       0      0    0            funct3\nAUIPC        0010111   1        100    1       1       00    000       0      0    0            000\nStore        0100011   0        001    0       1       01    000       0      0    0            000\nR-type ALU   0110011   1        000    0       0       00    000       0      0    0            funct3\nLUI          0110111   1        100    0       1       00    000       0      0    1            000\nBranch       1100011   0        010    1       1       00    000       1      0    0            000\nJALR         1100111   1        000    0       1       00    000       0      1    1            000\nJAL          1101111   1        011    1       1       00    000       0      1    1            000\n', 'alu_select_class': '000 ADD/SUB | 001 SLL | 010 SLT | 011 SLTU | 100 XOR | 101 SRL/SRA | 110 OR | 111 AND\n(address/PC-relative calcs use 000 = ADD)\n', 'subarith': 'SubArithD=1 for SUB, SRA, SLT, SLTU. SubArithD=0 for ADD, SLL, XOR, SRL, OR, AND, and for loads/stores/AUIPC/JAL/JALR.\n', 'r_type_decode': 'For opcode 0110011: ALUSelectD=funct3; SUB (funct3=000, funct7=0100000) and SRA (funct3=101, funct7=0100000) set SubArithD=1; other legal funct7=0000000.\n', 'legality': 'STRICT RV32I legality (deterministic grading). Reject invalid load/store funct3, invalid branch funct3, JALR with funct3!=000, illegal R-type funct7, and illegal shift-immediate encodings. FENCE/FENCE.I/ECALL/EBREAK/CSR/other extensions => IllegalInstrD=1.\n', 'illegal_side_effects': 'When IllegalInstrD=1: RegWriteD=0, MemRWD=00, BranchD=0, JumpD=0. Other outputs may take safe defaults.\n', 'timing': 'Purely combinational; no clocked state; synthesizable SystemVerilog.'}, 'sample_usage': {'description': 'One representative instruction per class plus an illegal case.', 'cases': [{'instr': 'add x1,x2,x3', 'opcode': '0110011', 'expect': 'RegWrite=1 ALUSelect=000 SubArith=0 Illegal=0'}, {'instr': 'sub x1,x2,x3', 'opcode': '0110011', 'funct7': '0100000', 'expect': 'ALUSelect=000 SubArith=1'}, {'instr': 'lw x1,0(x2)', 'opcode': '0000011', 'expect': 'RegWrite=1 MemRW=10 ResultSrc=001 ALUSrcB=1'}, {'instr': 'sw x1,0(x2)', 'opcode': '0100011', 'expect': 'RegWrite=0 MemRW=01 ImmSrc=001'}, {'instr': 'beq x1,x2', 'opcode': '1100011', 'expect': 'Branch=1 ImmSrc=010 ALUSrcA=1'}, {'instr': 'illegal', 'opcode': '1111111', 'expect': 'Illegal=1 RegWrite=0 MemRW=00 Branch=0 Jump=0'}]}}
+
+Current RTL:
+```systemverilog
+module controller (
+    input  logic [31:0] InstrD,
+    output logic        RegWriteD,
+    output logic [2:0]  ImmSrcD,
+    output logic        ALUSrcAD,
+    output logic        ALUSrcBD,
+    output logic [1:0]  MemRWD,
+    output logic [2:0]  ResultSrcD,
+    output logic        BranchD,
+    output logic        JumpD,
+    output logic        ALUResultSrcD,
+    output logic [2:0]  ALUSelectD,
+    output logic        SubArithD,
+    output logic        IllegalInstrD
+);
+
+    logic [6:0] opcode;
+    logic [2:0] funct3;
+    logic [6:0] funct7;
+
+    assign opcode = InstrD[6:0];
+    assign funct3 = InstrD[14:12];
+    assign funct7 = InstrD[31:25];
+
+    always_comb begin
+        // Safe defaults
+        RegWriteD      = 1'b0;
+        ImmSrcD        = 3'b000;
+        ALUSrcAD       = 1'b0;
+        ALUSrcBD       = 1'b0;
+        MemRWD         = 2'b00;
+        ResultSrcD     = 3'b000;
+        BranchD        = 1'b0;
+        JumpD          = 1'b0;
+        ALUResultSrcD  = 1'b0;
+        ALUSelectD     = 3'b000;
+        SubArithD      = 1'b0;
+        IllegalInstrD  = 1'b0;
+
+        unique case (opcode)
+
+            // Load
+            7'b0000011: begin
+                RegWriteD  = 1'b1;
+                ImmSrcD    = 3'b000;
+                ALUSrcAD   = 1'b0;
+                ALUSrcBD   = 1'b1;
+                MemRWD     = 2'b10;
+                ResultSrcD = 3'b001;
+                ALUSelectD = 3'b000;
+
+                // RV32I legal loads: LB, LH, LW, LBU, LHU
+                unique case (funct3)
+                    3'b000, 3'b001, 3'b010, 3'b100, 3'b101: begin end
+                    default: IllegalInstrD = 1'b1;
+                endcase
+            end
+
+            // I-type ALU
+            7'b0010011: begin
+                RegWriteD  = 1'b1;
+                ImmSrcD    = 3'b000;
+                ALUSrcAD   = 1'b0;
+                ALUSrcBD   = 1'b1;
+                MemRWD     = 2'b00;
+                ResultSrcD = 3'b000;
+                ALUSelectD = funct3;
+
+                unique case (funct3)
+                    3'b000: begin
+                        // ADDI
+                    end
+                    3'b010: begin
+                        // SLTI
+                        SubArithD = 1'b1;
+                    end
+                    3'b011: begin
+                        // SLTIU
+                        SubArithD = 1'b1;
+                    end
+                    3'b100: begin
+                        // XORI
+                    end
+                    3'b110: begin
+                        // ORI
+                    end
+                    3'b111: begin
+                        // ANDI
+                    end
+                    3'b001: begin
+                        // SLLI: funct7 must be 0000000 in RV32I
+                        if (funct7 != 7'b0000000)
+                            IllegalInstrD = 1'b1;
+                    end
+                    3'b101: begin
+                        // SRLI/SRAI: funct7 must be 0000000 or 0100000
+                        if (funct7 == 7'b0000000) begin
+                            SubArithD = 1'b0; // SRLI
+                        end
+                        else if (funct7 == 7'b0100000) begin
+                            SubArithD = 1'b1; // SRAI
+                        end
+                        else begin
+                            IllegalInstrD = 1'b1;
+                        end
+                    end
+                    default: IllegalInstrD = 1'b1;
+                endcase
+            end
+
+            // AUIPC
+            7'b0010111: begin
+                RegWriteD  = 1'b1;
+                ImmSrcD    = 3'b100;
+                ALUSrcAD   = 1'b1;
+                ALUSrcBD   = 1'b1;
+                MemRWD     = 2'b00;
+                ResultSrcD = 3'b000;
+                ALUSelectD = 3'b000;
+            end
+
+            // Store
+            7'b0100011: begin
+                RegWriteD  = 1'b0;
+                ImmSrcD    = 3'b001;
+                ALUSrcAD   = 1'b0;
+                ALUSrcBD   = 1'b1;
+                MemRWD     = 2'b01;
+                ResultSrcD = 3'b000;
+                ALUSelectD = 3'b000;
+
+                // RV32I legal stores: SB, SH, SW
+                unique case (funct3)
+                    3'b000, 3'b001, 3'b010: begin end
+                    default: IllegalInstrD = 1'b1;
+                endcase
+            end
+
+            // R-type ALU
+            7'b0110011: begin
+                RegWriteD  = 1'b1;
+                ImmSrcD    = 3'b000;
+                ALUSrcAD   = 1'b0;
+                ALUSrcBD   = 1'b0;
+                MemRWD     = 2'b00;
+                ResultSrcD = 3'b000;
+                ALUSelectD = funct3;
+
+                unique case (funct3)
+                    3'b000: begin
+                        // ADD/SUB
+                        if (funct7 == 7'b0000000) begin
+                            SubArithD = 1'b0; // ADD
+                        end
+                        else if (funct7 == 7'b0100000) begin
+                            SubArithD = 1'b1; // SUB
+                        end
+                        else begin
+                            IllegalInstrD = 1'b1;
+                        end
+                    end
+
+                    3'b001: begin
+                        // SLL
+                        if (funct7 != 7'b0000000)
+                            IllegalInstrD = 1'b1;
+                    end
+
+                    3'b010: begin
+                        // SLT
+                        if (funct7 == 7'b0000000) begin
+                            SubArithD = 1'b1;
+                        end
+                        else begin
+                            IllegalInstrD = 1'b1;
+                        end
+                    end
+
+                    3'b011: begin
+                        // SLTU
+                        if (funct7 == 7'b0000000) begin
+                            SubArithD = 1'b1;
+                        end
+                        else begin
+                            IllegalInstrD = 1'b1;
+                        end
+                    end
+
+                    3'b100: begin
+                        // XOR
+                        if (funct7 != 7'b0000000)
+                            IllegalInstrD = 1'b1;
+                    end
+
+                    3'b101: begin
+                        // SRL/SRA
+                        if (funct7 == 7'b0000000) begin
+                            SubArithD = 1'b0; // SRL
+                        end
+                        else if (funct7 == 7'b0100000) begin
+                            SubArithD = 1'b1; // SRA
+                        end
+                        else begin
+                            IllegalInstrD = 1'b1;
+                        end
+                    end
+
+                    3'b110: begin
+                        // OR
+                        if (funct7 != 7'b0000000)
+                            IllegalInstrD = 1'b1;
+                    end
+
+                    3'b111: begin
+                        // AND
+                        if (funct7 != 7'b0000000)
+                            IllegalInstrD = 1'b1;
+                    end
+
+                    default: IllegalInstrD = 1'b1;
+                endcase
+            end
+
+            // LUI
+            7'b0110111: begin
+                RegWriteD     = 1'b1;
+                ImmSrcD       = 3'b100;
+                ALUSrcAD      = 1'b0;
+                ALUSrcBD      = 1'b1;
+                MemRWD        = 2'b00;
+                ResultSrcD    = 3'b000;
+                ALUResultSrcD = 1'b1;
+                ALUSelectD    = 3'b000;
+            end
+
+            // Branch
+            7'b1100011: begin
+                RegWriteD  = 1'b0;
+                ImmSrcD    = 3'b010;
+                ALUSrcAD   = 1'b1;
+                ALUSrcBD   = 1'b1;
+                MemRWD     = 2'b00;
+                ResultSrcD = 3'b000;
+                BranchD    = 1'b1;
+                ALUSelectD = 3'b000;
+
+                // RV32I legal branches: BEQ, BNE, BLT, BGE, BLTU, BGEU
+                unique case (funct3)
+                    3'b000, 3'b001, 3'b100, 3'b101, 3'b110, 3'b111: begin end
+                    default: IllegalInstrD = 1'b1;
+                endcase
+            end
+
+            // JALR
+            7'b1100111: begin
+                RegWriteD     = 1'b1;
+                ImmSrcD       = 3'b000;
+                ALUSrcAD      = 1'b0;
+                ALUSrcBD      = 1'b1;
+                MemRWD        = 2'b00;
+                ResultSrcD    = 3'b000;
+                JumpD         = 1'b1;
+                ALUResultSrcD = 1'b1;
+                ALUSelectD    = 3'b000;
+
+                if (funct3 != 3'b000)
+                    IllegalInstrD = 1'b1;
+            end
+
+            // JAL
+            7'b1101111: begin
+                RegWriteD     = 1'b1;
+                ImmSrcD       = 3'b011;
+                ALUSrcAD      = 1'b1;
+                ALUSrcBD      = 1'b1;
+                MemRWD        = 2'b00;
+                ResultSrcD    = 3'b000;
+                JumpD         = 1'b1;
+                ALUResultSrcD = 1'b1;
+                ALUSelectD    = 3'b000;
+            end
+
+            // Everything else is illegal in strict RV32I decoder
+            default: begin
+                IllegalInstrD = 1'b1;
+            end
+        endcase
+
+        // Suppress side effects on illegal instructions
+        if (IllegalInstrD) begin
+            RegWriteD = 1'b0;
+            MemRWD    = 2'b00;
+            BranchD   = 1'b0;
+            JumpD     = 1'b0;
+        end
+    end
+
+endmodule
+```
+
+No previous RTL version is available. This is the first repair attempt.
+
+Instructor sample-test feedback for THIS EXACT RTL VERSION:
+```text
+DUT:     results/controller/direct/run1/initial_rtl.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/controller/vectors/sample/controller_sample.txt
+============================================================
+Assignment 1 RV32I Controller Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/controller/vectors/sample/controller_sample.txt
+============================================================
+FAIL test=38 category=7 Instr=00312463
+  RegWriteD     got=0 exp=0
+  ImmSrcD       got=010 exp=00000000000000000000000000000000
+  ALUSrcAD      got=1 exp=0
+  ALUSrcBD      got=1 exp=0
+  MemRWD        got=00 exp=00000000000000000000000000000000
+  ResultSrcD    got=000 exp=00000000000000000000000000000000
+  BranchD       got=0 exp=0
+  JumpD         got=0 exp=0
+  ALUResultSrcD got=0 exp=0
+  ALUSelectD    got=000 exp=00000000000000000000000000000000
+  SubArithD     got=0 exp=0
+  IllegalInstrD got=1 exp=1
+FAIL test=39 category=7 Instr=000110e7
+  RegWriteD     got=0 exp=0
+  ImmSrcD       got=000 exp=00000000000000000000000000000000
+  ALUSrcAD      got=0 exp=0
+  ALUSrcBD      got=1 exp=0
+  MemRWD        got=00 exp=00000000000000000000000000000000
+  ResultSrcD    got=000 exp=00000000000000000000000000000000
+  BranchD       got=0 exp=0
+  JumpD         got=0 exp=0
+  ALUResultSrcD got=1 exp=0
+  ALUSelectD    got=000 exp=00000000000000000000000000000000
+  SubArithD     got=0 exp=0
+  IllegalInstrD got=1 exp=1
+FAIL test=40 category=7 Instr=403170b3
+  RegWriteD     got=0 exp=0
+  ImmSrcD       got=000 exp=00000000000000000000000000000000
+  ALUSrcAD      got=0 exp=0
+  ALUSrcBD      got=0 exp=0
+  MemRWD        got=00 exp=00000000000000000000000000000000
+  ResultSrcD    got=000 exp=00000000000000000000000000000000
+  BranchD       got=0 exp=0
+  JumpD         got=0 exp=0
+  ALUResultSrcD got=0 exp=0
+  ALUSelectD    got=111 exp=00000000000000000000000000000000
+  SubArithD     got=0 exp=0
+  IllegalInstrD got=1 exp=1
+------------------------------------------------------------
+Passed: 37
+Failed: 3
+Total : 40
+Score : 92.50%
+------------------------------------------------------------
+FAIL
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/controller/testbench/controller_tb.sv:156: $finish(1) called at 40000 (1ps)
+>>> RESULT: FAIL
+results/controller/direct/run1/initial_rtl.sv:40: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+results/controller/direct/run1/initial_rtl.sv:53: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+results/controller/direct/run1/initial_rtl.sv:69: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+results/controller/direct/run1/initial_rtl.sv:133: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+results/controller/direct/run1/initial_rtl.sv:149: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+results/controller/direct/run1/initial_rtl.sv:248: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+
+```
+
+First identify the specific behavior demonstrated by the reported instructor failures. Compare the expected and actual behavior when that information is available. Determine the smallest RTL construct that is responsible for the mismatch.
+
+Before producing the repair, compare the current RTL with the previous failed RTL version when one is provided. Use this comparison as a sanity check to avoid repeating the same failed implementation strategy. Do not make superficial changes merely to make the RTL text look different.
+
+If the previous implementation already attempted to address the same issue and the instructor tests still failed, reconsider the underlying RTL logic and use a different correction strategy.
+
+Then modify the current RTL to correct that root cause while preserving all behavior that is already correct.
+
+Pay particular attention to signedness, bit widths, truncation, explicit casts, shift semantics, comparisons, control conditions, reset/clock behavior, and combinational versus sequential logic where applicable.
+
+Do not introduce test-specific logic or special cases. Do not change the module interface or control encodings. Do not remove a correct existing fix without evidence that it conflicts with the specification or instructor feedback.
+
+Mentally re-evaluate the reported failing cases after the repair and ensure the corrected RTL remains consistent with the complete hardware specification.
+
+Return only the complete corrected SystemVerilog RTL inside one fenced code block. Do not provide explanations.

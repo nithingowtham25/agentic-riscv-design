@@ -1,0 +1,21 @@
+======================================================================
+RTL VERSION 3
+======================================================================
+
+RTL: results/alu/design_planning/run1/revised_rtl_3.sv
+
+======================================================================
+GENERATED TESTBENCH
+======================================================================
+
+results/alu/design_planning/run1/revised_rtl_3.sv:22: syntax error
+results/alu/design_planning/run1/revised_rtl_3.sv:22: error: Malformed statement
+
+======================================================================
+INSTRUCTOR SAMPLE TESTS
+======================================================================
+
+DUT:     results/alu/design_planning/run1/revised_rtl_3.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/alu/vectors/sample/alu_sample.txt
+results/alu/design_planning/run1/revised_rtl_3.sv:22: syntax error
+results/alu/design_planning/run1/revised_rtl_3.sv:22: error: Malformed statement

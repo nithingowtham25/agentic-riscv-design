@@ -1,0 +1,145 @@
+module tb_regfile;
+
+  logic        clk;
+  logic        reset;
+  logic        we3;
+  logic [4:0]  a1, a2, a3;
+  logic [31:0] wd3;
+  logic [31:0] rd1, rd2;
+
+  integer tests_passed;
+  integer tests_failed;
+  integer tests_total;
+
+  regfile dut (
+    .clk   (clk),
+    .reset (reset),
+    .we3   (we3),
+    .a1    (a1),
+    .a2    (a2),
+    .a3    (a3),
+    .wd3   (wd3),
+    .rd1   (rd1),
+    .rd2   (rd2)
+  );
+
+  initial begin
+    clk = 1'b0;
+    forever #0.5 clk = ~clk;
+  end
+
+  task automatic check_reads(
+    input [4:0] t_a1,
+    input [31:0] exp_rd1,
+    input [4:0] t_a2,
+    input [31:0] exp_rd2,
+    input [255:0] name
+  );
+  begin
+    a1 = t_a1;
+    a2 = t_a2;
+    #0.1;
+    tests_total = tests_total + 1;
+    if ((rd1 === exp_rd1) && (rd2 === exp_rd2)) begin
+      tests_passed = tests_passed + 1;
+    end else begin
+      tests_failed = tests_failed + 1;
+      $display("FAIL: %0s rd1 exp=%h got=%h rd2 exp=%h got=%h a1=%0d a2=%0d",
+               name, exp_rd1, rd1, exp_rd2, rd2, t_a1, t_a2);
+    end
+  end
+  endtask
+
+  task automatic do_negedge_write(
+    input        t_reset,
+    input        t_we3,
+    input [4:0]  t_a3,
+    input [31:0] t_wd3
+  );
+  begin
+    reset = t_reset;
+    we3   = t_we3;
+    a3    = t_a3;
+    wd3   = t_wd3;
+    @(negedge clk);
+    #0.1;
+  end
+  endtask
+
+  initial begin
+    tests_passed = 0;
+    tests_failed = 0;
+    tests_total  = 0;
+
+    reset = 1'b0;
+    we3   = 1'b0;
+    a1    = 5'd0;
+    a2    = 5'd0;
+    a3    = 5'd0;
+    wd3   = 32'h00000000;
+
+    #0.1;
+
+    check_reads(5'd0, 32'h00000000, 5'd1, 32'hxxxxxxxx, "initial x0 check before sampled reset");
+
+    do_negedge_write(1'b1, 1'b0, 5'd0, 32'h00000000);
+    check_reads(5'd0, 32'h00000000, 5'd5, 32'h00000000, "reset clears regs, x0 zero");
+    check_reads(5'd31, 32'h00000000, 5'd1, 32'h00000000, "reset clears upper and lower regs");
+
+    do_negedge_write(1'b0, 1'b1, 5'd5, 32'hDEADBEEF);
+    check_reads(5'd5, 32'hDEADBEEF, 5'd0, 32'h00000000, "write x5 and read back");
+    check_reads(5'd0, 32'h00000000, 5'd5, 32'hDEADBEEF, "independent read ports x0/x5");
+
+    do_negedge_write(1'b0, 1'b1, 5'd0, 32'hFFFFFFFF);
+    check_reads(5'd0, 32'h00000000, 5'd5, 32'hDEADBEEF, "write to x0 ignored");
+
+    do_negedge_write(1'b0, 1'b0, 5'd5, 32'h0000002A);
+    check_reads(5'd5, 32'hDEADBEEF, 5'd5, 32'hDEADBEEF, "we3 low prevents write");
+
+    do_negedge_write(1'b0, 1'b1, 5'd7, 32'h12345678);
+    check_reads(5'd7, 32'h12345678, 5'd5, 32'hDEADBEEF, "second register write independent");
+
+    a1 = 5'd7;
+    a2 = 5'd5;
+    #0.1;
+    tests_total = tests_total + 1;
+    if ((rd1 === 32'h12345678) && (rd2 === 32'hDEADBEEF)) begin
+      tests_passed = tests_passed + 1;
+    end else begin
+      tests_failed = tests_failed + 1;
+      $display("FAIL: pre-edge read before overwrite exp rd1=%h got=%h rd2=%h got=%h",
+               32'h12345678, rd1, 32'hDEADBEEF, rd2);
+    end
+
+    reset = 1'b0;
+    we3   = 1'b1;
+    a3    = 5'd7;
+    wd3   = 32'hCAFEBABE;
+    #0.1;
+    check_reads(5'd7, 32'h12345678, 5'd5, 32'hDEADBEEF, "no write until falling edge");
+    @(negedge clk);
+    #0.1;
+    check_reads(5'd7, 32'hCAFEBABE, 5'd5, 32'hDEADBEEF, "write takes effect on falling edge");
+
+    do_negedge_write(1'b1, 1'b1, 5'd9, 32'hAAAAAAAA);
+    check_reads(5'd5, 32'h00000000, 5'd7, 32'h00000000, "reset priority over write clears regs");
+    check_reads(5'd9, 32'h00000000, 5'd0, 32'h00000000, "target reg not written during reset");
+
+    do_negedge_write(1'b0, 1'b1, 5'd31, 32'h80000001);
+    check_reads(5'd31, 32'h80000001, 5'd0, 32'h00000000, "write/read boundary reg x31");
+
+    do_negedge_write(1'b0, 1'b1, 5'd1, 32'h00000001);
+    check_reads(5'd1, 32'h00000001, 5'd31, 32'h80000001, "write/read boundary reg x1");
+
+    $display("TESTS_PASSED: %0d", tests_passed);
+    $display("TESTS_FAILED: %0d", tests_failed);
+    $display("TESTS_TOTAL: %0d", tests_total);
+    if (tests_failed == 0)
+      $display("RESULT: PASS");
+    else
+      $display("RESULT: FAIL");
+
+    $finish;
+  end
+
+endmodule

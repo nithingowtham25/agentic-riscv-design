@@ -1,0 +1,25 @@
+Design the following hardware block in SystemVerilog.
+
+Top module: {top_module}
+
+Hardware specification:
+{content}
+
+Before writing any code, work through the design step by step:
+
+1. Identify the inputs, outputs, and their widths.
+2. Identify the required operations and control conditions.
+3. Identify important corner cases, including reset, boundary values,
+   overflow, and other cases specified by the hardware specification.
+4. Determine which signals and logic are combinational and which are
+   sequential.
+5. Use this analysis to determine the appropriate RTL structure.
+
+Then implement the design based on your analysis.
+
+Preserve the exact module name, port names, directions, and widths specified
+in the hardware specification. Implement all defined behavior without
+adding unspecified functionality.
+
+Return the complete SystemVerilog RTL implementation in a single fenced
+code block.

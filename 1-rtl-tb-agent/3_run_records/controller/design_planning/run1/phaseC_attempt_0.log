@@ -1,0 +1,55 @@
+======================================================================
+RTL VERSION 0
+======================================================================
+
+RTL: results/controller/design_planning/run1/initial_rtl.sv
+
+======================================================================
+GENERATED TESTBENCH
+======================================================================
+
+results/controller/design_planning/run1/initial_rtl.sv:98: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+results/controller/design_planning/run1/initial_rtl.sv:139: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+FAIL: Illegal shift-immediate encoding instr=20315093
+  Expected: RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=0 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+  Actual  : RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=1 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=101 SubArith=0 Illegal=1
+TESTS_PASSED: 20
+TESTS_FAILED: 1
+TESTS_TOTAL: 21
+RESULT: FAIL
+results/controller/design_planning/run1/controller_tb.sv:193: $finish called at 21 (1s)
+
+======================================================================
+INSTRUCTOR SAMPLE TESTS
+======================================================================
+
+DUT:     results/controller/design_planning/run1/initial_rtl.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/337001954_A1_test/1_code/module_packages/controller/vectors/sample/controller_sample.txt
+============================================================
+Assignment 1 RV32I Controller Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/337001954_A1_test/1_code/module_packages/controller/vectors/sample/controller_sample.txt
+============================================================
+FAIL test=40 category=7 Instr=403170b3
+  RegWriteD     got=0 exp=0
+  ImmSrcD       got=000 exp=00000000000000000000000000000000
+  ALUSrcAD      got=0 exp=0
+  ALUSrcBD      got=0 exp=0
+  MemRWD        got=00 exp=00000000000000000000000000000000
+  ResultSrcD    got=000 exp=00000000000000000000000000000000
+  BranchD       got=0 exp=0
+  JumpD         got=0 exp=0
+  ALUResultSrcD got=0 exp=0
+  ALUSelectD    got=111 exp=00000000000000000000000000000000
+  SubArithD     got=0 exp=0
+  IllegalInstrD got=1 exp=1
+------------------------------------------------------------
+Passed: 39
+Failed: 1
+Total : 40
+Score : 97.50%
+------------------------------------------------------------
+FAIL
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/337001954_A1_test/1_code/module_packages/controller/testbench/controller_tb.sv:156: $finish(1) called at 40000 (1ps)
+>>> RESULT: FAIL
+results/controller/design_planning/run1/initial_rtl.sv:98: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+results/controller/design_planning/run1/initial_rtl.sv:139: vvp.tgt sorry: Case unique/unique0 qualities are ignored.

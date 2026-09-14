@@ -1,0 +1,39 @@
+module regfile (
+    input  logic        clk,
+    input  logic        reset,
+    input  logic        we3,
+    input  logic [4:0]  a1,
+    input  logic [4:0]  a2,
+    input  logic [4:0]  a3,
+    input  logic [31:0] wd3,
+    output logic [31:0] rd1,
+    output logic [31:0] rd2
+);
+
+    logic [31:0] regs [31:0];
+    integer i;
+
+    // Combinational read ports
+    always_comb begin
+        rd1 = (a1 == 5'd0) ? 32'h00000000 : regs[a1];
+        rd2 = (a2 == 5'd0) ? 32'h00000000 : regs[a2];
+    end
+
+    // Writes and reset occur on the falling edge of the clock
+    always_ff @(negedge clk) begin
+        if (reset) begin
+            regs[0] <= 32'h00000000;
+            for (i = 1; i < 32; i = i + 1) begin
+                regs[i] <= 32'h00000000;
+            end
+        end else begin
+            // Keep x0 hardwired to zero
+            regs[0] <= 32'h00000000;
+
+            if (we3 && (a3 != 5'd0)) begin
+                regs[a3] <= wd3;
+            end
+        end
+    end
+
+endmodule

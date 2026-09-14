@@ -1,0 +1,98 @@
+Using spec: specs/extend.yaml
+Top module: extend
+Model: gpt-5.4
+Suggested output directory: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/results/extend/design_planning/run1
+Phase A: generated RTL saved to results/extend/design_planning/run1/initial_rtl.sv
+Phase A: model returned: gpt-5.4-2026-03-05
+Phase A: usage: {'completion_tokens': 356, 'prompt_tokens': 1010, 'total_tokens': 1366, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}, 'latency_checkpoint': {'engine_tbt_ms': 8, 'engine_ttft_ms': 104, 'engine_ttlt_ms': 2939, 'pre_inference_ms': 188, 'service_tbt_ms': 8, 'service_ttft_ms': 524, 'service_ttlt_ms': 3351, 'user_visible_ttft_ms': 336}}
+Phase B: generated testbench saved to results/extend/design_planning/run1/extend_tb.sv
+Phase B: model returned: gpt-5.4-2026-03-05
+Phase B: usage: {'completion_tokens': 1254, 'prompt_tokens': 1521, 'total_tokens': 2775, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}, 'latency_checkpoint': {'engine_tbt_ms': 9, 'engine_ttft_ms': 105, 'engine_ttlt_ms': 11074, 'pre_inference_ms': 189, 'service_tbt_ms': 9, 'service_ttft_ms': 581, 'service_ttlt_ms': 11550, 'user_visible_ttft_ms': 393}}
+
+======================================================================
+Phase C: RTL version 0
+RTL: results/extend/design_planning/run1/initial_rtl.sv
+======================================================================
+Running generated testbench...
+results/extend/design_planning/run1/extend_tb.sv:65: warning: Numeric constant truncated to 25 bits.
+results/extend/design_planning/run1/extend_tb.sv:67: warning: Numeric constant truncated to 25 bits.
+results/extend/design_planning/run1/extend_tb.sv:68: warning: Numeric constant truncated to 25 bits.
+results/extend/design_planning/run1/extend_tb.sv:72: warning: Numeric constant truncated to 25 bits.
+results/extend/design_planning/run1/extend_tb.sv:73: warning: Numeric constant truncated to 25 bits.
+results/extend/design_planning/run1/extend_tb.sv:76: warning: Extra digits given for sized hex constant.
+results/extend/design_planning/run1/extend_tb.sv:77: warning: Extra digits given for sized hex constant.
+results/extend/design_planning/run1/extend_tb.sv:77: warning: Numeric constant truncated to 25 bits.
+results/extend/design_planning/run1/extend_tb.sv:78: warning: Extra digits given for sized hex constant.
+results/extend/design_planning/run1/extend_tb.sv:79: warning: Extra digits given for sized hex constant.
+results/extend/design_planning/run1/extend_tb.sv:79: warning: Numeric constant truncated to 25 bits.
+results/extend/design_planning/run1/extend_tb.sv:80: warning: Extra digits given for sized hex constant.
+results/extend/design_planning/run1/extend_tb.sv:80: warning: Numeric constant truncated to 25 bits.
+results/extend/design_planning/run1/extend_tb.sv:83: warning: Extra digits given for sized hex constant.
+results/extend/design_planning/run1/extend_tb.sv:84: warning: Extra digits given for sized hex constant.
+results/extend/design_planning/run1/extend_tb.sv:85: warning: Extra digits given for sized hex constant.
+results/extend/design_planning/run1/extend_tb.sv:85: warning: Numeric constant truncated to 25 bits.
+results/extend/design_planning/run1/extend_tb.sv:86: warning: Extra digits given for sized hex constant.
+results/extend/design_planning/run1/extend_tb.sv:86: warning: Numeric constant truncated to 25 bits.
+results/extend/design_planning/run1/extend_tb.sv:87: warning: Extra digits given for sized hex constant.
+results/extend/design_planning/run1/extend_tb.sv:87: warning: Numeric constant truncated to 25 bits.
+results/extend/design_planning/run1/extend_tb.sv:90: warning: Extra digits given for sized hex constant.
+results/extend/design_planning/run1/extend_tb.sv:90: warning: Numeric constant truncated to 25 bits.
+results/extend/design_planning/run1/extend_tb.sv:91: warning: Extra digits given for sized hex constant.
+results/extend/design_planning/run1/extend_tb.sv:92: warning: Extra digits given for sized hex constant.
+results/extend/design_planning/run1/extend_tb.sv:92: warning: Numeric constant truncated to 25 bits.
+results/extend/design_planning/run1/initial_rtl.sv:18: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:18: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:19: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:19: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:19: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:20: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:20: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:20: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:20: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:21: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:21: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:21: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:21: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:22: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+TESTS_PASSED: 20
+TESTS_FAILED: 0
+TESTS_TOTAL: 20
+RESULT: PASS
+results/extend/design_planning/run1/extend_tb.sv:102: $finish called at 21 (1s)
+Running instructor sample tests...
+DUT:     results/extend/design_planning/run1/initial_rtl.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/extend/vectors/sample/extend_sample.txt
+============================================================
+Assignment 1 RV32I Immediate Extension Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/extend/vectors/sample/extend_sample.txt
+============================================================
+------------------------------------------------------------
+Passed: 40
+Failed: 0
+Total : 40
+Score : 100.00%
+------------------------------------------------------------
+PASS
+>>> RESULT: PASS
+results/extend/design_planning/run1/initial_rtl.sv:18: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:18: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:19: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:19: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:19: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:20: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:20: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:20: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:20: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:21: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:21: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:21: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:21: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/design_planning/run1/initial_rtl.sv:22: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+
+Phase C: RTL version 0 PASSED the instructor sample tests.
+Phase C: final RTL saved to results/extend/design_planning/run1/final_rtl.sv
+
+======================================================================
+Run complete.
+Clean run log saved to: results/extend/design_planning/run1/run.log
+======================================================================

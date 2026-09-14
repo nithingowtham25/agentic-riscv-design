@@ -1,0 +1,41 @@
+======================================================================
+RTL VERSION 1
+======================================================================
+
+RTL: results/alu/design_planning/run1/revised_rtl_1.sv
+
+======================================================================
+GENERATED TESTBENCH
+======================================================================
+
+results/alu/design_planning/run1/revised_rtl_1.sv:16: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+TESTS_PASSED: 20
+TESTS_FAILED: 0
+TESTS_TOTAL: 20
+RESULT: PASS
+results/alu/design_planning/run1/alu_tb.sv:130: $finish called at 21 (1s)
+
+======================================================================
+INSTRUCTOR SAMPLE TESTS
+======================================================================
+
+DUT:     results/alu/design_planning/run1/revised_rtl_1.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/alu/vectors/sample/alu_sample.txt
+============================================================
+Assignment 1 RV32I ALU Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/alu/vectors/sample/alu_sample.txt
+============================================================
+FAIL test=23 category=4 select=101 sub=1 A=80000000 B=00000001 | ALUResult got=40000000 exp=c0000000 | Sum got=7fffffff exp=7fffffff
+FAIL test=25 category=4 select=101 sub=1 A=80000000 B=0000001f | ALUResult got=00000001 exp=ffffffff | Sum got=7fffffe1 exp=7fffffe1
+FAIL test=28 category=4 select=101 sub=1 A=80000000 B=00000021 | ALUResult got=40000000 exp=c0000000 | Sum got=7fffffdf exp=7fffffdf
+FAIL test=39 category=7 select=101 sub=1 A=f1234567 B=abcdef03 | ALUResult got=1e2468ac exp=fe2468ac | Sum got=45555664 exp=45555664
+------------------------------------------------------------
+Passed: 36
+Failed: 4
+Total : 40
+Score : 90.00%
+------------------------------------------------------------
+FAIL
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/alu/testbench/alu_tb.sv:116: $finish(1) called at 40000 (1ps)
+>>> RESULT: FAIL
+results/alu/design_planning/run1/revised_rtl_1.sv:16: vvp.tgt sorry: Case unique/unique0 qualities are ignored.

@@ -1,0 +1,58 @@
+regfile:
+  description: >
+    Integer register file for the course RV32I processor: 32 registers x 32 bits
+    (x0..x31), two combinational read ports, one write port. x0 is hardwired to
+    zero. Writes and reset are sampled on the FALLING edge of clk.
+  tech_node: ASAP7 / SkyWater 130HD (course flow)
+  clock_period: 1.0ns
+  ports:
+    - {name: clk,   direction: input,  type: "logic",        description: Processor clock}
+    - {name: reset, direction: input,  type: "logic",        description: Register-file reset (sampled on negedge)}
+    - {name: we3,   direction: input,  type: "logic",        description: Write enable for write port 3}
+    - {name: a1,    direction: input,  type: "logic [4:0]",  description: First source register address}
+    - {name: a2,    direction: input,  type: "logic [4:0]",  description: Second source register address}
+    - {name: a3,    direction: input,  type: "logic [4:0]",  description: Destination register address}
+    - {name: wd3,   direction: input,  type: "logic [31:0]", description: Write data for port 3}
+    - {name: rd1,   direction: output, type: "logic [31:0]", description: Data read from register a1}
+    - {name: rd2,   direction: output, type: "logic [31:0]", description: Data read from register a2}
+  module_signature: |
+    module regfile (
+        input  logic        clk,
+        input  logic        reset,
+        input  logic        we3,
+        input  logic [4:0]  a1,
+        input  logic [4:0]  a2,
+        input  logic [4:0]  a3,
+        input  logic [31:0] wd3,
+        output logic [31:0] rd1,
+        output logic [31:0] rd2
+    );
+  behavior:
+    x0: >
+      Register x0 is hardwired to zero. Reads of address 0 always return
+      32'h00000000. Writes targeting a3=0 have no effect. x0 stays zero after any
+      attempted write.
+    read: >
+      Two independent COMBINATIONAL read ports. rd1 = reg[a1], rd2 = reg[a2] (0 if
+      the address is 0). No clock edge needed to read. Ports may read the same or
+      different registers.
+    write: >
+      On the FALLING edge of clk, when reset=0 AND we3=1 AND a3!=0: reg[a3] <- wd3.
+      If we3=0, no change. If a3=0, ignore. After a write, combinational reads of
+      that register return the new value.
+    reset: >
+      reset is sampled on the falling edge of clk. When reset=1 at a negedge,
+      x1..x31 are cleared to zero (x0 already zero). Reset has priority over a
+      write. No asynchronous reset between edges.
+    timing: >
+      Reads combinational; writes and reset on negedge clk. At most one write per
+      negedge. No internal forwarding/bypass. Synthesizable SystemVerilog.
+    out_of_scope: >
+      No RV32E mode, extra write ports, forwarding, renaming, ECC, or FP registers.
+  sample_usage:
+    description: Stateful transaction sequence (apply inputs before each negedge, read after).
+    cases:
+      - {op: write, a3: 5,  wd3: "0xDEADBEEF", we3: 1, then_read_a1: 5,  expect_rd1: "0xDEADBEEF"}
+      - {op: write, a3: 0,  wd3: "0xFFFFFFFF", we3: 1, then_read_a1: 0,  expect_rd1: "0x00000000", note: "x0 stays zero"}
+      - {op: write, a3: 5,  wd3: "0x0000002A", we3: 0, then_read_a1: 5,  expect_rd1: "0xDEADBEEF", note: "we3=0 -> no change"}
+      - {op: reset, then_read_a1: 5, expect_rd1: "0x00000000", note: "reset clears x1..x31"}

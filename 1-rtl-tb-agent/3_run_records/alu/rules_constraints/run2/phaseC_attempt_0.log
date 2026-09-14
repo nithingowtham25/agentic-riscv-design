@@ -1,0 +1,44 @@
+======================================================================
+RTL VERSION 0
+======================================================================
+
+RTL: results/alu/rules_constraints/run2/initial_rtl.sv
+
+======================================================================
+GENERATED TESTBENCH
+======================================================================
+
+results/alu/rules_constraints/run2/initial_rtl.sv:25: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+FAIL: SRA negative by 1
+  Inputs: A=0x80000000 B=0x00000001 ALUSelect=101 SubArith=1
+  Expected: ALUResult=0x40000000 Sum=0x7fffffff
+  Actual  : ALUResult=0xc0000000 Sum=0x7fffffff
+FAIL: SRA negative by 31
+  Inputs: A=0x80000000 B=0x0000001f ALUSelect=101 SubArith=1
+  Expected: ALUResult=0x00000001 Sum=0x7fffffe1
+  Actual  : ALUResult=0xffffffff Sum=0x7fffffe1
+TESTS_PASSED: 18
+TESTS_FAILED: 2
+TESTS_TOTAL: 20
+RESULT: FAIL
+results/alu/rules_constraints/run2/alu_tb.sv:115: $finish called at 20 (1s)
+
+======================================================================
+INSTRUCTOR SAMPLE TESTS
+======================================================================
+
+DUT:     results/alu/rules_constraints/run2/initial_rtl.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/alu/vectors/sample/alu_sample.txt
+============================================================
+Assignment 1 RV32I ALU Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/alu/vectors/sample/alu_sample.txt
+============================================================
+------------------------------------------------------------
+Passed: 40
+Failed: 0
+Total : 40
+Score : 100.00%
+------------------------------------------------------------
+PASS
+>>> RESULT: PASS
+results/alu/rules_constraints/run2/initial_rtl.sv:25: vvp.tgt sorry: Case unique/unique0 qualities are ignored.

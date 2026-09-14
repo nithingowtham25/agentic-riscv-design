@@ -1,0 +1,38 @@
+module regfile (
+    input  logic        clk,
+    input  logic        reset,
+    input  logic        we3,
+    input  logic [4:0]  a1,
+    input  logic [4:0]  a2,
+    input  logic [4:0]  a3,
+    input  logic [31:0] wd3,
+    output logic [31:0] rd1,
+    output logic [31:0] rd2
+);
+
+    logic [31:0] rf [31:0];
+    integer i;
+
+    // Combinational read ports; x0 is hardwired to zero.
+    always_comb begin
+        rd1 = (a1 == 5'd0) ? 32'h0000_0000 : rf[a1];
+        rd2 = (a2 == 5'd0) ? 32'h0000_0000 : rf[a2];
+    end
+
+    // Writes and reset are sampled on the falling edge of clk.
+    // Reset has priority over write. x0 remains zero.
+    always_ff @(negedge clk) begin
+        if (reset) begin
+            rf[0] <= 32'h0000_0000;
+            for (i = 1; i < 32; i = i + 1) begin
+                rf[i] <= 32'h0000_0000;
+            end
+        end else begin
+            rf[0] <= 32'h0000_0000;
+            if (we3 && (a3 != 5'd0)) begin
+                rf[a3] <= wd3;
+            end
+        end
+    end
+
+endmodule

@@ -1,0 +1,36 @@
+======================================================================
+RTL VERSION 1
+======================================================================
+
+RTL: results/controller/design_planning/run2/revised_rtl_1.sv
+
+======================================================================
+GENERATED TESTBENCH
+======================================================================
+
+
+FAIL ILLEGAL_SHIFT_IMM: ALUSrcBD expected=0 actual=1 instr=20315093
+TESTS_PASSED: 19
+TESTS_FAILED: 1
+TESTS_TOTAL: 20
+RESULT: FAIL
+results/controller/design_planning/run2/controller_tb.sv:243: $finish called at 20 (1s)
+
+======================================================================
+INSTRUCTOR SAMPLE TESTS
+======================================================================
+
+DUT:     results/controller/design_planning/run2/revised_rtl_1.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/controller/vectors/sample/controller_sample.txt
+============================================================
+Assignment 1 RV32I Controller Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/controller/vectors/sample/controller_sample.txt
+============================================================
+------------------------------------------------------------
+Passed: 40
+Failed: 0
+Total : 40
+Score : 100.00%
+------------------------------------------------------------
+PASS
+>>> RESULT: PASS

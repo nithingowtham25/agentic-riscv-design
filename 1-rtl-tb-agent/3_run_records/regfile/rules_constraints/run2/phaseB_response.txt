@@ -1,0 +1,156 @@
+```systemverilog
+`timescale 1ns/1ps
+
+module tb_regfile;
+
+  logic        clk;
+  logic        reset;
+  logic        we3;
+  logic [4:0]  a1;
+  logic [4:0]  a2;
+  logic [4:0]  a3;
+  logic [31:0] wd3;
+  logic [31:0] rd1;
+  logic [31:0] rd2;
+
+  integer tests_passed;
+  integer tests_failed;
+  integer tests_total;
+
+  regfile dut (
+    .clk   (clk),
+    .reset (reset),
+    .we3   (we3),
+    .a1    (a1),
+    .a2    (a2),
+    .a3    (a3),
+    .wd3   (wd3),
+    .rd1   (rd1),
+    .rd2   (rd2)
+  );
+
+  initial clk = 1'b0;
+  always #0.5 clk = ~clk;  // 1.0ns period
+
+  task automatic check_read(
+    input [4:0] exp_a1,
+    input [31:0] exp_rd1,
+    input [4:0] exp_a2,
+    input [31:0] exp_rd2,
+    input [255:0] name
+  );
+  begin
+    a1 = exp_a1;
+    a2 = exp_a2;
+    #0.1;
+    tests_total = tests_total + 1;
+    if ((rd1 === exp_rd1) && (rd2 === exp_rd2)) begin
+      tests_passed = tests_passed + 1;
+    end else begin
+      tests_failed = tests_failed + 1;
+      $display("FAIL: %0s | a1=%0d exp rd1=0x%08h got rd1=0x%08h | a2=%0d exp rd2=0x%08h got rd2=0x%08h",
+               name, exp_a1, exp_rd1, rd1, exp_a2, exp_rd2, rd2);
+    end
+  end
+  endtask
+
+  task automatic do_negedge;
+  begin
+    @(negedge clk);
+    #0.1;
+  end
+  endtask
+
+  initial begin
+    tests_passed = 0;
+    tests_failed = 0;
+    tests_total  = 0;
+
+    reset = 1'b0;
+    we3   = 1'b0;
+    a1    = 5'd0;
+    a2    = 5'd0;
+    a3    = 5'd0;
+    wd3   = 32'h00000000;
+
+    // Initial combinational behavior of x0
+    check_read(5'd0, 32'h00000000, 5'd0, 32'h00000000, "x0 reads as zero initially");
+
+    // Write some values before reset, then verify reset only acts on negedge and has priority
+    we3 = 1'b1; a3 = 5'd7;  wd3 = 32'h12345678;
+    do_negedge();
+    we3 = 1'b1; a3 = 5'd31; wd3 = 32'hCAFEBABE;
+    do_negedge();
+    check_read(5'd7, 32'h12345678, 5'd31, 32'hCAFEBABE, "writes to x7 and x31 succeed");
+
+    // Assert reset away from edge; no asynchronous effect
+    reset = 1'b1;
+    check_read(5'd7, 32'h12345678, 5'd31, 32'hCAFEBABE, "reset is not asynchronous");
+
+    // Reset sampled on falling edge, has priority over write
+    we3 = 1'b1; a3 = 5'd8; wd3 = 32'hAAAAAAAA;
+    do_negedge();
+    reset = 1'b0;
+    we3   = 1'b0;
+    check_read(5'd7, 32'h00000000, 5'd31, 32'h00000000, "reset clears x1..x31 on negedge");
+    check_read(5'd8, 32'h00000000, 5'd0,  32'h00000000, "reset has priority over write and x0 remains zero");
+
+    // Sample usage: write x5 then read back
+    we3 = 1'b1; a3 = 5'd5; wd3 = 32'hDEADBEEF;
+    do_negedge();
+    we3 = 1'b0;
+    check_read(5'd5, 32'hDEADBEEF, 5'd0, 32'h00000000, "write x5 = DEADBEEF");
+
+    // Write to x0 should be ignored
+    we3 = 1'b1; a3 = 5'd0; wd3 = 32'hFFFFFFFF;
+    do_negedge();
+    we3 = 1'b0;
+    check_read(5'd0, 32'h00000000, 5'd5, 32'hDEADBEEF, "write to x0 ignored");
+
+    // we3=0 should cause no change
+    we3 = 1'b0; a3 = 5'd5; wd3 = 32'h0000002A;
+    do_negedge();
+    check_read(5'd5, 32'hDEADBEEF, 5'd0, 32'h00000000, "we3=0 prevents write");
+
+    // Combinational independent dual-port reads, same register on both ports
+    check_read(5'd5, 32'hDEADBEEF, 5'd5, 32'hDEADBEEF, "both read ports can read same register");
+    check_read(5'd1, 32'h00000000, 5'd5, 32'hDEADBEEF, "independent dual-port reads");
+
+    // Overwrite a nonzero register and verify new value visible after negedge
+    we3 = 1'b1; a3 = 5'd5; wd3 = 32'hA5A5A5A5;
+    do_negedge();
+    we3 = 1'b0;
+    check_read(5'd5, 32'hA5A5A5A5, 5'd1, 32'h00000000, "overwrite existing register");
+
+    // Boundary address low nonzero and high address
+    we3 = 1'b1; a3 = 5'd1; wd3 = 32'h00000001;
+    do_negedge();
+    we3 = 1'b1; a3 = 5'd31; wd3 = 32'h80000000;
+    do_negedge();
+    we3 = 1'b0;
+    check_read(5'd1, 32'h00000001, 5'd31, 32'h80000000, "boundary addresses x1 and x31 write/read");
+
+    // Final reset check after multiple writes
+    reset = 1'b1;
+    we3   = 1'b1;
+    a3    = 5'd1;
+    wd3   = 32'hFFFFFFFF;
+    do_negedge();
+    reset = 1'b0;
+    we3   = 1'b0;
+    check_read(5'd1, 32'h00000000, 5'd31, 32'h00000000, "final reset clears all nonzero registers");
+    check_read(5'd0, 32'h00000000, 5'd5, 32'h00000000, "x0 zero and prior registers cleared after reset");
+
+    $display("TESTS_PASSED: %0d", tests_passed);
+    $display("TESTS_FAILED: %0d", tests_failed);
+    $display("TESTS_TOTAL: %0d", tests_total);
+    if (tests_failed == 0)
+      $display("RESULT: PASS");
+    else
+      $display("RESULT: FAIL");
+
+    $finish;
+  end
+
+endmodule
+```

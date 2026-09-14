@@ -1,0 +1,48 @@
+extend:
+  description: >
+    Combinational RV32I immediate extension unit. Reconstructs the 32-bit
+    immediate from instruction bits [31:7] according to ImmSrcD, for the five base
+    RV32I formats (I, S, B, J, U), with correct sign extension and the
+    RISC-V fragmented bit orderings.
+  tech_node: ASAP7 / SkyWater 130HD (course flow)
+  clock_period: combinational (no clock)
+  ports:
+    - {name: InstrD,  direction: input,  type: "logic [31:7]", description: "Instruction bits 31:7 (opcode not needed for immediates)"}
+    - {name: ImmSrcD, direction: input,  type: "logic [2:0]",  description: Selects the immediate format}
+    - {name: ImmExtD, direction: output, type: "logic [31:0]", description: Reconstructed 32-bit immediate}
+  module_signature: |
+    module extend (
+        input  logic [31:7] InstrD,
+        input  logic [2:0]  ImmSrcD,
+        output logic [31:0] ImmExtD
+    );
+  behavior:
+    formats: |
+      ImmSrcD  Format  Use
+      000      I-type  ALU-immediate, loads, JALR
+      001      S-type  stores
+      010      B-type  conditional branches
+      011      J-type  JAL
+      100      U-type  LUI, AUIPC
+      (101/110/111 unused; output unspecified, not graded)
+    construction: |
+      I: {{20{InstrD[31]}}, InstrD[31:20]}
+      S: {{20{InstrD[31]}}, InstrD[31:25], InstrD[11:7]}
+      B: {{20{InstrD[31]}}, InstrD[7], InstrD[30:25], InstrD[11:8], 1'b0}
+      J: {{12{InstrD[31]}}, InstrD[19:12], InstrD[20], InstrD[30:21], 1'b0}
+      U: {InstrD[31:12], 12'b0}
+    notes: >
+      B- and J-type immediates are sign-extended and have an implicit 1'b0 in bit 0
+      (2-byte aligned). Note B bit 11 comes from InstrD[7]; J bit 11 from InstrD[20].
+    timing: >
+      Purely combinational; no clocked state; no latches for valid ImmSrcD.
+      Synthesizable SystemVerilog. All immediates are 32 bits (XLEN=32).
+    out_of_scope: >
+      No RV64, atomics immediates, compressed, custom formats, or privileged instrs.
+  sample_usage:
+    description: Representative immediates including negative and fragmented fields.
+    cases:
+      - {ImmSrcD: "000", InstrD_31_20: "0xFFF", ImmExtD: "0xFFFFFFFF", note: "I-type -1"}
+      - {ImmSrcD: "100", InstrD_31_12: "0xABCDE", ImmExtD: "0xABCDE000", note: "U-type"}
+      - {ImmSrcD: "010", desc: "B-type +8 (bits set so imm=8)", ImmExtD: "0x00000008"}
+      - {ImmSrcD: "010", desc: "B-type -4",                     ImmExtD: "0xFFFFFFFC"}

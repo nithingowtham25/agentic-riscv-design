@@ -1,0 +1,45 @@
+Using spec: specs/regfile.yaml
+Top module: regfile
+Model: gpt-5.4
+Suggested output directory: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/results/regfile/rules_constraints/run2
+Phase A: generated RTL saved to results/regfile/rules_constraints/run2/initial_rtl.sv
+Phase A: model returned: gpt-5.4-2026-03-05
+Phase A: usage: {'completion_tokens': 336, 'prompt_tokens': 1241, 'total_tokens': 1577, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}, 'latency_checkpoint': {'engine_tbt_ms': 8, 'engine_ttft_ms': 104, 'engine_ttlt_ms': 2823, 'pre_inference_ms': 116, 'service_tbt_ms': 8, 'service_ttft_ms': 346, 'service_ttlt_ms': 3062, 'user_visible_ttft_ms': 230}}
+Phase B: generated testbench saved to results/regfile/rules_constraints/run2/regfile_tb.sv
+Phase B: model returned: gpt-5.4-2026-03-05
+Phase B: usage: {'completion_tokens': 1745, 'prompt_tokens': 1769, 'total_tokens': 3514, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}, 'latency_checkpoint': {'engine_tbt_ms': 9, 'engine_ttft_ms': 116, 'engine_ttlt_ms': 15390, 'pre_inference_ms': 166, 'service_tbt_ms': 9, 'service_ttft_ms': 547, 'service_ttlt_ms': 15820, 'user_visible_ttft_ms': 381}}
+
+======================================================================
+Phase C: RTL version 0
+RTL: results/regfile/rules_constraints/run2/initial_rtl.sv
+======================================================================
+Running generated testbench...
+
+TESTS_PASSED: 14
+TESTS_FAILED: 0
+TESTS_TOTAL: 14
+RESULT: PASS
+results/regfile/rules_constraints/run2/regfile_tb.sv:151: $finish called at 10300 (1ps)
+Running instructor sample tests...
+DUT:     results/regfile/rules_constraints/run2/initial_rtl.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/regfile/vectors/sample/regfile_sample.txt
+============================================================
+Assignment 1 RV32I Register File Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/regfile/vectors/sample/regfile_sample.txt
+============================================================
+------------------------------------------------------------
+Passed: 39
+Failed: 0
+Total : 39
+Score : 100.00%
+------------------------------------------------------------
+PASS
+>>> RESULT: PASS
+
+Phase C: RTL version 0 PASSED the instructor sample tests.
+Phase C: final RTL saved to results/regfile/rules_constraints/run2/final_rtl.sv
+
+======================================================================
+Run complete.
+Clean run log saved to: results/regfile/rules_constraints/run2/run.log
+======================================================================

@@ -1,0 +1,103 @@
+======================================================================
+ECEN 689 - ASSIGNMENT 1
+LLM-BASED HARDWARE DESIGN RUN
+======================================================================
+
+Block              : controller
+Specification      : specs/controller.yaml
+Output Directory   : /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/results/controller/direct/run2
+Provider           : tamu
+Model              : gpt-5.4
+
+======================================================================
+PHASE A - RTL GENERATION
+======================================================================
+
+RTL                : initial_rtl.sv
+
+Model generation:
+model: gpt-5.4-2026-03-05
+provider: tamu
+settings: {'max_output_tokens': 4096}
+usage: {'completion_tokens': 2726, 'prompt_tokens': 1856, 'total_tokens': 4582, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}, 'latency_checkpoint': {'engine_tbt_ms': 8, 'engine_ttft_ms': 142, 'engine_ttlt_ms': 21549, 'pre_inference_ms': 228, 'service_tbt_ms': 8, 'service_ttft_ms': 551, 'service_ttlt_ms': 21950, 'user_visible_ttft_ms': 323}}
+
+
+======================================================================
+PHASE B - TESTBENCH GENERATION
+======================================================================
+
+Testbench          : controller_tb.sv
+
+Model generation:
+model: gpt-5.4-2026-03-05
+provider: tamu
+settings: {'max_output_tokens': 4096}
+usage: {'completion_tokens': 3660, 'prompt_tokens': 2481, 'total_tokens': 6141, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}, 'latency_checkpoint': {'engine_tbt_ms': 8, 'engine_ttft_ms': 111, 'engine_ttlt_ms': 27618, 'pre_inference_ms': 129, 'service_tbt_ms': 8, 'service_ttft_ms': 503, 'service_ttlt_ms': 28003, 'user_visible_ttft_ms': 374}}
+
+
+
+
+---------------------- RTL VERSION 0 ----------------------
+
+RTL: initial_rtl.sv
+
+Generated Testbench
+-------------------
+Compile      : PASS
+Tests Passed : 15
+Tests Failed : 5
+Tests Total  : 20
+Result       : FAIL
+
+Instructor Sample Tests
+-----------------------
+Result       : FAIL
+Tests Passed : 37
+Tests Total  : 40
+
+Decision:
+  Instructor tests FAILED.
+  Sending RTL to repair agent.
+
+
+---------------------- RTL VERSION 1 ----------------------
+
+RTL: revised_rtl_1.sv
+
+Generated Testbench
+-------------------
+Compile      : PASS
+Tests Passed : 20
+Tests Failed : 0
+Tests Total  : 20
+Result       : PASS
+
+Instructor Sample Tests
+-----------------------
+Result       : PASS
+Tests Passed : 40
+Tests Total  : 40
+
+Decision:
+  Instructor tests PASSED.
+  No repair required.
+
+
+======================================================================
+FINAL RESULT
+======================================================================
+
+Final RTL        : final_rtl.sv
+Final RTL Source : revised_rtl_1.sv
+
+Generated TB     : PASS
+Instructor Tests : 40/40 PASS
+
+Repairs Attempted: 1
+RTL Versions     : 2
+
+FINAL STATUS: PASS
+
+======================================================================
+RUN COMPLETE
+======================================================================

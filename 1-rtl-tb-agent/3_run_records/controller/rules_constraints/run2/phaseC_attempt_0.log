@@ -1,0 +1,40 @@
+======================================================================
+RTL VERSION 0
+======================================================================
+
+RTL: results/controller/rules_constraints/run2/initial_rtl.sv
+
+======================================================================
+GENERATED TESTBENCH
+======================================================================
+
+results/controller/rules_constraints/run2/initial_rtl.sv:22: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+results/controller/rules_constraints/run2/initial_rtl.sv:23: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+results/controller/rules_constraints/run2/initial_rtl.sv:24: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+TESTS_PASSED: 20
+TESTS_FAILED: 0
+TESTS_TOTAL: 20
+RESULT: PASS
+results/controller/rules_constraints/run2/controller_tb.sv:243: $finish called at 20 (1s)
+
+======================================================================
+INSTRUCTOR SAMPLE TESTS
+======================================================================
+
+DUT:     results/controller/rules_constraints/run2/initial_rtl.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/controller/vectors/sample/controller_sample.txt
+============================================================
+Assignment 1 RV32I Controller Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/controller/vectors/sample/controller_sample.txt
+============================================================
+------------------------------------------------------------
+Passed: 40
+Failed: 0
+Total : 40
+Score : 100.00%
+------------------------------------------------------------
+PASS
+>>> RESULT: PASS
+results/controller/rules_constraints/run2/initial_rtl.sv:22: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+results/controller/rules_constraints/run2/initial_rtl.sv:23: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+results/controller/rules_constraints/run2/initial_rtl.sv:24: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').

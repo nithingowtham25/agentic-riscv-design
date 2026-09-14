@@ -1,0 +1,77 @@
+Using spec: specs/extend.yaml
+Top module: extend
+Model: gpt-5.4
+Suggested output directory: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/results/extend/rules_constraints/run2
+Phase A: generated RTL saved to results/extend/rules_constraints/run2/initial_rtl.sv
+Phase A: model returned: gpt-5.4-2026-03-05
+Phase A: usage: {'completion_tokens': 285, 'prompt_tokens': 993, 'total_tokens': 1278, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}, 'latency_checkpoint': {'engine_tbt_ms': 7, 'engine_ttft_ms': 98, 'engine_ttlt_ms': 2197, 'pre_inference_ms': 116, 'service_tbt_ms': 7, 'service_ttft_ms': 435, 'service_ttlt_ms': 2530, 'user_visible_ttft_ms': 318}}
+Phase B: generated testbench saved to results/extend/rules_constraints/run2/extend_tb.sv
+Phase B: model returned: gpt-5.4-2026-03-05
+Phase B: usage: {'completion_tokens': 1395, 'prompt_tokens': 1521, 'total_tokens': 2916, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}, 'latency_checkpoint': {'engine_tbt_ms': 10, 'engine_ttft_ms': 93, 'engine_ttlt_ms': 13483, 'pre_inference_ms': 194, 'service_tbt_ms': 10, 'service_ttft_ms': 588, 'service_ttlt_ms': 13970, 'user_visible_ttft_ms': 394}}
+
+======================================================================
+Phase C: RTL version 0
+RTL: results/extend/rules_constraints/run2/initial_rtl.sv
+======================================================================
+Running generated testbench...
+results/extend/rules_constraints/run2/extend_tb.sv:65: warning: Numeric constant truncated to 25 bits.
+results/extend/rules_constraints/run2/extend_tb.sv:67: warning: Numeric constant truncated to 25 bits.
+results/extend/rules_constraints/run2/extend_tb.sv:68: warning: Numeric constant truncated to 25 bits.
+results/extend/rules_constraints/run2/extend_tb.sv:91: warning: Numeric constant truncated to 25 bits.
+results/extend/rules_constraints/run2/extend_tb.sv:93: warning: Numeric constant truncated to 25 bits.
+results/extend/rules_constraints/run2/initial_rtl.sv:9: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:9: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:10: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:10: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:10: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:11: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:11: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:11: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:11: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:12: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:12: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:12: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:12: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:13: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+TESTS_PASSED: 22
+TESTS_FAILED: 0
+TESTS_TOTAL: 22
+RESULT: PASS
+results/extend/rules_constraints/run2/extend_tb.sv:104: $finish called at 23 (1s)
+Running instructor sample tests...
+DUT:     results/extend/rules_constraints/run2/initial_rtl.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/extend/vectors/sample/extend_sample.txt
+============================================================
+Assignment 1 RV32I Immediate Extension Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/extend/vectors/sample/extend_sample.txt
+============================================================
+------------------------------------------------------------
+Passed: 40
+Failed: 0
+Total : 40
+Score : 100.00%
+------------------------------------------------------------
+PASS
+>>> RESULT: PASS
+results/extend/rules_constraints/run2/initial_rtl.sv:9: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:9: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:10: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:10: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:10: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:11: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:11: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:11: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:11: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:12: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:12: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:12: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:12: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+results/extend/rules_constraints/run2/initial_rtl.sv:13: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:7]').
+
+Phase C: RTL version 0 PASSED the instructor sample tests.
+Phase C: final RTL saved to results/extend/rules_constraints/run2/final_rtl.sv
+
+======================================================================
+Run complete.
+Clean run log saved to: results/extend/rules_constraints/run2/run.log
+======================================================================

@@ -1,0 +1,55 @@
+======================================================================
+RTL VERSION 0
+======================================================================
+
+RTL: results/controller/rules_constraints/run1/initial_rtl.sv
+
+======================================================================
+GENERATED TESTBENCH
+======================================================================
+
+results/controller/rules_constraints/run1/initial_rtl.sv:22: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+results/controller/rules_constraints/run1/initial_rtl.sv:23: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+results/controller/rules_constraints/run1/initial_rtl.sv:24: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+FAIL: I-type SLLI illegal encoding instr=40511093
+  Expected: RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=1 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=001 SubArith=0 Illegal=1
+  Actual:   RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=0 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+FAIL: Load illegal funct3 instr=00017083
+  Expected: RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=1 MemRW=00 ResultSrc=001 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+  Actual:   RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=0 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+FAIL: Store illegal funct3 instr=00113023
+  Expected: RegWrite=0 ImmSrc=001 ALUSrcA=0 ALUSrcB=1 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+  Actual:   RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=0 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+FAIL: Branch illegal funct3 instr=00312063
+  Expected: RegWrite=0 ImmSrc=010 ALUSrcA=1 ALUSrcB=1 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+  Actual:   RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=0 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+FAIL: JALR illegal funct3 instr=000110e7
+  Expected: RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=1 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=1 ALUSelect=000 SubArith=0 Illegal=1
+  Actual:   RegWrite=0 ImmSrc=000 ALUSrcA=0 ALUSrcB=0 MemRW=00 ResultSrc=000 Branch=0 Jump=0 ALUResultSrc=0 ALUSelect=000 SubArith=0 Illegal=1
+TESTS_PASSED: 17
+TESTS_FAILED: 5
+TESTS_TOTAL: 22
+RESULT: FAIL
+results/controller/rules_constraints/run1/controller_tb.sv:207: $finish called at 22 (1s)
+
+======================================================================
+INSTRUCTOR SAMPLE TESTS
+======================================================================
+
+DUT:     results/controller/rules_constraints/run1/initial_rtl.sv
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/controller/vectors/sample/controller_sample.txt
+============================================================
+Assignment 1 RV32I Controller Testbench
+Vectors: /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/Assignment_1/A1_student/module_packages/controller/vectors/sample/controller_sample.txt
+============================================================
+------------------------------------------------------------
+Passed: 40
+Failed: 0
+Total : 40
+Score : 100.00%
+------------------------------------------------------------
+PASS
+>>> RESULT: PASS
+results/controller/rules_constraints/run1/initial_rtl.sv:22: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+results/controller/rules_constraints/run1/initial_rtl.sv:23: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').
+results/controller/rules_constraints/run1/initial_rtl.sv:24: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'InstrD[31:0]').

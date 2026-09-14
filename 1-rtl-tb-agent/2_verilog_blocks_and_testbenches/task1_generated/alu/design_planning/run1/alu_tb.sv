@@ -1,0 +1,133 @@
+module tb_alu;
+
+  logic [31:0] A;
+  logic [31:0] B;
+  logic [2:0]  ALUSelect;
+  logic        SubArith;
+  logic [31:0] ALUResult;
+  logic [31:0] Sum;
+
+  integer tests_passed;
+  integer tests_failed;
+  integer tests_total;
+
+  alu dut (
+    .A(A),
+    .B(B),
+    .ALUSelect(ALUSelect),
+    .SubArith(SubArith),
+    .ALUResult(ALUResult),
+    .Sum(Sum)
+  );
+
+  function automatic [31:0] expected_sum(
+    input [31:0] a,
+    input [31:0] b,
+    input        sub
+  );
+    begin
+      if (sub)
+        expected_sum = a - b;
+      else
+        expected_sum = a + b;
+    end
+  endfunction
+
+  function automatic [31:0] expected_result(
+    input [31:0] a,
+    input [31:0] b,
+    input [2:0]  sel,
+    input        sub
+  );
+    begin
+      case (sel)
+        3'b000: expected_result = sub ? (a - b) : (a + b);
+        3'b001: expected_result = a << b[4:0];
+        3'b010: expected_result = ($signed(a) < $signed(b)) ? 32'h00000001 : 32'h00000000;
+        3'b011: expected_result = (a < b) ? 32'h00000001 : 32'h00000000;
+        3'b100: expected_result = a ^ b;
+        3'b101: expected_result = sub ? ($signed(a) >>> b[4:0]) : (a >> b[4:0]);
+        3'b110: expected_result = a | b;
+        3'b111: expected_result = a & b;
+        default: expected_result = 32'hxxxxxxxx;
+      endcase
+    end
+  endfunction
+
+  task automatic run_test(
+    input [31:0] a,
+    input [31:0] b,
+    input [2:0]  sel,
+    input        sub,
+    input [255:0] name
+  );
+    reg [31:0] exp_result;
+    reg [31:0] exp_sum;
+    begin
+      A = a;
+      B = b;
+      ALUSelect = sel;
+      SubArith = sub;
+      #1;
+
+      exp_result = expected_result(a, b, sel, sub);
+      exp_sum    = expected_sum(a, b, sub);
+
+      tests_total = tests_total + 1;
+      if ((ALUResult !== exp_result) || (Sum !== exp_sum)) begin
+        tests_failed = tests_failed + 1;
+        $display("FAIL: %0s", name);
+        $display("  Inputs: A=0x%08h B=0x%08h ALUSelect=%03b SubArith=%0d", a, b, sel, sub);
+        $display("  Expected: ALUResult=0x%08h Sum=0x%08h", exp_result, exp_sum);
+        $display("  Actual  : ALUResult=0x%08h Sum=0x%08h", ALUResult, Sum);
+      end else begin
+        tests_passed = tests_passed + 1;
+      end
+    end
+  endtask
+
+  initial begin
+    tests_passed = 0;
+    tests_failed = 0;
+    tests_total  = 0;
+
+    A = 32'h0;
+    B = 32'h0;
+    ALUSelect = 3'b000;
+    SubArith = 1'b0;
+    #1;
+
+    run_test(32'h0000000A, 32'h00000003, 3'b000, 1'b0, "ADD sample");
+    run_test(32'h0000000A, 32'h00000003, 3'b000, 1'b1, "SUB sample");
+    run_test(32'hFFFFFFFF, 32'h00000001, 3'b010, 1'b1, "SLT signed sample (-1 < 1)");
+    run_test(32'hFFFFFFFF, 32'h00000001, 3'b011, 1'b1, "SLTU unsigned sample");
+    run_test(32'h80000000, 32'h00000001, 3'b101, 1'b1, "SRA negative sample");
+    run_test(32'h0000000F, 32'h0000001F, 3'b001, 1'b0, "SLL by 31 sample");
+
+    run_test(32'hFFFFFFFF, 32'h00000001, 3'b000, 1'b0, "ADD wraparound");
+    run_test(32'h00000000, 32'h00000001, 3'b000, 1'b1, "SUB wraparound");
+    run_test(32'h12345678, 32'h00000000, 3'b001, 1'b0, "SLL by 0");
+    run_test(32'h80000000, 32'h0000001F, 3'b101, 1'b0, "SRL by 31 logical");
+    run_test(32'h80000000, 32'h0000001F, 3'b101, 1'b1, "SRA by 31 arithmetic");
+    run_test(32'h12345678, 32'h00000020, 3'b001, 1'b0, "Shift amount uses only B[4:0] for SLL");
+    run_test(32'h12345678, 32'h00000020, 3'b101, 1'b0, "Shift amount uses only B[4:0] for SRL");
+    run_test(32'h7FFFFFFF, 32'h80000000, 3'b010, 1'b1, "SLT signed false");
+    run_test(32'h00000001, 32'hFFFFFFFF, 3'b011, 1'b1, "SLTU unsigned true");
+    run_test(32'hA5A5A5A5, 32'h5A5A5A5A, 3'b100, 1'b0, "XOR pattern");
+    run_test(32'h12340000, 32'h00005678, 3'b110, 1'b0, "OR pattern");
+    run_test(32'hF0F0AA55, 32'h0FF0FF00, 3'b111, 1'b0, "AND pattern");
+    run_test(32'h11111111, 32'h22222222, 3'b110, 1'b1, "Sum independent of ALUResult on OR with SubArith=1");
+    run_test(32'h80000000, 32'h7FFFFFFF, 3'b010, 1'b1, "SLT signed true minint < maxint");
+
+    $display("TESTS_PASSED: %0d", tests_passed);
+    $display("TESTS_FAILED: %0d", tests_failed);
+    $display("TESTS_TOTAL: %0d", tests_total);
+    if (tests_failed == 0)
+      $display("RESULT: PASS");
+    else
+      $display("RESULT: FAIL");
+
+    $finish;
+  end
+
+endmodule
