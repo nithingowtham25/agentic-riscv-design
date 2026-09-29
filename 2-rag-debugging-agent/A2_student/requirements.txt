@@ -1,0 +1,4 @@
+PyYAML
+sentence-transformers
+faiss-cpu
+pypdf

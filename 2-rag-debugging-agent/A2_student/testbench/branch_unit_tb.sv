@@ -1,0 +1,3 @@
+`timescale 1ns/1ps
+module branch_unit_tb; logic[31:0]A,B;logic[2:0]Funct3;logic Branch,Jump,BranchCond,PCSrc;branch_unit dut(.*);string f;integer fd,rc,id,br,jp,ec,ep,total=0,pass=0,ft;logic[31:0]aa,bb;
+initial begin if(!$value$plusargs("VECTORS=%s",f))f="vectors/sample/branch_unit_sample.txt";fd=$fopen(f,"r");while(!$feof(fd))begin rc=$fscanf(fd,"%d %h %h %b %d %d %d %d\n",id,aa,bb,ft,br,jp,ec,ep);if(rc==8)begin A=aa;B=bb;Funct3=ft[2:0];Branch=br;Jump=jp;#1;total++;if(BranchCond===ec[0]&&PCSrc===ep[0])pass++;else $display("FAIL %0d",id);end end $display("Passed: %0d Failed: %0d Total: %0d",pass,total-pass,total);if(pass==total)$finish(0);else $finish(1);end endmodule

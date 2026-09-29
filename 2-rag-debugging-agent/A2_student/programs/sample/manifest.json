@@ -1,0 +1,86 @@
+[
+  {
+    "name": "01_add",
+    "program": "programs/sample/01_add.hex",
+    "expect": "0000001E",
+    "max_cycles": 80
+  },
+  {
+    "name": "02_logic",
+    "program": "programs/sample/02_logic.hex",
+    "expect": "000000AA",
+    "max_cycles": 80
+  },
+  {
+    "name": "03_shift",
+    "program": "programs/sample/03_shift.hex",
+    "expect": "00000001",
+    "max_cycles": 80
+  },
+  {
+    "name": "04_signed_slt",
+    "program": "programs/sample/04_signed_slt.hex",
+    "expect": "00000001",
+    "max_cycles": 80
+  },
+  {
+    "name": "05_lui",
+    "program": "programs/sample/05_lui.hex",
+    "expect": "12345678",
+    "max_cycles": 80
+  },
+  {
+    "name": "06_word_load_store",
+    "program": "programs/sample/06_word_load_store.hex",
+    "expect": "00000056",
+    "max_cycles": 80
+  },
+  {
+    "name": "07_lb_signed",
+    "program": "programs/sample/07_lb_signed.hex",
+    "expect": "FFFFFFFF",
+    "max_cycles": 80
+  },
+  {
+    "name": "08_lbu_unsigned",
+    "program": "programs/sample/08_lbu_unsigned.hex",
+    "expect": "000000FF",
+    "max_cycles": 80
+  },
+  {
+    "name": "09_branch_taken",
+    "program": "programs/sample/09_branch_taken.hex",
+    "expect": "00000002",
+    "max_cycles": 80
+  },
+  {
+    "name": "10_branch_not_taken",
+    "program": "programs/sample/10_branch_not_taken.hex",
+    "expect": "00000003",
+    "max_cycles": 80
+  },
+  {
+    "name": "11_jal",
+    "program": "programs/sample/11_jal.hex",
+    "expect": "00000005",
+    "max_cycles": 80
+  },
+  {
+    "name": "12_jalr",
+    "program": "programs/sample/12_jalr.hex",
+    "expect": "00000009",
+    "max_cycles": 80
+  },
+  {
+    "name": "13_auipc",
+    "program": "programs/sample/13_auipc.hex",
+    "expect": "00001001",
+    "max_cycles": 80
+  },
+  {
+    "name": "14_halfword",
+    "program": "programs/sample/14_halfword.hex",
+    "expect": "FFFF8001",
+    "max_cycles": 80
+  }
+]

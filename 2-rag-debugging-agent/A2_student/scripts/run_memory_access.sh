@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+set -euo pipefail; R="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; DUT="${1:-$R/rtl/memory_access.sv}"; V="${2:-$R/vectors/sample/memory_access_sample.txt}";mkdir -p "$R/build";iverilog -g2012 -s memory_access_tb -o "$R/build/mem.vvp" "$DUT" "$R/testbench/memory_access_tb.sv";OUT="$(vvp "$R/build/mem.vvp" "+VECTORS=$V")"; echo "$OUT"; if echo "$OUT" | grep -qE "Failed: [1-9]" || ! echo "$OUT" | grep -qE "Passed: [0-9]+ Failed: 0"; then echo ">>> RESULT: FAIL"; exit 1; fi; echo ">>> RESULT: PASS"

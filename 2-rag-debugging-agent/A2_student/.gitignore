@@ -1,0 +1,8 @@
+# .gitignore: keep secrets and generated artifacts out of version control / submission.
+.env
+__pycache__/
+*.pyc
+.rag_index/
+.rag_index_check/
+build/
+.DS_Store

@@ -1,0 +1,14 @@
+# environment.yml: OS-agnostic Python environment for Assignment 2 (create with conda/miniconda).
+# environment.yml: Installs Python + the Python dependencies identically on Windows/macOS/Linux.
+# environment.yml: Icarus Verilog is installed separately (see the handout) - it is not a conda package.
+# environment.yml: This installs the RAG embedding dependencies (sentence-transformers, faiss); the
+# environment.yml: first index build downloads a small embedding model, so an internet connection is
+# environment.yml: needed once.
+name: ecen689-a2
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - -r requirements.txt

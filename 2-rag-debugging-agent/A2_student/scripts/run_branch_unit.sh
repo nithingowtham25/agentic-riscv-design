@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+set -euo pipefail; R="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; DUT="${1:-$R/rtl/branch_unit.sv}"; V="${2:-$R/vectors/sample/branch_unit_sample.txt}";mkdir -p "$R/build";iverilog -g2012 -s branch_unit_tb -o "$R/build/br.vvp" "$DUT" "$R/testbench/branch_unit_tb.sv";OUT="$(vvp "$R/build/br.vvp" "+VECTORS=$V")"; echo "$OUT"; if echo "$OUT" | grep -qE "Failed: [1-9]" || ! echo "$OUT" | grep -qE "Passed: [0-9]+ Failed: 0"; then echo ">>> RESULT: FAIL"; exit 1; fi; echo ">>> RESULT: PASS"
