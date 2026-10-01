@@ -1,0 +1,5 @@
+### Task 5 Analysis
+
+The Task 3 passing processor was restored from `rtl_good_backup/` and evaluated using the integrated sample-program test suite. The processor successfully passed **all 14 provided programs**, covering arithmetic and logical operations, shifts, signed comparisons, immediate operations, memory accesses, branches, jumps, `AUIPC`, and halfword operations. Each program reported `>>> RESULT: PASS`, demonstrating that the restored RTL maintained functional correctness across the complete processor integration rather than only at the individual-module level.
+
+The execution also produced several expected Icarus Verilog warnings related to constant selects in `always_*` processes, `unique/unique0` handling, and memory initialization with `$readmemh`. These warnings did not affect the test outcomes, as all 14 programs completed successfully. Therefore, the Task 5 experiment confirms that the repaired processor snapshot from Task 3 can successfully execute the complete integrated sample-program suite.

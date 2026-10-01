@@ -23,7 +23,21 @@ def classify_status(returncode:int, stdout:str, stderr:str) -> str:
     keep-best both depend on this being right.
     """
     # >>> BEGIN STUDENT PHASE C (status classification)
-    raise NotImplementedError("Implement classify_status: return 'pass' | 'compile_error' | 'sim_fail'.")
+    if returncode == 0:
+        return "pass"
+
+    compiler_output = (stdout + "\n" + stderr).lower()
+    compile_markers = (
+        "syntax error",
+        "error:",
+        "compilation failed",
+        "unable to bind",
+        "unknown module type",
+        "elaboration failed",
+    )
+    if any(marker in compiler_output for marker in compile_markers):
+        return "compile_error"
+    return "sim_fail"
     # <<< END STUDENT PHASE C (status classification)
 
 def run_command(command:list[str]) -> ToolResult:

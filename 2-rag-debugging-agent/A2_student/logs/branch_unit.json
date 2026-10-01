@@ -1,0 +1,50 @@
+{
+  "module": "branch_unit",
+  "arm": "rag_feedback",
+  "provider": "tamu",
+  "model": "gpt-5.4",
+  "seed_rtl": null,
+  "iterations": [
+    {
+      "iteration": 0,
+      "status": "pass",
+      "returncode": 0,
+      "tool_feedback": "Tool status: pass\nReturn code: 0\nRelevant output:\nPassed: 40 Failed: 0 Total: 40\n>>> RESULT: PASS",
+      "kept_best": false
+    }
+  ],
+  "retrievals": [
+    {
+      "query": "Implement the `branch_unit` module for a single-cycle RV32I processor.\n\n# Assignment 2 Module Specification: `branch_unit`\n\n## Purpose\n\n`branch_unit` evaluates RV32I conditional branch comparisons and determines whether the processor should redirect the PC. It consumes the two register operands and the branch `funct3` field.\n\n## Required Interface\n\n```systemverilog\nmodule branch_unit (\n    input  logic [31:0] A,\n    input  logic [31:0] B,\n    input  logic [2:0]  Funct3,\n    input  logic        Branch,\n    input  logic        Jump,\n    output logic        BranchCond,\n    output logic        PCSrc\n);\n```\n\n## Branch Conditions\n\nWhen `Branch=1`, `Funct3` has the RV32I meaning below:\n\n| `Funct3` | Instruction | `BranchCond` |\n|---|---|---|\n| `000` | BEQ  | `A == B` |\n| `001` | BNE  | `A != B` |\n| `100` | BLT  | signed `A < B` |\n| `101` | BGE  | signed `A >= B` |\n| `110` | BLTU | unsigned `A < B` |\n| `111` | BGEU | unsigned `A >= B` |\n\n`010` and `011` are not legal RV32I branch conditions in the course subset. For deterministic unit testing, set `BranchCond=0` for those encodings.\n\n## PC Redirection\n\n```text\nPCSrc = Jump OR (Branch AND BranchCond)\n```\n\nTherefore:\n\n- `Jump=1` always redirects the PC regardless of `Funct3`.\n- A conditional branch redirects the PC only when its comparison is true.\n- If `Branch=0` and `Jump=0`, `PCSrc=0`.\n\n## Important Signedness Requirement\n\nBLT/BGE must interpret `A` and `B` as signed 32-bit two's-complement values. BLTU/BGEU must compare the same bit patterns as unsigned values.\n\n## Integration Role\n\n`Branch` and `Jump` come from the Assignment 1 controller. `A` and `B` are the two register-file read values. `PCSrc` drives the Assignment 2 `pc_unit`.\n",
+      "top_k": 5,
+      "chunks": [
+        {
+          "source": "rag_dataset/module_specs/controller_pcsrc.md",
+          "score": null,
+          "text": "# Project-specific controller PCSrc / branch logic (THIS core) `controller` instantiates `main_decoder` and `alu_decoder`, then computes `PCSrc` (take-branch/jump) from the `Branch[2:0]` code, `Zero` (ALU result == 0), `CmpResult` (signed/unsigned less-than from the ALU), and `Jump`: ```verilog case (Branch) 3'b100: PCSrc = Zero | Jump; // beq : taken when equal 3'b101: PCSrc = ~Zero | Jump; // bne : taken when not equal 3'b110: PCSrc = CmpResult | Jump; // blt : taken when a < b 3'b111: PCSrc = ~CmpResult | Zero | Jump; // bge : taken when a >= b 3'b001: PCSrc = CmpResult | Jump; // bltu 3'b011: PCSrc = ~CmpResult | Jump; // bgeu default: PCSrc = Jump; // jal, jalr, non-branch endcase ``` Notes specific to this core: - `bge` uses `~CmpResult | Zero` (greater-OR-equal must also fire on equality). - The `Branch` codes are the project-specific values from `main_decoder` (beq=100 \u2026), not any external convention. - Non-branch instructions fall through to `default`, so `PCSrc = Jump`. Common bug: mixing up `Zero`/`~Zero` (beq vs bne) or dropping the `| Zero` term in `bge`."
+        },
+        {
+          "source": "rag_dataset/module_specs/module_interfaces.md",
+          "score": null,
+          "text": "# Module interfaces the datapath must instantiate (THIS core) The `datapath` instantiates seven modules and must connect to their EXACT ports. Wrong port names are the most common integration compile error (`port '...' is not a port of ...`). ## New Assignment 2 unit modules (interfaces fixed by their specs - same for everyone) ```systemverilog module pc_unit ( input logic clk, input logic reset, input logic PCSrc, input logic [31:0] PCTarget, output logic [31:0] PC, output logic [31:0] PCPlus4 ); module branch_unit ( input logic [31:0] A, input logic [31:0] B, input logic [2:0] Funct3, input logic Branch, input logic Jump, output logic BranchCond, output logic PCSrc ); module memory_access ( input logic [1:0] MemRW, input logic [2:0] Funct3, input logic [1:0] AddrLSB, input logic [31:0] StoreData, input logic [31:0] ReadData, output logic [31:0] WriteData, output logic [3:0] ByteEnable, output logic [31:0] LoadData ); ``` ## Assignment 1 modules (alu, regfile, extend, controller) These come from your own Assignment 1, so wire to the ports YOUR modules declare - do not rename them. The controller in this core exposes control"
+        },
+        {
+          "source": "rag_dataset/riscv_spec/immediate_encoding.md",
+          "score": null,
+          "text": "# RV32I immediate encodings (exact bit layout) The immediate bits are scrambled differently for each instruction format. `instr` is the 32-bit instruction; the sign bit is always `instr[31]`. Exact layouts: - **I-type** (`addi`, `lw`, `jalr`): `imm = {sext(instr[31]), instr[31:20]}` - **S-type** (stores): `imm = {sext(instr[31]), instr[31:25], instr[11:7]}` - **B-type** (branches, `beq`/`bne`/...): the tricky one \u2014 `imm = {sext(instr[31]), instr[7], instr[30:25], instr[11:8], 1'b0}` Note the order: **bit 12 = instr[31], bit 11 = instr[7], bits 10:5 = instr[30:25], bits 4:1 = instr[11:8], bit 0 = 0.** `instr[7]` supplies bit 11 (NOT the low bits), and the least-significant bit is always 0 (2-byte aligned). - **J-type** (`jal`): `imm = {sext(instr[31]), instr[19:12], instr[20], instr[30:21], 1'b0}` - **U-type** (`lui`, `auipc`): `imm = {instr[31:12], 12'b0}` Common mistake: for B-type, placing `instr[7]` at the low end or keeping the fields in \"natural\" order. The correct Verilog is: ```verilog // B-type immext = {{20{instr[31]}}, instr[7], instr[30:25], instr[11:8], 1'b0}; ```"
+        },
+        {
+          "source": "rag_dataset/module_specs/alu_spec.md",
+          "score": null,
+          "text": "# Module spec: alu **Ports** - `input [31:0] a, b` \u2014 operands - `input [3:0] op` \u2014 0:ADD 1:SUB 2:AND 3:OR 4:XOR 5:SLL 6:SRL 7:SLT - `output [31:0] result` - `output zero` \u2014 high when `result == 0` **Expected behavior:** purely combinational; `result` follows `op` per the RV32I ALU reference. `SLT` (op=7) must be a **signed** less-than comparison. **Golden check:** `a=-1, b=1, op=7` must give `result=1` (since -1 < 1 signed)."
+        },
+        {
+          "source": "rag_dataset/verilog_bugs/operator_precedence.md",
+          "score": null,
+          "text": "# Bug: operator precedence / logical-vs-bitwise confusion **Symptom:** a condition or result is subtly wrong \u2014 e.g. a branch taken at the wrong time, or a combined signal that's off. **Cause:** - Bitwise (`&`, `|`, `^`) vs logical (`&&`, `||`, `!`) operators used interchangeably. - Missing parentheses: `a & b == c` parses as `a & (b == c)` because `==` binds tighter than `&`. - Reduction operators (`&a`, `|a`, `^a`) confused with binary ones. **Fix:** parenthesize explicitly and use the intended operator class. ```verilog if ((a & mask) == expected) ... // not: if (a & mask == expected) assign taken = zero || jump; // logical OR of 1-bit control signals ```"
+        }
+      ]
+    }
+  ],
+  "final_status": "pass"
+}

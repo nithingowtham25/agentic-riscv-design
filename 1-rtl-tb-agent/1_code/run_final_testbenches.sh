@@ -1,17 +1,7 @@
 #!/usr/bin/env bash
-# Validate the selected generated TBs in
-# 2_verilog_blocks_and_testbenches/final_tb/
-# using the supplied, unmodified 1_code/run_generated_tb.sh.
-#
-# The supplied runner may print:
-#   TESTS_FAILED: 0
-#   RESULT: PASS
-# followed by:
-#   >>> RESULT: FAIL
-# because its internal grep matches "FAIL" inside "TESTS_FAILED".
-#
-# Therefore, this wrapper uses the generated testbench's explicit
-# "RESULT: PASS" / "RESULT: FAIL" line as the functional result.
+# Validate selected generated TBs using the supplied, unmodified runner.
+# Generated TBs use a runner-compatible runtime protocol: passing output
+# contains TESTS_ERRORS rather than the substring FAIL.
 #
 # Folder 2 is not modified.
 
@@ -78,36 +68,17 @@ for block in "${BLOCKS[@]}"; do
     cp "$src_rtl" "$stage/final_rtl.sv"
     cp "$src_tb" "$stage/${block}_tb.sv"
 
-    # Run the supplied runner.
-    #
-    # Do not use its exit code to determine the functional result,
-    # because the supplied runner can incorrectly return 1 when
-    # TESTS_FAILED: 0 is present in the output.
-    output="$(
+    # The generated TB protocol forbids the substring "FAIL" on a passing run,
+    # so the supplied runner's exit code is now reliable and authoritative.
+    if (
         cd "$CODE_DIR" &&
-        bash "$RUNNER" "$block" "$stage" 2>&1
-    )"
-
-    runner_rc=$?
-
-    # Save and display the complete runner output.
-    echo "$output" | tee "$log"
-
-    echo
-    echo "Runner exit code: $runner_rc"
-
-    # Determine PASS/FAIL from the generated testbench's explicit
-    # functional result line.
-    if echo "$output" | grep -q "^RESULT: PASS$"; then
+        bash "$RUNNER" "$block" "$stage"
+    ) 2>&1 | tee "$log"; then
         echo "[${block}] PASS"
-    elif echo "$output" | grep -q "^RESULT: FAIL$"; then
+    else
         echo "[${block}] FAIL"
         failed=$((failed + 1))
-    else
-        echo "[${block}] FAIL - no valid RESULT line found"
-        failed=$((failed + 1))
     fi
-
 done
 
 echo

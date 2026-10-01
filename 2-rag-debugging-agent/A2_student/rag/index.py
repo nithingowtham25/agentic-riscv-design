@@ -146,7 +146,12 @@ class RAGIndex:
         # and return those Chunk objects (skip any index that is negative).
         #
         # >>> BEGIN STUDENT PHASE A (RAG retrieval)
-        raise NotImplementedError("Implement semantic retrieve_chunks: embed query, FAISS search, return top-k.")
+        if self._index is None or self._encoder is None:
+            raise RuntimeError("RAG index is not loaded; build or load an index before retrieving")
+
+        query_vector = self.embed_query(query)
+        _, indices = self._index.search(query_vector, min(k, len(self.chunks)))
+        return [self.chunks[int(index)] for index in indices[0] if index >= 0]
         # <<< END STUDENT PHASE A (RAG retrieval)
 
     def retrieve(self, query: str, k: int = 4) -> list[str]:

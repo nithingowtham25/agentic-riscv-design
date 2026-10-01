@@ -1,0 +1,50 @@
+{
+  "module": "pc_unit",
+  "arm": "rag_feedback",
+  "provider": "tamu",
+  "model": "gpt-5.4",
+  "seed_rtl": null,
+  "iterations": [
+    {
+      "iteration": 0,
+      "status": "pass",
+      "returncode": 0,
+      "tool_feedback": "Tool status: pass\nReturn code: 0\nRelevant output:\nPassed: 30 Failed: 0 Total: 30\n>>> RESULT: PASS",
+      "kept_best": false
+    }
+  ],
+  "retrievals": [
+    {
+      "query": "Implement the `pc_unit` module for a single-cycle RV32I processor.\n\n# Assignment 2 Module Specification: `pc_unit`\n\n## Purpose\n\n`pc_unit` maintains the 32-bit program counter for the simplified RV32I course processor. It provides the current PC and `PC + 4`, and selects between sequential execution and a control-flow target.\n\nThis Assignment 2 version is intentionally non-pipelined. Stall/flush behavior will be added in a later assignment.\n\n## Required Interface\n\n```systemverilog\nmodule pc_unit (\n    input  logic        clk,\n    input  logic        reset,\n    input  logic        PCSrc,\n    input  logic [31:0] PCTarget,\n    output logic [31:0] PC,\n    output logic [31:0] PCPlus4\n);\n```\n\n## Required Behavior\n\n- `PC` is a 32-bit state element.\n- `PCPlus4` is combinational and must always equal `PC + 32'd4`, wrapping modulo 2^32.\n- State updates occur on the **rising edge** of `clk`.\n- `reset` is synchronous, active high, and has highest priority.\n- On a rising edge:\n  - if `reset == 1`, set `PC = 32'h00000000`;\n  - else if `PCSrc == 1`, set `PC = PCTarget`;\n  - else set `PC = PCPlus4`.\n\n## Notes\n\n- The target is assumed to have already been formed by the datapath.\n- `pc_unit` does not decide whether a branch is taken.\n- `pc_unit` does not implement stalls, flushes, exceptions, or traps in Assignment 2.\n- Instruction addresses used by the sample tests are word aligned, but the unit should copy `PCTarget` exactly when `PCSrc=1`.\n\n## Integration Role\n\nLater in Assignment 2:\n\n```text\nbranch/jump decision -> PCSrc\nbranch/jump target   -> PCTarget\n                         |\n                         v\n                     pc_unit\n                         |\n                         v\n                  instruction address\n```\n",
+      "top_k": 5,
+      "chunks": [
+        {
+          "source": "rag_dataset/module_specs/module_interfaces.md",
+          "score": null,
+          "text": "# Module interfaces the datapath must instantiate (THIS core) The `datapath` instantiates seven modules and must connect to their EXACT ports. Wrong port names are the most common integration compile error (`port '...' is not a port of ...`). ## New Assignment 2 unit modules (interfaces fixed by their specs - same for everyone) ```systemverilog module pc_unit ( input logic clk, input logic reset, input logic PCSrc, input logic [31:0] PCTarget, output logic [31:0] PC, output logic [31:0] PCPlus4 ); module branch_unit ( input logic [31:0] A, input logic [31:0] B, input logic [2:0] Funct3, input logic Branch, input logic Jump, output logic BranchCond, output logic PCSrc ); module memory_access ( input logic [1:0] MemRW, input logic [2:0] Funct3, input logic [1:0] AddrLSB, input logic [31:0] StoreData, input logic [31:0] ReadData, output logic [31:0] WriteData, output logic [3:0] ByteEnable, output logic [31:0] LoadData ); ``` ## Assignment 1 modules (alu, regfile, extend, controller) These come from your own Assignment 1, so wire to the ports YOUR modules declare - do not rename them. The controller in this core exposes control"
+        },
+        {
+          "source": "rag_dataset/module_specs/memory_addressing.md",
+          "score": null,
+          "text": "# Project-specific memory addressing (THIS core) ## data_mem \u2014 word-addressed data RAM - 64 words of 32 bits (`MEM_SIZE=64`). **Word-addressed:** the byte address is shifted right by 2 and taken mod 64: index = `wr_addr[DATA_WIDTH-1:2] % 64`. - **Read is combinational**, **write is synchronous on `posedge clk`** (gated by `wr_en`). - Read and write use the SAME address port (`wr_addr`) in this design. ```verilog assign rd_data_mem = data_ram[wr_addr[31:2] % 64]; always @(posedge clk) if (wr_en) data_ram[wr_addr[31:2] % 64] <= wr_data; ``` ## instr_mem \u2014 word-addressed instruction ROM - 512 words; combinational read: `instr = instr_ram[instr_addr[31:2]]`. - Loaded from a hex file via `$readmemh` in an `initial` block. Common bug: indexing by the raw byte address instead of `addr[31:2]` (off by 4\u00d7), or using a blocking assignment / wrong clock edge for the write."
+        },
+        {
+          "source": "rag_dataset/module_specs/controller_pcsrc.md",
+          "score": null,
+          "text": "# Project-specific controller PCSrc / branch logic (THIS core) `controller` instantiates `main_decoder` and `alu_decoder`, then computes `PCSrc` (take-branch/jump) from the `Branch[2:0]` code, `Zero` (ALU result == 0), `CmpResult` (signed/unsigned less-than from the ALU), and `Jump`: ```verilog case (Branch) 3'b100: PCSrc = Zero | Jump; // beq : taken when equal 3'b101: PCSrc = ~Zero | Jump; // bne : taken when not equal 3'b110: PCSrc = CmpResult | Jump; // blt : taken when a < b 3'b111: PCSrc = ~CmpResult | Zero | Jump; // bge : taken when a >= b 3'b001: PCSrc = CmpResult | Jump; // bltu 3'b011: PCSrc = ~CmpResult | Jump; // bgeu default: PCSrc = Jump; // jal, jalr, non-branch endcase ``` Notes specific to this core: - `bge` uses `~CmpResult | Zero` (greater-OR-equal must also fire on equality). - The `Branch` codes are the project-specific values from `main_decoder` (beq=100 \u2026), not any external convention. - Non-branch instructions fall through to `default`, so `PCSrc = Jump`. Common bug: mixing up `Zero`/`~Zero` (beq vs bne) or dropping the `| Zero` term in `bge`."
+        },
+        {
+          "source": "rag_dataset/module_specs/datapath_integration.md",
+          "score": null,
+          "text": "# Single-cycle RV32I datapath integration (this core) How the top-level datapath (`riscv_single`) wires the components. Common integration bugs live here (mux selects swapped, wrong operand routed). ## ALU operand selects - `ALUSrcAD`: 0 => rs1 (`rf_rd1`); 1 => PC. Used as ALU A input. `alu_a = ALUSrcAD ? pc : rf_rd1;` - `ALUSrcBD`: 0 => rs2 (`rf_rd2`); 1 => **immediate** (`imm`). Used as ALU B input. `alu_b = ALUSrcBD ? imm : rf_rd2;` // when ALUSrcBD=1 the immediate MUST be selected Bug symptom if swapped: I-type ALU / loads / stores use rs2 instead of the immediate, so `addi`/`lw`/`sw` compute wrong values (e.g. `addi x1,x0,5` leaves x1=0). ## Writeback / result select - `ResultSrcD`: 000 => ALU/IEU result; 001 => load data (`dmem_rdata`). - `ALUResultSrcD`: 1 selects the alternate result \u2014 immediate for LUI, `pc+4` for JAL/JALR. - `rf_we = RegWriteD & ~IllegalInstrD;` x0 writes are ignored inside the regfile. ## PC / branch - `pc_plus4 = pc + 4`; taken branch or jump redirects: `pc_next = pc_sel ? target : pc_plus4`. - `pc_sel = (BranchD & take_branch) | JumpD;`"
+        },
+        {
+          "source": "rag_dataset/verilog_bugs/blocking_nonblocking.md",
+          "score": null,
+          "text": "# Bug: blocking vs. non-blocking assignment misuse **Symptom:** Registers update in the wrong order, or a value is \"one cycle late\", or simulation and synthesis disagree. **Rule of thumb:** - Use **non-blocking** (`<=`) for sequential logic inside `always @(posedge clk)`. - Use **blocking** (`=`) for combinational logic inside `always @(*)`. ```verilog always @(posedge clk) q <= d; // sequential: non-blocking always @(*) y = a & b; // combinational: blocking ``` Mixing them (e.g. blocking assignments to a flip-flop) is a common source of race-like mismatches between simulation results."
+        }
+      ]
+    }
+  ],
+  "final_status": "pass"
+}

@@ -56,7 +56,25 @@ def run_experiment(*, spec_text, initial_prompt, rtl_path, run_command_argv, llm
     # first user message (conversation[-1]["content"]). Use format_examples(...) to format them.
     #
     # >>> BEGIN STUDENT PHASE B
-
+    if use_rag and retriever is not None:
+        retrieval_query = initial_prompt + "\n\n" + spec_text
+        examples = list(retriever.retrieve(retrieval_query, top_k=top_k))
+        retrieval_log.append(
+            {
+                "query": retrieval_query,
+                "top_k": top_k,
+                "chunks": [
+                    {"source": example.source, "score": example.score, "text": example.text}
+                    for example in examples
+                ],
+            }
+        )
+        if examples:
+            conversation[-1]["content"] += (
+                "\n\nRETRIEVED DESIGN AND DEBUGGING CONTEXT:\n"
+                + format_examples(examples)
+                + "\n\nUse this context only when it is consistent with the specification."
+            )
     # <<< END STUDENT PHASE B
 
     best_rtl = None
@@ -71,7 +89,20 @@ def run_experiment(*, spec_text, initial_prompt, rtl_path, run_command_argv, llm
         # (The status comes from your classify_status, Phase C, via run_command.)
         #
         # >>> BEGIN STUDENT PHASE D
-        result = None  # replace: generate -> write rtl_path -> run_command(...) -> record in iteration_log
+        current_rtl = llm_call(conversation)
+        Path(rtl_path).parent.mkdir(parents=True, exist_ok=True)
+        Path(rtl_path).write_text(current_rtl.rstrip() + "\n", encoding="utf-8")
+        conversation.append({"role": "assistant", "content": current_rtl})
+        result = run_command(run_command_argv)
+        iteration_log.append(
+            {
+                "iteration": iteration,
+                "status": result.status,
+                "returncode": result.returncode,
+                "tool_feedback": compact_feedback(result),
+            }
+        )
+        # <<< END STUDENT PHASE D
 
         # --------------------------------------------------------------
         # PHASE E - keep-best bookkeeping
@@ -82,7 +113,15 @@ def run_experiment(*, spec_text, initial_prompt, rtl_path, run_command_argv, llm
         #     back to rtl_path, and mark this iteration_log entry with "kept_best" = True.
         #
         # >>> BEGIN STUDENT PHASE E
-        raise NotImplementedError("Implement Phase E keep-best: remember the best RTL, restore it on a worse repair.")
+        if best_status is None or _rank(result.status) >= _rank(best_status):
+            best_rtl = current_rtl
+            best_status = result.status
+            iteration_log[-1]["kept_best"] = False
+        else:
+            Path(rtl_path).write_text(best_rtl.rstrip() + "\n", encoding="utf-8")
+            conversation[-1]["content"] = best_rtl
+            iteration_log[-1]["kept_best"] = True
+            iteration_log[-1]["restored_status"] = best_status
         # <<< END STUDENT PHASE E
 
         if result.returncode == 0:
@@ -96,7 +135,22 @@ def run_experiment(*, spec_text, initial_prompt, rtl_path, run_command_argv, llm
         # module. Include the structured tool feedback via compact_feedback(result).
         #
         # >>> BEGIN STUDENT PHASE F
-
+        current_for_repair = best_rtl if iteration_log[-1]["kept_best"] else current_rtl
+        conversation.append(
+            {
+                "role": "user",
+                "content": (
+                    "The current RTL did not pass the provided tool flow. Repair the complete "
+                    "SystemVerilog module using the specification as the authority. Preserve the "
+                    "exact module interface and all behavior already consistent with the spec. "
+                    "Return only the complete corrected RTL module.\n\n"
+                    "CURRENT RTL:\n"
+                    + current_for_repair
+                    + "\n\n"
+                    + compact_feedback(result)
+                ),
+            }
+        )
         # <<< END STUDENT PHASE F
 
     return {

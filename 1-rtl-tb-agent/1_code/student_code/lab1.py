@@ -290,226 +290,131 @@ def main():
     # <<< END STUDENT PHASE A CODE
 
     # ------------------------------------------------------------------
-    # WORKFLOW PHASE B: GENERATE A TESTBENCH
-    # Generate and save a self-checking testbench for the RTL. It should
-    # exercise requirements and validation examples from the spec and report
-    # results clearly enough for Phase C to interpret. Decide what design/spec
-    # context to include in the prompt and how much coverage it should provide.
-    #
+    # WORKFLOW PHASE B: DEFINE TESTBENCH GENERATION
+    # The detailed TB prompt is retained, but generation is intentionally
+    # deferred until Phase C has accepted final_rtl.sv using instructor tests.
     # >>> BEGIN STUDENT PHASE B CODE
 
-    # -------------------------------------------------------------------------
-    # Phase B: Generate a self-checking testbench
-    #
-    # The system prompt defines the fixed role and output format.
-    # The user prompt contains the block-specific specification.
-    # -------------------------------------------------------------------------
+    MAX_TB_RETRIES = 3
+    initial_tb_path = args.out_dir / f"initial_{top_module}_tb.sv"
+    final_tb_path = args.out_dir / f"{top_module}_tb.sv"
 
-    tb_path = args.out_dir / f"{top_module}_tb.sv"
+    tb_system_prompt = (
+        "You are a SystemVerilog verification engineer responsible for "
+        "creating self-checking testbenches for hardware blocks. "
+        "Use the provided hardware specification as the authoritative source "
+        "for determining expected behavior. "
+        "\n\n"
+        "Follow these rules:\n"
+        "1. Instantiate the DUT using the exact module name and interface "
+        "specified in the hardware specification. Do not modify the DUT.\n"
+        "\n"
+        "2. Create a self-checking SystemVerilog testbench that drives inputs "
+        "to the DUT and compares its outputs against expected values derived "
+        "from the specification.\n"
+        "\n"
+        "3. Exercise the normal operations, control conditions, examples, "
+        "boundary cases, and important corner cases described by the "
+        "specification.\n"
+        "\n"
+        "4. For clocked designs, correctly implement the clock, reset, and "
+        "sampling behavior specified by the design. For combinational "
+        "designs, allow sufficient time for outputs to respond after inputs "
+        "change.\n"
+        "\n"
+        "5. Check all relevant DUT outputs. Pay particular attention to "
+        "signed versus unsigned behavior, bit widths, boundary values, "
+        "control encodings, and reset behavior where applicable.\n"
+        "\n"
+        "6. The testbench must compile successfully with Icarus Verilog using "
+        "SystemVerilog mode (-g2012). Use only SystemVerilog constructs that are "
+        "supported by Icarus Verilog. Avoid simulator-specific, experimental, or "
+        "unnecessary language features when a simpler construct can be used.\n"
+        "\n"
+        "7. Before returning the testbench, perform a careful syntax sanity check. "
+        "Ensure that all declarations, begin/end blocks, tasks, functions, loops, "
+        "conditionals, expressions, module instantiation, and procedural statements "
+        "are syntactically valid SystemVerilog and properly terminated. The generated "
+        "testbench must not contain syntax errors or malformed statements.\n"
+        "\n"
+        "8. Keep the testbench compact enough to fit completely within the available "
+        "output limit. Use a small number of representative test cases that provide "
+        "meaningful coverage of the specified instruction types, control conditions, "
+        "boundary cases, and important corner cases. Do not generate exhaustive "
+        "or highly repetitive tests. A complete compilable testbench is more important "
+        "than a large number of test cases. The response must always reach the final "
+        "endmodule statement.\n"
+        "\n"
+        "9. Maintain explicit counts of passed and failed test cases. "
+        "Report individual test failures clearly before the final summary, "
+        "including the test case and expected versus actual values where "
+        "practical.\n"
+        "\n"
+        "10. At the end of the simulation, report the following four lines "
+        "exactly, using integer values:\n"
+        "TESTS_PASSED: <number>\n"
+        "TESTS_ERRORS: <number>\n"
+        "TESTS_TOTAL: <number>\n"
+        "RESULT: PASS\n"
+        "or\n"
+        "RESULT: FAIL\n"
+        "The TESTS_TOTAL value must equal TESTS_PASSED + TESTS_ERRORS. "
+        "When the simulation passes, do not print the literal substring FAIL "
+        "anywhere in runtime output; print RESULT: FAIL only conditionally when "
+        "one or more checks fail.\n"
+        "\n"
+        "11. Return only the complete SystemVerilog testbench inside one "
+        "fenced code block. Do not provide explanations or additional text."
+    )
 
-    if tb_path.exists():
+    tb_user_prompt = (
+        f"Generate a self-checking SystemVerilog testbench for the following "
+        f"hardware block.\n\n"
+        f"Top module: {top_module}\n\n"
+        f"Hardware specification:\n"
+        f"{content}\n\n"
+        f"The testbench should independently verify the behavior described "
+        f"in the specification. Exercise the specified operations and "
+        f"important corner cases, compare the DUT outputs with expected "
+        f"values, and clearly report whether the tests PASS or FAIL.\n\n"
+        f"Ensure the generated testbench is syntactically valid and can be "
+        f"compiled directly with Icarus Verilog using 'iverilog -g2012'. "
+        f"Prefer simple, well-supported SystemVerilog constructs over complex "
+        f"or simulator-specific features. Carefully check all begin/end blocks, "
+        f"declarations, tasks, functions, loops, conditionals, and expressions "
+        f"before returning the final code.\n\n"
+        f"Maintain explicit counts of passed and failed tests and report "
+        f"the required standardized summary at the end of the simulation.\n\n"
+        f"Keep the testbench compact. Use representative tests rather than exhaustive "
+        f"or repetitive testing so the complete testbench fits within the output limit. "
+        f"The testbench must be complete and must end with 'endmodule'.\n"
+    )
 
-        # Reuse the previously generated testbench.
-        tb_code = read_file(tb_path)
+    def generate_or_reuse_initial_tb():
+        if final_tb_path.exists():
+            print(f"Phase B: reusing accepted testbench at {final_tb_path}")
+            return final_tb_path
+        if initial_tb_path.exists():
+            print(f"Phase B: reusing initial testbench at {initial_tb_path}")
+            return initial_tb_path
 
-        print(f"Phase B: reusing existing testbench at {tb_path}")
-
-    else:
-
-        system_prompt = (
-            "You are a SystemVerilog verification engineer responsible for "
-            "creating self-checking testbenches for hardware blocks. "
-            "Use the provided hardware specification as the authoritative source "
-            "for determining expected behavior. "
-            "\n\n"
-
-            "Follow these rules:\n"
-
-            "1. Instantiate the DUT using the exact module name and interface "
-            "specified in the hardware specification. Do not modify the DUT.\n"
-            "\n"
-
-            "2. Create a self-checking SystemVerilog testbench that drives inputs "
-            "to the DUT and compares its outputs against expected values derived "
-            "from the specification.\n"
-            "\n"
-
-            "3. Exercise the normal operations, control conditions, examples, "
-            "boundary cases, and important corner cases described by the "
-            "specification.\n"
-            "\n"
-
-            "4. For clocked designs, correctly implement the clock, reset, and "
-            "sampling behavior specified by the design. For combinational "
-            "designs, allow sufficient time for outputs to respond after inputs "
-            "change.\n"
-            "\n"
-
-            "5. Check all relevant DUT outputs. Pay particular attention to "
-            "signed versus unsigned behavior, bit widths, boundary values, "
-            "control encodings, and reset behavior where applicable.\n"
-            "\n"
-
-            "6. The testbench must compile successfully with Icarus Verilog using "
-            "SystemVerilog mode (-g2012). Use only SystemVerilog constructs that are "
-            "supported by Icarus Verilog. Avoid simulator-specific, experimental, or "
-            "unnecessary language features when a simpler construct can be used.\n"
-            "\n"
-
-            "7. Before returning the testbench, perform a careful syntax sanity check. "
-            "Ensure that all declarations, begin/end blocks, tasks, functions, loops, "
-            "conditionals, expressions, module instantiation, and procedural statements "
-            "are syntactically valid SystemVerilog and properly terminated. The generated "
-            "testbench must not contain syntax errors or malformed statements.\n"
-
-            "8. Keep the testbench compact enough to fit completely within the available "
-            "output limit. Use a small number of representative test cases that provide "
-            "meaningful coverage of the specified instruction types, control conditions, "
-            "boundary cases, and important corner cases. Do not generate exhaustive "
-            "or highly repetitive tests. A complete compilable testbench is more important "
-            "than a large number of test cases. The response must always reach the final "
-            "endmodule statement.\n"
-            "\n"
-
-            "9. Maintain explicit counts of passed and failed test cases. "
-            "Report individual test failures clearly before the final summary, "
-            "including the test case and expected versus actual values where "
-            "practical.\n"
-            "\n"
-
-            "10. At the end of the simulation, report the following four lines "
-            "exactly, using integer values:\n"
-            "TESTS_PASSED: <number>\n"
-            "TESTS_FAILED: <number>\n"
-            "TESTS_TOTAL: <number>\n"
-            "RESULT: PASS\n"
-            "or\n"
-            "RESULT: FAIL\n"
-            "The TESTS_TOTAL value must equal TESTS_PASSED + TESTS_FAILED.\n"
-            "\n"
-
-            "11. Return only the complete SystemVerilog testbench inside one "
-            "fenced code block. Do not provide explanations or additional text."
-        )
-
-        user_prompt = (
-            f"Generate a self-checking SystemVerilog testbench for the following "
-            f"hardware block.\n\n"
-
-            f"Top module: {top_module}\n\n"
-
-            f"Hardware specification:\n"
-            f"{content}\n\n"
-
-            f"The testbench should independently verify the behavior described "
-            f"in the specification. Exercise the specified operations and "
-            f"important corner cases, compare the DUT outputs with expected "
-            f"values, and clearly report whether the tests PASS or FAIL.\n\n"
-
-            f"Ensure the generated testbench is syntactically valid and can be "
-            f"compiled directly with Icarus Verilog using 'iverilog -g2012'. "
-            f"Prefer simple, well-supported SystemVerilog constructs over complex "
-            f"or simulator-specific features. Carefully check all begin/end blocks, "
-            f"declarations, tasks, functions, loops, conditionals, and expressions "
-            f"before returning the final code.\n\n"
-
-            f"Maintain explicit counts of passed and failed tests and report "
-            f"the required standardized summary at the end of the simulation."
-
-            f"Keep the testbench compact. Use representative tests rather than exhaustive "
-            f"or repetitive testing so the complete testbench fits within the output limit. "
-            f"The testbench must be complete and must end with 'endmodule'.\n\n"
-        )
-
-        # Ask the LLM to generate the testbench.
-        result = model.generate_full(
-            user_prompt,
-            system_prompt=system_prompt,
-        )
-
-        # Preserve the complete LLM response.
+        result = model.generate_full(tb_user_prompt, system_prompt=tb_system_prompt)
         tb_response = result.content
-
-        # Remove Markdown code fences.
         tb_code = strip_markdown_code_blocks(tb_response)
+        if not tb_code.strip() or "module" not in tb_code or "endmodule" not in tb_code:
+            raise RuntimeError("LLM returned an incomplete testbench.")
 
-        # Save the generated testbench.
-        write_file(
-            tb_path,
-            tb_code,
-        )
-
-        # Save the exact prompts.
-        write_file(
-            args.out_dir / "phaseB_prompt_system.txt",
-            system_prompt + "\n",
-        )
-
-        write_file(
-            args.out_dir / "phaseB_prompt_user.txt",
-            user_prompt + "\n",
-        )
-
-        # Save the complete, unmodified LLM response.
-        write_file(
-            args.out_dir / "phaseB_response.txt",
-            tb_response,
-        )
-
-        # Save model and generation information.
-        metadata = (
-            f"model: {result.model}\n"
-            f"provider: {result.provider}\n"
-            f"settings: {result.settings}\n"
-            f"usage: {result.usage}\n"
-        )
-
+        write_file(initial_tb_path, tb_code)
+        write_file(args.out_dir / "phaseB_prompt_system.txt", tb_system_prompt + "\n")
+        write_file(args.out_dir / "phaseB_prompt_user.txt", tb_user_prompt + "\n")
+        write_file(args.out_dir / "phaseB_response.txt", tb_response)
         write_file(
             args.out_dir / "phaseB_metadata.txt",
-            metadata,
+            f"model: {result.model}\nprovider: {result.provider}\n"
+            f"settings: {result.settings}\nusage: {result.usage}\n",
         )
-
-        print(f"Phase B: generated testbench saved to {tb_path}")
-        print(f"Phase B: model returned: {result.model}")
-        print(f"Phase B: usage: {result.usage}")
-
-
-    # -------------------------------------------------------------------------
-    # Basic sanity checks before Phase C.
-    # -------------------------------------------------------------------------
-
-    if not tb_code.strip():
-        raise RuntimeError("LLM returned an empty testbench.")
-
-    if "module" not in tb_code:
-        raise RuntimeError(
-            "Generated testbench does not appear to contain a module."
-        )
-
-    if "endmodule" not in tb_code:
-        raise RuntimeError(
-            "Generated testbench does not contain 'endmodule'."
-        )
-
-
-    # -------------------------------------------------------------------------
-    # Add Phase B summary to the overall run.log.
-    # -------------------------------------------------------------------------
-
-    add_run_log("=" * 70)
-    add_run_log("PHASE B - TESTBENCH GENERATION")
-    add_run_log("=" * 70)
-    add_run_log("")
-    add_run_log(f"Testbench          : {tb_path.name}")
-
-    phaseB_metadata_path = args.out_dir / "phaseB_metadata.txt"
-
-    if phaseB_metadata_path.exists():
-        add_run_log("")
-        add_run_log("Model generation:")
-        add_run_log(read_file(phaseB_metadata_path))
-
-    add_run_log("")
+        print(f"Phase B: generated initial testbench at {initial_tb_path}")
+        return initial_tb_path
 
     # <<< END STUDENT PHASE B CODE
 
@@ -531,29 +436,11 @@ def main():
     MAX_RETRIES = 3
 
     # -------------------------------------------------------------------------
-    # Phase C: Simulate and iteratively repair RTL.
-    #
-    # Every RTL version is tested using:
-    #
-    #   1. The LLM-generated testbench
-    #   2. The instructor-provided sample tests
-    #
-    # The generated testbench is diagnostic only.
-    # The instructor tests are the correctness and repair gate.
-    #
-    # Therefore:
-    #
-    #   Generated TB PASS + Instructor PASS  -> PASS, stop
-    #   Generated TB FAIL + Instructor PASS  -> PASS, stop, NO repair
-    #   Generated TB PASS + Instructor FAIL  -> REPAIR
-    #   Generated TB FAIL + Instructor FAIL  -> REPAIR
-    #
-    # The repair agent receives instructor feedback only because the instructor
-    # tests are the authoritative correctness signal.
-    #
-    # The repair agent also receives the immediately previous failed RTL version
-    # as a sanity check so that it does not unnecessarily repeat the same
-    # implementation strategy on consecutive repair attempts.
+    # Phase C1: Validate and iteratively repair RTL using only the instructor
+    # sample suite. The suite is the authoritative correctness and repair gate.
+    # Generated-TB work is deferred until an accepted final RTL has been saved.
+    # The repair agent receives instructor feedback plus the immediately prior
+    # failed RTL, helping it avoid repeating an unsuccessful implementation.
     # -------------------------------------------------------------------------
 
 
@@ -637,160 +524,15 @@ def main():
 
 
         # =====================================================================
-        # 1. RUN GENERATED TESTBENCH
+        # 1. GENERATED-TB VALIDATION IS DEFERRED
         # =====================================================================
-
-        print("Running generated testbench...")
-
-        add_run_log("Generated Testbench")
-        add_run_log("-------------------")
-
-
-        generated_sim_dir = args.out_dir / "simulation_build"
-
-        generated_sim_dir.mkdir(
-            parents=True,
-            exist_ok=True,
-        )
-
-
-        generated_sim_file = (
-            generated_sim_dir
-            / f"generated_tb_attempt_{attempt}.vvp"
-        )
-
-
-        # Compile RTL + generated testbench.
-        generated_compile_ok, generated_compile_output = (
-            run_iverilog_compile(
-                current_rtl_path,
-                tb_path,
-                output_file=generated_sim_file,
-            )
-        )
-
-
-        generated_output = generated_compile_output
-
-
-        if generated_compile_ok:
-
-            # Run generated simulation.
-            generated_run_ok, generated_run_output = run_vvp(
-                generated_sim_file
-            )
-
-            generated_output += "\n" + generated_run_output
-
-            generated_sim_ok = generated_run_ok
-
-        else:
-
-            generated_sim_ok = False
-
-
-        print(generated_output)
-
-
-        # ---------------------------------------------------------------------
-        # Parse standardized generated-TB result.
-        #
-        # We never infer counts or failures from hardware-specific output.
-        # If the generated TB does not provide standardized labels,
-        # report UNKNOWN.
-        # ---------------------------------------------------------------------
-
+        # The instructor suite alone decides RTL acceptance. Testbench generation
+        # and validation begin only after final_rtl.sv is frozen below.
+        generated_output = "Deferred until an instructor-accepted final RTL exists."
         generated_passed = None
         generated_failed = None
         generated_total = None
-        generated_result = "UNKNOWN"
-
-
-        for line in generated_output.splitlines():
-
-            line = line.strip()
-
-
-            if line.startswith("TESTS_PASSED:"):
-
-                try:
-                    generated_passed = int(
-                        line.split(":", 1)[1].strip()
-                    )
-                except ValueError:
-                    pass
-
-
-            elif line.startswith("TESTS_FAILED:"):
-
-                try:
-                    generated_failed = int(
-                        line.split(":", 1)[1].strip()
-                    )
-                except ValueError:
-                    pass
-
-
-            elif line.startswith("TESTS_TOTAL:"):
-
-                try:
-                    generated_total = int(
-                        line.split(":", 1)[1].strip()
-                    )
-                except ValueError:
-                    pass
-
-
-            elif line == "RESULT: PASS":
-
-                generated_result = "PASS"
-
-
-            elif line == "RESULT: FAIL":
-
-                generated_result = "FAIL"
-
-
-        # Compilation failure takes priority.
-        if not generated_compile_ok:
-            generated_result = "COMPILE FAIL"
-
-
-        # ---------------------------------------------------------------------
-        # Add generated-TB result to run.log.
-        # ---------------------------------------------------------------------
-
-        add_run_log(
-            f"Compile      : "
-            f"{'PASS' if generated_compile_ok else 'FAIL'}"
-        )
-
-
-        if generated_passed is not None:
-            add_run_log(
-                f"Tests Passed : {generated_passed}"
-            )
-
-
-        if generated_failed is not None:
-            add_run_log(
-                f"Tests Failed : {generated_failed}"
-            )
-
-
-        if generated_total is not None:
-            add_run_log(
-                f"Tests Total  : {generated_total}"
-            )
-
-
-        add_run_log(
-            f"Result       : {generated_result}"
-        )
-
-        add_run_log("")
-
-
+        generated_result = "DEFERRED"
         # =====================================================================
         # 2. RUN INSTRUCTOR SAMPLE TESTS
         # =====================================================================
@@ -1369,6 +1111,147 @@ def main():
 
 
     # =========================================================================
+    # PHASE B / C2: GENERATE, VALIDATE, AND REPAIR THE TESTBENCH
+    # =========================================================================
+    # This stage is reached only when the instructor suite accepted final_rtl.sv.
+    # The RTL is frozen; failures here can repair only the generated testbench.
+    tb_final_result = "SKIPPED"
+    tb_repair_attempt = 0
+
+    if final_status == "PASS":
+        tb_path = generate_or_reuse_initial_tb()
+        add_run_log("")
+        add_run_log("PHASE B - TESTBENCH GENERATION AFTER RTL ACCEPTANCE")
+        add_run_log("===================================================")
+        add_run_log(f"Initial Testbench : {tb_path.name}")
+
+        while True:
+            tb_code = read_file(tb_path)
+            if not tb_code.strip() or "module" not in tb_code or "endmodule" not in tb_code:
+                raise RuntimeError("Current generated testbench is incomplete.")
+
+            generated_sim_dir = args.out_dir / "simulation_build"
+            generated_sim_dir.mkdir(parents=True, exist_ok=True)
+            generated_sim_file = generated_sim_dir / f"generated_tb_final_rtl_attempt_{tb_repair_attempt}.vvp"
+            generated_compile_ok, generated_compile_output = run_iverilog_compile(
+                final_path, tb_path, output_file=generated_sim_file
+            )
+            generated_output = generated_compile_output
+            if generated_compile_ok:
+                _, generated_run_output = run_vvp(generated_sim_file)
+                generated_output += "\n" + generated_run_output
+
+            generated_passed = None
+            generated_failed = None
+            generated_total = None
+            tb_final_result = "UNKNOWN"
+            for line in generated_output.splitlines():
+                line = line.strip()
+                try:
+                    if line.startswith("TESTS_PASSED:"):
+                        generated_passed = int(line.split(":", 1)[1].strip())
+                    elif line.startswith("TESTS_ERRORS:") or line.startswith("TESTS_FAILED:"):
+                        generated_failed = int(line.split(":", 1)[1].strip())
+                    elif line.startswith("TESTS_TOTAL:"):
+                        generated_total = int(line.split(":", 1)[1].strip())
+                except ValueError:
+                    pass
+                if line == "RESULT: PASS":
+                    tb_final_result = "PASS"
+                elif line == "RESULT: FAIL":
+                    tb_final_result = "FAIL"
+            if not generated_compile_ok:
+                tb_final_result = "COMPILE FAIL"
+
+            tb_protocol_passed = (
+                generated_compile_ok
+                and tb_final_result == "PASS"
+                and generated_passed is not None
+                and generated_failed == 0
+                and generated_total is not None
+                and generated_total > 0
+                and generated_total == generated_passed + generated_failed
+            )
+            write_file(
+                args.out_dir / f"phaseD_attempt_{tb_repair_attempt}.log",
+                f"FROZEN RTL: {final_path}\nTESTBENCH: {tb_path}\n\n"
+                "GENERATED TESTBENCH VALIDATION\n" + "=" * 70 + "\n" + generated_output,
+            )
+            add_run_log("")
+            add_run_log(f"PHASE C2 - TESTBENCH ATTEMPT {tb_repair_attempt}")
+            add_run_log(f"Testbench     : {tb_path.name}")
+            add_run_log(f"Compile       : {'PASS' if generated_compile_ok else 'FAIL'}")
+            add_run_log(f"Result        : {tb_final_result}")
+            if generated_passed is not None:
+                add_run_log(f"Tests Passed  : {generated_passed}")
+            if generated_failed is not None:
+                add_run_log(f"Tests Failed  : {generated_failed}")
+            if generated_total is not None:
+                add_run_log(f"Tests Total   : {generated_total}")
+
+            if tb_protocol_passed:
+                write_file(final_tb_path, tb_code)
+                add_run_log(f"Accepted TB   : {final_tb_path.name}")
+                break
+
+            if tb_repair_attempt >= MAX_TB_RETRIES:
+                add_run_log("TB repair budget exhausted; testbench was not accepted.")
+                break
+
+            repair_number = tb_repair_attempt + 1
+            tb_repair_system_prompt = (
+                "You are a SystemVerilog testbench debugging and repair agent. "
+                "You are given a hardware specification, an instructor-accepted frozen RTL, "
+                "a current self-checking testbench, and compile/simulation feedback.\n\n"
+                "Your task is to repair only the testbench so that it correctly verifies the "
+                "specified design when compiled with Icarus Verilog.\n\n"
+                "Rules:\n"
+                "1. Treat the hardware specification as the authoritative source of expected behavior.\n"
+                "2. The frozen RTL passed the instructor suite; provide it only to confirm the DUT interface and diagnose simulator behavior. Do not treat unspecified RTL behavior as the oracle.\n"
+                "3. Do not modify, regenerate, or request changes to the RTL or DUT interface.\n"
+                "4. Preserve the exact DUT module name, ports, widths, directions, clocking, reset, and sampling requirements.\n"
+                "5. Use the supplied compile and simulation log as concrete evidence of syntax, interface, timing, scheduling, checker, expected-value, or result-reporting faults.\n"
+                "6. Derive every expected value from the specification, including signedness, widths, boundary values, reset behavior, and control encodings.\n"
+                "7. Preserve meaningful coverage of normal behavior, corner cases, and boundary conditions. Do not remove, weaken, bypass, or tailor checks merely to make the frozen RTL pass.\n"
+                "8. Maintain self-checking behavior, explicit passed/error counts, clear failure messages, and the standardized TESTS_PASSED, TESTS_ERRORS, TESTS_TOTAL, and RESULT lines.\n"
+                "9. Ensure TESTS_TOTAL equals TESTS_PASSED plus TESTS_ERRORS. On a passing simulation, do not print the literal substring FAIL anywhere in runtime output; print RESULT: FAIL only conditionally when one or more checks fail.\n"
+                "10. Produce Icarus Verilog compatible SystemVerilog using -g2012 and avoid simulator-specific or unsupported constructs.\n"
+                "11. Carefully check declarations, tasks, functions, begin/end pairs, loops, timing controls, module instantiation, and all procedural statements before returning.\n"
+                "12. Return only one complete corrected testbench in a single fenced SystemVerilog code block."
+            )
+            tb_repair_user_prompt = (
+                f"Repair the following self-checking SystemVerilog testbench.\n\n"
+                f"Top module: {top_module}\n\n"
+                f"Hardware specification:\n{content}\n\n"
+                f"Frozen instructor-accepted RTL (interface and simulation diagnosis only):\n"
+                f"```systemverilog\n{read_file(final_path)}\n```\n\n"
+                f"Current testbench:\n```systemverilog\n{tb_code}\n```\n\n"
+                f"Compile and simulation feedback for this exact RTL/TB pair:\n"
+                f"```text\n{generated_output}\n```\n\n"
+                f"Repair only the demonstrated testbench issue. Keep the testbench specification-derived and do not weaken checks simply to obtain a PASS."
+            )
+            repair_result = model.generate_full(tb_repair_user_prompt, system_prompt=tb_repair_system_prompt)
+            repair_response = repair_result.content
+            repaired_tb = strip_markdown_code_blocks(repair_response)
+            if not repaired_tb.strip() or "module" not in repaired_tb or "endmodule" not in repaired_tb:
+                raise RuntimeError(f"Testbench repair attempt {repair_number} is incomplete.")
+            tb_path = args.out_dir / f"revised_{top_module}_tb_{repair_number}.sv"
+            write_file(tb_path, repaired_tb)
+            write_file(args.out_dir / f"phaseD_prompt_system_{repair_number}.txt", tb_repair_system_prompt + "\n")
+            write_file(args.out_dir / f"phaseD_prompt_user_{repair_number}.txt", tb_repair_user_prompt + "\n")
+            write_file(args.out_dir / f"phaseD_response_{repair_number}.txt", repair_response)
+            write_file(
+                args.out_dir / f"phaseD_metadata_{repair_number}.txt",
+                f"model: {repair_result.model}\nprovider: {repair_result.provider}\n"
+                f"settings: {repair_result.settings}\nusage: {repair_result.usage}\n",
+            )
+            add_run_log(f"Decision      : requested testbench repair {repair_number}")
+            tb_repair_attempt += 1
+    else:
+        add_run_log("")
+        add_run_log("PHASE B/C2 - TESTBENCH SKIPPED")
+        add_run_log("Reason: no RTL version passed the authoritative instructor suite.")
+    # =========================================================================
     # FINAL CLEAN RUN LOG
     # =========================================================================
 
@@ -1394,20 +1277,11 @@ def main():
 
 
     # -------------------------------------------------------------------------
-    # Final generated-TB result.
+    # Final generated-TB result from the post-RTL Phase C2 validation.
     # -------------------------------------------------------------------------
 
-    final_generated_result = "UNKNOWN"
-
-    if attempt_results:
-
-        final_generated_result = (
-            attempt_results[-1]["generated_result"]
-        )
-
-
     add_run_log(
-        f"Generated TB     : {final_generated_result}"
+        f"Generated TB     : {tb_final_result}"
     )
 
 
@@ -1450,7 +1324,7 @@ def main():
 
 
     add_run_log(
-        f"FINAL STATUS: {final_status}"
+        f"FINAL STATUS: {'PASS' if final_status == 'PASS' and tb_final_result == 'PASS' else 'FAIL'}"
     )
 
 
