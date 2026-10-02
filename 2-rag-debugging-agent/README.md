@@ -35,7 +35,10 @@ A2_student/
 │
 ├── rag/                              # Retrieval-Augmented Generation implementation
 │   ├── index.py                     # RAG indexing/retrieval logic
-│   └── build_index.py               # Index construction support
+│   ├── build_index.py               # RAG index construction
+│   ├── query.py                     # RAG query/retrieval interface
+│   ├── rag_retriever.py             # Retriever implementation
+│   └── retriever_interface.py       # Retriever interface
 │
 ├── rag_dataset/                      # RV32I knowledge base used by RAG
 ├── specs/                            # Specifications for the four Assignment 2 modules
