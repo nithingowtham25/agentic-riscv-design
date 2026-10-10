@@ -1,0 +1,10 @@
+# environment.yml: OS-agnostic Python environment for Assignment 3 (create with conda/miniconda).
+# environment.yml: Assignment 3 uses only the Python standard library plus whatever your agent needs to call your
+# environment.yml: LLM provider -- there are NO RAG dependencies (unlike Assignment 2). Icarus Verilog is installed
+# environment.yml: separately (see the Course Setup Guide) -- it is not a conda package.
+name: ecen689-a3
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
