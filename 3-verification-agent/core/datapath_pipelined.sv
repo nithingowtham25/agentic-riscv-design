@@ -211,8 +211,19 @@ module datapath_pipelined(
     // dependent-instruction tests until you implement this correctly.
     // ----------------------------------------------------------------------------------
     always_comb begin
-        ForwardAE = 2'b00;   // TODO: replace with the correct forwarding logic
-        ForwardBE = 2'b00;   // TODO: replace with the correct forwarding logic
+        if (RegWriteM && (RdM != 5'b0) && (RdM == Rs1E))
+            ForwardAE = 2'b10;
+        else if (RegWriteW && (RdW != 5'b0) && (RdW == Rs1E))
+            ForwardAE = 2'b01;
+        else
+            ForwardAE = 2'b00;
+
+        if (RegWriteM && (RdM != 5'b0) && (RdM == Rs2E))
+            ForwardBE = 2'b10;
+        else if (RegWriteW && (RdW != 5'b0) && (RdW == Rs2E))
+            ForwardBE = 2'b01;
+        else
+            ForwardBE = 2'b00;
     end
     // ==================================================================================
 
@@ -226,7 +237,8 @@ module datapath_pipelined(
     // data -> the core will FAIL load-use tests until you implement this correctly.
     // ----------------------------------------------------------------------------------
     logic LoadUseHazard;
-    assign LoadUseHazard = 1'b0;   // TODO: replace with the correct load-use detection
+    assign LoadUseHazard = (ResultSrcE == 3'b001) && (RdE != 5'b0) &&
+                          ((RdE == Rs1D) || (RdE == Rs2D));
     // ==================================================================================
 
     // ==================================================================================
@@ -245,11 +257,11 @@ module datapath_pipelined(
     // implement this correctly.
     // ----------------------------------------------------------------------------------
     logic RedirectE;
-    assign RedirectE = 1'b0;             // TODO: assert on a taken branch or jump
-    assign PCNextF   = PCPlus4F;         // TODO: redirect to RedirectTargetE when RedirectE
-    assign StallF    = 1'b0;             // TODO: hold Fetch on a load-use stall
-    assign StallD    = 1'b0;             // TODO: hold Decode on a load-use stall
-    assign FlushD    = 1'b0;             // TODO: bubble Decode on a redirect
-    assign FlushE    = 1'b0;             // TODO: bubble Execute on a redirect or load-use stall
+    assign RedirectE = PCSrcE;
+    assign PCNextF   = RedirectE ? RedirectTargetE : PCPlus4F;
+    assign StallF    = LoadUseHazard;
+    assign StallD    = LoadUseHazard;
+    assign FlushD    = RedirectE;
+    assign FlushE    = RedirectE || LoadUseHazard;
     // ==================================================================================
 endmodule

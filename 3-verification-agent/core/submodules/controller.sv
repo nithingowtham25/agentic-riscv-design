@@ -1,9 +1,5 @@
-// controller.sv: PLACEHOLDER STUB. Replace this file with the controller.sv you generated in Assignment 1.
-// controller.sv: Keep the ports exactly as-is (the pipeline instantiates this module by these names).
-// controller.sv: As shipped, all control signals are 0 -> wrong results until you drop in your Assignment 1 controller.
 module controller (
     input  logic [31:0] InstrD,
-
     output logic        RegWriteD,
     output logic [2:0]  ImmSrcD,
     output logic        ALUSrcAD,
@@ -17,17 +13,248 @@ module controller (
     output logic        SubArithD,
     output logic        IllegalInstrD
 );
-    // TODO: replace this whole file with your Assignment 1 controller.
-    assign RegWriteD     = 1'b0;
-    assign ImmSrcD       = 3'b0;
-    assign ALUSrcAD      = 1'b0;
-    assign ALUSrcBD      = 1'b0;
-    assign MemRWD        = 2'b0;
-    assign ResultSrcD    = 3'b0;
-    assign BranchD       = 1'b0;
-    assign JumpD         = 1'b0;
-    assign ALUResultSrcD = 1'b0;
-    assign ALUSelectD    = 3'b0;
-    assign SubArithD     = 1'b0;
-    assign IllegalInstrD = 1'b0;
+
+    logic [6:0] opcode;
+    logic [2:0] funct3;
+    logic [6:0] funct7;
+
+    assign opcode = InstrD[6:0];
+    assign funct3 = InstrD[14:12];
+    assign funct7 = InstrD[31:25];
+
+    always_comb begin
+        RegWriteD     = 1'b0;
+        ImmSrcD       = 3'b000;
+        ALUSrcAD      = 1'b0;
+        ALUSrcBD      = 1'b0;
+        MemRWD        = 2'b00;
+        ResultSrcD    = 3'b000;
+        BranchD       = 1'b0;
+        JumpD         = 1'b0;
+        ALUResultSrcD = 1'b0;
+        ALUSelectD    = 3'b000;
+        SubArithD     = 1'b0;
+        IllegalInstrD = 1'b0;
+
+        case (opcode)
+
+            7'b0000011: begin
+                if ((funct3 == 3'b000) ||
+                    (funct3 == 3'b001) ||
+                    (funct3 == 3'b010) ||
+                    (funct3 == 3'b100) ||
+                    (funct3 == 3'b101)) begin
+                    RegWriteD     = 1'b1;
+                    ImmSrcD       = 3'b000;
+                    ALUSrcAD      = 1'b0;
+                    ALUSrcBD      = 1'b1;
+                    MemRWD        = 2'b10;
+                    ResultSrcD    = 3'b001;
+                    ALUSelectD    = 3'b000;
+                end
+                else begin
+                    IllegalInstrD = 1'b1;
+                end
+            end
+
+            7'b0010011: begin
+                RegWriteD     = 1'b1;
+                ImmSrcD       = 3'b000;
+                ALUSrcAD      = 1'b0;
+                ALUSrcBD      = 1'b1;
+                ResultSrcD    = 3'b000;
+                ALUResultSrcD = 1'b0;
+                ALUSelectD    = funct3;
+                SubArithD     = 1'b0;
+
+                case (funct3)
+                    3'b000: begin
+                        SubArithD = 1'b0;
+                    end
+                    3'b001: begin
+                        if (funct7 == 7'b0000000) begin
+                            SubArithD = 1'b0;
+                        end
+                        else begin
+                            IllegalInstrD = 1'b1;
+                        end
+                    end
+                    3'b010: begin
+                        SubArithD = 1'b1;
+                    end
+                    3'b011: begin
+                        SubArithD = 1'b1;
+                    end
+                    3'b100: begin
+                        SubArithD = 1'b0;
+                    end
+                    3'b101: begin
+                        if (funct7 == 7'b0000000) begin
+                            SubArithD = 1'b0;
+                        end
+                        else if (funct7 == 7'b0100000) begin
+                            SubArithD = 1'b1;
+                        end
+                        else begin
+                            IllegalInstrD = 1'b1;
+                        end
+                    end
+                    3'b110: begin
+                        SubArithD = 1'b0;
+                    end
+                    3'b111: begin
+                        SubArithD = 1'b0;
+                    end
+                    default: begin
+                        IllegalInstrD = 1'b1;
+                    end
+                endcase
+            end
+
+            7'b0010111: begin
+                RegWriteD     = 1'b1;
+                ImmSrcD       = 3'b100;
+                ALUSrcAD      = 1'b1;
+                ALUSrcBD      = 1'b1;
+                ResultSrcD    = 3'b000;
+                ALUResultSrcD = 1'b0;
+                ALUSelectD    = 3'b000;
+                SubArithD     = 1'b0;
+            end
+
+            7'b0100011: begin
+                if ((funct3 == 3'b000) ||
+                    (funct3 == 3'b001) ||
+                    (funct3 == 3'b010)) begin
+                    RegWriteD     = 1'b0;
+                    ImmSrcD       = 3'b001;
+                    ALUSrcAD      = 1'b0;
+                    ALUSrcBD      = 1'b1;
+                    MemRWD        = 2'b01;
+                    ResultSrcD    = 3'b000;
+                    ALUResultSrcD = 1'b0;
+                    ALUSelectD    = 3'b000;
+                    SubArithD     = 1'b0;
+                end
+                else begin
+                    IllegalInstrD = 1'b1;
+                end
+            end
+
+            7'b0110011: begin
+                RegWriteD     = 1'b1;
+                ImmSrcD       = 3'b000;
+                ALUSrcAD      = 1'b0;
+                ALUSrcBD      = 1'b0;
+                ResultSrcD    = 3'b000;
+                ALUResultSrcD = 1'b0;
+                ALUSelectD    = funct3;
+                SubArithD     = 1'b0;
+
+                if (funct7 == 7'b0000000) begin
+                    if ((funct3 == 3'b010) || (funct3 == 3'b011)) begin
+                        SubArithD = 1'b1;
+                    end
+                    else begin
+                        SubArithD = 1'b0;
+                    end
+                end
+                else if (funct7 == 7'b0100000) begin
+                    if (funct3 == 3'b000) begin
+                        SubArithD = 1'b1;
+                    end
+                    else if (funct3 == 3'b101) begin
+                        SubArithD = 1'b1;
+                    end
+                    else begin
+                        IllegalInstrD = 1'b1;
+                    end
+                end
+                else begin
+                    IllegalInstrD = 1'b1;
+                end
+            end
+
+            7'b0110111: begin
+                RegWriteD     = 1'b1;
+                ImmSrcD       = 3'b100;
+                ALUSrcAD      = 1'b0;
+                ALUSrcBD      = 1'b1;
+                ResultSrcD    = 3'b000;
+                ALUResultSrcD = 1'b1;
+                ALUSelectD    = 3'b000;
+                SubArithD     = 1'b0;
+            end
+
+            7'b1100011: begin
+                if ((funct3 == 3'b000) ||
+                    (funct3 == 3'b001) ||
+                    (funct3 == 3'b100) ||
+                    (funct3 == 3'b101) ||
+                    (funct3 == 3'b110) ||
+                    (funct3 == 3'b111)) begin
+                    RegWriteD     = 1'b0;
+                    ImmSrcD       = 3'b010;
+                    ALUSrcAD      = 1'b1;
+                    ALUSrcBD      = 1'b1;
+                    ResultSrcD    = 3'b000;
+                    BranchD       = 1'b1;
+                    ALUResultSrcD = 1'b0;
+                    ALUSelectD    = 3'b000;
+                    SubArithD     = 1'b0;
+                end
+                else begin
+                    IllegalInstrD = 1'b1;
+                end
+            end
+
+            7'b1100111: begin
+                if (funct3 == 3'b000) begin
+                    RegWriteD     = 1'b1;
+                    ImmSrcD       = 3'b000;
+                    ALUSrcAD      = 1'b0;
+                    ALUSrcBD      = 1'b1;
+                    ResultSrcD    = 3'b000;
+                    JumpD         = 1'b1;
+                    ALUResultSrcD = 1'b1;
+                    ALUSelectD    = 3'b000;
+                    SubArithD     = 1'b0;
+                end
+                else begin
+                    IllegalInstrD = 1'b1;
+                end
+            end
+
+            7'b1101111: begin
+                RegWriteD     = 1'b1;
+                ImmSrcD       = 3'b011;
+                ALUSrcAD      = 1'b1;
+                ALUSrcBD      = 1'b1;
+                ResultSrcD    = 3'b000;
+                JumpD         = 1'b1;
+                ALUResultSrcD = 1'b1;
+                ALUSelectD    = 3'b000;
+                SubArithD     = 1'b0;
+            end
+
+            default: begin
+                IllegalInstrD = 1'b1;
+            end
+        endcase
+
+        if (IllegalInstrD) begin
+            RegWriteD     = 1'b0;
+            MemRWD        = 2'b00;
+            BranchD       = 1'b0;
+            JumpD         = 1'b0;
+            ImmSrcD       = 3'b000;
+            ALUSrcAD      = 1'b0;
+            ALUSrcBD      = 1'b0;
+            ResultSrcD    = 3'b000;
+            ALUResultSrcD = 1'b0;
+            ALUSelectD    = 3'b000;
+            SubArithD     = 1'b0;
+        end
+    end
+
 endmodule

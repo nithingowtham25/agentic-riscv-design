@@ -1,0 +1,19 @@
+=== Task 1 pipeline regression ===
+2026-10-10T23:02:30-05:00
+  [PASS] alu_forward_ex_to_ex.hex
+  [PASS] branch_not_taken.hex
+  [PASS] branch_taken_flush.hex
+  [PASS] chain_dependencies.hex
+  [PASS] jal_link.hex
+  [PASS] jalr_odd_target.hex
+  [PASS] load_byte_signext.hex
+  [PASS] load_use_pc_hold.hex
+  [PASS] load_use_rs2.hex
+  [PASS] load_use_stall.hex
+  [PASS] mem_to_ex_forward.hex
+  [PASS] shifts_and_logic.hex
+  [PASS] x0_hardwired.hex
+
+13/13 tests pass your core
+coverage: 20/21 bins = 95%
+missed bins: OP_AUIPC

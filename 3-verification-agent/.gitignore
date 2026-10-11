@@ -1,0 +1,43 @@
+# Secrets: never commit or submit credentials.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+
+# Python environments and caches.
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Local retrieval/build caches and operating-system clutter.
+.rag_index/
+.rag_index_check/
+build/
+.DS_Store
+Thumbs.db
+
+# Simulator/compiler outputs and waveforms (reproducible, not deliverables).
+*.vvp
+*.vcd
+*.fst
+*.lxt
+simv
+a.out
+
+# Disposable verification-agent staging copies. Keep the required results/tests,
+# assertions.sv, coverage.json, run_records/, and terminal_logs/ under version control.
+results/_core_under_test/
+results/self_mutation/
+
+# Editor and temporary files.
+*.swp
+*.swo
+*~
+*.tmp

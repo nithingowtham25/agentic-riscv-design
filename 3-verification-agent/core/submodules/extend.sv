@@ -1,11 +1,27 @@
-// extend.sv: PLACEHOLDER STUB. Replace this file with the extend.sv you generated in Assignment 1.
-// extend.sv: Keep the ports exactly as-is (the pipeline instantiates this module by these names).
-// extend.sv: As shipped, the immediate is 0 -> wrong results until you drop in your Assignment 1 extend.
 module extend (
     input  logic [31:7] InstrD,
     input  logic [2:0]  ImmSrcD,
     output logic [31:0] ImmExtD
 );
-    // TODO: replace this whole file with your Assignment 1 extend.
-    assign ImmExtD = 32'b0;
+
+    // Combinational RV32I immediate extension unit
+    // ImmSrcD encoding:
+    // 000 -> I-type
+    // 001 -> S-type
+    // 010 -> B-type
+    // 011 -> J-type
+    // 100 -> U-type
+    // 101/110/111 -> unspecified
+
+    always_comb begin
+        case (ImmSrcD)
+            3'b000: ImmExtD = {{20{InstrD[31]}}, InstrD[31:20]};                          // I-type
+            3'b001: ImmExtD = {{20{InstrD[31]}}, InstrD[31:25], InstrD[11:7]};            // S-type
+            3'b010: ImmExtD = {{20{InstrD[31]}}, InstrD[7], InstrD[30:25], InstrD[11:8], 1'b0}; // B-type
+            3'b011: ImmExtD = {{12{InstrD[31]}}, InstrD[19:12], InstrD[20], InstrD[30:21], 1'b0}; // J-type
+            3'b100: ImmExtD = {InstrD[31:12], 12'b0};                                      // U-type
+            default: ImmExtD = 32'b0; // unused/unspecified encodings
+        endcase
+    end
+
 endmodule
