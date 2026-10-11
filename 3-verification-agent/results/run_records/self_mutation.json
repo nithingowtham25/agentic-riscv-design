@@ -1,0 +1,107 @@
+[
+  {
+    "mutation": "forward_a_disabled",
+    "detected": true,
+    "result": {
+      "command": [
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/miniconda3/envs/ecen689-a3/bin/python",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/self_mutation/forward_a_disabled/_core_under_test/harness/run.py",
+        "--tests",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/tests",
+        "--core",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/self_mutation/forward_a_disabled/_core_under_test/core/datapath_pipelined.sv"
+      ],
+      "returncode": 0,
+      "output": "  [PASS] branch_flush.hex\n  [FAIL] forwarding.hex\n  [FAIL] instruction_mix.hex\n  [PASS] jumps.hex\n  [PASS] load_use_and_memory.hex\n  [FAIL] x0_integrity.hex\n\n3/6 tests pass your core\ncoverage: 18/21 bins = 86%\nmissed bins: OP_AUIPC, OP_LUI, fwdA_mem\n",
+      "coverage": {
+        "hit": 18,
+        "total": 21,
+        "percent": 86
+      }
+    }
+  },
+  {
+    "mutation": "x0_forward_enabled",
+    "detected": true,
+    "result": {
+      "command": [
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/miniconda3/envs/ecen689-a3/bin/python",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/self_mutation/x0_forward_enabled/_core_under_test/harness/run.py",
+        "--tests",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/tests",
+        "--core",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/self_mutation/x0_forward_enabled/_core_under_test/core/datapath_pipelined.sv"
+      ],
+      "returncode": 0,
+      "output": "  [PASS] branch_flush.hex\n  [PASS] forwarding.hex\n  [PASS] instruction_mix.hex\n  [PASS] jumps.hex\n  [PASS] load_use_and_memory.hex\n  [FAIL] x0_integrity.hex\n\n5/6 tests pass your core\ncoverage: 21/21 bins = 100%\n",
+      "coverage": {
+        "hit": 21,
+        "total": 21,
+        "percent": 100
+      }
+    }
+  },
+  {
+    "mutation": "load_use_stall_removed",
+    "detected": true,
+    "result": {
+      "command": [
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/miniconda3/envs/ecen689-a3/bin/python",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/self_mutation/load_use_stall_removed/_core_under_test/harness/run.py",
+        "--tests",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/tests",
+        "--core",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/self_mutation/load_use_stall_removed/_core_under_test/core/datapath_pipelined.sv"
+      ],
+      "returncode": 0,
+      "output": "  [PASS] branch_flush.hex\n  [PASS] forwarding.hex\n  [PASS] instruction_mix.hex\n  [PASS] jumps.hex\n  [FAIL] load_use_and_memory.hex\n  [PASS] x0_integrity.hex\n\n5/6 tests pass your core\ncoverage: 19/21 bins = 90%\nmissed bins: OP_LOAD, load_use_stall\n",
+      "coverage": {
+        "hit": 19,
+        "total": 21,
+        "percent": 90
+      }
+    }
+  },
+  {
+    "mutation": "redirect_removed",
+    "detected": true,
+    "result": {
+      "command": [
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/miniconda3/envs/ecen689-a3/bin/python",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/self_mutation/redirect_removed/_core_under_test/harness/run.py",
+        "--tests",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/tests",
+        "--core",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/self_mutation/redirect_removed/_core_under_test/core/datapath_pipelined.sv"
+      ],
+      "returncode": 0,
+      "output": "  [FAIL] branch_flush.hex\n  [PASS] forwarding.hex\n  [PASS] instruction_mix.hex\n  [FAIL] jumps.hex\n  [PASS] load_use_and_memory.hex\n  [PASS] x0_integrity.hex\n\n4/6 tests pass your core\ncoverage: 14/21 bins = 67%\nmissed bins: OP_BRANCH, OP_JAL, OP_JALR, branch_not_taken, branch_taken, jal, jalr\n",
+      "coverage": {
+        "hit": 14,
+        "total": 21,
+        "percent": 67
+      }
+    }
+  },
+  {
+    "mutation": "target_offset",
+    "detected": true,
+    "result": {
+      "command": [
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/miniconda3/envs/ecen689-a3/bin/python",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/self_mutation/target_offset/_core_under_test/harness/run.py",
+        "--tests",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/tests",
+        "--core",
+        "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/3-verification-agent/results/self_mutation/target_offset/_core_under_test/core/datapath_pipelined.sv"
+      ],
+      "returncode": 0,
+      "output": "  [FAIL] branch_flush.hex\n  [PASS] forwarding.hex\n  [PASS] instruction_mix.hex\n  [FAIL] jumps.hex\n  [PASS] load_use_and_memory.hex\n  [PASS] x0_integrity.hex\n\n4/6 tests pass your core\ncoverage: 14/21 bins = 67%\nmissed bins: OP_BRANCH, OP_JAL, OP_JALR, branch_not_taken, branch_taken, jal, jalr\n",
+      "coverage": {
+        "hit": 14,
+        "total": 21,
+        "percent": 67
+      }
+    }
+  }
+]

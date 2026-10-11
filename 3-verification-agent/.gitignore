@@ -33,8 +33,8 @@ a.out
 
 # Disposable verification-agent staging copies. Keep the required results/tests,
 # assertions.sv, coverage.json, run_records/, and terminal_logs/ under version control.
-results/_core_under_test/
-results/self_mutation/
+# results/_core_under_test/
+# results/self_mutation/
 
 # Editor and temporary files.
 *.swp

@@ -1,8 +1,8 @@
 {
-  "timestamp_utc": "2026-10-11T05:32:20.913431+00:00",
+  "timestamp_utc": "2026-10-11T05:57:04.355151+00:00",
   "provider": "tamu",
   "model": "gpt-5.4",
-  "max_calls": 1,
+  "max_calls": 2,
   "calls_used": 1,
   "generated_tests": [
     "branch_flush.hex",
@@ -70,9 +70,9 @@
       "provider": "tamu",
       "model": "gpt-5.4",
       "usage": {
-        "completion_tokens": 517,
+        "completion_tokens": 525,
         "prompt_tokens": 78,
-        "total_tokens": 595,
+        "total_tokens": 603,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -84,18 +84,18 @@
           "cached_tokens": 0
         },
         "latency_checkpoint": {
-          "engine_tbt_ms": 18,
-          "engine_ttft_ms": 141,
-          "engine_ttlt_ms": 9721,
-          "pre_inference_ms": 87,
-          "service_tbt_ms": 18,
-          "service_ttft_ms": 415,
-          "service_ttlt_ms": 9887,
-          "user_visible_ttft_ms": 328
+          "engine_tbt_ms": 23,
+          "engine_ttft_ms": 108,
+          "engine_ttlt_ms": 12132,
+          "pre_inference_ms": 131,
+          "service_tbt_ms": 23,
+          "service_ttft_ms": 334,
+          "service_ttlt_ms": 12353,
+          "user_visible_ttft_ms": 203
         }
       },
       "prompt": "Plan RV32I pipeline verification scenarios for forwarding, x0, load-use stalls, branch/jump flushes, and targets. Prioritize missed coverage bins. Initial coverage was 13/21. Give a short actionable list.",
-      "response": "Prioritize these gap-closers for an RV32I 5-stage pipeline:\n\n1. Forwarding coverage\n- EX/MEM \u2192 EX on rs1 and rs2 separately.\n- MEM/WB \u2192 EX on rs1 and rs2 separately.\n- Dual-source forwarding: one operand from EX/MEM, the other from MEM/WB.\n- Back-to-back dependency chains of length 2\u20133.\n- Forwarding into branch compare operands if branch resolves before WB.\n\n2. x0 corner cases\n- Instructions that write rd=x0 must not change x0 and should not create false forwarding.\n- Reads of rs1/rs2=x0 while the same cycle another instruction \u201cwrites\u201d x0.\n- Load to x0, ALU to x0, JAL/JALR to x0.\n\n3. Load-use hazard bins\n- Immediate consumer after load on rs1.\n- Immediate consumer after load on rs2.\n- Cases where next instruction uses both operands, only one matching the load rd.\n- Ensure exactly one stall, then correct forwarding/use of loaded data.\n- Negative cases: load followed by unrelated op should not stall.\n\n4. Flush / kill scenarios\n- Taken branch flushing 1 and 2 younger instructions depending on resolve stage.\n- JAL flush of fall-through instruction.\n- JALR flush plus redirected fetch.\n- Wrong-path instruction with side effects: reg write, store, branch\u2014must be killed.\n- Interaction of flush with a simultaneous data hazard or stall.\n\n5. Branch target coverage\n- BEQ/BNE taken and not-taken, target forward and backward.\n- BLT/BGE and BLTU/BGEU with signed/unsigned edge values.\n- JAL target with positive and negative offsets.\n- JALR target alignment masking (bit[0] cleared).\n- PC+4 link write correctness for JAL/JALR, including rd=x0.\n\n6. Priority combinations most often missed\n- Load-use stall followed immediately by taken branch.\n- Forwarded operand into a taken branch decision.\n- Branch depending on result just produced by ALU.\n- JALR target based on freshly produced rs1 value.\n- Flush overriding a pending write/forward condition from wrong-path instructions.\n\n7. Coverage-driven execution order\n- First close cross bins: hazard type \u00d7 source operand \u00d7 instruction class.\n- Then close control bins: branch type \u00d7 taken/not-taken \u00d7 target direction.\n- Finally hit corner combinations: x0 \u00d7 forwarding, flush \u00d7 stall, JALR \u00d7 dependency."
+      "response": "Prioritize these scenarios to close likely RV32I pipeline holes fast:\n\n1. Forwarding coverage\n- EX\u2192EX: `add x5,...` then dependent ALU op using `x5` in rs1, then in rs2.\n- MEM\u2192EX: producer with one gap instruction before consumer.\n- Dual-source forwarding: consumer needs rs1 from one stage and rs2 from another.\n- Forwarding priority: same rd written by back-to-back instructions; verify newest value wins.\n- No false forward on `rd=x0`.\n\n2. x0 corner cases\n- Writes to `x0` from ALU, load, jump-link, and CSR-like placeholders if present; always read back 0.\n- Dependencies on `x0` in rs1/rs2 should never stall or forward.\n- Branch compare using `x0` vs nonzero result.\n\n3. Load-use stalls\n- Immediate use after load in rs1 and separately rs2.\n- Cases where one-cycle stall is required, then forward loaded data correctly.\n- Load followed by store using loaded value as store data.\n- Ensure no stall when dependency is 2+ instructions later.\n- `lw x0,...` followed by use should not create a real dependency.\n\n4. Flush behavior\n- Taken branch flushes younger instructions in IF/ID and ID/EX as applicable.\n- Not-taken branch does not flush.\n- `jal` and `jalr` flush sequentially fetched instructions.\n- Wrong-path instruction must not write rd, memory, or branch state.\n- Flush vs stall interaction: taken branch/jump coincident with load-use hazard; define and check priority.\n\n5. Branch/jump target coverage\n- Branch target forward and backward.\n- `jal` with positive and negative offsets.\n- `jalr` target calculation with nonzero base + immediate.\n- `jalr` LSB clear behavior on odd computed target.\n- Near-boundary PC/immediate values to catch sign-extension and adder bugs.\n\n6. Missed-bin focused crosses\n- opcode \u00d7 hazard type \u00d7 source operand (rs1/rs2).\n- branch/jump taken \u00d7 flush depth.\n- rd=`x0` \u00d7 writeback source.\n- load destination \u00d7 next-instruction consumer kind (ALU/branch/store).\n\nBest first regressions\n- 2-instruction directed tests per hazard.\n- 3\u20134 instruction interaction tests: forward + stall, forward + flush, stall + flush.\n- Small scoreboard checks: retired rd/data, PC sequence, killed instruction has no side effects."
     }
   ]
 }

@@ -1,0 +1,7 @@
+=== Task 2 self-mutation validation ===
+2026-10-11T01:19:47-05:00
+forward_a_disabled: DETECTED
+x0_forward_enabled: DETECTED
+load_use_stall_removed: DETECTED
+redirect_removed: DETECTED
+target_offset: DETECTED
