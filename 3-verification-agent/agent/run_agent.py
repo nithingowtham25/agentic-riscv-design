@@ -41,7 +41,10 @@ def llm_plan(provider: str, model: str, prompt: str) -> dict:
         raise ValueError("Assignment evaluation requires --provider tamu")
     if not os.getenv("TAMUS_AI_CHAT_API_KEY"):
         raise RuntimeError("TAMUS_AI_CHAT_API_KEY is not set")
-    from tamu_ai_chat import chat
+    try:
+        from tamu_ai_chat import chat
+    except ModuleNotFoundError:
+        from tamu_ai_chat_client import chat
     raw = chat(model, prompt=prompt, system_prompt=SYSTEM_PROMPT, max_tokens=800)
     response = json.loads(raw)
     choice = response["choices"][0]["message"]["content"]
