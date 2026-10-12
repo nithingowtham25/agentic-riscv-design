@@ -1,0 +1,16 @@
+=== Final generated-suite and assertion check ===
+2026-10-11T01:48:24-05:00
+  [PASS] branch_flush.hex
+  [PASS] forwarding.hex
+  [PASS] instruction_mix.hex
+  [PASS] jumps.hex
+  [PASS] load_use_and_memory.hex
+  [PASS] x0_integrity.hex
+
+6/6 tests pass your core
+coverage: 21/21 bins = 100%
+
+assertions: running results/assertions.sv on your core (must stay silent on a CORRECT core) ...
+  [ OK ] silent across all your tests (no false positives on your core).
+  Note: this checks silence only; whether they CATCH the hidden bugs is scored when
+  your submission is evaluated.

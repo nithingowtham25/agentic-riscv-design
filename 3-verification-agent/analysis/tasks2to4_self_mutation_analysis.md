@@ -63,6 +63,9 @@ The agent generated `results/assertions.sv` with the required module name `stude
 
 The assertion-enabled harness run completed with all six generated tests passing and no `ASSERT_FAIL` messages. Therefore, the assertion set showed no false positives on the correct core. Whether these assertions catch hidden instructor mutations remains an evaluation-time check, but their required invariants are implemented and their silence on the verified core is demonstrated.
 
+## Final independent replay
+
+After the self-mutation validation, the final replay ran the unchanged generated suite and `results/assertions.sv` directly against the original `core/datapath_pipelined.sv`. All **6/6** programs passed, measured coverage remained **21/21 bins (100%)**, and the assertion harness reported no `ASSERT_FAIL` messages. This final check confirms that the mutation workflow did not alter the correct-core artifacts used for Tasks 3 and 4. Evidence: `results/terminal_logs/final_assertion_check_20261011_014824.log`.
 ## Final conclusion
 
 The Verification Agent meets the required interface, supports TAMU AI Chat, records provider/model/token evidence, obeys the call limit, emits a reproducible `.hex` suite, measures and closes coverage gaps, produces assertions, and preserves structured evidence. The final test suite passes on the correct core, reaches 100% of the 21 published bins, and detects all five required self-injected bug categories.
