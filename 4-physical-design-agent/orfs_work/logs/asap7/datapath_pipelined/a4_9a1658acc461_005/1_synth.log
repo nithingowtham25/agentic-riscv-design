@@ -1,0 +1,25 @@
+OpenROAD 26Q2-2517-g7304ba78ad 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 96 thread(s).
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+[INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7_tech_1x_201209.lef, created 30 layers, 9 vias
+[INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7sc7p5t_28_R_1x_220121a.lef, created 212 library cells
+link_design datapath_pipelined
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_005/1_2_yosys.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+eliminate_dead_logic
+Removed 0 unused instances and 0 unused nets.
+Design area 1366 um^2 100% utilization.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_005/1_synth.odb
+write_sdc -no_timestamp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_005/1_synth.sdc
+Elapsed time: 0:02.07[h:]min:sec. CPU time: user 1.85 sys 0.22 (100%). Peak memory: 226740KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+1_synth                   .odb            2            221 1a41e01d13ca45e1cb45
+1_synth                   .sdc                             fd03392cb2a0d10b5899

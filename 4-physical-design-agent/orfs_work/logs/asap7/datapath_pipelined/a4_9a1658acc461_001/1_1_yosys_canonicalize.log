@@ -1,0 +1,49 @@
+Yosys 0.64+post (git sha1 UNKNOWN-dirty, g++ 11.4.0-1ubuntu1~22.04.3 -fPIC -O3)
+Using ABC area script.
+Extracting clock period from SDC file: /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_001/clock_period.txt
+Setting clock period to 1000.0
+1. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+2. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+3. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+4. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+5. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+6. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+7. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+8. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+9. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+10. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+11. Executing Verilog-2005 frontend: /workspace/Assignment4/core/datapath_pipelined.sv
+12. Executing Verilog-2005 frontend: /workspace/Assignment4/core/submodules/alu.sv
+13. Executing Verilog-2005 frontend: /workspace/Assignment4/core/submodules/regfile.sv
+14. Executing Verilog-2005 frontend: /workspace/Assignment4/core/submodules/extend.sv
+15. Executing Verilog-2005 frontend: /workspace/Assignment4/core/submodules/controller.sv
+16. Executing Verilog-2005 frontend: /workspace/Assignment4/core/submodules/branch_unit.sv
+17. Executing Verilog-2005 frontend: /workspace/Assignment4/core/submodules/memory_access.sv
+18. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/yoSys/cells_clkgate_R.v
+19. Executing HIERARCHY pass (managing design hierarchy).
+20. Executing AST frontend in derive mode using pre-parsed AST for module `\datapath_pipelined'.
+20.1. Analyzing design hierarchy..
+20.2. Executing AST frontend in derive mode using pre-parsed AST for module `\memory_access'.
+20.3. Executing AST frontend in derive mode using pre-parsed AST for module `\branch_unit'.
+20.4. Executing AST frontend in derive mode using pre-parsed AST for module `\alu'.
+20.5. Executing AST frontend in derive mode using pre-parsed AST for module `\regfile'.
+20.6. Executing AST frontend in derive mode using pre-parsed AST for module `\extend'.
+20.7. Executing AST frontend in derive mode using pre-parsed AST for module `\controller'.
+20.8. Analyzing design hierarchy..
+20.9. Analyzing design hierarchy..
+21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Warning: Ignoring module extend because it contains processes (run 'proc' command first).
+Warning: Ignoring module regfile because it contains processes (run 'proc' command first).
+Warning: Ignoring module alu because it contains processes (run 'proc' command first).
+Warning: Ignoring module branch_unit because it contains processes (run 'proc' command first).
+Warning: Ignoring module memory_access because it contains processes (run 'proc' command first).
+Warning: Ignoring module datapath_pipelined because it contains processes (run 'proc' command first).
+Warning: Ignoring module controller because it contains processes (run 'proc' command first).
+22. Executing RTLIL backend.
+Warnings: 7 unique messages, 7 total
+End of script. Logfile hash: 823f7a383a, time: 1.02s, user: 0.91s, system: 0.07s, MEM: 76.56 MB peak
+Yosys 0.64+post (git sha1 UNKNOWN-dirty, g++ 11.4.0-1ubuntu1~22.04.3 -fPIC -O3)
+Time spent: 94% 12x read_liberty (0 sec), 1% 1x hierarchy (0 sec), ...
+Elapsed time: 0:01.04[h:]min:sec. CPU time: user 0.93 sys 0.08 (97%). Peak memory: 82952KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+1_1_yosys_canonicalize    .rtlil          1             81 bb33aea423e940319873

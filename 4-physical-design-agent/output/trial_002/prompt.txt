@@ -1,0 +1,66 @@
+Optimize the fixed RV32I core PPA. Return one NEW parameter set as a single JSON object, exactly the four keys below; PLACE_DENSITY must be a decimal float, others integers. Minimize score and avoid negative WNS. Do not repeat a proposed set.
+Search space:
+{
+  "ABC_AREA": [
+    0,
+    1
+  ],
+  "CORE_UTILIZATION": [
+    40,
+    55,
+    70
+  ],
+  "GPL_TIMING_DRIVEN": [
+    0,
+    1
+  ],
+  "PLACE_DENSITY": [
+    0.6,
+    0.7,
+    0.8
+  ]
+}
+Results and rejected attempts so far:
+[
+  {
+    "parameters": {
+      "ABC_AREA": 1,
+      "CORE_UTILIZATION": 40,
+      "PLACE_DENSITY": 0.8,
+      "GPL_TIMING_DRIVEN": 1
+    },
+    "status": "success",
+    "metrics": {
+      "area_um2": 1390.25,
+      "power_w": 0.00583206,
+      "wns_ps": 105.244,
+      "tns_ps": 0.0
+    },
+    "score": 2.0,
+    "units": {
+      "area_um2": "um^2",
+      "power_w": "W",
+      "wns_ps": "ps",
+      "tns_ps": "ps"
+    },
+    "variant": "a4_9a1658acc461_baseline"
+  },
+  {
+    "parameters": {
+      "ABC_AREA": 1,
+      "CORE_UTILIZATION": 40,
+      "GPL_TIMING_DRIVEN": 1,
+      "PLACE_DENSITY": 0.7
+    },
+    "status": "success",
+    "metrics": {
+      "area_um2": 1390.82,
+      "power_w": 0.00585391,
+      "wns_ps": 131.278,
+      "tns_ps": 0.0
+    },
+    "score": 2.004156530301912,
+    "reason": null
+  }
+]
+Score = area/baseline area + power/baseline power + 1000*max(0,-WNS_ps)/1000_ps. Timing and RTL are fixed.

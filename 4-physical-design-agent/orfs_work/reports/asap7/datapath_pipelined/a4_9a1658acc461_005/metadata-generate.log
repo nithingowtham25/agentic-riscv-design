@@ -1,0 +1,6 @@
+[WARN] not a git repo: /OpenROAD-flow-scripts/flow/util/../
+[WARN] not a git repo: /OpenROAD-flow-scripts/flow/platforms/asap7
+[WARN] Tag globalroute__timing__clock__slack not found in /workspace/Assignment4/orfs_work/logs/asap7/datapath_pipelined/a4_9a1658acc461_005/5_1_grt.log. Will use N/A.
+[WARN] Overwriting Tag finish__runtime__total
+[WARN] Overwriting Tag finish__cpu__total
+[WARN] Overwriting Tag finish__mem__peak

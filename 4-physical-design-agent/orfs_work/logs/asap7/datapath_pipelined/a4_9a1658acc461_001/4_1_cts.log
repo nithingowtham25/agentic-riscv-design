@@ -1,0 +1,137 @@
+OpenROAD 26Q2-2517-g7304ba78ad 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 96 thread(s).
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_001/3_place.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_001/3_place.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+clock_tree_synthesis -sink_clustering_enable -repair_clock_nets
+[INFO CTS-0050] Root buffer is BUFx16f_ASAP7_75t_R.
+[INFO CTS-0051] Sink buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    BUFx16f_ASAP7_75t_R
+                    BUFx24_ASAP7_75t_R
+[INFO CTS-0049] Characterization buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0007] Net "clk" found for clock "core_clock".
+[INFO CTS-0010]  Clock net "clk" has 1592 sinks.
+[INFO CTS-0008] TritonCTS found 1 clock nets.
+[INFO CTS-0097] Characterization used 2 buffer(s) types.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 1592.
+[INFO CTS-0090]  Sinks will be clustered based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0206] Best clustering solution was found from max clustering size of 28 and max clustering diameter of 18.
+[INFO CTS-0019]  Total number of sinks after clustering: 74.
+[INFO CTS-0024]  Normalized sink region: [(5.70142, 2.64545), (40.2948, 42.4786)].
+[INFO CTS-0025]     Width:  34.5934.
+[INFO CTS-0026]     Height: 39.8331.
+ Level 1
+    Direction: Vertical
+    Sinks per sub-region: 37
+    Sub-region size: 34.5934 X 19.9166
+[INFO CTS-0034]     Segment length (rounded): 10.
+ Level 2
+    Direction: Horizontal
+    Sinks per sub-region: 19
+    Sub-region size: 17.2967 X 19.9166
+[INFO CTS-0034]     Segment length (rounded): 8.
+ Level 3
+    Direction: Vertical
+    Sinks per sub-region: 10
+    Sub-region size: 17.2967 X 9.9583
+[INFO CTS-0034]     Segment length (rounded): 4.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 74.
+[INFO CTS-0018]     Created 83 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 3.
+[INFO CTS-0015]     Created 83 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 7:2, 8:2, 10:2, 11:2, 12:1, 14:1, 15:1, 16:1, 18:4, 19:5, 20:10, 21:11, 22:13, 23:11, 24:6, 25:6, 26:3, 28:1..
+[INFO CTS-0017]     Max level of the clock tree: 3.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 1660
+[INFO CTS-0100]  Leaf buffers 74
+[INFO CTS-0101]  Average sink wire length 92.92 um
+[INFO CTS-0102]  Path depth 2 - 3
+[INFO CTS-0207]  Dummy loads inserted 68
+[INFO CTS-0500] Runtime: 3.43s
+estimate_parasitics -placement
+detailed_placement
+[INFO DPL-0006] Core area: 3404.37 um^2, Instances area: 1390.74 um^2, Utilization: 40.9%
+[INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+[INFO DPL-1101] Legalizing using diamond search.
+Movements Summary
+---------------------------------------
+Total cells:                   10921
+Diamond Move Success:          10921 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+[INFO DPL-0500] Runtime: 0.08s
+Placement Analysis
+---------------------------------
+total displacement        240.4 u
+average displacement        0.0 u
+max displacement            1.1 u
+original HPWL           30556.3 u
+legalized HPWL          31297.4 u
+delta HPWL                    2 %
+
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
+[INFO RSZ-0098] No setup violations found
+[INFO RSZ-0505] Runtime: 0.66s
+[INFO RSZ-0046] Found 1 endpoints with hold violations.
+Iteration | Resized | Buffers | Cloned Gates |   Area   |   WNS   |   TNS   | Endpoint
+--------------------------------------------------------------------------------------
+        0 |       0 |       0 |            0 |    +0.0% |  -2.778 |  -2.778 | InstrD[28]$_SDFFE_PP0N_/D
+    final |       0 |       1 |            0 |    +0.0% |   4.804 |   0.000 | _21145_/D
+--------------------------------------------------------------------------------------
+[INFO RSZ-0032] Inserted 1 hold buffers.
+[INFO RSZ-0506] Runtime: 0.20s
+detailed_placement
+[INFO DPL-0006] Core area: 3404.37 um^2, Instances area: 1390.82 um^2, Utilization: 40.9%
+[INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+[INFO DPL-1101] Legalizing using diamond search.
+Movements Summary
+---------------------------------------
+Total cells:                   10922
+Diamond Move Success:          10922 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+[INFO DPL-0500] Runtime: 0.08s
+Placement Analysis
+---------------------------------
+total displacement          0.4 u
+average displacement        0.0 u
+max displacement            0.3 u
+original HPWL           31297.3 u
+legalized HPWL          31297.6 u
+delta HPWL                    0 %
+
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 1391 um^2 41% utilization.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_001/4_1_cts.odb
+write_sdc -no_timestamp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_001/4_cts.sdc
+Elapsed time: 0:12.62[h:]min:sec. CPU time: user 18.90 sys 34.22 (420%). Peak memory: 326552KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+4_1_cts                   .odb           12            318 263bee3adf65fb060faf

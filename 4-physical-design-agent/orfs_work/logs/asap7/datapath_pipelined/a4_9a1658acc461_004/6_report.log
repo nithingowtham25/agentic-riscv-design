@@ -1,0 +1,75 @@
+OpenROAD 26Q2-2517-g7304ba78ad 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 96 thread(s).
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_004/6_1_fill.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_004/6_1_fill.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+[WARNING STA-0450] virtual clock virtual_core_clock can not be propagated.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_004/6_final.odb
+Deleted 0 routing obstructions
+[INFO RCX-0431] Defined process_corner X with ext_model_index 0
+[INFO RCX-0029] Defined extraction corner X
+[INFO RCX-0435] Reading extraction model file /OpenROAD-flow-scripts/flow/platforms/asap7/rcx_patterns.rules ...
+[INFO RCX-0436] RC segment generation datapath_pipelined (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 84829 rc segments
+[INFO RCX-0439] Coupling Cap extraction datapath_pipelined ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0442] 55% of 88698 wires extracted
+[INFO RCX-0442] 100% of 88698 wires extracted
+[INFO RCX-0045] Extract 11057 nets, 95828 rsegs, 95828 caps, 129557 ccs
+[INFO RCX-0443] 11057 nets finished
+[INFO PSM-0040] All shapes on net VDD are connected.
+########## IR report #################
+Net              : VDD
+Corner           : default
+Total power      : 5.87e-03 W
+Supply voltage   : 7.70e-01 V
+Worstcase voltage: 7.68e-01 V
+Average voltage  : 7.70e-01 V
+Average IR drop  : 4.26e-04 V
+Worstcase IR drop: 2.46e-03 V
+Percentage drop  : 0.32 %
+######################################
+[INFO PSM-0040] All shapes on net VSS are connected.
+########## IR report #################
+Net              : VSS
+Corner           : default
+Total power      : 5.87e-03 W
+Supply voltage   : 0.00e+00 V
+Worstcase voltage: 2.24e-03 V
+Average voltage  : 4.23e-04 V
+Average IR drop  : 4.23e-04 V
+Worstcase IR drop: 2.24e-03 V
+Percentage drop  : 0.29 %
+######################################
+Cell type report:                       Count       Area
+  Fill cell                             11915    1088.21
+  Tap cell                                461      13.44
+  Tie cell                                 32       1.40
+  Clock buffer                            130      45.01
+  Timing Repair Buffer                    390      34.89
+  Inverter                               1597      70.55
+  Clock inverter                           22       3.15
+  Sequential cell                        1592     464.42
+  Multi-Input combinational cell         7155     752.40
+  Total                                 23294    2473.47
+Report metrics stage 6, finish...
+
+==========================================================================
+finish report_design_area
+--------------------------------------------------------------------------
+Design area 1385 um^2 56% utilization.
+[WARNING GUI-0076] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-nithingowtham25'
+[WARNING GUI-0066] Heat map "IR Drop" has not been populated with data.
+[WARNING GUI-0066] Heat map "Routing Congestion" has not been populated with data.
+Elapsed time: 0:19.59[h:]min:sec. CPU time: user 24.44 sys 33.10 (293%). Peak memory: 575672KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+6_report                                 19            562                  N/A

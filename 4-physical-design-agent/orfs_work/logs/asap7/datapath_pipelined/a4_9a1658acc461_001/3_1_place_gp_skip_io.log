@@ -1,0 +1,118 @@
+OpenROAD 26Q2-2517-g7304ba78ad 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 96 thread(s).
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_001/2_floorplan.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_001/2_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+global_placement -skip_io -density 0.7 -pad_left 0 -pad_right 0
+[INFO GPL-0001] ---- Initialize GPL Main Data Structures
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: (  0.054  0.270 ) um
+[INFO GPL-0004] CoreBBox: (  1.026  1.080 ) ( 59.400 59.400 ) um
+[INFO GPL-0036] Movable instances area:       1367.079 um^2
+[INFO GPL-0037] Total instances area:         1386.033 um^2
+[INFO GPL-0035] Pin density area adjust:       168.501 um^2
+[INFO GPL-0032] ---- Initialize Region: Top-level
+[INFO GPL-0006] Number of instances:             12060
+[INFO GPL-0007] Movable instances:               11410
+[INFO GPL-0008] Fixed instances:                   650
+[INFO GPL-0009] Dummy instances:                     0
+[INFO GPL-0010] Number of nets:                  11618
+[INFO GPL-0011] Number of pins:                  39221
+[INFO GPL-0012] Die BBox:  (  0.000  0.000 ) ( 60.432 60.432 ) um
+[INFO GPL-0013] Core BBox: (  1.026  1.080 ) ( 59.400 59.400 ) um
+[INFO GPL-0016] Core area:                    3404.372 um^2
+[INFO GPL-0014] Region name: top-level.
+[INFO GPL-0015] Region area:                  3404.372 um^2
+[INFO GPL-0017] Fixed instances area:           18.954 um^2
+[INFO GPL-0018] Movable instances area:       1535.580 um^2
+[INFO GPL-0019] Utilization:                    45.359 %
+[INFO GPL-0020] Standard cells area:          1535.580 um^2
+[INFO GPL-0021] Large instances area:            0.000 um^2
+[INFO GPL-0005] ---- Execute Conjugate Gradient Initial Placement.
+[INFO GPL-0051] Source of initial instance position counters:
+	Odb location = 0	Core center = 11410	Region center = 0
+[INFO GPL-0033] ---- Initialize Nesterov Region: Top-level
+[INFO GPL-0023] Placement target density:       0.7000
+[INFO GPL-0024] Movable insts average area:      0.135 um^2
+[INFO GPL-0025] Ideal bin area:                  0.192 um^2
+[INFO GPL-0026] Ideal bin count:                 17707
+[INFO GPL-0027] Total bin area:               3404.372 um^2
+[INFO GPL-0028] Bin count (X, Y):         128 ,    128
+[INFO GPL-0029] Bin size (W * H):       0.456 *  0.456 um
+[INFO GPL-0030] Number of bins:                  16384
+[INFO GPL-0084] ---- Execute Nesterov Global Placement.
+[INFO GPL-0031] HPWL: Half-Perimeter Wirelength
+Iteration | Overflow |     HPWL (um) |  HPWL(%) |   Penalty | Group
+---------------------------------------------------------------
+        0 |   0.9975 |  2.947349e+03 |   +0.00% |  4.15e-14 |      
+       10 |   0.9973 |  1.946820e+03 |  -33.95% |  6.76e-14 |      
+       20 |   0.9972 |  1.897255e+03 |   -2.55% |  1.10e-13 |      
+       30 |   0.9971 |  1.884935e+03 |   -0.65% |  1.79e-13 |      
+       40 |   0.9971 |  1.879230e+03 |   -0.30% |  2.92e-13 |      
+       50 |   0.9971 |  1.878383e+03 |   -0.05% |  4.76e-13 |      
+       60 |   0.9971 |  1.878168e+03 |   -0.01% |  7.75e-13 |      
+       70 |   0.9971 |  1.876932e+03 |   -0.07% |  1.26e-12 |      
+       80 |   0.9971 |  1.875359e+03 |   -0.08% |  2.06e-12 |      
+       90 |   0.9971 |  1.873492e+03 |   -0.10% |  3.35e-12 |      
+      100 |   0.9970 |  1.872709e+03 |   -0.04% |  5.46e-12 |      
+      110 |   0.9969 |  1.879012e+03 |   +0.34% |  8.89e-12 |      
+      120 |   0.9966 |  1.904529e+03 |   +1.36% |  1.45e-11 |      
+      130 |   0.9961 |  1.978794e+03 |   +3.90% |  2.36e-11 |      
+      140 |   0.9950 |  2.198621e+03 |  +11.11% |  3.84e-11 |      
+      150 |   0.9925 |  2.751248e+03 |  +25.14% |  6.26e-11 |      
+      160 |   0.9893 |  3.896295e+03 |  +41.62% |  1.02e-10 |      
+      170 |   0.9845 |  5.387511e+03 |  +38.27% |  1.66e-10 |      
+      180 |   0.9800 |  6.389139e+03 |  +18.59% |  2.70e-10 |      
+      190 |   0.9748 |  7.570163e+03 |  +18.48% |  4.40e-10 |      
+      200 |   0.9639 |  9.449500e+03 |  +24.83% |  7.17e-10 |      
+      210 |   0.9483 |  1.145748e+04 |  +21.25% |  1.17e-09 |      
+      220 |   0.9307 |  1.352251e+04 |  +18.02% |  1.90e-09 |      
+      230 |   0.9092 |  1.593914e+04 |  +17.87% |  3.10e-09 |      
+      240 |   0.8842 |  1.872390e+04 |  +17.47% |  5.04e-09 |      
+      250 |   0.8536 |  2.157798e+04 |  +15.24% |  8.21e-09 |      
+      260 |   0.8198 |  2.437731e+04 |  +12.97% |  1.34e-08 |      
+      270 |   0.7826 |  2.718486e+04 |  +11.52% |  2.18e-08 |      
+      280 |   0.7411 |  3.005363e+04 |  +10.55% |  3.55e-08 |      
+      290 |   0.6968 |  3.273240e+04 |   +8.91% |  5.77e-08 |      
+      300 |   0.6448 |  3.539014e+04 |   +8.12% |  9.40e-08 |      
+      310 |   0.5862 |  3.776877e+04 |   +6.72% |  1.53e-07 |      
+      320 |   0.5218 |  3.997100e+04 |   +5.83% |  2.49e-07 |      
+      330 |   0.4663 |  4.209880e+04 |   +5.32% |  4.06e-07 |      
+      340 |   0.4137 |  4.326384e+04 |   +2.77% |  6.61e-07 |      
+      350 |   0.3645 |  4.417709e+04 |   +2.11% |  1.08e-06 |      
+      360 |   0.3212 |  4.482833e+04 |   +1.47% |  1.67e-06 |      
+      370 |   0.2877 |  4.510012e+04 |   +0.61% |  2.46e-06 |      
+      380 |   0.2590 |  4.541054e+04 |   +0.69% |  3.62e-06 |      
+      390 |   0.2321 |  4.559124e+04 |   +0.40% |  5.33e-06 |      
+      400 |   0.2038 |  4.572918e+04 |   +0.30% |  7.86e-06 |      
+      410 |   0.1785 |  4.583514e+04 |   +0.23% |  1.16e-05 |      
+      420 |   0.1560 |  4.591365e+04 |   +0.17% |  1.71e-05 |      
+      430 |   0.1366 |  4.598976e+04 |   +0.17% |  2.51e-05 |      
+      440 |   0.1180 |  4.605924e+04 |   +0.15% |  3.70e-05 |      
+      450 |   0.1022 |  4.613064e+04 |   +0.16% |  5.45e-05 |      
+      452 |   0.0996 |  4.614336e+04 |          |  6.12e-05 |      
+---------------------------------------------------------------
+[INFO GPL-1001] Global placement finished at iteration 452
+[INFO GPL-1002] Placed Cell Area             1535.5798
+[INFO GPL-1003] Available Free Area          3385.4177
+[INFO GPL-1004] Minimum Feasible Density        0.4600 (cell_area / free_area)
+[INFO GPL-1006]   Suggested Target Densities:
+[INFO GPL-1007]     - For 90% usage of free space: 0.5040
+[INFO GPL-1008]     - For 80% usage of free space: 0.5670
+[INFO GPL-1009]     - For 50% usage of free space: 0.9072
+[INFO GPL-1014] Final placement area: 1535.58 (+0.00%)
+Took 51 seconds: global_placement -skip_io -density 0.7 -pad_left 0 -pad_right 0
+Design area 1386 um^2 41% utilization.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_001/3_1_place_gp_skip_io.odb
+Elapsed time: 0:52.61[h:]min:sec. CPU time: user 4110.93 sys 12.32 (7836%). Peak memory: 239056KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+3_1_place_gp_skip_io      .odb           52            233 7620ea0f5240a18568c5
