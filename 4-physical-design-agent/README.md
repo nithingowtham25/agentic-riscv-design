@@ -11,8 +11,6 @@ The assignment handout and Course Setup Guide are the authorities for requiremen
 ├── README.md                        this reproduction and submission guide
 ├── check_environment.sh             provided environment preflight
 ├── run_lab.sh                       provided Singularity agent launcher
-├── env.example                      example variable name; no credentials
-├── .env                             local secret file, if present; never submit
 ├── lab4-orfs-fall2026-v1.sif       course image, if installed locally
 ├── container/                       provided image and runtime helpers
 │   ├── stack.env                    pinned image and ORFS versions
@@ -42,17 +40,14 @@ The assignment handout and Course Setup Guide are the authorities for requiremen
 │   ├── summary.json                 baseline, best result and stopping reason
 │   └── terminal_logs/               timestamped preflight and experiment logs
 ├── orfs_work/                       ORFS work and generated design artifacts
-├── old_output/                     prior run evidence, if archived here
-├── old_orfs_work/                  prior ORFS workspace, if archived here
 ├── .sing_cache/ and .sing_tmp/     local Singularity cache/scratch, if present
-└── 337001954_A4_Report.docx        editable report, if kept locally
 ```
 
 The actual number of trial directories depends on the proposal limit and stopping policy. The report is submitted separately as a PDF. Cache, scratch, image, archived-run and Word-report files shown above may be moved outside the submission folder as appropriate; preserve all required current `output/` evidence.
 
 ## Prerequisites
 
-1. Follow the Course Setup Guide for Olympus, Grace, or Faster, including the appropriate compute allocation, Singularity, network access, and course image. Use the supplied image tools if setup is needed.
+1. Follow the Course Setup Guide for Olympus, Grace, or Faster, including the appropriate compute allocation, Singularity, sufficient storage, and network access to the pinned container registry.
 2. Enter the package root in a cluster shell and activate the prepared course environment. Do not alter the verified RTL or fixed clock and I/O delay across experiments.
 3. Configure `TAMUS_AI_CHAT_API_KEY` privately in a package-root `.env` file or export it in your shell. `env.example` shows the variable name. Never submit or commit the key or `.env`.
 4. Use the same provider, model, and generation settings for reported experiments. The runs recorded here use TAMU AI Chat and `gpt-5.4`; temperature was left at the provider default.
@@ -61,7 +56,17 @@ The actual number of trial directories depends on the proposal limit and stoppin
 
 Run these commands from the package root. The wrappers save timestamped terminal output in `output/terminal_logs/` and return the underlying command's exit status.
 
-### 1. Check the environment
+### 1. Obtain the course image
+
+The submission ZIP excludes the large SIF image. After extracting the package, run this from its root before the environment check:
+
+```bash
+bash container/pull_sif.sh
+```
+
+The supplied script downloads and verifies the pinned course image, or verifies an existing compatible image. A local conversion may create or update `container/local_sif.sha256`; `.sing_cache/` and temporary build storage may also be created. It needs Singularity, registry access, and sufficient disk space; see the Course Setup Guide for the appropriate cluster allocation. The image download can take time. The command restores the container image, not missing RTL, source files, experiment results, or `orfs_work/`; the required source and `output/` evidence must be included in the ZIP. Re-running the experiment regenerates ORFS working files.
+
+### 2. Check the environment
 
 ```bash
 bash scripts/run_preflight.sh
@@ -69,7 +74,9 @@ bash scripts/run_preflight.sh
 
 This calls the provided `check_environment.sh`, verifies the image and tools, runs the supplied infrastructure checks, and tests TAMU API access. Proceed after `Infrastructure: PASS`, `TAMU API access: PASS`, and `Environment check: PASS`. On Olympus the optional WebProxy module may be unavailable; the completed runs showed that this message did not prevent the checks or experiments. Investigate any actual failing check rather than relying on the module message alone.
 
-### 2. Run the baseline and optimization loop
+### 3. Run the baseline and optimization loop
+
+If the extracted package already contains submitted baseline, trial, or summary records, first archive the complete `output/` folder as described in step 5. The agent will not overwrite those records. The experiment wrapper creates a fresh `output/terminal_logs/` automatically.
 
 ```bash
 bash scripts/run_experiment.sh --provider tamu --trials 5 --model gpt-5.4
@@ -85,7 +92,7 @@ The direct command does not use the wrapper's terminal-log capture. Always launc
 
 The baseline runs first. For each proposal, the agent saves the prompt and response, validates the parameter set, runs synthesis and place-and-route for an accepted new configuration, and records the measured result or failure. Console messages show the major stages; the supplied tool wrapper saves detailed tool output after each tool command finishes. A physical-design run may take considerable time.
 
-### 3. Inspect results and supporting evidence
+### 4. Inspect results and supporting evidence
 
 | Location | Contents |
 |---|---|
@@ -100,7 +107,7 @@ The baseline runs first. For each proposal, the agent saves the prompt and respo
 
 Rejected proposals and tool failures have records but may not have measurements or tool artifacts. If a request fails before the model returns a response, the response is unavailable. Check the recorded reason and relevant logs before retrying.
 
-### 4. Preserve evidence before another run
+### 5. Preserve evidence before another run
 
 The agent refuses to overwrite an existing baseline, trial, or summary. Archive the complete existing `output/` to a clearly named location before starting another run; preserve it for analysis. `orfs_work/` contains larger, regenerable ORFS artifacts. It may be archived for deeper inspection or left in place: new runs use unique variant names. Avoid deleting prior evidence before an archive has been checked.
 
