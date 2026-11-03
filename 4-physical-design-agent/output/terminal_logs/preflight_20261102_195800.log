@@ -1,0 +1,27 @@
+=== Assignment 4 environment preflight ===
+2026-11-02T19:58:00-06:00
+ERROR: Unable to locate a modulefile for 'WebProxy'
+Runtime:          singularity-ce version 4.5.0-1.el8
+Image:            lab4-orfs-fall2026-v1.sif
+Image SHA-256:    9dfbf4d1c93f848bc6eb5469adc5aa491b7cdca66bfc05edfa6a87300f3fb02d
+SIF provenance:   verified local exact-digest conversion
+OCI digest:       sha256:46b03d30451b56dc20734d0f5ac51a8496e7139cda82a576d1915369bd0c68a7
+ORFS release:     26Q3
+ORFS commit:      adeb389e7fbf06ef6a939a895c014f69e6f7aa00
+Container arch:   linux/amd64
+Python:           3.10.12
+Yosys:            Yosys 0.64+post (git sha1 UNKNOWN-dirty, g++ 11.4.0-1ubuntu1~22.04.3 -fPIC -O3)
+OpenROAD:         26Q2-2517-g7304ba78ad
+KLayout:          0.30.7
+Make:             4.3
+Tcl:              8.6.12
+ORFS flow:        /OpenROAD-flow-scripts/flow
+ASAP7 platform:   1.7
+Writable bind:    PASS
+----------------------------------------------------------------------
+Ran 5 tests in 0.006s
+
+OK
+Infrastructure:   PASS
+TAMU API access:  PASS
+Environment check: PASS

@@ -9,11 +9,11 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_baseline/6_1_fill.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_baseline/6_1_fill.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_baseline/6_1_fill.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_baseline/6_1_fill.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 [WARNING STA-0450] virtual clock virtual_core_clock can not be propagated.
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_baseline/6_final.odb
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_baseline/6_final.odb
 Deleted 0 routing obstructions
 [INFO RCX-0431] Defined process_corner X with ext_model_index 0
 [INFO RCX-0029] Defined extraction corner X
@@ -70,6 +70,6 @@ Design area 1390 um^2 41% utilization.
 [WARNING GUI-0076] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-nithingowtham25'
 [WARNING GUI-0066] Heat map "IR Drop" has not been populated with data.
 [WARNING GUI-0066] Heat map "Routing Congestion" has not been populated with data.
-Elapsed time: 0:20.80[h:]min:sec. CPU time: user 24.62 sys 42.16 (321%). Peak memory: 608520KB.
+Elapsed time: 0:21.23[h:]min:sec. CPU time: user 25.46 sys 37.45 (296%). Peak memory: 591772KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-6_report                                 20            594                  N/A
+6_report                                 21            577                  N/A

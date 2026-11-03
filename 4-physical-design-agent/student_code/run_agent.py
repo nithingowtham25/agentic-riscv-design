@@ -21,6 +21,7 @@ from tool_runner import (fill_template, unresolved_placeholders, run_synthesis, 
                          generate_orfs_metadata, orfs_trial_paths, missing_artifacts,
                          SYNTHESIS_ARTIFACT_KEYS, PNR_ARTIFACT_KEYS)
 from io_utils import write_json, write_text
+from a4_feedback import SYSTEM_PROMPT, diagnostics, changes, make_brief, collect_physical_images
 
 
 def first_object(text):
@@ -117,7 +118,15 @@ def evaluate(params, directory, variant):
         for key in ('synthesis_report', 'final_report', 'final_report_log'):
             shutil.copy2(paths[key], directory / (key + paths[key].suffix))
         result['metrics'] = metrics_from_metadata(directory / 'metadata.json')
+        result['diagnostics'] = diagnostics(directory / 'metadata.json')
+        write_json(directory / 'diagnostics.json', result['diagnostics'])
         result['status'] = 'success'
+        try:
+            result['physical_images'] = collect_physical_images(paths['reports_dir'], directory, paths['final_report_log'])
+            write_json(directory / 'image_manifest.json', result['physical_images'])
+        except (OSError, ValueError) as exc:
+            result['physical_images'] = {'status': 'collection_failed', 'reason': str(exc)}
+            print(f'[{directory.name}] Image collection failed (PPA result retained): {exc}', flush=True)
         print(f'[{directory.name}] Metadata parsed; evaluation complete.', flush=True)
     except (OSError, ValueError, RuntimeError, KeyError) as exc:
         result['reason'] = str(exc)
@@ -132,7 +141,8 @@ def ask_tamu(model, prompt):
     endpoint = os.environ.get('TAMUS_AI_CHAT_API_ENDPOINT', 'https://chat-api.tamu.ai').rstrip('/')
     model_id = model if model.startswith('protected.') else 'protected.' + model
     payload = {'model': model_id, 'stream': False,
-               'messages': [{'role': 'user', 'content': prompt}]}
+               'messages': [{'role': 'system', 'content': SYSTEM_PROMPT},
+                            {'role': 'user', 'content': prompt}]}
     request = urllib.request.Request(endpoint + '/openai/chat/completions',
         data=json.dumps(payload).encode(), method='POST',
         headers={'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json',
@@ -182,22 +192,21 @@ def main(argv=None):
         attempts = number
         folder = out / f'trial_{number:03d}'
         folder.mkdir()
-        prompt = ('Optimize the fixed RV32I core PPA. Return one NEW parameter set as a single JSON object, '
-                  'exactly the four keys below; PLACE_DENSITY must be a decimal float, others integers. '
-                  'Minimize score and avoid negative WNS. Do not repeat a proposed set.\nSearch space:\n' +
-                  search_space_as_json() + '\nResults and rejected attempts so far:\n' +
-                  json.dumps(history, indent=2) + '\nScore = area/baseline area + power/baseline power '
-                  '+ 1000*max(0,-WNS_ps)/1000_ps. Timing and RTL are fixed.')
+        prompt = make_brief(baseline, best, history, number, args.trials, param_space)
         record = {'prompt': prompt, 'raw_response': None, 'parameters': None, 'metrics': None,
                   'score': None, 'status': 'rejected', 'provider': args.provider, 'model': args.model,
-                  'generation_settings': {'stream': False, 'temperature': 'provider default'}}
-        write_text(folder / 'prompt.txt', prompt + '\n')
+                  'generation_settings': {'stream': False, 'temperature': 'provider default'},
+                  'system_prompt': SYSTEM_PROMPT, 'rationale': None}
+        write_text(folder / 'prompt.txt', '=== SYSTEM PROMPT ===\n' + SYSTEM_PROMPT +
+                   '\n\n=== USER PROMPT ===\n' + prompt + '\n')
         try:
             print(f'[trial_{number:03d}] Requesting proposal from {args.provider} ({args.model})...', flush=True)
             raw, usage, actual_model = ask_tamu(args.model, prompt)
             print(f'[trial_{number:03d}] Response received; validating proposal...', flush=True)
             record.update(raw_response=raw, usage=usage, actual_model=actual_model)
             write_text(folder / 'response.txt', str(raw) + '\n')
+            if isinstance(raw, str) and 'rationale:' in raw.lower():
+                record['rationale'] = raw[raw.lower().index('rationale:') + len('rationale:'):].strip() or None
             proposed = first_object(raw)
             record['parameters'] = proposed
             if not valid_params(proposed):
@@ -211,6 +220,9 @@ def main(argv=None):
             record.update(outcome)
             if outcome['status'] == 'success':
                 record['score'] = score(outcome['metrics'], baseline['metrics'])
+                record['comparison_vs_baseline'] = changes(record['metrics'], baseline['metrics'])
+                record['comparison_vs_previous_best'] = changes(record['metrics'], best['metrics'])
+                record['score_delta_vs_previous_best'] = record['score'] - best['score']
                 if record['score'] < best['score']:
                     best = record
                     unsuccessful = -1
@@ -218,9 +230,10 @@ def main(argv=None):
             record['reason'] = str(exc)
             if isinstance(exc, RuntimeError):
                 record['status'] = 'llm_error'
+                write_text(folder / 'response.txt', 'No model response was received. See result.json for the error.\n')
         write_json(folder / 'result.json', record)
         history.append({key: record.get(key) for key in
-                        ('parameters', 'status', 'metrics', 'score', 'reason')})
+                        ('parameters', 'status', 'metrics', 'score', 'reason', 'diagnostics')})
         unsuccessful += 1
         print(f"Attempt {number}: {record['status']} score={record['score']} {record.get('reason', '')}", flush=True)
         if len(seen) == math.prod(len(v) for v in param_space.values()):

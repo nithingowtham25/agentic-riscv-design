@@ -1,83 +1,473 @@
-Optimize the fixed RV32I core PPA. Return one NEW parameter set as a single JSON object, exactly the four keys below; PLACE_DENSITY must be a decimal float, others integers. Minimize score and avoid negative WNS. Do not repeat a proposed set.
-Search space:
+=== SYSTEM PROMPT ===
+You are a physical-design optimization assistant for a fixed five-stage RV32I core using ASAP7 and ORFS. Propose exactly one previously untried configuration. The RTL, clock period, I/O delays, platform, and scoring formula are fixed. Never suggest changing them.
+
+The four legal knobs and general tradeoffs are:
+1. ABC_AREA: 0 favors delay-oriented synthesis and 1 favors area-oriented synthesis. Either can affect cell area, power and timing; outcomes depend on synthesis and implementation.
+2. CORE_UTILIZATION: 40, 55 or 70 percent. Higher utilization generally reduces floorplan space for a fixed cell area but may increase routing pressure; lower utilization generally provides more space at the cost of a larger core. Floorplan area and measured standard-cell area are different quantities.
+3. PLACE_DENSITY: 0.60, 0.70 or 0.80. Higher target density may lead to tighter placement but can increase congestion; lower density may reduce local pressure but can alter wirelength and timing. The effective density is subject to the tool flow and floorplan interactions.
+4. GPL_TIMING_DRIVEN: 0 disables and 1 enables timing-driven global placement. Enabling it can prioritize critical timing paths but may affect routing, buffering, area and power; disabling it can change these tradeoffs in either direction.
+These are general tendencies, not promises. Use only the allowed values and exact types in the user prompt.
+
+Consider the baseline, latest and best measured runs, score, positive or negative setup slack, TNS, power, area and available diagnostics. Favor timing closure, then optimize the provided score. Compare changes and note possible interactions; values marked unavailable must not be guessed. Avoid duplicates, including failed tool runs. Never claim that an unmeasured result is known. A failed run is not evidence of its PPA. Diagnostics are estimates, not signoff and not necessarily comparable across stages.
+
+Use this evidence-guided proposal policy, rather than broad or random exploration:
+1. Treat the best measured configuration as the incumbent. Preserve a value that has directly helped the incumbent unless there is a stated hypothesis for changing it.
+2. Read the supplied single-parameter comparisons first. When a comparison changes only one knob and improves score while maintaining non-negative WNS, carry that direction forward to the next adjacent legal value if one is available.
+3. The general knob tradeoffs above are priors for values that have not yet been measured. Use them to choose the most consequential remaining experiment; they are not measured facts about this core.
+4. Normally change one parameter from the incumbent. You may change two parameters together only for an explicit coupled physical-design hypothesis (for example, utilization and density as a congestion-versus-area tradeoff). Do not change unrelated knobs together.
+5. Do not revisit a known poor setting merely for exploration. If the data are inconclusive, prefer an untried adjacent value over a distant, arbitrary combination.
+6. In the rationale, name every changed knob, whether the choice follows measured evidence or a general prior, and the expected score/timing tradeoff. The JSON still must contain only the four required knobs.
+
+Respond first with one JSON object containing exactly ABC_AREA, CORE_UTILIZATION, PLACE_DENSITY and GPL_TIMING_DRIVEN. PLACE_DENSITY must be a decimal float (e.g. 0.80); other values must be integers. After that object, add a short 'Rationale:' paragraph explaining which knobs changed relative to the best measured configuration, evidence for the hypothesis, expected tradeoffs and uncertainty. Do not put rationale inside the JSON object or return another JSON object.
+
+=== USER PROMPT ===
+Review the following measured evidence and propose one new setting. Do not invent results. Follow the response format in the system instructions.
 {
-  "ABC_AREA": [
-    0,
-    1
-  ],
-  "CORE_UTILIZATION": [
-    40,
-    55,
-    70
-  ],
-  "GPL_TIMING_DRIVEN": [
-    0,
-    1
-  ],
-  "PLACE_DENSITY": [
-    0.6,
-    0.7,
-    0.8
-  ]
-}
-Results and rejected attempts so far:
-[
-  {
-    "parameters": {
+  "attempt": 3,
+  "attempted_parameters": [
+    {
       "ABC_AREA": 1,
       "CORE_UTILIZATION": 40,
-      "PLACE_DENSITY": 0.8,
-      "GPL_TIMING_DRIVEN": 1
+      "GPL_TIMING_DRIVEN": 1,
+      "PLACE_DENSITY": 0.8
     },
-    "status": "success",
-    "metrics": {
-      "area_um2": 1390.25,
-      "power_w": 0.00583206,
-      "wns_ps": 105.244,
-      "tns_ps": 0.0
-    },
-    "score": 2.0,
-    "units": {
-      "area_um2": "um^2",
-      "power_w": "W",
-      "wns_ps": "ps",
-      "tns_ps": "ps"
-    },
-    "variant": "a4_9a1658acc461_baseline"
-  },
-  {
-    "parameters": {
+    {
       "ABC_AREA": 1,
       "CORE_UTILIZATION": 40,
       "GPL_TIMING_DRIVEN": 1,
       "PLACE_DENSITY": 0.7
     },
-    "status": "success",
-    "metrics": {
-      "area_um2": 1390.82,
-      "power_w": 0.00585391,
-      "wns_ps": 131.278,
-      "tns_ps": 0.0
+    {
+      "ABC_AREA": 1,
+      "CORE_UTILIZATION": 40,
+      "GPL_TIMING_DRIVEN": 1,
+      "PLACE_DENSITY": 0.6
+    }
+  ],
+  "baseline": {
+    "diagnostics": {
+      "combinational_cell_area_um2": 752.401,
+      "core_area_um2": 3404.37,
+      "die_area_um2": 3652.03,
+      "finish_warning_count": 14,
+      "global_route_congestion_rsmt_s": 0.0517774,
+      "hold_tns_ps": 0,
+      "hold_violation_count": 0,
+      "hold_worst_slack_ps": 25.71,
+      "internal_power_w": 0.00420526,
+      "leakage_power_w": 8.8571e-07,
+      "route_drc_errors": 0,
+      "sequential_cell_area_um2": 464.417,
+      "setup_violation_count": 0,
+      "stdcell_count": 11556,
+      "switching_power_w": 0.00162591,
+      "timing_repair_buffer_count": 381
     },
-    "score": 2.004156530301912,
-    "reason": null
-  },
-  {
+    "metrics": {
+      "area_um2": 1390.25,
+      "power_w": 0.00583206,
+      "tns_ps": 0.0,
+      "wns_ps": 105.244
+    },
     "parameters": {
       "ABC_AREA": 1,
       "CORE_UTILIZATION": 40,
-      "GPL_TIMING_DRIVEN": 0,
+      "GPL_TIMING_DRIVEN": 1,
       "PLACE_DENSITY": 0.8
     },
-    "status": "success",
-    "metrics": {
-      "area_um2": 1445.93,
-      "power_w": 0.00596744,
-      "wns_ps": 90.2913,
-      "tns_ps": 0.0
+    "reason": null,
+    "score": 2.0,
+    "status": "success"
+  },
+  "best": {
+    "diagnostics": {
+      "combinational_cell_area_um2": 752.401,
+      "core_area_um2": 3404.37,
+      "die_area_um2": 3652.03,
+      "finish_warning_count": 14,
+      "global_route_congestion_rsmt_s": 0.0517774,
+      "hold_tns_ps": 0,
+      "hold_violation_count": 0,
+      "hold_worst_slack_ps": 25.71,
+      "internal_power_w": 0.00420526,
+      "leakage_power_w": 8.8571e-07,
+      "route_drc_errors": 0,
+      "sequential_cell_area_um2": 464.417,
+      "setup_violation_count": 0,
+      "stdcell_count": 11556,
+      "switching_power_w": 0.00162591,
+      "timing_repair_buffer_count": 381
     },
-    "score": 2.0632634177372853,
-    "reason": null
+    "metrics": {
+      "area_um2": 1390.25,
+      "power_w": 0.00583206,
+      "tns_ps": 0.0,
+      "wns_ps": 105.244
+    },
+    "parameters": {
+      "ABC_AREA": 1,
+      "CORE_UTILIZATION": 40,
+      "GPL_TIMING_DRIVEN": 1,
+      "PLACE_DENSITY": 0.8
+    },
+    "score": 2.0
+  },
+  "clock_period_ps": 1000.0,
+  "diagnostic_note": "Null means unavailable. Congestion rsmt_s is a raw ORFS metric, not a percentage. Power is estimated. History index 0 is baseline; later indices are proposal attempts. Single-parameter comparisons are observations, not general causal proof.",
+  "history": [
+    {
+      "diagnostics": {
+        "combinational_cell_area_um2": 752.401,
+        "core_area_um2": 3404.37,
+        "die_area_um2": 3652.03,
+        "finish_warning_count": 14,
+        "global_route_congestion_rsmt_s": 0.0517774,
+        "hold_tns_ps": 0,
+        "hold_violation_count": 0,
+        "hold_worst_slack_ps": 25.71,
+        "internal_power_w": 0.00420526,
+        "leakage_power_w": 8.8571e-07,
+        "route_drc_errors": 0,
+        "sequential_cell_area_um2": 464.417,
+        "setup_violation_count": 0,
+        "stdcell_count": 11556,
+        "switching_power_w": 0.00162591,
+        "timing_repair_buffer_count": 381
+      },
+      "metrics": {
+        "area_um2": 1390.25,
+        "power_w": 0.00583206,
+        "tns_ps": 0.0,
+        "wns_ps": 105.244
+      },
+      "parameters": {
+        "ABC_AREA": 1,
+        "CORE_UTILIZATION": 40,
+        "GPL_TIMING_DRIVEN": 1,
+        "PLACE_DENSITY": 0.8
+      },
+      "reason": null,
+      "score": 2.0,
+      "status": "success"
+    },
+    {
+      "diagnostics": {
+        "combinational_cell_area_um2": 752.401,
+        "core_area_um2": 3404.37,
+        "die_area_um2": 3652.03,
+        "finish_warning_count": 14,
+        "global_route_congestion_rsmt_s": 0.0475712,
+        "hold_tns_ps": 0,
+        "hold_violation_count": 0,
+        "hold_worst_slack_ps": 24.4556,
+        "internal_power_w": 0.00421849,
+        "leakage_power_w": 8.86876e-07,
+        "route_drc_errors": 0,
+        "sequential_cell_area_um2": 464.417,
+        "setup_violation_count": 0,
+        "stdcell_count": 11572,
+        "switching_power_w": 0.00163454,
+        "timing_repair_buffer_count": 395
+      },
+      "metrics": {
+        "area_um2": 1390.82,
+        "power_w": 0.00585391,
+        "tns_ps": 0.0,
+        "wns_ps": 131.278
+      },
+      "parameters": {
+        "ABC_AREA": 1,
+        "CORE_UTILIZATION": 40,
+        "GPL_TIMING_DRIVEN": 1,
+        "PLACE_DENSITY": 0.7
+      },
+      "reason": null,
+      "score": 2.004156530301912,
+      "status": "success"
+    },
+    {
+      "diagnostics": {
+        "combinational_cell_area_um2": 752.401,
+        "core_area_um2": 3404.37,
+        "die_area_um2": 3652.03,
+        "finish_warning_count": 14,
+        "global_route_congestion_rsmt_s": 0.0540909,
+        "hold_tns_ps": 0,
+        "hold_violation_count": 0,
+        "hold_worst_slack_ps": 27.0377,
+        "internal_power_w": 0.00431123,
+        "leakage_power_w": 8.89972e-07,
+        "route_drc_errors": 0,
+        "sequential_cell_area_um2": 464.417,
+        "setup_violation_count": 0,
+        "stdcell_count": 11579,
+        "switching_power_w": 0.00165404,
+        "timing_repair_buffer_count": 397
+      },
+      "metrics": {
+        "area_um2": 1393.89,
+        "power_w": 0.00596615,
+        "tns_ps": 0.0,
+        "wns_ps": 94.9655
+      },
+      "parameters": {
+        "ABC_AREA": 1,
+        "CORE_UTILIZATION": 40,
+        "GPL_TIMING_DRIVEN": 1,
+        "PLACE_DENSITY": 0.6
+      },
+      "reason": null,
+      "score": 2.0256101100714714,
+      "status": "success"
+    }
+  ],
+  "io_delay_ps": 100.0,
+  "latest_attempt": {
+    "diagnostics": {
+      "combinational_cell_area_um2": 752.401,
+      "core_area_um2": 3404.37,
+      "die_area_um2": 3652.03,
+      "finish_warning_count": 14,
+      "global_route_congestion_rsmt_s": 0.0540909,
+      "hold_tns_ps": 0,
+      "hold_violation_count": 0,
+      "hold_worst_slack_ps": 27.0377,
+      "internal_power_w": 0.00431123,
+      "leakage_power_w": 8.89972e-07,
+      "route_drc_errors": 0,
+      "sequential_cell_area_um2": 464.417,
+      "setup_violation_count": 0,
+      "stdcell_count": 11579,
+      "switching_power_w": 0.00165404,
+      "timing_repair_buffer_count": 397
+    },
+    "metrics": {
+      "area_um2": 1393.89,
+      "power_w": 0.00596615,
+      "tns_ps": 0.0,
+      "wns_ps": 94.9655
+    },
+    "parameters": {
+      "ABC_AREA": 1,
+      "CORE_UTILIZATION": 40,
+      "GPL_TIMING_DRIVEN": 1,
+      "PLACE_DENSITY": 0.6
+    },
+    "reason": null,
+    "score": 2.0256101100714714,
+    "status": "success"
+  },
+  "latest_vs_baseline": {
+    "area_um2": {
+      "absolute": 3.6400000000001,
+      "percent": 0.2618234130552131
+    },
+    "power_w": {
+      "absolute": 0.0001340899999999999,
+      "percent": 2.2991875940919657
+    },
+    "tns_ps": {
+      "absolute": 0.0,
+      "percent": null
+    },
+    "wns_ps": {
+      "absolute": -10.278499999999994,
+      "percent": -9.766352476150654
+    }
+  },
+  "latest_vs_best": {
+    "area_um2": {
+      "absolute": 3.6400000000001,
+      "percent": 0.2618234130552131
+    },
+    "power_w": {
+      "absolute": 0.0001340899999999999,
+      "percent": 2.2991875940919657
+    },
+    "tns_ps": {
+      "absolute": 0.0,
+      "percent": null
+    },
+    "wns_ps": {
+      "absolute": -10.278499999999994,
+      "percent": -9.766352476150654
+    }
+  },
+  "next_proposal_policy": [
+    "Start from the best measured configuration, not from an arbitrary point.",
+    "Prefer a one-knob adjacent experiment supported by a measured single-parameter comparison.",
+    "For unmeasured settings, use the documented knob tradeoffs as a hypothesis and say so.",
+    "Change two knobs only when they form one stated physical-design tradeoff; otherwise retain the incumbent values.",
+    "Every changed knob must be justified in the rationale using a measurement or a stated general prior."
+  ],
+  "parameter_effect_cards": {
+    "ABC_AREA": {
+      "evaluated_values": [
+        1
+      ],
+      "guidance": "Keep the incumbent unless a direct comparison or an explicit, coupled physical-design hypothesis supports changing it. A value appearing in an evaluated run is not by itself evidence that the value caused that run outcome.",
+      "incumbent_value": 1,
+      "legal_values": [
+        0,
+        1
+      ],
+      "untried_values": [
+        0
+      ]
+    },
+    "CORE_UTILIZATION": {
+      "evaluated_values": [
+        40
+      ],
+      "guidance": "Keep the incumbent unless a direct comparison or an explicit, coupled physical-design hypothesis supports changing it. A value appearing in an evaluated run is not by itself evidence that the value caused that run outcome.",
+      "incumbent_value": 40,
+      "legal_values": [
+        40,
+        55,
+        70
+      ],
+      "untried_values": [
+        55,
+        70
+      ]
+    },
+    "GPL_TIMING_DRIVEN": {
+      "evaluated_values": [
+        1
+      ],
+      "guidance": "Keep the incumbent unless a direct comparison or an explicit, coupled physical-design hypothesis supports changing it. A value appearing in an evaluated run is not by itself evidence that the value caused that run outcome.",
+      "incumbent_value": 1,
+      "legal_values": [
+        0,
+        1
+      ],
+      "untried_values": [
+        0
+      ]
+    },
+    "PLACE_DENSITY": {
+      "evaluated_values": [
+        0.8,
+        0.7,
+        0.6
+      ],
+      "guidance": "Keep the incumbent unless a direct comparison or an explicit, coupled physical-design hypothesis supports changing it. A value appearing in an evaluated run is not by itself evidence that the value caused that run outcome.",
+      "incumbent_value": 0.8,
+      "legal_values": [
+        0.6,
+        0.7,
+        0.8
+      ],
+      "untried_values": []
+    }
+  },
+  "proposal_limit": 5,
+  "remaining_including_this": 3,
+  "score_formula": "area / baseline_area + power / baseline_power + 1000 * max(0, -setup_worst_slack_ps) / clock_period_ps",
+  "search_space": {
+    "ABC_AREA": [
+      0,
+      1
+    ],
+    "CORE_UTILIZATION": [
+      40,
+      55,
+      70
+    ],
+    "GPL_TIMING_DRIVEN": [
+      0,
+      1
+    ],
+    "PLACE_DENSITY": [
+      0.6,
+      0.7,
+      0.8
+    ]
+  },
+  "single_parameter_comparisons": [
+    {
+      "changed_parameter": "PLACE_DENSITY",
+      "earlier_history_index": 0,
+      "earlier_value": 0.8,
+      "later_history_index": 1,
+      "later_value": 0.7,
+      "measured_later_minus_earlier": {
+        "area_um2": {
+          "absolute": 0.5699999999999363,
+          "percent": 0.040999820176222716
+        },
+        "power_w": {
+          "absolute": 2.185000000000034e-05,
+          "percent": 0.37465321001499197
+        },
+        "tns_ps": {
+          "absolute": 0.0,
+          "percent": null
+        },
+        "wns_ps": {
+          "absolute": 26.033999999999992,
+          "percent": 24.736802097981826
+        }
+      },
+      "score_difference": 0.004156530301912209
+    },
+    {
+      "changed_parameter": "PLACE_DENSITY",
+      "earlier_history_index": 0,
+      "earlier_value": 0.8,
+      "later_history_index": 2,
+      "later_value": 0.6,
+      "measured_later_minus_earlier": {
+        "area_um2": {
+          "absolute": 3.6400000000001,
+          "percent": 0.2618234130552131
+        },
+        "power_w": {
+          "absolute": 0.0001340899999999999,
+          "percent": 2.2991875940919657
+        },
+        "tns_ps": {
+          "absolute": 0.0,
+          "percent": null
+        },
+        "wns_ps": {
+          "absolute": -10.278499999999994,
+          "percent": -9.766352476150654
+        }
+      },
+      "score_difference": 0.025610110071471404
+    },
+    {
+      "changed_parameter": "PLACE_DENSITY",
+      "earlier_history_index": 1,
+      "earlier_value": 0.7,
+      "later_history_index": 2,
+      "later_value": 0.6,
+      "measured_later_minus_earlier": {
+        "area_um2": {
+          "absolute": 3.0700000000001637,
+          "percent": 0.22073309270791072
+        },
+        "power_w": {
+          "absolute": 0.00011223999999999956,
+          "percent": 1.9173509671313627
+        },
+        "tns_ps": {
+          "absolute": 0.0,
+          "percent": null
+        },
+        "wns_ps": {
+          "absolute": -36.312499999999986,
+          "percent": -27.660765703316617
+        }
+      },
+      "score_difference": 0.021453579769559195
+    }
+  ],
+  "units": {
+    "area_um2": "um^2",
+    "power_w": "W",
+    "tns_ps": "ps",
+    "wns_ps": "ps"
   }
-]
-Score = area/baseline area + power/baseline power + 1000*max(0,-WNS_ps)/1000_ps. Timing and RTL are fixed.
+}

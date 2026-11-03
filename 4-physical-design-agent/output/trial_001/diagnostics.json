@@ -1,0 +1,18 @@
+{
+  "combinational_cell_area_um2": 752.401,
+  "core_area_um2": 3404.37,
+  "die_area_um2": 3652.03,
+  "finish_warning_count": 14,
+  "global_route_congestion_rsmt_s": 0.0475712,
+  "hold_tns_ps": 0,
+  "hold_violation_count": 0,
+  "hold_worst_slack_ps": 24.4556,
+  "internal_power_w": 0.00421849,
+  "leakage_power_w": 8.86876e-07,
+  "route_drc_errors": 0,
+  "sequential_cell_area_um2": 464.417,
+  "setup_violation_count": 0,
+  "stdcell_count": 11572,
+  "switching_power_w": 0.00163454,
+  "timing_repair_buffer_count": 395
+}

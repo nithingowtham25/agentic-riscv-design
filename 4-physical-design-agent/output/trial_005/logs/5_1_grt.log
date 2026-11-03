@@ -1,0 +1,336 @@
+OpenROAD 26Q2-2517-g7304ba78ad 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 96 thread(s).
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_005/4_cts.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_005/4_cts.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+pin_access
+[INFO DRT-0149] Reading tech and libs.
+
+Units:                1000
+Number of layers:     21
+Number of macros:     212
+Number of vias:       14
+Number of viarulegen: 11
+
+[INFO DRT-0150] Reading design.
+[WARNING DRT-0120] Large net net781 has 115 pins which may impact routing performance. Consider optimization.
+[WARNING DRT-0120] Large net net730 has 101 pins which may impact routing performance. Consider optimization.
+
+Design:                   datapath_pipelined
+Die area:                 ( 0 0 ) ( 47016 47016 )
+Number of track patterns: 32
+Number of DEF vias:       0
+Number of components:     11458
+Number of terminals:      171
+Number of snets:          2
+Number of nets:           11178
+
+[INFO DRT-0167] List of default vias:
+  Layer V2
+    default via: VIA23
+  Layer V3
+    default via: VIA34
+  Layer V4
+    default via: VIA45
+  Layer V5
+    default via: VIA56
+  Layer V6
+    default via: VIA67
+  Layer V7
+    default via: VIA78
+  Layer V8
+    default via: VIA89
+  Layer V9
+    default via: VIA9Pad
+[INFO DRT-0162] Library cell analysis.
+[INFO DRT-0163] Instance analysis.
+[INFO DRT-0164] Number of unique instances = 218.
+[INFO DRT-0168] Init region query.
+[INFO DRT-0024]   Complete Active.
+[INFO DRT-0024]   Complete V0.
+[INFO DRT-0024]   Complete M1.
+[INFO DRT-0024]   Complete V1.
+[INFO DRT-0024]   Complete M2.
+[INFO DRT-0024]   Complete V2.
+[INFO DRT-0024]   Complete M3.
+[INFO DRT-0024]   Complete V3.
+[INFO DRT-0024]   Complete M4.
+[INFO DRT-0024]   Complete V4.
+[INFO DRT-0024]   Complete M5.
+[INFO DRT-0024]   Complete V5.
+[INFO DRT-0024]   Complete M6.
+[INFO DRT-0024]   Complete V6.
+[INFO DRT-0024]   Complete M7.
+[INFO DRT-0024]   Complete V7.
+[INFO DRT-0024]   Complete M8.
+[INFO DRT-0024]   Complete V8.
+[INFO DRT-0024]   Complete M9.
+[INFO DRT-0024]   Complete V9.
+[INFO DRT-0024]   Complete Pad.
+[INFO DRT-0033] Active shape region query size = 0.
+[INFO DRT-0033] V0 shape region query size = 0.
+[INFO DRT-0033] M1 shape region query size = 206353.
+[INFO DRT-0033] V1 shape region query size = 222933.
+[INFO DRT-0033] M2 shape region query size = 6621.
+[INFO DRT-0033] V2 shape region query size = 4509.
+[INFO DRT-0033] M3 shape region query size = 4509.
+[INFO DRT-0033] V3 shape region query size = 3006.
+[INFO DRT-0033] M4 shape region query size = 3116.
+[INFO DRT-0033] V4 shape region query size = 3006.
+[INFO DRT-0033] M5 shape region query size = 1742.
+[INFO DRT-0033] V5 shape region query size = 324.
+[INFO DRT-0033] M6 shape region query size = 198.
+[INFO DRT-0033] V6 shape region query size = 0.
+[INFO DRT-0033] M7 shape region query size = 0.
+[INFO DRT-0033] V7 shape region query size = 0.
+[INFO DRT-0033] M8 shape region query size = 0.
+[INFO DRT-0033] V8 shape region query size = 0.
+[INFO DRT-0033] M9 shape region query size = 0.
+[INFO DRT-0033] V9 shape region query size = 0.
+[INFO DRT-0033] Pad shape region query size = 0.
+[INFO DRT-0165] Start pin access.
+[INFO DRT-0076]   Complete 1000 pins.
+[INFO DRT-0078]   Complete 1258 pins.
+[INFO DRT-0079]   Complete 100 unique inst patterns.
+[INFO DRT-0079]   Complete 200 unique inst patterns.
+[INFO DRT-0081]   Complete 218 unique inst patterns.
+[INFO DRT-0084]   Complete 6227 groups.
+#scanned instances     = 11458
+#unique  instances     = 218
+#stdCellGenAp          = 5855
+#stdCellValidPlanarAp  = 10
+#stdCellValidViaAp     = 4874
+#stdCellPinNoAp        = 0
+#stdCellPinCnt         = 39318
+#instTermValidViaApCnt = 0
+#macroGenAp            = 0
+#macroValidPlanarAp    = 0
+#macroValidViaAp       = 0
+#macroNoAp             = 0
+[INFO DRT-0166] Complete pin access.
+[INFO DRT-0267] cpu time = 00:05:15, elapsed time = 00:00:06, memory = 301.32 (MB), peak = 301.32 (MB)
+Took 7 seconds: pin_access
+global_route -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_8c9f9298acbc_005/congestion.rpt -congestion_iterations 30 -congestion_report_iter_step 5 -verbose -resistance_aware
+[INFO GRT-0020] Min routing layer: M2
+[INFO GRT-0021] Max routing layer: M7
+[INFO GRT-0022] Global adjustment: 0%
+[INFO GRT-0023] Grid origin: (0, 0)
+[INFO GRT-0088] Layer M1      Track-Pitch = 0.0360  line-2-Via Pitch: 0.0360
+[INFO GRT-0088] Layer M2      Track-Pitch = 0.0390  line-2-Via Pitch: 0.0360
+[INFO GRT-0088] Layer M3      Track-Pitch = 0.0360  line-2-Via Pitch: 0.0360
+[INFO GRT-0088] Layer M4      Track-Pitch = 0.0480  line-2-Via Pitch: 0.0480
+[INFO GRT-0088] Layer M5      Track-Pitch = 0.0480  line-2-Via Pitch: 0.0480
+[INFO GRT-0088] Layer M6      Track-Pitch = 0.0640  line-2-Via Pitch: 0.0640
+[INFO GRT-0088] Layer M7      Track-Pitch = 0.0640  line-2-Via Pitch: 0.0640
+[INFO GRT-0003] Macros: 0
+[INFO GRT-0004] Blockages: 4776
+[INFO GRT-0019] Found 84 clock nets.
+[INFO GRT-0001] Minimum degree: 2
+[INFO GRT-0002] Maximum degree: 115
+
+[INFO GRT-0053] Routing resources analysis:
+          Routing      Original      Derated      Resource
+Layer     Direction    Resources     Resources    Reduction (%)
+---------------------------------------------------------------
+M1         Vertical            0             0          0.00%
+M2         Horizontal      78747         56913          27.73%
+M3         Vertical       101493         75317          25.79%
+M4         Horizontal      77718         57646          25.83%
+M5         Vertical        75008         55553          25.94%
+M6         Horizontal      52030         35592          31.59%
+M7         Vertical        59535         40095          32.65%
+---------------------------------------------------------------
+
+[INFO GRT-0197] Via related to pin nodes: 76280
+[INFO GRT-0198] Via related Steiner nodes: 2567
+[INFO GRT-0199] Via filling finished.
+[INFO GRT-0111] Final number of vias: 99713
+[INFO GRT-0112] Final usage 3D: 370627
+
+[INFO GRT-0096] Final congestion report:
+Layer         Resource        Demand        Usage (%)    Max H / Max V / Total Congestion
+---------------------------------------------------------------------------------------
+M1                   0             0            0.00%             0 /  0 /  0
+M2               56913         26906           47.28%             0 /  0 /  0
+M3               75317         31772           42.18%             0 /  0 /  0
+M4               57646          6801           11.80%             0 /  0 /  0
+M5               55553          3517            6.33%             0 /  0 /  0
+M6               35592          1458            4.10%             0 /  0 /  0
+M7               40095          1034            2.58%             0 /  0 /  0
+---------------------------------------------------------------------------------------
+Total           321116         71488           22.26%             0 /  0 /  0
+
+[INFO GRT-0018] Total wirelength: 59182 um
+[INFO GRT-0014] Routed nets: 11120
+[INFO GRT-0303] Global routing runtime = 00:00:10
+Took 10 seconds: global_route -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_8c9f9298acbc_005/congestion.rpt -congestion_iterations 30 -congestion_report_iter_step 5 -verbose -resistance_aware
+[WARNING STA-0450] virtual clock virtual_core_clock can not be propagated.
+estimate_parasitics -global_routing
+Perform buffer insertion and gate resizing...
+repair_design -verbose
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |     11250
+     1000 |     +0.0% |       0 |       0 |             0 |     10250
+[WARNING RSZ-0104] Net _11557_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11539_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11555_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11547_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11545_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11543_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11540_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11538_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11537_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11536_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11535_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11534_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11525_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11514_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11559_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11556_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11553_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11551_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11549_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11541_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11533_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11532_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11531_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11530_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11529_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11528_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11527_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11523_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11521_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11519_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11518_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11561_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11554_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11546_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11544_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11542_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11524_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11516_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11515_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11513_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11558_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11552_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11550_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11548_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11526_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11522_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11520_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11517_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11560_ only has one pin. Check if it is intended to be dangling.
+     2000 |     +0.0% |       0 |       0 |             0 |      9250
+[WARNING RSZ-0104] Net _11562_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11563_ only has one pin. Check if it is intended to be dangling.
+     3000 |     +0.0% |       0 |       0 |             0 |      8250
+     4000 |     +0.0% |       0 |       0 |             0 |      7250
+     5000 |     +0.0% |       0 |       0 |             0 |      6250
+     6000 |     +0.0% |       0 |       0 |             0 |      5250
+     7000 |     +0.0% |       0 |       0 |             0 |      4250
+     8000 |     +0.0% |       0 |       0 |             0 |      3250
+[WARNING RSZ-0104] Net _11512_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11511_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11510_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11509_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11508_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11507_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11506_ only has one pin. Check if it is intended to be dangling.
+     9000 |     +0.0% |       0 |       0 |             0 |      2250
+    10000 |     +0.0% |       0 |       0 |             0 |      1250
+    11000 |     +0.0% |       0 |       0 |             0 |       250
+    final |     +0.0% |       0 |       0 |             0 |         0
+---------------------------------------------------------------------
+[INFO RSZ-0504] Runtime: 4.92s
+Took 5 seconds: repair_design -verbose
+global_route -start_incremental
+detailed_placement
+[INFO DPL-0006] Core area: 2016.09 um^2, Instances area: 1430.74 um^2, Utilization: 71.0%
+[INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+[INFO DPL-1101] Legalizing using diamond search.
+Movements Summary
+---------------------------------------
+Total cells:                   11042
+Diamond Move Success:          11042 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+[INFO DPL-0500] Runtime: 0.08s
+Placement Analysis
+---------------------------------
+total displacement          0.0 u
+average displacement        0.0 u
+max displacement            0.0 u
+original HPWL           30319.0 u
+legalized HPWL          30319.0 u
+delta HPWL                    0 %
+
+global_route -end_incremental -resistance_aware -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_8c9f9298acbc_005/congestion_post_repair_design.rpt
+Repair setup and hold violations...
+estimate_parasitics -global_routing
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
+[INFO RSZ-0098] No setup violations found
+[INFO RSZ-0505] Runtime: 0.82s
+[INFO RSZ-0033] No hold violations found.
+[INFO RSZ-0506] Runtime: 0.28s
+global_route -start_incremental
+detailed_placement
+[INFO DPL-0006] Core area: 2016.09 um^2, Instances area: 1430.74 um^2, Utilization: 71.0%
+[INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+[INFO DPL-1101] Legalizing using diamond search.
+Movements Summary
+---------------------------------------
+Total cells:                   11042
+Diamond Move Success:          11042 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+[INFO DPL-0500] Runtime: 0.10s
+Placement Analysis
+---------------------------------
+total displacement          0.0 u
+average displacement        0.0 u
+max displacement            0.0 u
+original HPWL           30319.0 u
+legalized HPWL          30319.0 u
+delta HPWL                    0 %
+
+global_route -end_incremental -resistance_aware -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_8c9f9298acbc_005/congestion_post_repair_timing.rpt
+global_route -start_incremental
+global_route -end_incremental -resistance_aware -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_8c9f9298acbc_005/congestion_post_recover_power.rpt
+Repair antennas...
+[WARNING GRT-0246] No diode with LEF class CORE ANTENNACELL found.
+[INFO ANT-0002] Found 0 net violations.
+[INFO ANT-0001] Found 0 pin violations.
+Estimate parasitics...
+estimate_parasitics -global_routing
+Report metrics stage 5, global route...
+
+==========================================================================
+global route report_design_area
+--------------------------------------------------------------------------
+Design area 1431 um^2 71% utilization.
+[INFO FLW-0007] clock core_clock period 1000.000000
+[WARNING FLW-0010] more than one clock found. Skipping sdc update.
+[INFO FLW-0011] Path endpoint path count 1793
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_005/5_1_grt.odb
+write_sdc -no_timestamp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_005/5_1_grt.sdc
+Elapsed time: 0:35.59[h:]min:sec. CPU time: user 521.76 sys 30.33 (1551%). Peak memory: 630964KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+5_1_grt                   .odb           35            616 e9669b19c468d88c824a
+5_1_grt                   .sdc                             af3264e82ffc90429dfa

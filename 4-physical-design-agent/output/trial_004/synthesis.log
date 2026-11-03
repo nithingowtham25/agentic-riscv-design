@@ -1,9 +1,9 @@
 make: Entering directory '/OpenROAD-flow-scripts/flow'
-mkdir -p /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_004/
-echo 1000.0 > /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_004/clock_period.txt
-/OpenROAD-flow-scripts/flow/scripts/synth.sh /OpenROAD-flow-scripts/flow/scripts/synth_canonicalize.tcl /workspace/Assignment4/orfs_work/logs/asap7/datapath_pipelined/a4_9a1658acc461_004/1_1_yosys_canonicalize.log
+mkdir -p /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_004/
+echo 1000.0 > /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_004/clock_period.txt
+/OpenROAD-flow-scripts/flow/scripts/synth.sh /OpenROAD-flow-scripts/flow/scripts/synth_canonicalize.tcl /workspace/Assignment4/orfs_work/logs/asap7/datapath_pipelined/a4_8c9f9298acbc_004/1_1_yosys_canonicalize.log
 Using ABC area script.
-Extracting clock period from SDC file: /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_004/clock_period.txt
+Extracting clock period from SDC file: /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_004/clock_period.txt
 Setting clock period to 1000.0
 1. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
 2. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
@@ -44,15 +44,15 @@ Warning: Ignoring module datapath_pipelined because it contains processes (run '
 Warning: Ignoring module controller because it contains processes (run 'proc' command first).
 22. Executing RTLIL backend.
 Warnings: 7 unique messages, 7 total
-End of script. Logfile hash: b18fb468d3, time: 1.02s, user: 0.92s, system: 0.06s, MEM: 76.34 MB peak
+End of script. Logfile hash: 119f57c720, time: 1.04s, user: 0.93s, system: 0.07s, MEM: 76.26 MB peak
 Yosys 0.64+post (git sha1 UNKNOWN-dirty, g++ 11.4.0-1ubuntu1~22.04.3 -fPIC -O3)
 Time spent: 94% 12x read_liberty (0 sec), 1% 1x hierarchy (0 sec), ...
-Elapsed time: 0:01.05[h:]min:sec. CPU time: user 0.94 sys 0.08 (96%). Peak memory: 82792KB.
+Elapsed time: 0:01.06[h:]min:sec. CPU time: user 0.94 sys 0.09 (97%). Peak memory: 82676KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
 1_1_yosys_canonicalize    .rtlil          1             80 bb33aea423e940319873
-/OpenROAD-flow-scripts/flow/scripts/synth.sh /OpenROAD-flow-scripts/flow/scripts/synth.tcl /workspace/Assignment4/orfs_work/logs/asap7/datapath_pipelined/a4_9a1658acc461_004/1_2_yosys.log
+/OpenROAD-flow-scripts/flow/scripts/synth.sh /OpenROAD-flow-scripts/flow/scripts/synth.tcl /workspace/Assignment4/orfs_work/logs/asap7/datapath_pipelined/a4_8c9f9298acbc_004/1_2_yosys.log
 Using ABC area script.
-Extracting clock period from SDC file: /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_004/clock_period.txt
+Extracting clock period from SDC file: /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_004/clock_period.txt
 Setting clock period to 1000.0
 1. Executing RTLIL frontend.
 2. Executing HIERARCHY pass (managing design hierarchy).
@@ -307,7 +307,7 @@ Setting clock period to 1000.0
 12.15. Executing OPT_EXPR pass (perform const folding).
 12.16. Finished fast OPT passes. (There is nothing left to do.)
 13. Executing SETUNDEF pass (replace undef values with defined constants).
-abc -script /OpenROAD-flow-scripts/flow/scripts/abc_area.script -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib -dont_use *x1p*_ASAP7* -dont_use *xp*_ASAP7* -dont_use SDF* -dont_use ICG* -constr /workspace/Assignment4/orfs_work/objects/asap7/datapath_pipelined/a4_9a1658acc461_004/abc.constr -D 1000.0
+abc -script /OpenROAD-flow-scripts/flow/scripts/abc_area.script -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib -dont_use *x1p*_ASAP7* -dont_use *xp*_ASAP7* -dont_use SDF* -dont_use ICG* -constr /workspace/Assignment4/orfs_work/objects/asap7/datapath_pipelined/a4_8c9f9298acbc_004/abc.constr -D 1000.0
 14. Executing ABC pass (technology mapping using ABC).
 14.1. Extracting gate netlist of module `\datapath_pipelined' to `<abc-temp-dir>/input.blif'..
 14.1.1. Executed ABC.
@@ -322,20 +322,20 @@ abc -script /OpenROAD-flow-scripts/flow/scripts/abc_area.script -liberty /OpenRO
 22. Executing Verilog backend.
 22.1. Executing BMUXMAP pass.
 22.2. Executing DEMUXMAP pass.
-exec cp /workspace/Assignment4/output/trial_004/constraint.sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_004/1_synth.sdc
-End of script. Logfile hash: 4e3ae11d50, time: 9.13s, user: 5.09s, system: 0.58s, MEM: 164.18 MB peak
+exec cp /workspace/Assignment4/output/trial_004/constraint.sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_004/1_synth.sdc
+End of script. Logfile hash: fb5ab050c0, time: 9.11s, user: 5.05s, system: 0.53s, MEM: 160.50 MB peak
 Yosys 0.64+post (git sha1 UNKNOWN-dirty, g++ 11.4.0-1ubuntu1~22.04.3 -fPIC -O3)
 Time spent: 40% 1x abc (3 sec), 15% 1x extract_fa (1 sec), ...
-Elapsed time: 0:09.18[h:]min:sec. CPU time: user 8.62 sys 0.69 (101%). Peak memory: 168124KB.
+Elapsed time: 0:09.17[h:]min:sec. CPU time: user 8.62 sys 0.64 (100%). Peak memory: 164348KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-1_2_yosys                 .v              9            164 efe0032fbde1742d612d
-cp /workspace/Assignment4/output/trial_004/constraint.sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_004/1_2_yosys.sdc
+1_2_yosys                 .v              9            160 efe0032fbde1742d612d
+cp /workspace/Assignment4/output/trial_004/constraint.sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_004/1_2_yosys.sdc
 OpenROAD 26Q2-2517-g7304ba78ad 
 Features included (+) or not (-): +GPU +GUI +Python
 This program is licensed under the BSD-3 license. See the LICENSE file for details.
 Components of this program may be licensed under more restrictive licenses which must be honored.
 [INFO ORD-0030] Using 96 thread(s).
-mkdir -p /workspace/Assignment4/orfs_work/objects/asap7/datapath_pipelined/a4_9a1658acc461_004
+mkdir -p /workspace/Assignment4/orfs_work/objects/asap7/datapath_pipelined/a4_8c9f9298acbc_004
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 1_synth synth_odb
 Running synth_odb.tcl, stage 1_synth
 source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
@@ -347,18 +347,18 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SE
 [INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7_tech_1x_201209.lef, created 30 layers, 9 vias
 [INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7sc7p5t_28_R_1x_220121a.lef, created 212 library cells
 link_design datapath_pipelined
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_004/1_2_yosys.sdc
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_004/1_2_yosys.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 eliminate_dead_logic
 Removed 0 unused instances and 0 unused nets.
 Design area 1366 um^2 100% utilization.
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_004/1_synth.odb
-write_sdc -no_timestamp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_004/1_synth.sdc
-Elapsed time: 0:02.12[h:]min:sec. CPU time: user 1.86 sys 0.28 (101%). Peak memory: 231588KB.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_004/1_synth.odb
+write_sdc -no_timestamp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_004/1_synth.sdc
+Elapsed time: 0:02.08[h:]min:sec. CPU time: user 1.86 sys 0.24 (100%). Peak memory: 226780KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-1_synth                   .odb            2            226 1a41e01d13ca45e1cb45
+1_synth                   .odb            2            221 1a41e01d13ca45e1cb45
 1_synth                   .sdc                             fd03392cb2a0d10b5899
-/usr/bin/python3 /OpenROAD-flow-scripts/flow/scripts/run_command.py --log /workspace/Assignment4/orfs_work/logs/asap7/datapath_pipelined/a4_9a1658acc461_004/1_2_yosys_metrics.log --tee -- /OpenROAD-flow-scripts/tools/install/OpenROAD/bin/openroad -exit -no_init -threads 96  /OpenROAD-flow-scripts/flow/scripts/synth_metrics.tcl
+/usr/bin/python3 /OpenROAD-flow-scripts/flow/scripts/run_command.py --log /workspace/Assignment4/orfs_work/logs/asap7/datapath_pipelined/a4_8c9f9298acbc_004/1_2_yosys_metrics.log --tee -- /OpenROAD-flow-scripts/tools/install/OpenROAD/bin/openroad -exit -no_init -threads 96  /OpenROAD-flow-scripts/flow/scripts/synth_metrics.tcl
 OpenROAD 26Q2-2517-g7304ba78ad 
 Features included (+) or not (-): +GPU +GUI +Python
 This program is licensed under the BSD-3 license. See the LICENSE file for details.
@@ -373,7 +373,7 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SE
 [INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7_tech_1x_201209.lef, created 30 layers, 9 vias
 [INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7sc7p5t_28_R_1x_220121a.lef, created 212 library cells
 link_design datapath_pipelined
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_004/1_synth.sdc
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_004/1_synth.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 Report metrics stage 1, Post synthesis...
 
@@ -381,5 +381,5 @@ Report metrics stage 1, Post synthesis...
 Post synthesis report_design_area
 --------------------------------------------------------------------------
 Design area 1366 um^2 100% utilization.
-Elapsed time: 0:04.30[h:]min:sec. CPU time: user 5.14 sys 7.17 (286%). Peak memory: 250884KB.
+Elapsed time: 0:04.52[h:]min:sec. CPU time: user 5.39 sys 6.26 (258%). Peak memory: 252524KB.
 make: Leaving directory '/OpenROAD-flow-scripts/flow'

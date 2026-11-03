@@ -1,0 +1,41 @@
+{
+  "files": {
+    "final_all.webp": {
+      "path": "figures/final_all.webp",
+      "status": "copied"
+    },
+    "final_clocks.webp": {
+      "path": "figures/final_clocks.webp",
+      "status": "copied"
+    },
+    "final_congestion.webp": {
+      "path": "figures/final_congestion.webp",
+      "status": "heatmap_unpopulated"
+    },
+    "final_ir_drop.webp": {
+      "path": "figures/final_ir_drop.webp",
+      "status": "heatmap_unpopulated"
+    },
+    "final_placement.webp": {
+      "path": "figures/final_placement.webp",
+      "status": "copied"
+    },
+    "final_resizer.webp": {
+      "path": "figures/final_resizer.webp",
+      "status": "copied"
+    },
+    "final_routing.webp": {
+      "path": "figures/final_routing.webp",
+      "status": "copied"
+    },
+    "final_worst_path.webp": {
+      "path": "figures/final_worst_path.webp",
+      "status": "copied"
+    }
+  },
+  "source": "ORFS final report images",
+  "warnings": [
+    "[WARNING GUI-0066] Heat map \"IR Drop\" has not been populated with data.",
+    "[WARNING GUI-0066] Heat map \"Routing Congestion\" has not been populated with data."
+  ]
+}

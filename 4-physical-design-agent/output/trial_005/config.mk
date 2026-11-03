@@ -7,14 +7,14 @@ export VERILOG_FILES = /workspace/Assignment4/core/datapath_pipelined.sv /worksp
 export VERILOG_INCLUDE_DIRS = /workspace/Assignment4/core/submodules
 export SDC_FILE = /workspace/Assignment4/output/trial_005/constraint.sdc
 export WORK_HOME = /workspace/Assignment4/orfs_work
-export FLOW_VARIANT = a4_9a1658acc461_005
+export FLOW_VARIANT = a4_8c9f9298acbc_005
 
 # Equivalence checking is outside this lab's scope. The current upstream
 # Kepler-Formal binary also is not portable across all department-server CPUs.
 export LEC_CHECK = 0
 
 # LLM-controlled values. Every value must first pass valid_params(...).
-export ABC_AREA = 1
+export ABC_AREA = 0
 export CORE_UTILIZATION = 70
 export PLACE_DENSITY = 0.8
 export GPL_TIMING_DRIVEN = 1

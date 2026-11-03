@@ -23,6 +23,7 @@ The assignment handout and Course Setup Guide are the authorities for requiremen
 │                                    branch_unit and memory_access
 ├── student_code/
 │   ├── run_agent.py                 evaluator, metrics, TAMU client and search
+│   ├── a4_feedback.py               prompt, diagnostics and ORFS image collection
 │   ├── config.py                    provided paths and fixed timing constants
 │   ├── search_space.py              allowed values and baseline parameters
 │   ├── tool_runner.py               provided ORFS wrappers and artifact checks
@@ -35,12 +36,10 @@ The assignment handout and Course Setup Guide are the authorities for requiremen
 │   ├── run_preflight.sh             environment check with terminal logging
 │   └── run_experiment.sh            required agent launcher with terminal logging
 ├── output/                          graded evidence from the selected run
-│   ├── baseline/                    baseline configuration, metrics and logs
-│   ├── trial_001/ ... trial_005/    prompt, response and result for each attempt
+│   ├── baseline/                    baseline configuration, metrics, ORFS logs and reports
+│   ├── trial_001/ ... trial_005/    prompt, response, result, ORFS logs and reports
 │   ├── summary.json                 baseline, best result and stopping reason
 │   └── terminal_logs/               timestamped preflight and experiment logs
-├── orfs_work/                       ORFS work and generated design artifacts
-├── .sing_cache/ and .sing_tmp/     local Singularity cache/scratch, if present
 ```
 
 The actual number of trial directories depends on the proposal limit and stopping policy. The report is submitted separately as a PDF. Cache, scratch, image, archived-run and Word-report files shown above may be moved outside the submission folder as appropriate; preserve all required current `output/` evidence.
@@ -99,13 +98,22 @@ The baseline runs first. For each proposal, the agent saves the prompt and respo
 | `output/baseline/result.json` | Baseline parameters, metrics, units and score |
 | `output/baseline/` | Baseline config, constraints, synthesis/PnR logs, metadata and reports |
 | `output/trial_*/result.json` | Proposal, validation/tool status, response, metrics, score and provider usage |
-| `output/trial_*/prompt.txt` and `response.txt` | Prompt and response for a successful model request |
+| `output/trial_*/prompt.txt` and `response.txt` | Combined system and user prompts; complete model response and stated rationale when supplied |
+| `output/baseline/diagnostics.json`, `output/trial_*/diagnostics.json` | Selected ORFS metadata; null means unavailable |
+| `output/baseline/figures/`, `output/trial_*/figures/` | Physical-design images copied from the ORFS report directory when available |
+| `output/baseline/image_manifest.json`, `output/trial_*/image_manifest.json` | Image availability, copy errors and heatmap warnings |
 | `output/trial_*/` | Trial configs, logs, reports and metadata when available |
 | `output/summary.json` | Baseline-versus-best comparison, best parameters, attempt count and stop reason |
 | `output/terminal_logs/` | Timestamped terminal output from the wrapper scripts |
 | `orfs_work/` | Detailed ORFS working files and generated design artifacts |
 
 Rejected proposals and tool failures have records but may not have measurements or tool artifacts. If a request fails before the model returns a response, the response is unavailable. Check the recorded reason and relevant logs before retrying.
+
+Each `prompt.txt` combines the exact system and user messages sent to the model. The system instructions explain the fixed constraints, legal knobs, and their possible tradeoffs. The trial briefing includes baseline, best and latest results, attempted settings, parameter-effect cards, computed single-parameter comparisons and available diagnostics. The agent treats the best measured configuration as the incumbent, retains settings with measured benefit, prefers an adjacent one-knob experiment when direct evidence supports a direction, and permits a two-knob change only for a stated coupled physical-design hypothesis. The complete model response is saved in `response.txt`; its rationale is a hypothesis, not proof of causality.
+
+For successful runs the agent copies available ORFS `final_placement.webp`, `final_routing.webp`, `final_all.webp`, `final_congestion.webp`, `final_worst_path.webp`, and related views into `figures/`. It records missing images and any reported unpopulated congestion or IR-drop heatmaps in `image_manifest.json`. An image file alone does not establish that a heatmap contains data. Image collection errors do not invalidate an otherwise successful PPA result. Rejected or failed trials may have no images. Earlier archived runs may use the previous prompt and SVG chart format.
+
+For the **selected submitted run only**, the complete per-variant ORFS `logs/` and `reports/` directories were moved after the run from `orfs_work/logs/asap7/datapath_pipelined/<variant>/` and `orfs_work/reports/asap7/datapath_pipelined/<variant>/` into the matching `output/baseline/` or `output/trial_###/` folder. This makes every submitted run folder self-contained. These moved logs and reports are supporting physical-design evidence for the structured values in `metadata.json` and `result.json`; the latter remain the authoritative machine-readable metric records. A newly generated experiment initially writes ORFS logs and reports under `orfs_work/` until they are similarly organized.
 
 ### 5. Preserve evidence before another run
 
@@ -128,9 +136,9 @@ The area and power terms are baseline-normalized. Negative setup slack incurs a 
 
 ## Recorded experiment
 
-The selected run completed the baseline and five successful proposals using TAMU `gpt-5.4`; it stopped at the trial limit. Trial 5 was the best observed configuration, not a claim of a global optimum.
+The selected run completed the baseline and five successful proposals using TAMU `gpt-5.4`; it stopped at the trial limit. **Trial 4** was the best observed configuration, not a claim of a global optimum. The evidence-guided sequence first tested density at the baseline utilization, retained the measured-best density of 0.80, advanced utilization from 40 to 55 and then 70, and finally tested the unmeasured `ABC_AREA=0` alternative.
 
-| Metric | Baseline | Best observed trial 5 |
+| Metric | Baseline | Best observed trial 4 |
 |---|---:|---:|
 | Parameters: ABC / utilization / density / timing-driven | 1 / 40 / 0.80 / 1 | 1 / 70 / 0.80 / 1 |
 | Area | 1390.25 µm² | 1380.87 µm² |

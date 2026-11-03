@@ -7,8 +7,8 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/1_synth.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/1_synth.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/1_synth.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/1_synth.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 
 ==========================================================================
@@ -76,11 +76,11 @@ Report metrics stage 2, floorplan final...
 floorplan final report_design_area
 --------------------------------------------------------------------------
 Design area 1367 um^2 55% utilization.
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_1_floorplan.odb
-write_sdc -no_timestamp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_1_floorplan.sdc
-Elapsed time: 0:04.39[h:]min:sec. CPU time: user 5.10 sys 6.99 (275%). Peak memory: 262268KB.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_1_floorplan.odb
+write_sdc -no_timestamp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_1_floorplan.sdc
+Elapsed time: 0:04.41[h:]min:sec. CPU time: user 5.12 sys 6.81 (270%). Peak memory: 261132KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-2_1_floorplan             .odb            4            256 88a6ef29d6cceb581d7d
+2_1_floorplan             .odb            4            255 88a6ef29d6cceb581d7d
 2_1_floorplan             .sdc                             fd03392cb2a0d10b5899
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 2_2_floorplan_macro macro_place
 Running macro_place.tcl, stage 2_2_floorplan_macro
@@ -90,15 +90,15 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_1_floorplan.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_1_floorplan.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_1_floorplan.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_1_floorplan.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 No macros found: Skipping macro_placement
 Design area 1367 um^2 55% utilization.
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_2_floorplan_macro.odb
-Elapsed time: 0:01.92[h:]min:sec. CPU time: user 1.73 sys 0.21 (101%). Peak memory: 221132KB.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_2_floorplan_macro.odb
+Elapsed time: 0:01.96[h:]min:sec. CPU time: user 1.77 sys 0.20 (100%). Peak memory: 217544KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-2_2_floorplan_macro       .odb            1            215 88a6ef29d6cceb581d7d
+2_2_floorplan_macro       .odb            1            212 88a6ef29d6cceb581d7d
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 2_3_floorplan_tapcell tapcell
 Running tapcell.tcl, stage 2_3_floorplan_tapcell
 source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
@@ -107,8 +107,8 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_2_floorplan_macro.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_1_floorplan.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_2_floorplan_macro.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_1_floorplan.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 Tap and End Cap cell insertion
   TAP Cell          : TAPCELL_ASAP7_75t_R
@@ -118,10 +118,10 @@ Tap and End Cap cell insertion
 [INFO TAP-0004] Inserted 368 endcaps.
 [INFO TAP-0005] Inserted 93 tapcells.
 Design area 1381 um^2 56% utilization.
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_3_floorplan_tapcell.odb
-Elapsed time: 0:01.92[h:]min:sec. CPU time: user 1.71 sys 0.23 (101%). Peak memory: 209744KB.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_3_floorplan_tapcell.odb
+Elapsed time: 0:01.95[h:]min:sec. CPU time: user 1.75 sys 0.22 (101%). Peak memory: 211112KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-2_3_floorplan_tapcell     .odb            1            204 7ebefbac6a6aa34bfdd5
+2_3_floorplan_tapcell     .odb            1            206 7ebefbac6a6aa34bfdd5
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 2_4_floorplan_pdn pdn
 Running pdn.tcl, stage 2_4_floorplan_pdn
 source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
@@ -130,18 +130,18 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_3_floorplan_tapcell.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_1_floorplan.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_3_floorplan_tapcell.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_1_floorplan.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 [INFO PDN-0001] Inserting grid: top
 [INFO PDN-0500] Runtime: 0.06s
 Design area 1381 um^2 56% utilization.
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_4_floorplan_pdn.odb
-Elapsed time: 0:02.04[h:]min:sec. CPU time: user 1.84 sys 0.23 (101%). Peak memory: 221312KB.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_4_floorplan_pdn.odb
+Elapsed time: 0:02.07[h:]min:sec. CPU time: user 1.87 sys 0.23 (101%). Peak memory: 223820KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-2_4_floorplan_pdn         .odb            2            216 f3ca3eaa39ab6efeb95d
-cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_4_floorplan_pdn.odb /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_floorplan.odb
-cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_1_floorplan.sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_floorplan.sdc
+2_4_floorplan_pdn         .odb            2            218 f3ca3eaa39ab6efeb95d
+cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_4_floorplan_pdn.odb /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_floorplan.odb
+cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_1_floorplan.sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_floorplan.sdc
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 3_1_place_gp_skip_io global_place_skip_io
 Running global_place_skip_io.tcl, stage 3_1_place_gp_skip_io
 source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
@@ -150,8 +150,8 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_floorplan.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_floorplan.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_floorplan.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_floorplan.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 global_placement -skip_io -density 0.8 -pad_left 0 -pad_right 0
 [INFO GPL-0001] ---- Initialize GPL Main Data Structures
@@ -246,12 +246,12 @@ Iteration | Overflow |     HPWL (um) |  HPWL(%) |   Penalty | Group
 [INFO GPL-1007]     - For 90% usage of free space: 0.6936
 [INFO GPL-1008]     - For 80% usage of free space: 0.7803
 [INFO GPL-1014] Final placement area: 1535.58 (+0.00%)
-Took 46 seconds: global_placement -skip_io -density 0.8 -pad_left 0 -pad_right 0
+Took 59 seconds: global_placement -skip_io -density 0.8 -pad_left 0 -pad_right 0
 Design area 1381 um^2 56% utilization.
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/3_1_place_gp_skip_io.odb
-Elapsed time: 0:47.49[h:]min:sec. CPU time: user 3537.24 sys 10.62 (7471%). Peak memory: 231320KB.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/3_1_place_gp_skip_io.odb
+Elapsed time: 1:01.57[h:]min:sec. CPU time: user 3590.79 sys 12.24 (5851%). Peak memory: 230756KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-3_1_place_gp_skip_io      .odb           47            225 4d77ede95a63909c427c
+3_1_place_gp_skip_io      .odb           61            225 4d77ede95a63909c427c
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 3_2_place_iop io_placement
 Running io_placement.tcl, stage 3_2_place_iop
 source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
@@ -260,8 +260,8 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/3_1_place_gp_skip_io.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_floorplan.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/3_1_place_gp_skip_io.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_floorplan.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 place_pins -hor_layers M4 -ver_layers M5
 Found 0 macro blocks.
@@ -274,10 +274,10 @@ Using 2 tracks default min distance between IO pins.
 [INFO PPL-0008] Successfully assigned pins to sections.
 [INFO PPL-0012] I/O nets HPWL: 1867.57 um.
 Design area 1381 um^2 56% utilization.
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/3_2_place_iop.odb
-Elapsed time: 0:01.93[h:]min:sec. CPU time: user 1.73 sys 0.20 (100%). Peak memory: 223076KB.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/3_2_place_iop.odb
+Elapsed time: 0:01.96[h:]min:sec. CPU time: user 1.75 sys 0.21 (99%). Peak memory: 219000KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-3_2_place_iop             .odb            1            217 c508a3862ce7055adb59
+3_2_place_iop             .odb            1            213 c508a3862ce7055adb59
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 3_3_place_gp global_place
 Running global_place.tcl, stage 3_3_place_gp
 source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
@@ -286,8 +286,8 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/3_2_place_iop.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_floorplan.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/3_2_place_iop.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_floorplan.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 [INFO RSZ-0026] Removed 1034 buffers.
 Perform port buffering...
@@ -478,7 +478,7 @@ Iteration | Overflow |     HPWL (um) |  HPWL(%) |   Penalty | Group
 [INFO GPL-1012] Total routability artificial inflation: 0.00 (+0.00%)
 [INFO GPL-1013] Total timing-driven delta area: 19.50 (+1.33%)
 [INFO GPL-1014] Final placement area: 1486.33 (+1.33%)
-Took 92 seconds: global_placement -density 0.8 -pad_left 0 -pad_right 0 -routability_driven -timing_driven -force_center_initial_place -min_phi_coef 0.95 -max_phi_coef 1.05
+Took 103 seconds: global_placement -density 0.8 -pad_left 0 -pad_right 0 -routability_driven -timing_driven -force_center_initial_place -min_phi_coef 0.95 -max_phi_coef 1.05
 estimate_parasitics -placement
 Report metrics stage 3, global place...
 
@@ -486,10 +486,10 @@ Report metrics stage 3, global place...
 global place report_design_area
 --------------------------------------------------------------------------
 Design area 1333 um^2 54% utilization.
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/3_3_place_gp.odb
-Elapsed time: 1:36.96[h:]min:sec. CPU time: user 6012.19 sys 103.20 (6307%). Peak memory: 453900KB.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/3_3_place_gp.odb
+Elapsed time: 1:47.40[h:]min:sec. CPU time: user 5786.70 sys 106.96 (5487%). Peak memory: 457144KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-3_3_place_gp              .odb           96            443 b99d6eb7c4a171b172f9
+3_3_place_gp              .odb          107            446 b99d6eb7c4a171b172f9
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 3_4_place_resized resize
 Running resize.tcl, stage 3_4_place_resized
 source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
@@ -498,8 +498,8 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/3_3_place_gp.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_floorplan.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/3_3_place_gp.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_floorplan.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 estimate_parasitics -placement
 Perform buffer insertion and gate resizing...
@@ -521,7 +521,7 @@ Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
 ---------------------------------------------------------------------
 [INFO RSZ-0036] Found 10 capacitance violations.
 [INFO RSZ-0038] Inserted 10 buffers in 10 nets.
-[INFO RSZ-0504] Runtime: 1.51s
+[INFO RSZ-0504] Runtime: 1.52s
 Floating nets: 
 Report metrics stage 3, resizer...
 
@@ -531,10 +531,10 @@ resizer report_design_area
 Design area 1335 um^2 54% utilization.
 Instance count before 11201, after 11211
 Pin count before 37881, after 37901
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/3_4_place_resized.odb
-Elapsed time: 0:08.23[h:]min:sec. CPU time: user 11.23 sys 19.26 (370%). Peak memory: 268988KB.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/3_4_place_resized.odb
+Elapsed time: 0:08.15[h:]min:sec. CPU time: user 11.11 sys 17.99 (357%). Peak memory: 271836KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-3_4_place_resized         .odb            8            262 90a5ccb3381b52f993d8
+3_4_place_resized         .odb            8            265 90a5ccb3381b52f993d8
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 3_5_place_dp detail_place
 Running detail_place.tcl, stage 3_5_place_dp
 source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
@@ -543,8 +543,8 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/3_4_place_resized.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_floorplan.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/3_4_place_resized.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_floorplan.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 detailed_placement
 [INFO DPL-0006] Core area: 2473.47 um^2, Instances area: 1335.18 um^2, Utilization: 54.0%
@@ -635,12 +635,12 @@ Report metrics stage 3, detailed place...
 detailed place report_design_area
 --------------------------------------------------------------------------
 Design area 1335 um^2 54% utilization.
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/3_5_place_dp.odb
-Elapsed time: 0:09.56[h:]min:sec. CPU time: user 12.04 sys 19.45 (329%). Peak memory: 370968KB.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/3_5_place_dp.odb
+Elapsed time: 0:09.53[h:]min:sec. CPU time: user 12.31 sys 18.09 (318%). Peak memory: 372396KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-3_5_place_dp              .odb            9            362 7879dd5e342471ba4ebc
-cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/3_5_place_dp.odb /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/3_place.odb
-cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/2_floorplan.sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/3_place.sdc
+3_5_place_dp              .odb            9            363 7879dd5e342471ba4ebc
+cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/3_5_place_dp.odb /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/3_place.odb
+cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/2_floorplan.sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/3_place.sdc
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 4_1_cts cts
 Running cts.tcl, stage 4_1_cts
 source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
@@ -649,8 +649,8 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/3_place.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/3_place.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/3_place.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/3_place.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 clock_tree_synthesis -sink_clustering_enable -repair_clock_nets
 [INFO CTS-0050] Root buffer is BUFx16f_ASAP7_75t_R.
@@ -732,7 +732,7 @@ estimate_parasitics -placement
 repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
 [INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
 [INFO RSZ-0098] No setup violations found
-[INFO RSZ-0505] Runtime: 0.63s
+[INFO RSZ-0505] Runtime: 0.64s
 [INFO RSZ-0033] No hold violations found.
 [INFO RSZ-0506] Runtime: 0.15s
 detailed_placement
@@ -748,7 +748,7 @@ Rip-up and replace Success:        0 (  0.00% of diamond failures)
 Rip-up and replace Failure:        0
 Total Placement Failures:          0
 ---------------------------------------
-[INFO DPL-0500] Runtime: 0.10s
+[INFO DPL-0500] Runtime: 0.08s
 Placement Analysis
 ---------------------------------
 total displacement          0.0 u
@@ -764,12 +764,12 @@ Report metrics stage 4, cts final...
 cts final report_design_area
 --------------------------------------------------------------------------
 Design area 1381 um^2 56% utilization.
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/4_1_cts.odb
-write_sdc -no_timestamp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/4_cts.sdc
-Elapsed time: 0:12.87[h:]min:sec. CPU time: user 19.22 sys 37.30 (439%). Peak memory: 426408KB.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/4_1_cts.odb
+write_sdc -no_timestamp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/4_cts.sdc
+Elapsed time: 0:12.80[h:]min:sec. CPU time: user 19.38 sys 28.94 (377%). Peak memory: 425052KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-4_1_cts                   .odb           12            416 f7b7ba4adc37b7434520
-cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/4_1_cts.odb /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/4_cts.odb
+4_1_cts                   .odb           12            415 f7b7ba4adc37b7434520
+cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/4_1_cts.odb /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/4_cts.odb
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 5_1_grt global_route
 Running global_route.tcl, stage 5_1_grt
 source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
@@ -778,8 +778,8 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/4_cts.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/4_cts.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/4_cts.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/4_cts.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 pin_access
 [INFO DRT-0149] Reading tech and libs.
@@ -888,9 +888,9 @@ Number of nets:           11038
 #macroValidViaAp       = 0
 #macroNoAp             = 0
 [INFO DRT-0166] Complete pin access.
-[INFO DRT-0267] cpu time = 00:06:02, elapsed time = 00:00:05, memory = 304.91 (MB), peak = 304.91 (MB)
-Took 5 seconds: pin_access
-global_route -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_9a1658acc461_003/congestion.rpt -congestion_iterations 30 -congestion_report_iter_step 5 -verbose -resistance_aware
+[INFO DRT-0267] cpu time = 00:05:52, elapsed time = 00:00:05, memory = 301.83 (MB), peak = 301.83 (MB)
+Took 6 seconds: pin_access
+global_route -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_8c9f9298acbc_003/congestion.rpt -congestion_iterations 30 -congestion_report_iter_step 5 -verbose -resistance_aware
 [INFO GRT-0020] Min routing layer: M2
 [INFO GRT-0021] Max routing layer: M7
 [INFO GRT-0022] Global adjustment: 0%
@@ -943,7 +943,7 @@ Total           389154         71349           18.33%             0 /  0 /  0
 [INFO GRT-0018] Total wirelength: 58362 um
 [INFO GRT-0014] Routed nets: 10980
 [INFO GRT-0303] Global routing runtime = 00:00:09
-Took 10 seconds: global_route -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_9a1658acc461_003/congestion.rpt -congestion_iterations 30 -congestion_report_iter_step 5 -verbose -resistance_aware
+Took 9 seconds: global_route -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_8c9f9298acbc_003/congestion.rpt -congestion_iterations 30 -congestion_report_iter_step 5 -verbose -resistance_aware
 [WARNING STA-0450] virtual clock virtual_core_clock can not be propagated.
 estimate_parasitics -global_routing
 Perform buffer insertion and gate resizing...
@@ -1024,7 +1024,7 @@ Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
 ---------------------------------------------------------------------
 [INFO RSZ-0034] Found 1 slew violations.
 [INFO RSZ-0038] Inserted 1 buffers in 1 nets.
-[INFO RSZ-0504] Runtime: 3.82s
+[INFO RSZ-0504] Runtime: 3.92s
 global_route -start_incremental
 detailed_placement
 [INFO DPL-0006] Core area: 2473.47 um^2, Instances area: 1381.76 um^2, Utilization: 55.9%
@@ -1049,13 +1049,13 @@ original HPWL           29908.4 u
 legalized HPWL          29911.6 u
 delta HPWL                    0 %
 
-global_route -end_incremental -resistance_aware -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_9a1658acc461_003/congestion_post_repair_design.rpt
+global_route -end_incremental -resistance_aware -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_8c9f9298acbc_003/congestion_post_repair_design.rpt
 Repair setup and hold violations...
 estimate_parasitics -global_routing
 repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
 [INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
 [INFO RSZ-0098] No setup violations found
-[INFO RSZ-0505] Runtime: 0.62s
+[INFO RSZ-0505] Runtime: 0.64s
 [INFO RSZ-0033] No hold violations found.
 [INFO RSZ-0506] Runtime: 0.23s
 global_route -start_incremental
@@ -1082,9 +1082,9 @@ original HPWL           29911.6 u
 legalized HPWL          29911.6 u
 delta HPWL                    0 %
 
-global_route -end_incremental -resistance_aware -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_9a1658acc461_003/congestion_post_repair_timing.rpt
+global_route -end_incremental -resistance_aware -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_8c9f9298acbc_003/congestion_post_repair_timing.rpt
 global_route -start_incremental
-global_route -end_incremental -resistance_aware -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_9a1658acc461_003/congestion_post_recover_power.rpt
+global_route -end_incremental -resistance_aware -congestion_report_file /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_8c9f9298acbc_003/congestion_post_recover_power.rpt
 Repair antennas...
 [WARNING GRT-0246] No diode with LEF class CORE ANTENNACELL found.
 [INFO ANT-0002] Found 0 net violations.
@@ -1100,11 +1100,11 @@ Design area 1382 um^2 56% utilization.
 [INFO FLW-0007] clock core_clock period 1000.000000
 [WARNING FLW-0010] more than one clock found. Skipping sdc update.
 [INFO FLW-0011] Path endpoint path count 1786
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_1_grt.odb
-write_sdc -no_timestamp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_1_grt.sdc
-Elapsed time: 0:31.50[h:]min:sec. CPU time: user 566.36 sys 93.61 (2094%). Peak memory: 729212KB.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_1_grt.odb
+write_sdc -no_timestamp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_1_grt.sdc
+Elapsed time: 0:32.05[h:]min:sec. CPU time: user 552.42 sys 87.03 (1995%). Peak memory: 721308KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-5_1_grt                   .odb           31            712 1422912ffb4dfd41e4b9
+5_1_grt                   .odb           32            704 1422912ffb4dfd41e4b9
 5_1_grt                   .sdc                             af3264e82ffc90429dfa
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 5_2_route detail_route
 Running detail_route.tcl, stage 5_2_route
@@ -1114,11 +1114,11 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_1_grt.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_1_grt.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_1_grt.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_1_grt.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 [WARNING STA-0450] virtual clock virtual_core_clock can not be propagated.
-detailed_route -output_drc /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_9a1658acc461_003/5_route_drc.rpt -output_maze /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/maze.log -droute_end_iter 64 -verbose 1 -drc_report_iter_step 5
+detailed_route -output_drc /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_route_drc.rpt -output_maze /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/maze.log -droute_end_iter 64 -verbose 1 -drc_report_iter_step 5
 [INFO DRT-0149] Reading tech and libs.
 
 Units:                1000
@@ -1225,7 +1225,7 @@ Number of nets:           11039
 #macroValidViaAp       = 0
 #macroNoAp             = 0
 [INFO DRT-0166] Complete pin access.
-[INFO DRT-0267] cpu time = 00:05:59, elapsed time = 00:00:05, memory = 447.59 (MB), peak = 447.59 (MB)
+[INFO DRT-0267] cpu time = 00:05:48, elapsed time = 00:00:05, memory = 442.55 (MB), peak = 442.55 (MB)
 [INFO DRT-0156] guideIn read 100000 guides.
 
 [INFO DRT-0157] Number of guides:     101554
@@ -1299,37 +1299,37 @@ Number of nets:           11039
 [INFO DRT-0036] V9 guide region query size = 0.
 [INFO DRT-0036] Pad guide region query size = 0.
 [INFO DRT-0179] Init gr pin query.
-[INFO DRT-0267] cpu time = 00:00:01, elapsed time = 00:00:00, memory = 474.34 (MB), peak = 474.34 (MB)
+[INFO DRT-0267] cpu time = 00:00:01, elapsed time = 00:00:00, memory = 469.62 (MB), peak = 469.62 (MB)
 [INFO DRT-0245] skipped writing guide updates to database.
 [INFO DRT-0181] Start track assignment.
 [INFO DRT-0184] Done with 50346 vertical wires in 2 frboxes and 32031 horizontal wires in 2 frboxes.
 [INFO DRT-0186] Done with 6194 vertical wires in 2 frboxes and 9082 horizontal wires in 2 frboxes.
 [INFO DRT-0182] Complete track assignment.
-[INFO DRT-0267] cpu time = 00:00:06, elapsed time = 00:00:03, memory = 688.85 (MB), peak = 688.85 (MB)
+[INFO DRT-0267] cpu time = 00:00:06, elapsed time = 00:00:03, memory = 720.44 (MB), peak = 720.44 (MB)
 [INFO DRT-0187] Start routing data preparation.
-[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 688.85 (MB), peak = 688.85 (MB)
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 720.44 (MB), peak = 720.44 (MB)
 [INFO DRT-0194] Start detail routing.
 [INFO DRT-0195] Start 0th optimization iteration.
     Completing 10% with 0 violations.
-    elapsed time = 00:00:00, memory = 3652.61 (MB).
+    elapsed time = 00:00:00, memory = 3634.11 (MB).
     Completing 20% with 0 violations.
-    elapsed time = 00:00:02, memory = 2723.75 (MB).
+    elapsed time = 00:00:02, memory = 2741.04 (MB).
     Completing 30% with 371 violations.
-    elapsed time = 00:00:06, memory = 1599.26 (MB).
+    elapsed time = 00:00:05, memory = 1639.76 (MB).
     Completing 40% with 371 violations.
-    elapsed time = 00:00:07, memory = 4077.29 (MB).
+    elapsed time = 00:00:08, memory = 4272.59 (MB).
     Completing 50% with 371 violations.
-    elapsed time = 00:00:10, memory = 2768.23 (MB).
+    elapsed time = 00:00:10, memory = 2968.51 (MB).
     Completing 60% with 764 violations.
-    elapsed time = 00:00:14, memory = 5490.95 (MB).
+    elapsed time = 00:00:14, memory = 5804.59 (MB).
     Completing 70% with 764 violations.
-    elapsed time = 00:00:17, memory = 4143.75 (MB).
+    elapsed time = 00:00:17, memory = 4474.76 (MB).
     Completing 80% with 1274 violations.
-    elapsed time = 00:00:21, memory = 2799.85 (MB).
+    elapsed time = 00:00:21, memory = 3097.16 (MB).
     Completing 90% with 1274 violations.
-    elapsed time = 00:00:26, memory = 4903.88 (MB).
+    elapsed time = 00:00:26, memory = 5276.88 (MB).
     Completing 100% with 1717 violations.
-    elapsed time = 00:00:30, memory = 3267.21 (MB).
+    elapsed time = 00:00:30, memory = 3649.66 (MB).
 [INFO DRT-0199]   Number of violations = 2634.
 Viol/Layer          M1     M2     V2     M3     V3     M4     V4     M5     V5     M6     V6     M7
 CutSpcTbl            0      0      0      0     19      0      6      0      2      0      1      0
@@ -1338,7 +1338,7 @@ Metal Spacing       51     69      0    158      0      4      0      0      0  
 Recheck              1    393      0    283      0    132      0     70      0     32      0      6
 Short                0    177      2     34      1      5      2      5      1      9      0      0
 eolKeepOut           0    855      0    107      0     34      0      0      0      0      0      0
-[INFO DRT-0267] cpu time = 00:07:14, elapsed time = 00:00:31, memory = 3782.87 (MB), peak = 6240.12 (MB)
+[INFO DRT-0267] cpu time = 00:07:34, elapsed time = 00:00:31, memory = 4173.21 (MB), peak = 6603.93 (MB)
 Total wire length = 42518 um.
 Total wire length on LAYER M1 = 0 um.
 Total wire length on LAYER M2 = 11516 um.
@@ -1370,25 +1370,25 @@ Up-via summary (total 115616):
 
 [INFO DRT-0195] Start 1st optimization iteration.
     Completing 10% with 2634 violations.
-    elapsed time = 00:00:01, memory = 6766.03 (MB).
+    elapsed time = 00:00:01, memory = 7231.88 (MB).
     Completing 20% with 2634 violations.
-    elapsed time = 00:00:04, memory = 4991.14 (MB).
+    elapsed time = 00:00:04, memory = 5382.34 (MB).
     Completing 30% with 2025 violations.
-    elapsed time = 00:00:06, memory = 7481.22 (MB).
+    elapsed time = 00:00:07, memory = 7723.93 (MB).
     Completing 40% with 2025 violations.
-    elapsed time = 00:00:09, memory = 6301.35 (MB).
+    elapsed time = 00:00:10, memory = 6600.11 (MB).
     Completing 50% with 2025 violations.
-    elapsed time = 00:00:13, memory = 4301.08 (MB).
+    elapsed time = 00:00:14, memory = 4587.37 (MB).
     Completing 60% with 1515 violations.
-    elapsed time = 00:00:15, memory = 7361.23 (MB).
+    elapsed time = 00:00:16, memory = 7522.96 (MB).
     Completing 70% with 1515 violations.
-    elapsed time = 00:00:18, memory = 5478.96 (MB).
+    elapsed time = 00:00:19, memory = 5691.23 (MB).
     Completing 80% with 902 violations.
-    elapsed time = 00:00:22, memory = 7976.03 (MB).
+    elapsed time = 00:00:23, memory = 8176.37 (MB).
     Completing 90% with 902 violations.
-    elapsed time = 00:00:25, memory = 6724.13 (MB).
+    elapsed time = 00:00:25, memory = 6892.82 (MB).
     Completing 100% with 293 violations.
-    elapsed time = 00:00:30, memory = 4723.10 (MB).
+    elapsed time = 00:00:30, memory = 4876.76 (MB).
 [INFO DRT-0199]   Number of violations = 293.
 Viol/Layer          M1     M2     V2     M3     V3     M4     V4     M5     V6
 CutSpcTbl            0      0      0      0      4      0      1      0      1
@@ -1396,7 +1396,7 @@ EOL                  0     26      0      1      0      0      0      1      0
 Metal Spacing       17      3      0     62      0      0      0      1      0
 Short                0      7      1     21      0      2      0      0      0
 eolKeepOut           0    129      0     10      0      3      0      3      0
-[INFO DRT-0267] cpu time = 00:07:12, elapsed time = 00:00:30, memory = 4726.04 (MB), peak = 8071.45 (MB)
+[INFO DRT-0267] cpu time = 00:07:40, elapsed time = 00:00:31, memory = 4879.76 (MB), peak = 8312.80 (MB)
 Total wire length = 42118 um.
 Total wire length on LAYER M1 = 0 um.
 Total wire length on LAYER M2 = 11134 um.
@@ -1428,25 +1428,25 @@ Up-via summary (total 110566):
 
 [INFO DRT-0195] Start 2nd optimization iteration.
     Completing 10% with 293 violations.
-    elapsed time = 00:00:00, memory = 4726.04 (MB).
+    elapsed time = 00:00:00, memory = 4879.76 (MB).
     Completing 20% with 293 violations.
-    elapsed time = 00:00:03, memory = 5761.46 (MB).
+    elapsed time = 00:00:03, memory = 5868.66 (MB).
     Completing 30% with 268 violations.
-    elapsed time = 00:00:05, memory = 4803.93 (MB).
+    elapsed time = 00:00:05, memory = 4910.09 (MB).
     Completing 40% with 268 violations.
-    elapsed time = 00:00:07, memory = 6695.56 (MB).
+    elapsed time = 00:00:07, memory = 6908.91 (MB).
     Completing 50% with 268 violations.
-    elapsed time = 00:00:10, memory = 4854.82 (MB).
+    elapsed time = 00:00:11, memory = 4949.46 (MB).
     Completing 60% with 210 violations.
-    elapsed time = 00:00:11, memory = 4854.82 (MB).
+    elapsed time = 00:00:11, memory = 4949.46 (MB).
     Completing 70% with 210 violations.
-    elapsed time = 00:00:15, memory = 5834.75 (MB).
+    elapsed time = 00:00:15, memory = 5964.73 (MB).
     Completing 80% with 188 violations.
-    elapsed time = 00:00:17, memory = 4858.45 (MB).
+    elapsed time = 00:00:18, memory = 4990.44 (MB).
     Completing 90% with 188 violations.
-    elapsed time = 00:00:18, memory = 6879.51 (MB).
+    elapsed time = 00:00:19, memory = 6986.23 (MB).
     Completing 100% with 170 violations.
-    elapsed time = 00:00:24, memory = 4902.32 (MB).
+    elapsed time = 00:00:24, memory = 5012.14 (MB).
 [INFO DRT-0199]   Number of violations = 170.
 Viol/Layer          M1     M2     M3     V3     M4     V6
 CutSpcTbl            0      0      0      3      0      1
@@ -1454,7 +1454,7 @@ EOL                  0     16      1      0      0      0
 Metal Spacing        3      3     37      0      1      0
 Short                0      7      6      0      1      0
 eolKeepOut           0     84      3      0      4      0
-[INFO DRT-0267] cpu time = 00:04:41, elapsed time = 00:00:25, memory = 4905.32 (MB), peak = 8071.45 (MB)
+[INFO DRT-0267] cpu time = 00:04:47, elapsed time = 00:00:25, memory = 5012.24 (MB), peak = 8312.80 (MB)
 Total wire length = 42048 um.
 Total wire length on LAYER M1 = 0 um.
 Total wire length on LAYER M2 = 11180 um.
@@ -1486,31 +1486,31 @@ Up-via summary (total 109744):
 
 [INFO DRT-0195] Start 3rd optimization iteration.
     Completing 10% with 170 violations.
-    elapsed time = 00:00:00, memory = 4905.32 (MB).
+    elapsed time = 00:00:00, memory = 5012.24 (MB).
     Completing 20% with 170 violations.
-    elapsed time = 00:00:00, memory = 4905.32 (MB).
+    elapsed time = 00:00:00, memory = 5012.24 (MB).
     Completing 30% with 143 violations.
-    elapsed time = 00:00:02, memory = 4909.79 (MB).
+    elapsed time = 00:00:02, memory = 5032.61 (MB).
     Completing 40% with 143 violations.
-    elapsed time = 00:00:02, memory = 4909.79 (MB).
+    elapsed time = 00:00:02, memory = 5032.61 (MB).
     Completing 50% with 143 violations.
-    elapsed time = 00:00:04, memory = 5604.41 (MB).
+    elapsed time = 00:00:04, memory = 5711.84 (MB).
     Completing 60% with 99 violations.
-    elapsed time = 00:00:06, memory = 4934.92 (MB).
+    elapsed time = 00:00:06, memory = 5047.50 (MB).
     Completing 70% with 99 violations.
-    elapsed time = 00:00:07, memory = 6459.23 (MB).
+    elapsed time = 00:00:07, memory = 6564.49 (MB).
     Completing 80% with 56 violations.
-    elapsed time = 00:00:11, memory = 4948.23 (MB).
+    elapsed time = 00:00:11, memory = 5054.02 (MB).
     Completing 90% with 56 violations.
-    elapsed time = 00:00:11, memory = 4948.23 (MB).
+    elapsed time = 00:00:11, memory = 5054.02 (MB).
     Completing 100% with 8 violations.
-    elapsed time = 00:00:15, memory = 4989.50 (MB).
+    elapsed time = 00:00:15, memory = 5066.86 (MB).
 [INFO DRT-0199]   Number of violations = 8.
 Viol/Layer          M2     M3
 Metal Spacing        0      1
 Short                1      0
 eolKeepOut           6      0
-[INFO DRT-0267] cpu time = 00:01:36, elapsed time = 00:00:15, memory = 4989.50 (MB), peak = 8071.45 (MB)
+[INFO DRT-0267] cpu time = 00:01:37, elapsed time = 00:00:15, memory = 5066.86 (MB), peak = 8312.80 (MB)
 Total wire length = 42051 um.
 Total wire length on LAYER M1 = 0 um.
 Total wire length on LAYER M2 = 11068 um.
@@ -1542,17 +1542,17 @@ Up-via summary (total 109722):
 
 [INFO DRT-0195] Start 4th guides tiles iteration.
     Completing 20% with 8 violations.
-    elapsed time = 00:00:00, memory = 5049.69 (MB).
+    elapsed time = 00:00:00, memory = 5127.22 (MB).
     Completing 40% with 8 violations.
-    elapsed time = 00:00:00, memory = 4989.50 (MB).
+    elapsed time = 00:00:00, memory = 5066.86 (MB).
     Completing 60% with 1 violations.
-    elapsed time = 00:00:00, memory = 4989.50 (MB).
+    elapsed time = 00:00:00, memory = 5066.86 (MB).
     Completing 80% with 1 violations.
-    elapsed time = 00:00:02, memory = 4989.50 (MB).
+    elapsed time = 00:00:02, memory = 5066.86 (MB).
     Completing 100% with 0 violations.
-    elapsed time = 00:00:02, memory = 4989.50 (MB).
+    elapsed time = 00:00:02, memory = 5066.86 (MB).
 [INFO DRT-0199]   Number of violations = 0.
-[INFO DRT-0267] cpu time = 00:00:08, elapsed time = 00:00:02, memory = 4989.50 (MB), peak = 8071.45 (MB)
+[INFO DRT-0267] cpu time = 00:00:08, elapsed time = 00:00:03, memory = 5066.86 (MB), peak = 8312.80 (MB)
 Total wire length = 42051 um.
 Total wire length on LAYER M1 = 0 um.
 Total wire length on LAYER M2 = 11068 um.
@@ -1612,21 +1612,21 @@ Up-via summary (total 109728):
        109728
 
 
-[INFO DRT-0267] cpu time = 00:20:53, elapsed time = 00:01:45, memory = 4989.50 (MB), peak = 8071.45 (MB)
+[INFO DRT-0267] cpu time = 00:21:48, elapsed time = 00:01:47, memory = 5066.86 (MB), peak = 8312.80 (MB)
 
 [INFO DRT-0180] Post processing.
-[INFO DRT-0501] Runtime: 114.96s
-Took 115 seconds: detailed_route -output_drc /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_9a1658acc461_003/5_route_drc.rpt -output_maze /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/maze.log -droute_end_iter 64 -verbose 1 -drc_report_iter_step 5
+[INFO DRT-0501] Runtime: 116.93s
+Took 117 seconds: detailed_route -output_drc /workspace/Assignment4/orfs_work/reports/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_route_drc.rpt -output_maze /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/maze.log -droute_end_iter 64 -verbose 1 -drc_report_iter_step 5
 [WARNING GRT-0246] No diode with LEF class CORE ANTENNACELL found.
 [INFO ANT-0002] Found 0 net violations.
 [INFO ANT-0001] Found 0 pin violations.
 [INFO ANT-0002] Found 0 net violations.
 [INFO ANT-0001] Found 0 pin violations.
 Design area 1382 um^2 56% utilization.
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_2_route.odb
-Elapsed time: 1:59.29[h:]min:sec. CPU time: user 1645.97 sys 31.49 (1406%). Peak memory: 8265164KB.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_2_route.odb
+Elapsed time: 2:01.53[h:]min:sec. CPU time: user 1674.26 sys 46.30 (1415%). Peak memory: 8512308KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-5_2_route                 .odb          119           8071 766c19315d51fef811a1
+5_2_route                 .odb          121           8312 766c19315d51fef811a1
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 5_3_fillcell fillcell
 Running fillcell.tcl, stage 5_3_fillcell
 source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
@@ -1635,19 +1635,19 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_2_route.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_1_grt.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_2_route.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_1_grt.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 [WARNING STA-0450] virtual clock virtual_core_clock can not be propagated.
 filler_placement "FILLERxp5_ASAP7_75t_R FILLER_ASAP7_75t_R DECAPx1_ASAP7_75t_R DECAPx2_ASAP7_75t_R DECAPx4_ASAP7_75t_R DECAPx6_ASAP7_75t_R DECAPx10_ASAP7_75t_R"
 [INFO DPL-0001] Placed 10904 filler instances.
 Design area 1382 um^2 56% utilization.
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_3_fillcell.odb
-Elapsed time: 0:02.31[h:]min:sec. CPU time: user 1.97 sys 0.31 (98%). Peak memory: 251276KB.
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_3_fillcell.odb
+Elapsed time: 0:02.31[h:]min:sec. CPU time: user 1.94 sys 0.34 (99%). Peak memory: 255512KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-5_3_fillcell              .odb            2            245 e53843cef03a264dbe6f
-cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_3_fillcell.odb /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_route.odb
-cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_1_grt.sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_route.sdc
+5_3_fillcell              .odb            2            249 e53843cef03a264dbe6f
+cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_3_fillcell.odb /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_route.odb
+cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_1_grt.sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_route.sdc
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 6_1_fill density_fill
 Running density_fill.tcl, stage 6_1_fill
 source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
@@ -1656,14 +1656,14 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_route.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_route.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_route.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_route.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
-exec cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_route.odb /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/6_1_fill.odb
-Elapsed time: 0:02.06[h:]min:sec. CPU time: user 1.78 sys 0.27 (99%). Peak memory: 229684KB.
+exec cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_route.odb /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/6_1_fill.odb
+Elapsed time: 0:02.08[h:]min:sec. CPU time: user 1.76 sys 0.27 (98%). Peak memory: 230712KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-6_1_fill                  .odb            2            224 e53843cef03a264dbe6f
-cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_route.sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/6_1_fill.sdc
+6_1_fill                  .odb            2            225 e53843cef03a264dbe6f
+cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_route.sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/6_1_fill.sdc
 /OpenROAD-flow-scripts/flow/scripts/flow.sh 6_report final_report
 Running final_report.tcl, stage 6_report
 source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
@@ -1672,11 +1672,11 @@ read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_IN
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
 read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
-read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/6_1_fill.odb
-read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/6_1_fill.sdc
+read_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/6_1_fill.odb
+read_sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/6_1_fill.sdc
 source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
 [WARNING STA-0450] virtual clock virtual_core_clock can not be propagated.
-write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/6_final.odb
+write_db /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/6_final.odb
 Deleted 0 routing obstructions
 [INFO RCX-0431] Defined process_corner X with ext_model_index 0
 [INFO RCX-0029] Defined extraction corner X
@@ -1733,23 +1733,23 @@ Design area 1382 um^2 56% utilization.
 [WARNING GUI-0076] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-nithingowtham25'
 [WARNING GUI-0066] Heat map "IR Drop" has not been populated with data.
 [WARNING GUI-0066] Heat map "Routing Congestion" has not been populated with data.
-Elapsed time: 0:24.28[h:]min:sec. CPU time: user 23.89 sys 35.34 (243%). Peak memory: 571388KB.
+Elapsed time: 0:19.56[h:]min:sec. CPU time: user 24.85 sys 24.44 (252%). Peak memory: 572460KB.
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
-6_report                                 24            557                  N/A
-cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/5_route.sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/6_final.sdc
-cp /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7_tech_1x_201209.lef /workspace/Assignment4/orfs_work/objects/asap7/datapath_pipelined/a4_9a1658acc461_003/klayout_tech.lef
+6_report                                 19            559                  N/A
+cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/5_route.sdc /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/6_final.sdc
+cp /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7_tech_1x_201209.lef /workspace/Assignment4/orfs_work/objects/asap7/datapath_pipelined/a4_8c9f9298acbc_003/klayout_tech.lef
 /usr/bin/python3 /OpenROAD-flow-scripts/flow/util/generate_klayout_tech.py \
 	--template /OpenROAD-flow-scripts/flow/platforms/asap7/KLayout/asap7.lyt \
-	--output /workspace/Assignment4/orfs_work/objects/asap7/datapath_pipelined/a4_9a1658acc461_003/klayout.lyt \
-	--lef-files /workspace/Assignment4/orfs_work/objects/asap7/datapath_pipelined/a4_9a1658acc461_003/klayout_tech.lef /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7sc7p5t_28_R_1x_220121a.lef   \
+	--output /workspace/Assignment4/orfs_work/objects/asap7/datapath_pipelined/a4_8c9f9298acbc_003/klayout.lyt \
+	--lef-files /workspace/Assignment4/orfs_work/objects/asap7/datapath_pipelined/a4_8c9f9298acbc_003/klayout_tech.lef /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7sc7p5t_28_R_1x_220121a.lef   \
 	--map-files 
-/usr/bin/python3 /OpenROAD-flow-scripts/flow/scripts/run_command.py --log /workspace/Assignment4/orfs_work/logs/asap7/datapath_pipelined/a4_9a1658acc461_003/6_1_merge.log --tee -- \
+/usr/bin/python3 /OpenROAD-flow-scripts/flow/scripts/run_command.py --log /workspace/Assignment4/orfs_work/logs/asap7/datapath_pipelined/a4_8c9f9298acbc_003/6_1_merge.log --tee -- \
         /OpenROAD-flow-scripts/flow/scripts/klayout.sh -zz -rd design_name=datapath_pipelined \
-        -rd in_def=/workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/6_final.def \
+        -rd in_def=/workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/6_final.def \
         -rd in_files="/OpenROAD-flow-scripts/flow/platforms/asap7/gds/asap7sc7p5t_28_R_220121a.gds  " \
         -rd seal_file="" \
-        -rd out_file=/workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/6_1_merged.gds \
-        -rd tech_file=/workspace/Assignment4/orfs_work/objects/asap7/datapath_pipelined/a4_9a1658acc461_003/klayout.lyt \
+        -rd out_file=/workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/6_1_merged.gds \
+        -rd tech_file=/workspace/Assignment4/orfs_work/objects/asap7/datapath_pipelined/a4_8c9f9298acbc_003/klayout.lyt \
         -rd layer_map= \
         -r /OpenROAD-flow-scripts/flow/util/def2stream.py
 KLayout 0.30.7
@@ -1759,34 +1759,34 @@ Warning: DEF UNITS does not match reader DBU (DEF UNITS is 1000 and corresponds 
 [INFO] GDS_ALLOW_EMPTY=fakeram.*
 [INFO] All LEF cells have matching GDS/OAS cells
 [INFO] No orphan cells in the final layout
-Elapsed time: 0:03.01[h:]min:sec. CPU time: user 2.57 sys 0.36 (97%). Peak memory: 485836KB.
-cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/6_1_merged.gds /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_9a1658acc461_003/6_final.gds
-/workspace/Assignment4/orfs_work/logs/asap7/datapath_pipelined/a4_9a1658acc461_003
+Elapsed time: 0:02.98[h:]min:sec. CPU time: user 2.55 sys 0.36 (97%). Peak memory: 485844KB.
+cp /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/6_1_merged.gds /workspace/Assignment4/orfs_work/results/asap7/datapath_pipelined/a4_8c9f9298acbc_003/6_final.gds
+/workspace/Assignment4/orfs_work/logs/asap7/datapath_pipelined/a4_8c9f9298acbc_003
 Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
 1_1_yosys_canonicalize    .rtlil          1             80 bb33aea423e940319873
 1_2_yosys                 .v              9            160 efe0032fbde1742d612d
 1_2_yosys                 .sdc                             a9114c6a34a13a31fea6
-1_2_yosys_metrics                         4            249                  N/A
-1_synth                   .odb            2            221 1a41e01d13ca45e1cb45
+1_2_yosys_metrics                         4            250                  N/A
+1_synth                   .odb            2            222 1a41e01d13ca45e1cb45
 1_synth                   .sdc                             fd03392cb2a0d10b5899
-2_1_floorplan             .odb            4            256 88a6ef29d6cceb581d7d
+2_1_floorplan             .odb            4            255 88a6ef29d6cceb581d7d
 2_1_floorplan             .sdc                             fd03392cb2a0d10b5899
-2_2_floorplan_macro       .odb            1            215 88a6ef29d6cceb581d7d
-2_3_floorplan_tapcell     .odb            1            204 7ebefbac6a6aa34bfdd5
-2_4_floorplan_pdn         .odb            2            216 f3ca3eaa39ab6efeb95d
-3_1_place_gp_skip_io      .odb           47            225 4d77ede95a63909c427c
-3_2_place_iop             .odb            1            217 c508a3862ce7055adb59
-3_3_place_gp              .odb           96            443 b99d6eb7c4a171b172f9
-3_4_place_resized         .odb            8            262 90a5ccb3381b52f993d8
-3_5_place_dp              .odb            9            362 7879dd5e342471ba4ebc
-4_1_cts                   .odb           12            416 f7b7ba4adc37b7434520
-5_1_grt                   .odb           31            712 1422912ffb4dfd41e4b9
+2_2_floorplan_macro       .odb            1            212 88a6ef29d6cceb581d7d
+2_3_floorplan_tapcell     .odb            1            206 7ebefbac6a6aa34bfdd5
+2_4_floorplan_pdn         .odb            2            218 f3ca3eaa39ab6efeb95d
+3_1_place_gp_skip_io      .odb           61            225 4d77ede95a63909c427c
+3_2_place_iop             .odb            1            213 c508a3862ce7055adb59
+3_3_place_gp              .odb          107            446 b99d6eb7c4a171b172f9
+3_4_place_resized         .odb            8            265 90a5ccb3381b52f993d8
+3_5_place_dp              .odb            9            363 7879dd5e342471ba4ebc
+4_1_cts                   .odb           12            415 f7b7ba4adc37b7434520
+5_1_grt                   .odb           32            704 1422912ffb4dfd41e4b9
 5_1_grt                   .sdc                             af3264e82ffc90429dfa
-5_2_route                 .odb          119           8071 766c19315d51fef811a1
-5_3_fillcell              .odb            2            245 e53843cef03a264dbe6f
-6_1_fill                  .odb            2            224 e53843cef03a264dbe6f
+5_2_route                 .odb          121           8312 766c19315d51fef811a1
+5_3_fillcell              .odb            2            249 e53843cef03a264dbe6f
+6_1_fill                  .odb            2            225 e53843cef03a264dbe6f
 6_1_fill                  .sdc                             af3264e82ffc90429dfa
-6_1_merge                                 3            474                  N/A
-6_report                                 24            557                  N/A
-Total                                   378           8071                     
+6_1_merge                                 2            474                  N/A
+6_report                                 19            559                  N/A
+Total                                   400           8312                     
 make: Leaving directory '/OpenROAD-flow-scripts/flow'
