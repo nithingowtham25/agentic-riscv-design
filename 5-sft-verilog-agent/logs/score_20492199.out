@@ -1,0 +1,173 @@
+checking for iverilog... iverilog
+configure: using model: manual-rtl-coder
+configure: using in-context learning examples with shots: 0
+configure: using in-context learning rules: no
+configure: using task: spec-to-rtl
+configure: using samples: 1
+configure: using temperature: 0
+configure: using top-p: 0.01
+configure: using dataset: /scratch/user/nithingowtham25/A5_student/external/verilog-eval/dataset_spec-to-rtl
+configure: using problems: /scratch/user/nithingowtham25/A5_student/external/verilog-eval/dataset_spec-to-rtl/problems.txt
+configure: creating problems.mk
+configure: creating samples.mk
+configure: no pregen dir specified
+configure: creating ./config.status
+config.status: creating Makefile
+Scoring using the upstream VerilogEval v2 make targets.
+19:38 [  1/156]( 0%) Testing Prob001_zero_sample01 with iverilog
+19:38 [  4/156]( 2%) Testing Prob004_vector2_sample01 with iverilog
+19:38 [  2/156]( 1%) Testing Prob002_m2014_q4i_sample01 with iverilog
+19:38 [  3/156]( 1%) Testing Prob003_step_one_sample01 with iverilog
+19:38 [  5/156]( 3%) Testing Prob005_notgate_sample01 with iverilog
+19:38 [  6/156]( 3%) Testing Prob006_vectorr_sample01 with iverilog
+19:38 [  7/156]( 4%) Testing Prob007_wire_sample01 with iverilog
+19:38 [  8/156]( 5%) Testing Prob008_m2014_q4h_sample01 with iverilog
+19:38 [  9/156]( 5%) Testing Prob009_popcount3_sample01 with iverilog
+19:38 [ 10/156]( 6%) Testing Prob010_mt2015_q4a_sample01 with iverilog
+19:38 [ 11/156]( 7%) Testing Prob011_norgate_sample01 with iverilog
+19:38 [ 12/156]( 7%) Testing Prob012_xnorgate_sample01 with iverilog
+19:38 [ 13/156]( 8%) Testing Prob013_m2014_q4e_sample01 with iverilog
+19:38 [ 14/156]( 8%) Testing Prob014_andgate_sample01 with iverilog
+19:38 [ 15/156]( 9%) Testing Prob015_vector1_sample01 with iverilog
+19:38 [ 16/156](10%) Testing Prob016_m2014_q4j_sample01 with iverilog
+19:38 [ 17/156](10%) Testing Prob017_mux2to1v_sample01 with iverilog
+19:38 [ 18/156](11%) Testing Prob018_mux256to1_sample01 with iverilog
+19:38 [ 19/156](12%) Testing Prob019_m2014_q4f_sample01 with iverilog
+19:38 [ 20/156](12%) Testing Prob020_mt2015_eq2_sample01 with iverilog
+19:38 [ 21/156](13%) Testing Prob021_mux256to1v_sample01 with iverilog
+19:38 [ 22/156](14%) Testing Prob022_mux2to1_sample01 with iverilog
+19:38 [ 23/156](14%) Testing Prob023_vector100r_sample01 with iverilog
+19:38 [ 24/156](15%) Testing Prob024_hadd_sample01 with iverilog
+19:38 [ 25/156](16%) Testing Prob025_reduction_sample01 with iverilog
+19:38 [ 26/156](16%) Testing Prob026_alwaysblock1_sample01 with iverilog
+19:38 [ 27/156](17%) Testing Prob027_fadd_sample01 with iverilog
+19:38 [ 28/156](17%) Testing Prob028_m2014_q4a_sample01 with iverilog
+19:38 [ 29/156](18%) Testing Prob029_m2014_q4g_sample01 with iverilog
+19:38 [ 30/156](19%) Testing Prob030_popcount255_sample01 with iverilog
+19:38 [ 31/156](19%) Testing Prob031_dff_sample01 with iverilog
+19:38 [ 32/156](20%) Testing Prob032_vector0_sample01 with iverilog
+19:38 [ 33/156](21%) Testing Prob033_ece241_2014_q1c_sample01 with iverilog
+19:38 [ 34/156](21%) Testing Prob034_dff8_sample01 with iverilog
+19:38 [ 35/156](22%) Testing Prob035_count1to10_sample01 with iverilog
+19:38 [ 36/156](23%) Testing Prob036_ringer_sample01 with iverilog
+19:38 [ 37/156](23%) Testing Prob037_review2015_count1k_sample01 with iverilog
+19:38 [ 38/156](24%) Testing Prob038_count15_sample01 with iverilog
+19:38 [ 39/156](25%) Testing Prob039_always_if_sample01 with iverilog
+19:38 [ 40/156](25%) Testing Prob040_count10_sample01 with iverilog
+19:38 [ 41/156](26%) Testing Prob041_dff8r_sample01 with iverilog
+19:38 [ 42/156](26%) Testing Prob042_vector4_sample01 with iverilog
+19:38 [ 43/156](27%) Testing Prob043_vector5_sample01 with iverilog
+19:38 [ 44/156](28%) Testing Prob044_vectorgates_sample01 with iverilog
+19:38 [ 45/156](28%) Testing Prob045_edgedetect2_sample01 with iverilog
+19:38 [ 46/156](29%) Testing Prob046_dff8p_sample01 with iverilog
+19:38 [ 47/156](30%) Testing Prob047_dff8ar_sample01 with iverilog
+19:38 [ 48/156](30%) Testing Prob048_m2014_q4c_sample01 with iverilog
+19:38 [ 49/156](31%) Testing Prob049_m2014_q4b_sample01 with iverilog
+19:38 [ 50/156](32%) Testing Prob050_kmap1_sample01 with iverilog
+19:38 [ 51/156](32%) Testing Prob051_gates4_sample01 with iverilog
+19:38 [ 52/156](33%) Testing Prob052_gates100_sample01 with iverilog
+19:38 [ 53/156](33%) Testing Prob053_m2014_q4d_sample01 with iverilog
+19:38 [ 54/156](34%) Testing Prob054_edgedetect_sample01 with iverilog
+19:38 [ 55/156](35%) Testing Prob055_conditional_sample01 with iverilog
+19:38 [ 56/156](35%) Testing Prob056_ece241_2013_q7_sample01 with iverilog
+19:38 [ 57/156](36%) Testing Prob057_kmap2_sample01 with iverilog
+19:38 [ 58/156](37%) Testing Prob058_alwaysblock2_sample01 with iverilog
+19:38 [ 59/156](37%) Testing Prob059_wire4_sample01 with iverilog
+19:38 [ 60/156](38%) Testing Prob060_m2014_q4k_sample01 with iverilog
+19:38 [ 61/156](39%) Testing Prob061_2014_q4a_sample01 with iverilog
+19:38 [ 62/156](39%) Testing Prob062_bugs_mux2_sample01 with iverilog
+19:38 [ 63/156](40%) Testing Prob063_review2015_shiftcount_sample01 with iverilog
+19:38 [ 64/156](41%) Testing Prob064_vector3_sample01 with iverilog
+19:38 [ 65/156](41%) Testing Prob065_7420_sample01 with iverilog
+19:38 [ 66/156](42%) Testing Prob066_edgecapture_sample01 with iverilog
+19:38 [ 67/156](42%) Testing Prob067_countslow_sample01 with iverilog
+19:38 [ 68/156](43%) Testing Prob068_countbcd_sample01 with iverilog
+19:38 [ 69/156](44%) Testing Prob069_truthtable1_sample01 with iverilog
+19:38 [ 70/156](44%) Testing Prob070_ece241_2013_q2_sample01 with iverilog
+19:38 [ 71/156](45%) Testing Prob071_always_casez_sample01 with iverilog
+19:38 [ 72/156](46%) Testing Prob072_thermostat_sample01 with iverilog
+19:38 [ 73/156](46%) Testing Prob073_dff16e_sample01 with iverilog
+19:38 [ 74/156](47%) Testing Prob074_ece241_2014_q4_sample01 with iverilog
+19:38 [ 75/156](48%) Testing Prob075_counter_2bc_sample01 with iverilog
+19:38 [ 76/156](48%) Testing Prob076_always_case_sample01 with iverilog
+19:38 [ 77/156](49%) Testing Prob077_wire_decl_sample01 with iverilog
+19:38 [ 78/156](50%) Testing Prob078_dualedge_sample01 with iverilog
+19:38 [ 79/156](50%) Testing Prob079_fsm3onehot_sample01 with iverilog
+19:38 [ 80/156](51%) Testing Prob080_timer_sample01 with iverilog
+19:38 [ 81/156](51%) Testing Prob081_7458_sample01 with iverilog
+19:38 [ 82/156](52%) Testing Prob082_lfsr32_sample01 with iverilog
+19:38 [ 83/156](53%) Testing Prob083_mt2015_q4b_sample01 with iverilog
+19:38 [ 84/156](53%) Testing Prob084_ece241_2013_q12_sample01 with iverilog
+19:38 [ 85/156](54%) Testing Prob085_shift4_sample01 with iverilog
+19:38 [ 86/156](55%) Testing Prob086_lfsr5_sample01 with iverilog
+19:38 [ 87/156](55%) Testing Prob087_gates_sample01 with iverilog
+19:38 [ 88/156](56%) Testing Prob088_ece241_2014_q5b_sample01 with iverilog
+19:38 [ 89/156](57%) Testing Prob089_ece241_2014_q5a_sample01 with iverilog
+19:38 [ 90/156](57%) Testing Prob090_circuit1_sample01 with iverilog
+19:38 [ 91/156](58%) Testing Prob091_2012_q2b_sample01 with iverilog
+19:38 [ 92/156](58%) Testing Prob092_gatesv100_sample01 with iverilog
+19:38 [ 93/156](59%) Testing Prob093_ece241_2014_q3_sample01 with iverilog
+19:38 [ 94/156](60%) Testing Prob094_gatesv_sample01 with iverilog
+19:38 [ 95/156](60%) Testing Prob095_review2015_fsmshift_sample01 with iverilog
+19:38 [ 96/156](61%) Testing Prob096_review2015_fsmseq_sample01 with iverilog
+19:38 [ 97/156](62%) Testing Prob097_mux9to1v_sample01 with iverilog
+19:38 [ 98/156](62%) Testing Prob098_circuit7_sample01 with iverilog
+19:38 [ 99/156](63%) Testing Prob099_m2014_q6c_sample01 with iverilog
+19:38 [100/156](64%) Testing Prob100_fsm3comb_sample01 with iverilog
+19:38 [101/156](64%) Testing Prob101_circuit4_sample01 with iverilog
+19:38 [102/156](65%) Testing Prob102_circuit3_sample01 with iverilog
+19:38 [103/156](66%) Testing Prob103_circuit2_sample01 with iverilog
+19:38 [104/156](66%) Testing Prob104_mt2015_muxdff_sample01 with iverilog
+19:38 [105/156](67%) Testing Prob105_rotate100_sample01 with iverilog
+19:38 [106/156](67%) Testing Prob106_always_nolatches_sample01 with iverilog
+19:38 [107/156](68%) Testing Prob107_fsm1s_sample01 with iverilog
+19:38 [108/156](69%) Testing Prob108_rule90_sample01 with iverilog
+19:38 [109/156](69%) Testing Prob109_fsm1_sample01 with iverilog
+19:38 [110/156](70%) Testing Prob110_fsm2_sample01 with iverilog
+19:38 [111/156](71%) Testing Prob111_fsm2s_sample01 with iverilog
+19:38 [112/156](71%) Testing Prob112_always_case2_sample01 with iverilog
+19:38 [113/156](72%) Testing Prob113_2012_q1g_sample01 with iverilog
+19:38 [114/156](73%) Testing Prob114_bugs_case_sample01 with iverilog
+19:38 [115/156](73%) Testing Prob115_shift18_sample01 with iverilog
+19:38 [116/156](74%) Testing Prob116_m2014_q3_sample01 with iverilog
+19:38 [117/156](75%) Testing Prob117_circuit9_sample01 with iverilog
+19:38 [118/156](75%) Testing Prob118_history_shift_sample01 with iverilog
+19:38 [119/156](76%) Testing Prob119_fsm3_sample01 with iverilog
+19:38 [120/156](76%) Testing Prob120_fsm3s_sample01 with iverilog
+19:38 [121/156](77%) Testing Prob121_2014_q3bfsm_sample01 with iverilog
+19:38 [122/156](78%) Testing Prob122_kmap4_sample01 with iverilog
+19:38 [123/156](78%) Testing Prob123_bugs_addsubz_sample01 with iverilog
+19:38 [124/156](79%) Testing Prob124_rule110_sample01 with iverilog
+19:38 [125/156](80%) Testing Prob125_kmap3_sample01 with iverilog
+19:38 [126/156](80%) Testing Prob126_circuit6_sample01 with iverilog
+19:38 [127/156](81%) Testing Prob127_lemmings1_sample01 with iverilog
+19:38 [128/156](82%) Testing Prob128_fsm_ps2_sample01 with iverilog
+19:38 [129/156](82%) Testing Prob129_ece241_2013_q8_sample01 with iverilog
+19:38 [130/156](83%) Testing Prob130_circuit5_sample01 with iverilog
+19:38 [131/156](83%) Testing Prob131_mt2015_q4_sample01 with iverilog
+19:38 [132/156](84%) Testing Prob132_always_if2_sample01 with iverilog
+19:38 [133/156](85%) Testing Prob133_2014_q3fsm_sample01 with iverilog
+19:38 [134/156](85%) Testing Prob134_2014_q3c_sample01 with iverilog
+19:38 [135/156](86%) Testing Prob135_m2014_q6b_sample01 with iverilog
+19:38 [136/156](87%) Testing Prob136_m2014_q6_sample01 with iverilog
+19:38 [137/156](87%) Testing Prob137_fsm_serial_sample01 with iverilog
+19:38 [138/156](88%) Testing Prob138_2012_q2fsm_sample01 with iverilog
+19:38 [139/156](89%) Testing Prob139_2013_q2bfsm_sample01 with iverilog
+19:38 [140/156](89%) Testing Prob140_fsm_hdlc_sample01 with iverilog
+19:38 [141/156](90%) Testing Prob141_count_clock_sample01 with iverilog
+19:38 [142/156](91%) Testing Prob142_lemmings2_sample01 with iverilog
+19:38 [143/156](91%) Testing Prob143_fsm_onehot_sample01 with iverilog
+19:38 [144/156](92%) Testing Prob144_conwaylife_sample01 with iverilog
+19:38 [145/156](92%) Testing Prob145_circuit8_sample01 with iverilog
+19:38 [146/156](93%) Testing Prob146_fsm_serialdata_sample01 with iverilog
+19:38 [147/156](94%) Testing Prob147_circuit10_sample01 with iverilog
+19:38 [148/156](94%) Testing Prob148_2013_q2afsm_sample01 with iverilog
+19:38 [149/156](95%) Testing Prob149_ece241_2013_q4_sample01 with iverilog
+19:38 [150/156](96%) Testing Prob150_review2015_fsmonehot_sample01 with iverilog
+19:38 [151/156](96%) Testing Prob151_review2015_fsm_sample01 with iverilog
+19:38 [152/156](97%) Testing Prob152_lemmings3_sample01 with iverilog
+19:38 [153/156](98%) Testing Prob153_gshare_sample01 with iverilog
+19:38 [154/156](98%) Testing Prob154_fsm_ps2data_sample01 with iverilog
+19:38 [155/156](99%) Testing Prob155_lemmings4_sample01 with iverilog
+19:38 [156/156](100) Testing Prob156_review2015_fancytimer_sample01 with iverilog
+after: 43/156 pass; pass@1=0.2756

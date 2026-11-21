@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Assignment 5 - VerilogEval v2 Human spec-to-rtl stage result",
+  "type": "object",
+  "required": ["benchmark", "score", "responses"],
+  "additionalProperties": false,
+  "properties": {
+    "benchmark": {"const": "VerilogEval v2 Human spec-to-rtl"},
+    "score": {
+      "type": "object",
+      "required": ["passed", "total", "pass_at_1"],
+      "additionalProperties": false,
+      "properties": {
+        "passed": {"type": "integer", "minimum": 0, "maximum": 156},
+        "total": {"const": 156},
+        "pass_at_1": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "responses": {
+      "type": "array", "minItems": 156, "maxItems": 156,
+      "items": {
+        "type": "object",
+        "required": ["task_id", "prompt", "raw_response", "completion",
+                     "base_model", "adapter", "generation_settings", "passed", "result"],
+        "additionalProperties": false,
+        "properties": {
+          "task_id": {"type": "string", "minLength": 1},
+          "prompt": {"type": "string"},
+          "raw_response": {"type": "string"},
+          "completion": {"type": "string"},
+          "base_model": {"const": "codellama/CodeLlama-7b-Instruct-hf"},
+          "adapter": {"type": ["string", "null"]},
+          "generation_settings": {"type": "object"},
+          "passed": {"type": "boolean"},
+          "result": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

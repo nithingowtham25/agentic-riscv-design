@@ -1,0 +1,34 @@
+# Secrets and local environments
+.env
+.env.*
+.venv/
+venv/
+
+# Python-generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Hugging Face and model caches
+.cache/
+hf_cache/
+a5_hf_cache/
+huggingface/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Training checkpoints and adapters
+# output/sft_run/adapter/
+# output/sft_run/checkpoints/
+
+# Generated evaluator build products
+output/*/v2_build/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

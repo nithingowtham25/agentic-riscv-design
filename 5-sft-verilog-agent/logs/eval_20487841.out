@@ -1,0 +1,177 @@
+Wed Nov 11 14:54:00 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.126.20             Driver Version: 580.126.20     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-PCIE-40GB          On  |   00000000:D8:00.0 Off |                  Off |
+| N/A   36C    P0             33W /  250W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+001/156 Prob001_zero
+002/156 Prob002_m2014_q4i
+003/156 Prob003_step_one
+004/156 Prob004_vector2
+005/156 Prob005_notgate
+006/156 Prob006_vectorr
+007/156 Prob007_wire
+008/156 Prob008_m2014_q4h
+009/156 Prob009_popcount3
+010/156 Prob010_mt2015_q4a
+011/156 Prob011_norgate
+012/156 Prob012_xnorgate
+013/156 Prob013_m2014_q4e
+014/156 Prob014_andgate
+015/156 Prob015_vector1
+016/156 Prob016_m2014_q4j
+017/156 Prob017_mux2to1v
+018/156 Prob018_mux256to1
+019/156 Prob019_m2014_q4f
+020/156 Prob020_mt2015_eq2
+021/156 Prob021_mux256to1v
+022/156 Prob022_mux2to1
+023/156 Prob023_vector100r
+024/156 Prob024_hadd
+025/156 Prob025_reduction
+026/156 Prob026_alwaysblock1
+027/156 Prob027_fadd
+028/156 Prob028_m2014_q4a
+029/156 Prob029_m2014_q4g
+030/156 Prob030_popcount255
+031/156 Prob031_dff
+032/156 Prob032_vector0
+033/156 Prob033_ece241_2014_q1c
+034/156 Prob034_dff8
+035/156 Prob035_count1to10
+036/156 Prob036_ringer
+037/156 Prob037_review2015_count1k
+038/156 Prob038_count15
+039/156 Prob039_always_if
+040/156 Prob040_count10
+041/156 Prob041_dff8r
+042/156 Prob042_vector4
+043/156 Prob043_vector5
+044/156 Prob044_vectorgates
+045/156 Prob045_edgedetect2
+046/156 Prob046_dff8p
+047/156 Prob047_dff8ar
+048/156 Prob048_m2014_q4c
+049/156 Prob049_m2014_q4b
+050/156 Prob050_kmap1
+051/156 Prob051_gates4
+052/156 Prob052_gates100
+053/156 Prob053_m2014_q4d
+054/156 Prob054_edgedetect
+055/156 Prob055_conditional
+056/156 Prob056_ece241_2013_q7
+057/156 Prob057_kmap2
+058/156 Prob058_alwaysblock2
+059/156 Prob059_wire4
+060/156 Prob060_m2014_q4k
+061/156 Prob061_2014_q4a
+062/156 Prob062_bugs_mux2
+063/156 Prob063_review2015_shiftcount
+064/156 Prob064_vector3
+065/156 Prob065_7420
+066/156 Prob066_edgecapture
+067/156 Prob067_countslow
+068/156 Prob068_countbcd
+069/156 Prob069_truthtable1
+070/156 Prob070_ece241_2013_q2
+071/156 Prob071_always_casez
+072/156 Prob072_thermostat
+073/156 Prob073_dff16e
+074/156 Prob074_ece241_2014_q4
+075/156 Prob075_counter_2bc
+076/156 Prob076_always_case
+077/156 Prob077_wire_decl
+078/156 Prob078_dualedge
+079/156 Prob079_fsm3onehot
+080/156 Prob080_timer
+081/156 Prob081_7458
+082/156 Prob082_lfsr32
+083/156 Prob083_mt2015_q4b
+084/156 Prob084_ece241_2013_q12
+085/156 Prob085_shift4
+086/156 Prob086_lfsr5
+087/156 Prob087_gates
+088/156 Prob088_ece241_2014_q5b
+089/156 Prob089_ece241_2014_q5a
+090/156 Prob090_circuit1
+091/156 Prob091_2012_q2b
+092/156 Prob092_gatesv100
+093/156 Prob093_ece241_2014_q3
+094/156 Prob094_gatesv
+095/156 Prob095_review2015_fsmshift
+096/156 Prob096_review2015_fsmseq
+097/156 Prob097_mux9to1v
+098/156 Prob098_circuit7
+099/156 Prob099_m2014_q6c
+100/156 Prob100_fsm3comb
+101/156 Prob101_circuit4
+102/156 Prob102_circuit3
+103/156 Prob103_circuit2
+104/156 Prob104_mt2015_muxdff
+105/156 Prob105_rotate100
+106/156 Prob106_always_nolatches
+107/156 Prob107_fsm1s
+108/156 Prob108_rule90
+109/156 Prob109_fsm1
+110/156 Prob110_fsm2
+111/156 Prob111_fsm2s
+112/156 Prob112_always_case2
+113/156 Prob113_2012_q1g
+114/156 Prob114_bugs_case
+115/156 Prob115_shift18
+116/156 Prob116_m2014_q3
+117/156 Prob117_circuit9
+118/156 Prob118_history_shift
+119/156 Prob119_fsm3
+120/156 Prob120_fsm3s
+121/156 Prob121_2014_q3bfsm
+122/156 Prob122_kmap4
+123/156 Prob123_bugs_addsubz
+124/156 Prob124_rule110
+125/156 Prob125_kmap3
+126/156 Prob126_circuit6
+127/156 Prob127_lemmings1
+128/156 Prob128_fsm_ps2
+129/156 Prob129_ece241_2013_q8
+130/156 Prob130_circuit5
+131/156 Prob131_mt2015_q4
+132/156 Prob132_always_if2
+133/156 Prob133_2014_q3fsm
+134/156 Prob134_2014_q3c
+135/156 Prob135_m2014_q6b
+136/156 Prob136_m2014_q6
+137/156 Prob137_fsm_serial
+138/156 Prob138_2012_q2fsm
+139/156 Prob139_2013_q2bfsm
+140/156 Prob140_fsm_hdlc
+141/156 Prob141_count_clock
+142/156 Prob142_lemmings2
+143/156 Prob143_fsm_onehot
+144/156 Prob144_conwaylife
+145/156 Prob145_circuit8
+146/156 Prob146_fsm_serialdata
+147/156 Prob147_circuit10
+148/156 Prob148_2013_q2afsm
+149/156 Prob149_ece241_2013_q4
+150/156 Prob150_review2015_fsmonehot
+151/156 Prob151_review2015_fsm
+152/156 Prob152_lemmings3
+153/156 Prob153_gshare
+154/156 Prob154_fsm_ps2data
+155/156 Prob155_lemmings4
+156/156 Prob156_review2015_fancytimer
+Generation complete. Next, run slurm/cpu_score.sbatch to use the v2 Makefile.

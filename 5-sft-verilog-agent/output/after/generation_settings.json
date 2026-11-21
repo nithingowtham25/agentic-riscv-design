@@ -1,0 +1,12 @@
+{
+  "model": "codellama/CodeLlama-7b-Instruct-hf",
+  "adapter": "output/sft_run/adapter",
+  "do_sample": false,
+  "max_new_tokens": 2048,
+  "num_return_sequences": 1,
+  "temperature": null,
+  "top_p": null,
+  "quantization": "4bit-nf4",
+  "benchmark": "VerilogEval v2 Human spec-to-rtl",
+  "task_count": 156
+}

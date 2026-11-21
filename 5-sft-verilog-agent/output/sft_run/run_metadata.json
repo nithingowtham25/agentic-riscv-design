@@ -1,0 +1,26 @@
+{
+  "base_model": "codellama/CodeLlama-7b-Instruct-hf",
+  "train_data": "data/train.jsonl",
+  "train_example_count": 10000,
+  "model_context_tokens": 16384,
+  "hyperparameters": {
+    "MAX_LENGTH": 2048,
+    "LEARNING_RATE": 5e-05,
+    "NUM_EPOCHS": 1,
+    "LORA_R": 16,
+    "LORA_ALPHA": 32,
+    "LORA_DROPOUT": 0.05,
+    "BATCH_SIZE": 1,
+    "GRAD_ACCUM": 16,
+    "WARMUP_RATIO": 0.03,
+    "WEIGHT_DECAY": 0.01,
+    "SEED": 42
+  },
+  "rows": 10000,
+  "precision": "bf16",
+  "gpu": "NVIDIA A100-PCIE-40GB",
+  "python": "3.11.7",
+  "torch": "2.7.0+cu128",
+  "training_loss": 0.16989073910713196,
+  "global_steps": 625
+}

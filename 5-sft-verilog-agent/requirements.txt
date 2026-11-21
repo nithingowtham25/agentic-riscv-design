@@ -1,0 +1,12 @@
+# Python 3.11. Install a CUDA-compatible torch build before these dependencies.
+# Save versions after installation: python -m pip freeze > output/package_versions.txt
+transformers>=4.45,<5
+datasets>=3,<5
+trl>=0.21,<0.30
+peft>=0.14,<1
+accelerate>=1,<2
+bitsandbytes>=0.45,<0.50
+safetensors
+huggingface_hub
+# v2 analyzer imports langchain.schema; no LLM API calls are made.
+langchain>=0.3,<1

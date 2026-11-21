@@ -1,0 +1,54 @@
+{
+  "benchmark": "VerilogEval v2 Human spec-to-rtl",
+  "before": {
+    "passed": 17,
+    "total": 156,
+    "pass_at_1": 0.10897435897435898
+  },
+  "after": {
+    "passed": 43,
+    "total": 156,
+    "pass_at_1": 0.27564102564102566
+  },
+  "fail_to_pass": 29,
+  "pass_to_fail": 3,
+  "pass_to_pass": 14,
+  "fail_to_fail": 110,
+  "delta_percentage_points": 16.666666666666668,
+  "improved_task_ids": [
+    "Prob001_zero",
+    "Prob002_m2014_q4i",
+    "Prob003_step_one",
+    "Prob008_m2014_q4h",
+    "Prob015_vector1",
+    "Prob017_mux2to1v",
+    "Prob020_mt2015_eq2",
+    "Prob021_mux256to1v",
+    "Prob025_reduction",
+    "Prob027_fadd",
+    "Prob029_m2014_q4g",
+    "Prob030_popcount255",
+    "Prob038_count15",
+    "Prob039_always_if",
+    "Prob044_vectorgates",
+    "Prob048_m2014_q4c",
+    "Prob049_m2014_q4b",
+    "Prob055_conditional",
+    "Prob063_review2015_shiftcount",
+    "Prob071_always_casez",
+    "Prob077_wire_decl",
+    "Prob081_7458",
+    "Prob084_ece241_2013_q12",
+    "Prob090_circuit1",
+    "Prob097_mux9to1v",
+    "Prob114_bugs_case",
+    "Prob121_2014_q3bfsm",
+    "Prob123_bugs_addsubz",
+    "Prob132_always_if2"
+  ],
+  "regressed_task_ids": [
+    "Prob040_count10",
+    "Prob052_gates100",
+    "Prob111_fsm2s"
+  ]
+}
