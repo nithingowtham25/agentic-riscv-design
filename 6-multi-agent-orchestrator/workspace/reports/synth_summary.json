@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-11-22T00:10:48.435833+00:00",
+  "status": "PASS",
+  "top": "memory_access",
+  "flow_variant": "a6_memory_access",
+  "returncode": 0,
+  "reports": [
+    "workspace/pd/orfs_work/reports/asap7/memory_access/a6_memory_access/2_floorplan_final.rpt",
+    "workspace/pd/orfs_work/reports/asap7/memory_access/a6_memory_access/3_detailed_place.rpt",
+    "workspace/pd/orfs_work/reports/asap7/memory_access/a6_memory_access/3_global_place.rpt",
+    "workspace/pd/orfs_work/reports/asap7/memory_access/a6_memory_access/3_resizer.rpt",
+    "workspace/pd/orfs_work/reports/asap7/memory_access/a6_memory_access/4_cts_final.rpt",
+    "workspace/pd/orfs_work/reports/asap7/memory_access/a6_memory_access/5_global_route.rpt",
+    "workspace/pd/orfs_work/reports/asap7/memory_access/a6_memory_access/5_route_drc.rpt",
+    "workspace/pd/orfs_work/reports/asap7/memory_access/a6_memory_access/6_finish.rpt"
+  ],
+  "metrics": {
+    "design_area": "33",
+    "worst_slack": "-1.5134716",
+    "total_power": "5.81e-03"
+  }
+}

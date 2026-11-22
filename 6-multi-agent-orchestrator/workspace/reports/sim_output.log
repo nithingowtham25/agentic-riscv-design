@@ -1,0 +1,23 @@
+=== Icarus compile ===
+$ iverilog -g2012 -s tb_memory_access -o /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/reports/sim.out /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/src/memory_access.sv /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/tb/tb_memory_access.sv
+
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/src/memory_access.sv:25: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/src/memory_access.sv:25: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/src/memory_access.sv:25: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/src/memory_access.sv:25: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/src/memory_access.sv:25: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/src/memory_access.sv:25: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/src/memory_access.sv:25: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/src/memory_access.sv:25: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/src/memory_access.sv:25: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/src/memory_access.sv:25: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/src/memory_access.sv:25: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+
+=== VVP simulation ===
+$ vvp /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/reports/sim.out
+TESTS_PASSED: 59
+TESTS_ERRORS: 0
+TESTS_TOTAL: 59
+RESULT: PASS
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/tb/tb_memory_access.sv:481: $finish called at 61000 (1ps)
+

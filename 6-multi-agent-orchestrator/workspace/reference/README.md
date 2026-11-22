@@ -1,0 +1,1 @@
+This directory holds a known-good Assignment 2 artifact for agent context only. The orchestrated RTL target is always `workspace/src/memory_access.sv`; the reference is never compiled by the Assignment 6 simulation or synthesis tools.

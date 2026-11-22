@@ -1,0 +1,52 @@
+{
+  "per_stage": [
+    {
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "stage": "rtl",
+      "status": "PASS"
+    },
+    {
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "stage": "tb",
+      "status": "PASS"
+    },
+    {
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "stage": "debug",
+      "status": "PASS"
+    },
+    {
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "stage": "verify",
+      "status": "PASS"
+    },
+    {
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "stage": "pd",
+      "status": "PASS"
+    }
+  ],
+  "run_id": "a6_20261122T000411Z",
+  "totals": {
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 0,
+    "calls": 5,
+    "input_tokens": 0,
+    "output_tokens": 0
+  }
+}

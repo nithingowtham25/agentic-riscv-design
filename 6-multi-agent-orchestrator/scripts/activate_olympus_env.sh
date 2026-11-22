@@ -20,7 +20,7 @@ if [[ ! -x "$A6_TOOLS_DIR/a6_icarus/bin/iverilog" ]]; then
 fi
 
 source "$A6_TOOLS_DIR/miniforge3/etc/profile.d/conda.sh"
-export PATH="$A6_TOOLS_DIR/a6_icarus/bin:$PATH"
+export PATH="$A6_TOOLS_DIR/miniforge3/bin:$A6_TOOLS_DIR/a6_icarus/bin:$PATH"
 
 if [[ -x "$HOME/.local/bin/claude" ]]; then
     export PATH="$HOME/.local/bin:$PATH"
@@ -42,4 +42,5 @@ if [[ -z "${ANTHROPIC_AUTH_TOKEN:-}" ]]; then
 fi
 
 echo "Assignment 6 Olympus environment ready: $(iverilog -V 2>&1 | head -1)"
+echo "Python runtime: $(python3 --version)"
 echo "Claude Code ready through the TAMU gateway: $(claude --version | head -1)"

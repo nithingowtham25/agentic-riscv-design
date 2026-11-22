@@ -1,0 +1,9 @@
+[rtl] PASS: returncode=0
+[tb] PASS: returncode=0
+SIMULATION SUCCESS
+[debug] PASS: returncode=0
+[verify] PASS: returncode=0
+SIMULATION SUCCESS
+[pd] PASS: returncode=0
+SYNTHESIS PASS; inspect workspace/reports/synthesis_output.log
+A6 ORCHESTRATION COMPLETE
