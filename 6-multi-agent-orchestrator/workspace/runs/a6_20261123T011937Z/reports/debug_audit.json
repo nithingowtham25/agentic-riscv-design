@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-11-23T01:23:00Z",
+  "stage": "DEBUG",
+  "mode": "no-change audit (simulation passed)",
+  "rtl_path": "workspace/runs/a6_20261123T011937Z/src/memory_access.sv",
+  "rtl_changed": false,
+  "simulation_result": "PASS",
+  "tests_passed": 75,
+  "tests_errors": 0,
+  "tests_total": 75,
+
+  "audit_checks": {
+    "interface_matches_spec": {
+      "result": "PASS",
+      "detail": "Module ports match spec exactly: MemRW[1:0], Funct3[2:0], AddrLSB[1:0], StoreData[31:0], ReadData[31:0], WriteData[31:0], ByteEnable[3:0], LoadData[31:0]."
+    },
+    "defaults": {
+      "result": "PASS",
+      "detail": "WriteData=0, ByteEnable=4'b0000, LoadData=0 set unconditionally at top of always_comb block before any conditional. Satisfies spec §Deterministic Defaults."
+    },
+    "memrw_encoding": {
+      "result": "PASS",
+      "detail": "MemRW==2'b01 activates store path; MemRW==2'b10 activates load path; MemRW==2'b00 and 2'b11 produce zero defaults. Matches spec table."
+    },
+    "store_sb": {
+      "result": "PASS",
+      "detail": "SB (Funct3=000) places StoreData[7:0] into the byte lane selected by AddrLSB[1:0] with correct ByteEnable one-hot encoding (0001/0010/0100/1000)."
+    },
+    "store_sh": {
+      "result": "PASS",
+      "detail": "SH (Funct3=001) uses AddrLSB[1] to select lower (ByteEnable=0011, WriteData[15:0]) or upper (ByteEnable=1100, WriteData[31:16]) halfword lane."
+    },
+    "store_sw": {
+      "result": "PASS",
+      "detail": "SW (Funct3=010) sets ByteEnable=4'b1111 and WriteData=StoreData."
+    },
+    "load_lb": {
+      "result": "PASS",
+      "detail": "LB (Funct3=000) sign-extends sel_byte (selected by AddrLSB case) to 32 bits via {{24{sel_byte[7]}}, sel_byte}."
+    },
+    "load_lh": {
+      "result": "PASS",
+      "detail": "LH (Funct3=001) sign-extends sel_half (AddrLSB[1] mux) to 32 bits via {{16{sel_half[15]}}, sel_half}."
+    },
+    "load_lw": {
+      "result": "PASS",
+      "detail": "LW (Funct3=010) passes ReadData[31:0] straight through to LoadData."
+    },
+    "load_lbu": {
+      "result": "PASS",
+      "detail": "LBU (Funct3=100) zero-extends sel_byte: {24'b0, sel_byte}."
+    },
+    "load_lhu": {
+      "result": "PASS",
+      "detail": "LHU (Funct3=101) zero-extends sel_half: {16'b0, sel_half}."
+    },
+    "byte_lane_selection": {
+      "result": "PASS",
+      "detail": "sel_byte case covers all four AddrLSB values (00→[7:0], 01→[15:8], 10→[23:16], 11→[31:24]). sel_half uses AddrLSB[1] correctly for aligned halfword."
+    },
+    "icarus_warnings": {
+      "result": "INFO",
+      "detail": "Icarus emits 'sorry: constant selects in always_* processes are not currently supported' for the part-select expressions (ReadData[7:0], ReadData[15:8], etc.) inside always_comb. This is a known Icarus 12 limitation with static part-selects inside always_comb; the tool still compiles and simulates correctly as shown by RESULT: PASS. These are tool warnings, not RTL bugs. No RTL change required."
+    },
+    "synthesizability": {
+      "result": "PASS",
+      "detail": "Module is pure combinational (always_comb, no clock/reset). All signals are fully assigned (defaults + conditionals). No latches inferred. Compatible with downstream synthesis."
+    }
+  },
+
+  "diagnosis": "Simulation passed with 75/75 tests across all 7 test sections (no-access defaults, unused MemRW encoding, SB/SH/SW stores, LB/LH/LW/LBU/LHU loads, path isolation, corner cases, and spec verbatim examples). RTL is functionally correct and specification-compliant. The repeated Icarus 'constant selects in always_*' warnings are a simulator limitation, not a design defect — compilation and simulation both returned exit code 0.",
+  "action": "NO_CHANGE — RTL is correct; no edit applied."
+}

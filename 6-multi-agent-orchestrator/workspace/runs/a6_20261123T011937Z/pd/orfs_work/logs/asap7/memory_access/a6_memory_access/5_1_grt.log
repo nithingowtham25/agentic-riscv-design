@@ -1,0 +1,508 @@
+OpenROAD 26Q2-2517-g7304ba78ad 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 96 thread(s).
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_db /workspace/Assignment6/workspace/runs/a6_20261123T011937Z/pd/orfs_work/results/asap7/memory_access/a6_memory_access/4_cts.odb
+read_sdc /workspace/Assignment6/workspace/runs/a6_20261123T011937Z/pd/orfs_work/results/asap7/memory_access/a6_memory_access/4_cts.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+pin_access
+[INFO DRT-0149] Reading tech and libs.
+
+Units:                1000
+Number of layers:     21
+Number of macros:     212
+Number of vias:       14
+Number of viarulegen: 11
+
+[INFO DRT-0150] Reading design.
+
+Design:                   memory_access
+Die area:                 ( 0 0 ) ( 11120 11120 )
+Number of track patterns: 32
+Number of DEF vias:       0
+Number of components:     579
+Number of terminals:      141
+Number of snets:          2
+Number of nets:           591
+
+[INFO DRT-0167] List of default vias:
+  Layer V2
+    default via: VIA23
+  Layer V3
+    default via: VIA34
+  Layer V4
+    default via: VIA45
+  Layer V5
+    default via: VIA56
+  Layer V6
+    default via: VIA67
+  Layer V7
+    default via: VIA78
+  Layer V8
+    default via: VIA89
+  Layer V9
+    default via: VIA9Pad
+[INFO DRT-0162] Library cell analysis.
+[INFO DRT-0163] Instance analysis.
+[INFO DRT-0164] Number of unique instances = 95.
+[INFO DRT-0168] Init region query.
+[INFO DRT-0024]   Complete Active.
+[INFO DRT-0024]   Complete V0.
+[INFO DRT-0024]   Complete M1.
+[INFO DRT-0024]   Complete V1.
+[INFO DRT-0024]   Complete M2.
+[INFO DRT-0024]   Complete V2.
+[INFO DRT-0024]   Complete M3.
+[INFO DRT-0024]   Complete V3.
+[INFO DRT-0024]   Complete M4.
+[INFO DRT-0024]   Complete V4.
+[INFO DRT-0024]   Complete M5.
+[INFO DRT-0024]   Complete V5.
+[INFO DRT-0024]   Complete M6.
+[INFO DRT-0024]   Complete V6.
+[INFO DRT-0024]   Complete M7.
+[INFO DRT-0024]   Complete V7.
+[INFO DRT-0024]   Complete M8.
+[INFO DRT-0024]   Complete V8.
+[INFO DRT-0024]   Complete M9.
+[INFO DRT-0024]   Complete V9.
+[INFO DRT-0024]   Complete Pad.
+[INFO DRT-0033] Active shape region query size = 0.
+[INFO DRT-0033] V0 shape region query size = 0.
+[INFO DRT-0033] M1 shape region query size = 7352.
+[INFO DRT-0033] V1 shape region query size = 8590.
+[INFO DRT-0033] M2 shape region query size = 147.
+[INFO DRT-0033] V2 shape region query size = 204.
+[INFO DRT-0033] M3 shape region query size = 204.
+[INFO DRT-0033] V3 shape region query size = 136.
+[INFO DRT-0033] M4 shape region query size = 186.
+[INFO DRT-0033] V4 shape region query size = 136.
+[INFO DRT-0033] M5 shape region query size = 169.
+[INFO DRT-0033] V5 shape region query size = 16.
+[INFO DRT-0033] M6 shape region query size = 16.
+[INFO DRT-0033] V6 shape region query size = 0.
+[INFO DRT-0033] M7 shape region query size = 0.
+[INFO DRT-0033] V7 shape region query size = 0.
+[INFO DRT-0033] M8 shape region query size = 0.
+[INFO DRT-0033] V8 shape region query size = 0.
+[INFO DRT-0033] M9 shape region query size = 0.
+[INFO DRT-0033] V9 shape region query size = 0.
+[INFO DRT-0033] Pad shape region query size = 0.
+[INFO DRT-0165] Start pin access.
+[INFO DRT-0078]   Complete 483 pins.
+[INFO DRT-0081]   Complete 95 unique inst patterns.
+[INFO DRT-0084]   Complete 205 groups.
+#scanned instances     = 579
+#unique  instances     = 95
+#stdCellGenAp          = 2791
+#stdCellValidPlanarAp  = 12
+#stdCellValidViaAp     = 2104
+#stdCellPinNoAp        = 0
+#stdCellPinCnt         = 1484
+#instTermValidViaApCnt = 0
+#macroGenAp            = 0
+#macroValidPlanarAp    = 0
+#macroValidViaAp       = 0
+#macroNoAp             = 0
+[INFO DRT-0166] Complete pin access.
+[INFO DRT-0267] cpu time = 00:00:18, elapsed time = 00:00:04, memory = 220.07 (MB), peak = 220.07 (MB)
+Took 5 seconds: pin_access
+global_route -congestion_report_file /workspace/Assignment6/workspace/runs/a6_20261123T011937Z/pd/orfs_work/reports/asap7/memory_access/a6_memory_access/congestion.rpt -congestion_iterations 30 -congestion_report_iter_step 5 -verbose -resistance_aware
+[INFO GRT-0020] Min routing layer: M2
+[INFO GRT-0021] Max routing layer: M7
+[INFO GRT-0022] Global adjustment: 0%
+[INFO GRT-0023] Grid origin: (0, 0)
+[INFO GRT-0088] Layer M1      Track-Pitch = 0.0360  line-2-Via Pitch: 0.0360
+[INFO GRT-0088] Layer M2      Track-Pitch = 0.0390  line-2-Via Pitch: 0.0360
+[INFO GRT-0088] Layer M3      Track-Pitch = 0.0360  line-2-Via Pitch: 0.0360
+[INFO GRT-0088] Layer M4      Track-Pitch = 0.0480  line-2-Via Pitch: 0.0480
+[INFO GRT-0088] Layer M5      Track-Pitch = 0.0480  line-2-Via Pitch: 0.0480
+[INFO GRT-0088] Layer M6      Track-Pitch = 0.0640  line-2-Via Pitch: 0.0640
+[INFO GRT-0088] Layer M7      Track-Pitch = 0.0640  line-2-Via Pitch: 0.0640
+[INFO GRT-0003] Macros: 0
+[INFO GRT-0004] Blockages: 0
+[INFO GRT-0019] Found 0 clock nets.
+[INFO GRT-0001] Minimum degree: 2
+[INFO GRT-0002] Maximum degree: 19
+
+[INFO GRT-0053] Routing resources analysis:
+          Routing      Original      Derated      Resource
+Layer     Direction    Resources     Resources    Reduction (%)
+---------------------------------------------------------------
+M1         Vertical            0             0          0.00%
+M2         Horizontal       4539          3272          27.91%
+M3         Vertical         5364          3976          25.88%
+M4         Horizontal       4106          3044          25.86%
+M5         Vertical         3978          2932          26.29%
+M6         Horizontal       2796          1898          32.12%
+M7         Vertical         3132          2106          32.76%
+---------------------------------------------------------------
+
+[INFO GRT-0197] Via related to pin nodes: 3741
+[INFO GRT-0198] Via related Steiner nodes: 66
+[INFO GRT-0199] Via filling finished.
+[INFO GRT-0111] Final number of vias: 5015
+[INFO GRT-0112] Final usage 3D: 17310
+
+[INFO GRT-0096] Final congestion report:
+Layer         Resource        Demand        Usage (%)    Max H / Max V / Total Congestion
+---------------------------------------------------------------------------------------
+M1                   0             0            0.00%             0 /  0 /  0
+M2                3272           625           19.10%             0 /  0 /  0
+M3                3976           719           18.08%             0 /  0 /  0
+M4                3044           179            5.88%             0 /  0 /  0
+M5                2932           172            5.87%             0 /  0 /  0
+M6                1898           315           16.60%             0 /  0 /  0
+M7                2106           255           12.11%             0 /  0 /  0
+---------------------------------------------------------------------------------------
+Total            17228          2265           13.15%             0 /  0 /  0
+
+[INFO GRT-0018] Total wirelength: 2022 um
+[INFO GRT-0014] Routed nets: 584
+[INFO GRT-0303] Global routing runtime = 00:00:01
+[WARNING STA-0450] virtual clock a6_memory_access_io can not be propagated.
+estimate_parasitics -global_routing
+Perform buffer insertion and gate resizing...
+repair_design -verbose
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |       591
+       10 |     +0.0% |       0 |       0 |             0 |       581
+       20 |     +0.0% |       0 |       0 |             0 |       571
+       30 |     +0.0% |       0 |       0 |             0 |       561
+       40 |     +0.0% |       0 |       0 |             0 |       551
+       50 |     +0.0% |       0 |       0 |             0 |       541
+       60 |     +0.0% |       0 |       0 |             0 |       531
+       70 |     +0.0% |       0 |       0 |             0 |       521
+       80 |     +0.0% |       0 |       0 |             0 |       511
+       90 |     +0.0% |       0 |       0 |             0 |       501
+      100 |     +0.0% |       0 |       0 |             0 |       491
+      110 |     +0.0% |       0 |       0 |             0 |       481
+      120 |     +0.0% |       0 |       0 |             0 |       471
+      130 |     +0.0% |       0 |       0 |             0 |       461
+      140 |     +0.0% |       0 |       0 |             0 |       451
+      150 |     +0.0% |       0 |       0 |             0 |       441
+      160 |     +0.0% |       0 |       0 |             0 |       431
+      170 |     +0.0% |       0 |       0 |             0 |       421
+      180 |     +0.0% |       0 |       0 |             0 |       411
+      190 |     +0.0% |       0 |       0 |             0 |       401
+      200 |     +0.0% |       0 |       0 |             0 |       391
+      210 |     +0.0% |       0 |       0 |             0 |       381
+      220 |     +0.0% |       0 |       0 |             0 |       371
+      230 |     +0.0% |       0 |       0 |             0 |       361
+      240 |     +0.0% |       0 |       0 |             0 |       351
+      250 |     +0.0% |       0 |       0 |             0 |       341
+      260 |     +0.0% |       0 |       0 |             0 |       331
+      270 |     +0.0% |       0 |       0 |             0 |       321
+      280 |     +0.0% |       0 |       0 |             0 |       311
+      290 |     +0.0% |       0 |       0 |             0 |       301
+      300 |     +0.0% |       0 |       0 |             0 |       291
+[WARNING RSZ-0104] Net _245_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _241_ only has one pin. Check if it is intended to be dangling.
+      310 |     +0.0% |       0 |       0 |             0 |       281
+      320 |     +0.0% |       0 |       0 |             0 |       271
+      330 |     +0.0% |       0 |       0 |             0 |       261
+      340 |     +0.0% |       0 |       0 |             0 |       251
+      350 |     +0.0% |       0 |       0 |             0 |       241
+      360 |     +0.0% |       0 |       0 |             0 |       231
+[WARNING RSZ-0104] Net _244_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _243_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _240_ only has one pin. Check if it is intended to be dangling.
+      370 |     +0.0% |       0 |       0 |             0 |       221
+      380 |     +0.0% |       0 |       0 |             0 |       211
+      390 |     +0.0% |       0 |       0 |             0 |       201
+      400 |     +0.0% |       0 |       0 |             0 |       191
+[WARNING RSZ-0104] Net _242_ only has one pin. Check if it is intended to be dangling.
+      410 |     +0.0% |       0 |       0 |             0 |       181
+      420 |     +0.0% |       0 |       0 |             0 |       171
+[WARNING RSZ-0104] Net _246_ only has one pin. Check if it is intended to be dangling.
+      430 |     +0.0% |       0 |       0 |             0 |       161
+      440 |     +0.0% |       0 |       0 |             0 |       151
+      450 |     +0.0% |       0 |       0 |             0 |       141
+      460 |     +0.0% |       0 |       0 |             0 |       131
+      470 |     +0.0% |       0 |       0 |             0 |       121
+      480 |     +0.0% |       0 |       0 |             0 |       111
+      490 |     +0.0% |       0 |       0 |             0 |       101
+      500 |     +0.0% |       0 |       0 |             0 |        91
+      510 |     +0.0% |       0 |       0 |             0 |        81
+      520 |     +0.0% |       0 |       0 |             0 |        71
+      530 |     +0.0% |       0 |       0 |             0 |        61
+      540 |     +0.0% |       0 |       0 |             0 |        51
+      550 |     +0.0% |       0 |       0 |             0 |        41
+      560 |     +0.0% |       0 |       0 |             0 |        31
+      570 |     +0.0% |       0 |       0 |             0 |        21
+      580 |     +0.0% |       0 |       0 |             0 |        11
+      590 |     +0.0% |       0 |       0 |             0 |         1
+    final |     +0.0% |       0 |       0 |             0 |         0
+---------------------------------------------------------------------
+[INFO RSZ-0504] Runtime: 2.23s
+global_route -start_incremental
+detailed_placement
+[INFO DPL-0006] Core area: 80.83 um^2, Instances area: 56.95 um^2, Utilization: 70.5%
+[INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+[INFO DPL-1101] Legalizing using diamond search.
+Movements Summary
+---------------------------------------
+Total cells:                     513
+Diamond Move Success:            513 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+[INFO DPL-0500] Runtime: 0.00s
+Placement Analysis
+---------------------------------
+total displacement          0.0 u
+average displacement        0.0 u
+max displacement            0.0 u
+original HPWL            1246.2 u
+legalized HPWL           1246.2 u
+delta HPWL                    0 %
+
+global_route -end_incremental -resistance_aware -congestion_report_file /workspace/Assignment6/workspace/runs/a6_20261123T011937Z/pd/orfs_work/reports/asap7/memory_access/a6_memory_access/congestion_post_repair_design.rpt
+Repair setup and hold violations...
+estimate_parasitics -global_routing
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
+[INFO RSZ-0094] Found 68 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 68 out of 68 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |   StTNS    |   EnTNS    |  Viol  |  Worst  
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            |            | Endpts | St/EnPt 
+------------------------------------------------------------------------------------------------------------------------------
+       0* |       0 |       0 |        0 |      0 |     0 |    +0.0% | -144.322 |    -4336.0 |    -8849.8 |     68 | LoadData[31]
+       8* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      10* |       0 |       0 |        2 |      0 |     6 |    +0.3% | -142.655 |    -4331.7 |    -8850.7 |     68 | LoadData[8]
+      10* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      12* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      14* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      16* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      18* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      20* |       0 |       0 |        2 |      0 |     6 |    +0.3% | -141.729 |    -4328.7 |    -8850.2 |     68 | LoadData[31]
+      20* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      22* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      24* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      26* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      28* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      30* |       0 |       0 |        2 |      0 |     6 |    +0.3% | -141.635 |    -4328.5 |    -8850.5 |     68 | LoadData[31]
+      30* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      32* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      34* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      36* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      38* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      40* |       0 |       0 |        2 |      0 |     6 |    +0.3% | -141.635 |    -4328.5 |    -8850.4 |     68 | LoadData[31]
+      40* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      42* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      44* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      46* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      48* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      50* |       0 |       0 |        2 |      0 |     6 |    +0.3% | -141.635 |    -4328.5 |    -8850.3 |     68 | LoadData[31]
+      50* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      52* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      53* |       0 |       0 |        2 |      0 |     5 |    +0.3% | -141.635 |    -4328.5 |    -8848.9 |     68 | LoadData[31]
+      56* |       0 |       0 |        2 |      0 |     7 |    +0.3% | -141.531 |    -4326.0 |    -8847.1 |     68 | LoadData[31]
+      58* |       0 |       0 |        2 |      0 |     7 |    +0.3% | -141.531 |    -4326.0 |    -8847.1 |     68 | LoadData[31]
+      60* |       0 |       0 |        2 |      0 |     8 |    +0.3% | -141.531 |    -4325.7 |    -8845.6 |     68 | LoadData[31]
+      66* |       1 |       1 |        2 |      0 |    12 |    +0.2% | -141.531 |    -4322.1 |    -8797.3 |     68 | LoadData[31]
+      70* |       2 |       1 |        2 |      0 |    14 |    +0.0% | -141.531 |    -4324.1 |    -8773.8 |     68 | LoadData[31]
+      72* |       1 |       1 |        2 |      0 |    12 |    +0.2% | -141.531 |    -4322.1 |    -8797.3 |     68 | LoadData[31]
+      74* |       1 |       1 |        2 |      0 |    12 |    +0.2% | -141.531 |    -4322.1 |    -8797.3 |     68 | LoadData[31]
+      78* |       1 |       1 |        2 |      0 |    12 |    +0.2% | -141.531 |    -4322.1 |    -8797.3 |     68 | LoadData[31]
+      80* |       1 |       1 |        2 |      0 |    13 |    +0.2% | -141.759 |    -4340.2 |    -8805.8 |     68 | WriteData[8]
+      82* |       1 |       1 |        2 |      0 |    12 |    +0.2% | -141.531 |    -4322.1 |    -8797.3 |     68 | LoadData[31]
+      86* |       1 |       1 |        2 |      0 |    12 |    +0.2% | -141.531 |    -4322.1 |    -8797.3 |     68 | LoadData[31]
+      90* |       2 |       1 |        2 |      0 |    14 |    +0.0% | -141.531 |    -4326.4 |    -8776.7 |     68 | LoadData[31]
+      90* |       1 |       1 |        2 |      0 |    12 |    +0.2% | -141.531 |    -4322.1 |    -8797.3 |     68 | LoadData[31]
+      94* |       1 |       1 |        2 |      0 |    12 |    +0.2% | -141.531 |    -4322.1 |    -8797.3 |     68 | LoadData[31]
+      96* |       1 |       1 |        2 |      0 |    12 |    +0.2% | -141.531 |    -4322.1 |    -8797.3 |     68 | LoadData[31]
+      98* |       1 |       1 |        2 |      0 |    12 |    +0.2% | -141.531 |    -4322.1 |    -8797.3 |     68 | LoadData[31]
+     100* |       1 |       1 |        2 |      0 |    13 |    +0.2% | -141.531 |    -4321.8 |    -8793.1 |     68 | LoadData[31]
+     102* |       2 |       1 |        2 |      0 |    14 |    +0.0% | -141.531 |    -4318.4 |    -8770.7 |     68 | LoadData[31]
+     105* |       2 |       1 |        2 |      0 |    14 |    +0.0% | -141.531 |    -4318.4 |    -8770.7 |     68 | LoadData[31]
+     108* |       2 |       1 |        2 |      0 |    14 |    +0.0% | -141.531 |    -4318.4 |    -8770.7 |     68 | LoadData[31]
+     110* |       2 |       1 |        2 |      0 |    15 |    +0.0% | -141.531 |    -4318.4 |    -8772.1 |     68 | LoadData[31]
+     111* |       2 |       1 |        2 |      0 |    14 |    +0.0% | -141.531 |    -4318.4 |    -8770.7 |     68 | LoadData[31]
+     114* |       2 |       1 |        2 |      0 |    14 |    +0.0% | -141.531 |    -4318.4 |    -8770.7 |     68 | LoadData[31]
+     118* |       3 |       1 |        3 |      0 |    15 |    +0.0% | -141.432 |    -4318.2 |    -8821.3 |     68 | LoadData[31]
+     120* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     125* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     130* |       4 |       3 |        4 |      0 |    16 |    +0.1% | -141.432 |    -4317.7 |    -8796.3 |     68 | LoadData[31]
+     131* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     137* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     140* |       4 |       3 |        3 |      0 |    15 |    -0.1% | -143.054 |    -4321.5 |    -8781.6 |     68 | LoadData[31]
+     143* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     149* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     150* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     152* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     154* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     156* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     158* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     160* |       4 |       1 |        3 |      0 |    16 |    -0.2% | -141.432 |    -4318.2 |    -8762.1 |     68 | LoadData[31]
+     160* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     162* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     164* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     166* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     170* |       4 |       3 |        3 |      0 |    16 |    -0.1% | -141.802 |    -4318.4 |    -8761.2 |     68 | LoadData[31]
+     173* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     178* |       4 |       1 |        3 |      0 |    15 |    -0.2% | -141.432 |    -4318.2 |    -8757.3 |     68 | LoadData[31]
+     180* |       4 |       1 |        3 |      0 |    16 |    -0.2% | -141.432 |    -4318.2 |    -8754.7 |     68 | LoadData[31]
+     188* |       4 |       1 |        3 |      0 |    16 |    -0.2% | -141.432 |    -4318.2 |    -8754.7 |     68 | LoadData[31]
+     190* |       4 |       1 |        3 |      0 |    17 |    -0.2% | -141.432 |    -4317.7 |    -8750.1 |     68 | LoadData[31]
+     194* |       4 |       1 |        3 |      0 |    17 |    -0.2% | -141.432 |    -4317.7 |    -8750.1 |     68 | LoadData[31]
+     198* |       4 |       1 |        3 |      0 |    18 |    -0.2% | -141.432 |    -4318.0 |    -8750.3 |     68 | LoadData[31]
+     200* |       4 |       1 |        3 |      0 |    19 |    -0.2% | -141.432 |    -4318.4 |    -8748.7 |     68 | LoadData[31]
+     202* |       4 |       1 |        3 |      0 |    19 |    -0.2% | -141.432 |    -4318.4 |    -8748.7 |     68 | LoadData[31]
+     205* |       4 |       1 |        3 |      0 |    21 |    -0.2% | -141.432 |    -4319.3 |    -8747.1 |     68 | LoadData[31]
+     210* |       4 |       2 |        3 |      0 |    24 |    -0.1% | -141.432 |    -4319.6 |    -8751.7 |     68 | LoadData[31]
+     211* |       4 |       1 |        3 |      0 |    22 |    -0.2% | -141.432 |    -4318.8 |    -8746.8 |     68 | LoadData[31]
+     214* |       4 |       1 |        3 |      0 |    22 |    -0.2% | -141.432 |    -4318.8 |    -8746.8 |     68 | LoadData[31]
+     215* |       4 |       1 |        3 |      0 |    22 |    -0.2% | -141.432 |    -4318.8 |    -8746.8 |     68 | LoadData[31]
+     218* |       4 |       1 |        3 |      0 |    22 |    -0.2% | -141.432 |    -4318.8 |    -8746.8 |     68 | LoadData[31]
+     220* |       4 |       1 |        3 |      0 |    23 |    -0.2% | -141.432 |    -4318.8 |    -8746.8 |     68 | LoadData[31]
+     221* |       4 |       1 |        3 |      0 |    24 |    -0.2% | -141.432 |    -4318.8 |    -8746.2 |     68 | LoadData[31]
+     223* |       4 |       2 |        3 |      0 |    24 |    -0.1% | -141.432 |    -4318.8 |    -8745.7 |     68 | LoadData[31]
+     223* |       4 |       2 |        3 |      0 |    24 |    -0.1% | -141.432 |    -4318.8 |    -8745.7 |     68 | LoadData[31]
+     225+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     226+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     227+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     228+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     229+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     230+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     230+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     231+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     232+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     233+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     234+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     235+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     236+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     237+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     238+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     239+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     240+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     240+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     241+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     242+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     243+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     244+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     245+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     246+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     247+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     248+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     249+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     250+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     250+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     251+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     252+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     253+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     254+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     255+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     256+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     257+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     258+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     259+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     260+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     260+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     261+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     262+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     263+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     264+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     265+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     266+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     267+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     268+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     269+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     270+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     270+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     271+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     272+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     273+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     274+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     275+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     276+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     277+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     278+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     279+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     280+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     280+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     281+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     282+ |       4 |       2 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4318.9 |    -8740.7 |     68 | LoadData[31]
+     284+ |       4 |       3 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4317.9 |    -8740.2 |     68 | LoadData[31]
+     285+ |       4 |       3 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4317.9 |    -8740.2 |     68 | LoadData[31]
+     287+ |       4 |       4 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4316.6 |    -8739.6 |     68 | LoadData[31]
+     289+ |       4 |       5 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4315.4 |    -8739.0 |     68 | LoadData[31]
+     290+ |       4 |       5 |        3 |      0 |    25 |    -0.1% | -141.224 |    -4315.4 |    -8739.0 |     68 | LoadData[31]
+     291+ |       4 |       6 |        3 |      0 |    25 |    -0.0% | -141.224 |    -4314.5 |    -8738.5 |     68 | LoadData[31]
+     292+ |       4 |       6 |        3 |      0 |    25 |    -0.0% | -141.224 |    -4314.5 |    -8738.5 |     68 | LoadData[31]
+     293+ |       4 |       6 |        3 |      0 |    25 |    -0.0% | -141.224 |    -4314.5 |    -8738.5 |     68 | LoadData[31]
+     294+ |       4 |       6 |        3 |      0 |    25 |    -0.0% | -141.224 |    -4314.5 |    -8738.5 |     68 | LoadData[31]
+     295+ |       4 |       6 |        3 |      0 |    25 |    -0.0% | -141.224 |    -4314.5 |    -8738.5 |     68 | LoadData[31]
+     296+ |       4 |       6 |        3 |      0 |    25 |    -0.0% | -141.224 |    -4314.5 |    -8738.5 |     68 | LoadData[31]
+    final |       4 |       6 |        3 |      0 |    25 |    -0.0% | -141.224 |    -4314.5 |    -8738.5 |     68 | LoadData[31]
+------------------------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0059] Removed 4 buffers.
+[INFO RSZ-0040] Inserted 3 buffers.
+[INFO RSZ-0051] Resized 6 instances: 6 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 25 instances.
+[WARNING RSZ-0062] Unable to repair all setup violations.
+[INFO RSZ-0505] Runtime: 102.08s
+[INFO RSZ-0033] No hold violations found.
+[INFO RSZ-0506] Runtime: 0.40s
+Took 103 seconds: repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+global_route -start_incremental
+detailed_placement
+[INFO DPL-0006] Core area: 80.83 um^2, Instances area: 56.93 um^2, Utilization: 70.4%
+[INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+[INFO DPL-1101] Legalizing using diamond search.
+Movements Summary
+---------------------------------------
+Total cells:                     512
+Diamond Move Success:            512 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+[INFO DPL-0500] Runtime: 0.01s
+Placement Analysis
+---------------------------------
+total displacement         29.3 u
+average displacement        0.1 u
+max displacement            5.5 u
+original HPWL            1246.0 u
+legalized HPWL           1294.4 u
+delta HPWL                    4 %
+
+global_route -end_incremental -resistance_aware -congestion_report_file /workspace/Assignment6/workspace/runs/a6_20261123T011937Z/pd/orfs_work/reports/asap7/memory_access/a6_memory_access/congestion_post_repair_timing.rpt
+global_route -start_incremental
+global_route -end_incremental -resistance_aware -congestion_report_file /workspace/Assignment6/workspace/runs/a6_20261123T011937Z/pd/orfs_work/reports/asap7/memory_access/a6_memory_access/congestion_post_recover_power.rpt
+Repair antennas...
+[WARNING GRT-0246] No diode with LEF class CORE ANTENNACELL found.
+[INFO ANT-0002] Found 0 net violations.
+[INFO ANT-0001] Found 0 pin violations.
+Estimate parasitics...
+estimate_parasitics -global_routing
+Report metrics stage 5, global route...
+No registers in design
+
+==========================================================================
+global route report_design_area
+--------------------------------------------------------------------------
+Design area 57 um^2 70% utilization.
+[INFO FLW-0007] clock a6_memory_access_io period 10.000000
+[INFO FLW-0008] Clock a6_memory_access_io period 144.248
+[INFO FLW-0009] Clock a6_memory_access_io slack -141.840
+[WARNING STA-0450] virtual clock a6_memory_access_io can not be propagated.
+[INFO FLW-0011] Path endpoint path count 75
+write_db /workspace/Assignment6/workspace/runs/a6_20261123T011937Z/pd/orfs_work/results/asap7/memory_access/a6_memory_access/5_1_grt.odb
+write_sdc -no_timestamp /workspace/Assignment6/workspace/runs/a6_20261123T011937Z/pd/orfs_work/results/asap7/memory_access/a6_memory_access/5_1_grt.sdc
+Elapsed time: 1:55.26[h:]min:sec. CPU time: user 452.23 sys 1.53 (393%). Peak memory: 381228KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+5_1_grt                   .odb          115            372 b0d09d1096f04ec80891
+5_1_grt                   .sdc                             3101984b787116dff5e4

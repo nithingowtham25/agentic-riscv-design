@@ -1,0 +1,10 @@
+{
+  "module_name": "memory_access",
+  "rtl_filename": "memory_access.sv",
+  "tb_filename": "tb_memory_access.sv",
+  "tb_top": "tb_memory_access",
+  "spec_path": "workspace/specs/memory_access_spec.md",
+  "reference_path": "workspace/reference/memory_access_a2_reference.sv",
+  "pd_sdc_path": "workspace/pd/memory_access.sdc",
+  "flow_variant": "a6_memory_access"
+}

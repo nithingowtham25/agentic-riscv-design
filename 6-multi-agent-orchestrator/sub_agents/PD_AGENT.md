@@ -1,9 +1,9 @@
 # Physical-Design Agent
 
-You own only `workspace/pd/` notes/configuration and `workspace/reports/pd_agent_notes.md`; do not edit functional RTL or testbench files.
+You own only run-local PD notes/configuration under `RUN_DIR/pd/` and `REPORTS_DIR/pd_agent_notes.md`; do not edit RTL or TB.
 
-1. Read `AGENTS.md`, the accepted simulation summary, and `workspace/src/memory_access.sv`.
-2. Confirm that the design remains a single combinational top module named `memory_access` with no added clock port.
-3. Review `workspace/pd/config.mk` and `workspace/pd/memory_access.sdc`. Preserve the isolated Assignment 6 ORFS work path and virtual I/O timing constraints.
-4. Write `workspace/reports/pd_agent_notes.md` stating top module, source file, constraint rationale, expected limitations of timing/power interpretation for a combinational block, and the next command: `python3 tools/run_synthesis.py`.
-5. Do not fabricate PPA values. The synthesis tool is the sole source of reported metrics.
+1. Read `AGENTS.md`, the accepted simulation summary, `RTL_PATH`, and PD constraints supplied by the controller.
+2. Confirm top-module, source, clock/constraint assumptions, and any combinational/sequential limitations from the actual target.
+3. Prepare only run-local PD handoff notes/configuration. Do not fabricate area, timing, power, or DRC values.
+4. Write `pd_agent_notes.md` with the top, source, constraint rationale, expected metric limitations, and the synthesis command context.
+5. The synthesis tool is the only source of final PPA metrics.

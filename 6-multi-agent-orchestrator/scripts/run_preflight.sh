@@ -4,8 +4,8 @@ set -euo pipefail
 ROOT=$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)
 cd "$ROOT"
 source scripts/activate_olympus_env.sh
-mkdir -p workspace/reports
-log="workspace/reports/preflight_$(date -u +%Y%m%dT%H%M%SZ).log"
+mkdir -p workspace/preflight
+log="workspace/preflight/preflight_$(date -u +%Y%m%dT%H%M%SZ).log"
 {
   echo "=== Assignment 6 preflight ==="
   date -u +%Y-%m-%dT%H:%M:%SZ
@@ -17,7 +17,8 @@ log="workspace/reports/preflight_$(date -u +%Y%m%dT%H%M%SZ).log"
   singularity --version
   test -f "$ROOT/../4-physical-design-agent/lab4-orfs-fall2026-v1.sif"
   echo "Assignment 4 ORFS SIF: PASS"
-  test -f "workspace/specs/memory_access_spec.md"
-  echo "Memory-access specification: PASS"
+  test -f "workspace/target.json"
+  python3 -c 'import json; p=json.load(open("workspace/target.json")); print("Target:", p["module_name"]); assert p["spec_path"]'
+  echo "Target configuration: PASS"
 } 2>&1 | tee "$log"
 echo "Preflight log: $log"

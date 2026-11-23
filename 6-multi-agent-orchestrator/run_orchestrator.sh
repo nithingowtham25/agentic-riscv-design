@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
-# One-command Assignment 6 run. The sourced setup script prompts securely for the TAMU key.
+# One-command, non-overwriting Assignment 6 run.
 set -euo pipefail
 ROOT=$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
 cd "$ROOT"
 source scripts/activate_olympus_env.sh
-mkdir -p workspace/reports
-log="workspace/reports/terminal_run_$(date -u +%Y%m%dT%H%M%SZ).log"
+run_id="a6_$(date -u +%Y%m%dT%H%M%SZ)"
+run_dir="workspace/runs/$run_id"
+mkdir -p "$run_dir/reports"
+echo "=== Assignment 6 orchestration ==="
+echo "Run ID: $run_id"
+echo "Run directory: $run_dir"
 set +e
-python3 tools/orchestrate.py "$@" 2>&1 | tee "$log"
+python3 tools/orchestrate.py --run-id "$run_id" "$@" 2>&1 | tee "$run_dir/reports/terminal_run.log"
 status=${PIPESTATUS[0]}
 set -e
-echo "Terminal log: $log"
+echo "Terminal log: $run_dir/reports/terminal_run.log"
 exit "$status"

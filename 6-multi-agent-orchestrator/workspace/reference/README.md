@@ -1,1 +1,1 @@
-This directory holds a known-good Assignment 2 artifact for agent context only. The orchestrated RTL target is always `workspace/src/memory_access.sv`; the reference is never compiled by the Assignment 6 simulation or synthesis tools.
+This directory holds optional known-good artifacts for context only. The active target and its generated RTL path are defined by `workspace/target.json` and the run-local controller context. Reference files are never compiled by the Assignment 6 simulation or synthesis tools.

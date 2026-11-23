@@ -1,0 +1,38 @@
+=== Icarus compile ===
+$ iverilog -g2012 -s tb_memory_access -o /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/reports/sim.out /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/src/memory_access.sv /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/tb/tb_memory_access.sv
+
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/src/memory_access.sv:26: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/src/memory_access.sv:26: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/src/memory_access.sv:26: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/src/memory_access.sv:26: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/src/memory_access.sv:26: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/src/memory_access.sv:26: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/src/memory_access.sv:26: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/src/memory_access.sv:26: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/src/memory_access.sv:26: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/src/memory_access.sv:26: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/src/memory_access.sv:26: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+
+=== VVP simulation ===
+$ vvp /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/reports/sim.out
+-- Section 1: No-access defaults (MemRW=00) --
+-- Section 2: Unused encoding (MemRW=11) --
+-- Section 3: SB (Funct3=000) stores --
+-- Section 3: SH (Funct3=001) stores --
+-- Section 3: SW (Funct3=010) stores --
+-- Section 4: LB (Funct3=000, sign-extend) loads --
+-- Section 4: LH (Funct3=001, sign-extend) loads --
+-- Section 4: LW (Funct3=010) loads --
+-- Section 4: LBU (Funct3=100, zero-extend) loads --
+-- Section 4: LHU (Funct3=101, zero-extend) loads --
+-- Section 5: Path isolation checks --
+-- Section 6: All-zeros / all-ones corner cases --
+-- Section 7: Spec verbatim examples --
+-- Section 8: Extended robustness checks --
+--------------------------------------------------
+TESTS_PASSED: 95
+TESTS_ERRORS: 0
+TESTS_TOTAL:  95
+RESULT: PASS
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/6-multi-agent-orchestrator/workspace/runs/a6_20261123T011937Z/tb/tb_memory_access.sv:552: $finish called at 195000 (1ps)
+

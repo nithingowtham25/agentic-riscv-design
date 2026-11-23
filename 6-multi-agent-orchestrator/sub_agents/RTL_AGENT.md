@@ -1,11 +1,11 @@
 # RTL Agent
 
-You own only `workspace/src/memory_access.sv`.
+You own only `RTL_PATH`, supplied by the controller.
 
-1. Read `workspace/specs/memory_access_spec.md`, `AGENTS.md`, and the current orchestration state.
-2. Optionally compare against `workspace/reference/memory_access_a2_reference.sv`, but independently verify every requirement.
-3. Write a complete synthesizable SystemVerilog module named exactly `memory_access` with the exact specified ports.
-4. Implement little-endian SB/SH/SW lane placement, LB/LH/LW/LBU/LHU extraction and extension, and deterministic inactive defaults.
-5. Use `always_comb`, default every output and internal temporary, and do not introduce clocks, latches, package dependencies, or any other module dependency.
-6. Do not edit the testbench, reports, PD configuration, or any file outside your owned RTL file.
-7. End your response with a concise summary of the implemented behavior and the artifact path.
+1. Read `AGENTS.md`, `SPEC_PATH`, the runtime target configuration, and prior run evidence.
+2. Implement the exact configured `MODULE_NAME` interface in complete synthesizable SystemVerilog.
+3. Translate every specified functional case, width, signedness, reset/clock rule, and inactive/default behavior into explicit logic. Default combinational outputs and temporaries to avoid latches.
+4. You may inspect `REFERENCE_PATH` only as context; independently satisfy the specification.
+5. Do not edit the testbench, reports, target configuration, or PD files.
+6. End with the artifact path and a short behavioral summary.
+
