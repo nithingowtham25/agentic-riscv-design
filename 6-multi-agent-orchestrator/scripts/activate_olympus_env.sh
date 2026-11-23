@@ -7,7 +7,8 @@ if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
     exit 1
 fi
 
-export A6_TOOLS_DIR="/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/.tools/a6"
+# Caller may override this location after extracting the project on another account.
+export A6_TOOLS_DIR="${A6_TOOLS_DIR:-/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/.tools/a6}"
 
 if [[ ! -f "$A6_TOOLS_DIR/miniforge3/etc/profile.d/conda.sh" ]]; then
     echo "ERROR: Miniforge was not found under $A6_TOOLS_DIR." >&2
