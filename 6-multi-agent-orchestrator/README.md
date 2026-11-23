@@ -110,20 +110,3 @@ The submission run is `workspace/runs/a6_20261123T011937Z/`.
 | Debug and verification analysis | `reports/debug_audit.json`, `reports/verification_audit.md` |
 | PPA summary and raw flow log | `reports/synth_summary.json`, `reports/synthesis_output.log` |
 | ORFS reports | `pd/orfs_work/reports/asap7/memory_access/a6_memory_access/` |
-
-## Packaging the submission
-
-Create the ZIP from the Assignment 6 directory. The command below excludes the earlier run, credentials, local caches, SIF images, and locally generated report documents while retaining the complete latest-run evidence:
-
-```bash
-(
-  cd /path/to/6-multi-agent-orchestrator &&
-  zip -r ../337001954_A6.zip . \
-    -x './.env' './.env.*' \
-       './.sing_cache/*' './.sing_tmp/*' './*.sif' \
-       './workspace/runs/a6_20261122T000411Z/*' \
-       './337001954_A6_Report.docx' './337001954_A6_Report.pdf'
-)
-```
-
-Submit `337001954_A6.zip` and `337001954_A6_Report.pdf` separately. Do not place the report inside the ZIP.
