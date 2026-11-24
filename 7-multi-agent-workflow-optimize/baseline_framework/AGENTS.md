@@ -1,26 +1,29 @@
-#The provided is just a example dummy script and structure, you are open to build the orchestration as per your choice.
+# Assignment 6 Hardware Orchestrator
 
-# Hardware Design Orchestrator Agent
+## Mission
 
-## Role & Mission
-You are the Lead Hardware Architect. Your objective is to manage specialized sub-agents to design, test, debug, and synthesize the target hardware module (`memory_access.sv`).
+Coordinate reusable RTL, testbench, debug, verification, and physical-design specialists for a configured HDL target. The controller supplies `RUN_DIR`, `RTL_PATH`, `TB_PATH`, `MODULE_NAME`, `SPEC_PATH`, and PD settings in every prompt. `workspace/target.json` selects the current target; specialist prompts must not assume a particular module name or interface.
 
-## Master Workflow
+## Rules
 
-### Phase 1: RTL Generation
-1. Read the specification in `sub_agents/rtl_agent.md`.
-2. Generate the Verilog module and save it to `workspace/src/memory_access.sv`.
+1. Read this file, the stage prompt, the supplied runtime paths, and prior evidence before acting.
+2. The specification at `SPEC_PATH` is authoritative. Preserve the exact configured module name and interface.
+3. RTL and Debug may edit only `RTL_PATH`. TB and Verify may edit only `TB_PATH` plus their supplied audit report. PD must not edit functional RTL/TB.
+4. Never edit another run directory. Never expose API keys or modify files outside this Assignment 6 repository.
+5. Use synthesizable, self-contained SystemVerilog compatible with Icarus Verilog 12 unless the target contract says otherwise.
+6. Tool evidence, not prose, determines pass/fail. A valid simulation requires `RESULT: PASS`; PD metrics come only from ORFS reports.
+7. Preserve compatibility with the standard testbench summary lines: `TESTS_PASSED`, `TESTS_ERRORS`, `TESTS_TOTAL`, and conditional `RESULT: PASS|FAIL`.
 
-### Phase 2: Testbench Generation
-1. Read `workspace/src/memory_access.sv` and instructions in `sub_agents/tb_agent.md`.
-2. Generate a self-checking testbench at `workspace/tb/tb_memory_access.sv`.
+## State machine and repair policy
 
-### Phase 3: Verification & Closed-Loop Debugging
-1. Execute the tool: `python3 tools/run_simulation.py`.
-2. Read the log output at `workspace/reports/sim_output.log`.
-3. IF the log contains "SIMULATION SUCCESS": Proceed to Phase 4.
-4. IF the log contains errors: Pass the log snippet to `sub_agents/debug_agent.md`, update `workspace/src/memory_access.sv`, and re-run Step 1.
+`INIT -> RTL -> TB -> SIMULATE -> [DEBUG_REPAIR -> SIMULATE]* -> VERIFY -> SIMULATE -> PD -> SYNTHESIZE -> COMPLETE`
 
-### Phase 4: Physical Design (Synthesis)
-1. Execute the tool: `python3 tools/run_synthesis.py`.
-2. Parse `workspace/reports/synth_summary.rpt` and log final PPA metrics.
+The controller permits at most three RTL repair attempts after functional failure. On a passing simulation, Debug performs a no-change audit. A failed repair budget stops synthesis and preserves the complete run record.
+
+## Run evidence
+
+Each invocation writes only below `workspace/runs/<run-id>/`: generated RTL/TB, agent transcripts, tool logs, state transitions, usage/cost totals, audits, and isolated ORFS work. Existing runs are immutable. The controller records sub-stage progress, attempts, duration, return codes, and transcript-derived Claude usage.
+
+## Completion
+
+A complete pass invokes all five specialists, preserves final RTL and self-checking TB, passes final simulation, produces a synthesis summary when synthesis is requested, and retains every transcript/log in its run directory.
