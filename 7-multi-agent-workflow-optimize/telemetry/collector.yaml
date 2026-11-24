@@ -1,0 +1,26 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: ${env:LOCAL_OTEL_ENDPOINT}
+exporters:
+  file/logs:
+    path: ${env:LOCAL_OTEL_OUTPUT}/logs.jsonl
+  file/traces:
+    path: ${env:LOCAL_OTEL_OUTPUT}/traces.jsonl
+  file/metrics:
+    path: ${env:LOCAL_OTEL_OUTPUT}/metrics.jsonl
+service:
+  telemetry:
+    metrics:
+      level: none
+  pipelines:
+    logs:
+      receivers: [otlp]
+      exporters: [file/logs]
+    traces:
+      receivers: [otlp]
+      exporters: [file/traces]
+    metrics:
+      receivers: [otlp]
+      exporters: [file/metrics]
