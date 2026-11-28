@@ -36,6 +36,20 @@ Put your completed A6 project in `baseline_framework/`. Keep it unchanged for th
 bash run.sh baseline --telemetry on --out runs/baseline-1
 ```
 
+### Shared ORFS runtime image
+
+`run.sh` creates a fresh project copy for every measurement. Before any
+hardware baseline or revised run, point the copied A6 physical-design helper
+to the shared Assignment 4 ORFS image:
+
+```bash
+export A7_ORFS_SIF="/absolute/path/to/lab4-orfs-fall2026-v1.sif"
+```
+
+The baseline helper uses this runtime-only override for preflight and
+synthesis. It does not change agent prompts, roles, model settings, or the
+orchestration policy. Use the same export for all baseline and revised runs.
+
 Aim for three baseline runs. Depending on your model and API allowance, you may report fewer, but at least one complete run is required. Use a new output path for every attempt and include failures.
 
 For Task 3, copy the baseline into `revised_framework/`, implement an evidence-based workflow change, and run the same number of experiments with the same model, specifications and evaluator:

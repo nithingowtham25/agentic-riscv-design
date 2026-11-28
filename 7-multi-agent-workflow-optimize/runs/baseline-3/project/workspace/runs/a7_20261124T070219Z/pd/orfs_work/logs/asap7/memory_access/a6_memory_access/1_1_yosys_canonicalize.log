@@ -1,0 +1,30 @@
+Yosys 0.64+post (git sha1 UNKNOWN-dirty, g++ 11.4.0-1ubuntu1~22.04.3 -fPIC -O3)
+Using ABC area script.
+Extracting clock period from SDC file: /workspace/Assignment6/workspace/runs/a7_20261124T070219Z/pd/orfs_work/results/asap7/memory_access/a6_memory_access/clock_period.txt
+Setting clock period to 10.0
+1. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+2. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+3. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+4. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+5. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+6. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+7. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+8. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+9. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+10. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+11. Executing Verilog-2005 frontend: /workspace/Assignment6/workspace/runs/a7_20261124T070219Z/src/memory_access.sv
+12. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/yoSys/cells_clkgate_R.v
+13. Executing HIERARCHY pass (managing design hierarchy).
+14. Executing AST frontend in derive mode using pre-parsed AST for module `\memory_access'.
+14.1. Analyzing design hierarchy..
+14.2. Analyzing design hierarchy..
+15. Executing OPT_CLEAN pass (remove unused cells and wires).
+Warning: Ignoring module memory_access because it contains processes (run 'proc' command first).
+16. Executing RTLIL backend.
+Warnings: 1 unique messages, 1 total
+End of script. Logfile hash: c8de605d97, time: 1.11s, user: 0.88s, system: 0.13s, MEM: 76.35 MB peak
+Yosys 0.64+post (git sha1 UNKNOWN-dirty, g++ 11.4.0-1ubuntu1~22.04.3 -fPIC -O3)
+Time spent: 96% 12x read_liberty (0 sec), 1% 2x write_rtlil (0 sec), ...
+Elapsed time: 0:01.13[h:]min:sec. CPU time: user 0.90 sys 0.14 (92%). Peak memory: 82252KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+1_1_yosys_canonicalize    .rtlil          1             80 a8e963500cb833cab8ff

@@ -1,0 +1,290 @@
+
+==========================================================================
+detailed place report_tns
+--------------------------------------------------------------------------
+tns max -9001.84
+
+==========================================================================
+detailed place report_wns
+--------------------------------------------------------------------------
+wns max -144.08
+
+==========================================================================
+detailed place report_worst_slack
+--------------------------------------------------------------------------
+worst slack max -144.08
+
+==========================================================================
+detailed place report_clock_min_period
+--------------------------------------------------------------------------
+a6_memory_access_io period_min = 154.08 fmax = 6490.27
+
+==========================================================================
+detailed place report_checks -path_delay min
+--------------------------------------------------------------------------
+Startpoint: ReadData[5] (input port clocked by a6_memory_access_io)
+Endpoint: LoadData[5] (output port clocked by a6_memory_access_io)
+Path Group: a6_memory_access_io
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock a6_memory_access_io (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          1.00    1.00 v input external delay
+     1    0.74    0.00    0.00    1.00 v ReadData[5] (in)
+                                         ReadData[5] (net)
+                  0.11    0.03    1.03 v input35/A (BUFx2_ASAP7_75t_R)
+     1    1.12    6.12   11.29   12.32 v input35/Y (BUFx2_ASAP7_75t_R)
+                                         net35 (net)
+                  6.13    0.08   12.40 v _492_/B (OAI21x1_ASAP7_75t_R)
+     1    0.93    5.39    5.00   17.40 ^ _492_/Y (OAI21x1_ASAP7_75t_R)
+                                         _193_ (net)
+                  5.39    0.03   17.43 ^ _500_/A1 (AOI21x1_ASAP7_75t_R)
+     1    0.54    6.00    5.99   23.42 v _500_/Y (AOI21x1_ASAP7_75t_R)
+                                         net103 (net)
+                  6.00    0.02   23.44 v output103/A (BUFx2_ASAP7_75t_R)
+     1    0.54    4.77   12.33   35.77 v output103/Y (BUFx2_ASAP7_75t_R)
+                                         LoadData[5] (net)
+                  4.77    0.03   35.81 v LoadData[5] (out)
+                                 35.81   data arrival time
+
+                  0.00    0.00    0.00   clock a6_memory_access_io (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00   clock reconvergence pessimism
+                         -1.00   -1.00   output external delay
+                                 -1.00   data required time
+-----------------------------------------------------------------------------
+                                 -1.00   data required time
+                                -35.81   data arrival time
+-----------------------------------------------------------------------------
+                                 36.81   slack (MET)
+
+
+
+==========================================================================
+detailed place report_checks -path_delay max
+--------------------------------------------------------------------------
+Startpoint: AddrLSB[1] (input port clocked by a6_memory_access_io)
+Endpoint: LoadData[31] (output port clocked by a6_memory_access_io)
+Path Group: a6_memory_access_io
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock a6_memory_access_io (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          1.00    1.00 ^ input external delay
+     1    0.96    0.00    0.00    1.00 ^ AddrLSB[1] (in)
+                                         AddrLSB[1] (net)
+                  0.16    0.05    1.05 ^ input2/A (BUFx2_ASAP7_75t_R)
+     4    4.17   15.77   15.41   16.47 ^ input2/Y (BUFx2_ASAP7_75t_R)
+                                         net2 (net)
+                 15.78    0.16   16.63 ^ place272/A (BUFx6f_ASAP7_75t_R)
+     2    5.95    9.54   15.93   32.55 ^ place272/Y (BUFx6f_ASAP7_75t_R)
+                                         net272 (net)
+                  9.56    0.24   32.79 ^ _248_/A (INVx8_ASAP7_75t_R)
+     4    3.80    5.29    5.15   37.94 v _248_/Y (INVx8_ASAP7_75t_R)
+                                         _001_ (net)
+                  5.29    0.12   38.06 v _552_/A (HAxp5_ASAP7_75t_R)
+     2    2.28   28.86   15.86   53.92 ^ _552_/CON (HAxp5_ASAP7_75t_R)
+                                         _006_ (net)
+                 28.86    0.13   54.05 ^ _395_/A (INVx2_ASAP7_75t_R)
+     2    2.03   11.50    9.13   63.17 v _395_/Y (INVx2_ASAP7_75t_R)
+                                         _121_ (net)
+                 11.51    0.06   63.23 v _396_/B2 (AOI22x1_ASAP7_75t_R)
+     1    1.23   16.60   11.62   74.85 ^ _396_/Y (AOI22x1_ASAP7_75t_R)
+                                         _122_ (net)
+                 16.61    0.06   74.91 ^ _397_/A (NAND2x1_ASAP7_75t_R)
+     2    3.78   20.87   14.16   89.07 v _397_/Y (NAND2x1_ASAP7_75t_R)
+                                         _123_ (net)
+                 20.87    0.13   89.19 v _399_/C (NAND3x2_ASAP7_75t_R)
+     2    3.22   21.57   18.85  108.04 ^ _399_/Y (NAND3x2_ASAP7_75t_R)
+                                         _125_ (net)
+                 21.60    0.35  108.40 ^ place207/A (BUFx6f_ASAP7_75t_R)
+    12   14.41   19.39   20.79  129.19 ^ place207/Y (BUFx6f_ASAP7_75t_R)
+                                         net207 (net)
+                 20.06    1.96  131.14 ^ _543_/A2 (AOI21x1_ASAP7_75t_R)
+     1    0.77   10.69    8.39  139.53 v _543_/Y (AOI21x1_ASAP7_75t_R)
+                                         net100 (net)
+                 10.69    0.04  139.58 v output100/A (BUFx2_ASAP7_75t_R)
+     1    0.29    4.29   13.49  153.06 v output100/Y (BUFx2_ASAP7_75t_R)
+                                         LoadData[31] (net)
+                  4.29    0.01  153.08 v LoadData[31] (out)
+                                153.08   data arrival time
+
+                  0.00   10.00   10.00   clock a6_memory_access_io (rise edge)
+                          0.00   10.00   clock network delay (ideal)
+                          0.00   10.00   clock reconvergence pessimism
+                         -1.00    9.00   output external delay
+                                  9.00   data required time
+-----------------------------------------------------------------------------
+                                  9.00   data required time
+                               -153.08   data arrival time
+-----------------------------------------------------------------------------
+                               -144.08   slack (VIOLATED)
+
+
+
+==========================================================================
+detailed place report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: AddrLSB[1] (input port clocked by a6_memory_access_io)
+Endpoint: LoadData[31] (output port clocked by a6_memory_access_io)
+Path Group: a6_memory_access_io
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock a6_memory_access_io (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          1.00    1.00 ^ input external delay
+     1    0.96    0.00    0.00    1.00 ^ AddrLSB[1] (in)
+                                         AddrLSB[1] (net)
+                  0.16    0.05    1.05 ^ input2/A (BUFx2_ASAP7_75t_R)
+     4    4.17   15.77   15.41   16.47 ^ input2/Y (BUFx2_ASAP7_75t_R)
+                                         net2 (net)
+                 15.78    0.16   16.63 ^ place272/A (BUFx6f_ASAP7_75t_R)
+     2    5.95    9.54   15.93   32.55 ^ place272/Y (BUFx6f_ASAP7_75t_R)
+                                         net272 (net)
+                  9.56    0.24   32.79 ^ _248_/A (INVx8_ASAP7_75t_R)
+     4    3.80    5.29    5.15   37.94 v _248_/Y (INVx8_ASAP7_75t_R)
+                                         _001_ (net)
+                  5.29    0.12   38.06 v _552_/A (HAxp5_ASAP7_75t_R)
+     2    2.28   28.86   15.86   53.92 ^ _552_/CON (HAxp5_ASAP7_75t_R)
+                                         _006_ (net)
+                 28.86    0.13   54.05 ^ _395_/A (INVx2_ASAP7_75t_R)
+     2    2.03   11.50    9.13   63.17 v _395_/Y (INVx2_ASAP7_75t_R)
+                                         _121_ (net)
+                 11.51    0.06   63.23 v _396_/B2 (AOI22x1_ASAP7_75t_R)
+     1    1.23   16.60   11.62   74.85 ^ _396_/Y (AOI22x1_ASAP7_75t_R)
+                                         _122_ (net)
+                 16.61    0.06   74.91 ^ _397_/A (NAND2x1_ASAP7_75t_R)
+     2    3.78   20.87   14.16   89.07 v _397_/Y (NAND2x1_ASAP7_75t_R)
+                                         _123_ (net)
+                 20.87    0.13   89.19 v _399_/C (NAND3x2_ASAP7_75t_R)
+     2    3.22   21.57   18.85  108.04 ^ _399_/Y (NAND3x2_ASAP7_75t_R)
+                                         _125_ (net)
+                 21.60    0.35  108.40 ^ place207/A (BUFx6f_ASAP7_75t_R)
+    12   14.41   19.39   20.79  129.19 ^ place207/Y (BUFx6f_ASAP7_75t_R)
+                                         net207 (net)
+                 20.06    1.96  131.14 ^ _543_/A2 (AOI21x1_ASAP7_75t_R)
+     1    0.77   10.69    8.39  139.53 v _543_/Y (AOI21x1_ASAP7_75t_R)
+                                         net100 (net)
+                 10.69    0.04  139.58 v output100/A (BUFx2_ASAP7_75t_R)
+     1    0.29    4.29   13.49  153.06 v output100/Y (BUFx2_ASAP7_75t_R)
+                                         LoadData[31] (net)
+                  4.29    0.01  153.08 v LoadData[31] (out)
+                                153.08   data arrival time
+
+                  0.00   10.00   10.00   clock a6_memory_access_io (rise edge)
+                          0.00   10.00   clock network delay (ideal)
+                          0.00   10.00   clock reconvergence pessimism
+                         -1.00    9.00   output external delay
+                                  9.00   data required time
+-----------------------------------------------------------------------------
+                                  9.00   data required time
+                               -153.08   data arrival time
+-----------------------------------------------------------------------------
+                               -144.08   slack (VIOLATED)
+
+
+
+==========================================================================
+detailed place report_check_types -max_slew -max_cap -max_fanout -violators
+--------------------------------------------------------------------------
+
+==========================================================================
+detailed place max_slew_check_slack
+--------------------------------------------------------------------------
+277.8739318847656
+
+==========================================================================
+detailed place max_slew_check_limit
+--------------------------------------------------------------------------
+320.0
+
+==========================================================================
+detailed place max_slew_check_slack_limit
+--------------------------------------------------------------------------
+0.8684
+
+==========================================================================
+detailed place max_fanout_check_slack
+--------------------------------------------------------------------------
+1.0000000150474662e+30
+
+==========================================================================
+detailed place max_fanout_check_limit
+--------------------------------------------------------------------------
+1.0000000150474662e+30
+
+==========================================================================
+detailed place max_capacitance_check_slack
+--------------------------------------------------------------------------
+20.576265335083008
+
+==========================================================================
+detailed place max_capacitance_check_limit
+--------------------------------------------------------------------------
+23.040000915527344
+
+==========================================================================
+detailed place max_capacitance_check_slack_limit
+--------------------------------------------------------------------------
+0.8931
+
+==========================================================================
+detailed place max_slew_violation_count
+--------------------------------------------------------------------------
+max slew violation count 0
+
+==========================================================================
+detailed place max_fanout_violation_count
+--------------------------------------------------------------------------
+max fanout violation count 0
+
+==========================================================================
+detailed place max_cap_violation_count
+--------------------------------------------------------------------------
+max cap violation count 0
+
+==========================================================================
+detailed place setup_violation_count
+--------------------------------------------------------------------------
+setup violation count 68
+
+==========================================================================
+detailed place hold_violation_count
+--------------------------------------------------------------------------
+hold violation count 0
+
+==========================================================================
+detailed place critical path delay
+--------------------------------------------------------------------------
+153.0767
+
+==========================================================================
+detailed place critical path slack
+--------------------------------------------------------------------------
+-144.0767
+
+==========================================================================
+detailed place slack div critical path delay
+--------------------------------------------------------------------------
+-94.120594
+
+==========================================================================
+detailed place report_power
+--------------------------------------------------------------------------
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Combinational          2.30e-03   2.77e-03   3.59e-08   5.07e-03 100.0%
+Clock                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  2.30e-03   2.77e-03   3.59e-08   5.07e-03 100.0%
+                          45.3%      54.7%       0.0%

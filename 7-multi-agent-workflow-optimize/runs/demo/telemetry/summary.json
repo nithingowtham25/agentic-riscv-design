@@ -1,0 +1,24 @@
+{
+  "events": 143,
+  "spans": 144,
+  "completed_agent_calls": 5,
+  "roles": {
+    "organizer": 2,
+    "verifier": 2,
+    "builder": 1
+  },
+  "completed_tool_calls": 36,
+  "failed_tool_calls": 1,
+  "reported_api_requests": 35,
+  "api_error_events": 0,
+  "workflow_wall_time_s": 131.543,
+  "workflow_exit_code": 0,
+  "usage": {
+    "input_tokens": 0.0,
+    "output_tokens": 10704.0,
+    "cache_read_tokens": 0.0,
+    "cache_creation_tokens": 0.0,
+    "cost_usd": 0.21408
+  },
+  "warnings": []
+}

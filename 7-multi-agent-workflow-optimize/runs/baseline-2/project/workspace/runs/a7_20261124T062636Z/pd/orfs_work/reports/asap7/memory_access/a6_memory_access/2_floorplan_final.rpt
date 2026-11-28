@@ -1,0 +1,188 @@
+
+==========================================================================
+floorplan final report_tns
+--------------------------------------------------------------------------
+tns max -7243.09
+
+==========================================================================
+floorplan final report_wns
+--------------------------------------------------------------------------
+wns max -130.37
+
+==========================================================================
+floorplan final report_worst_slack
+--------------------------------------------------------------------------
+worst slack max -130.37
+
+==========================================================================
+floorplan final report_clock_min_period
+--------------------------------------------------------------------------
+a6_memory_access_io period_min = 140.37 fmax = 7123.83
+
+==========================================================================
+floorplan final report_checks -path_delay min
+--------------------------------------------------------------------------
+Startpoint: ReadData[5] (input port clocked by a6_memory_access_io)
+Endpoint: LoadData[5] (output port clocked by a6_memory_access_io)
+Path Group: a6_memory_access_io
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock a6_memory_access_io (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          1.00    1.00 v input external delay
+     1    0.85    0.00    0.00    1.00 v ReadData[5] (in)
+                                         ReadData[5] (net)
+                  0.00    0.00    1.00 v _492_/B (OAI21x1_ASAP7_75t_R)
+     1    0.88    3.73    3.35    4.35 ^ _492_/Y (OAI21x1_ASAP7_75t_R)
+                                         _193_ (net)
+                  3.73    0.00    4.35 ^ _500_/A1 (AOI21x1_ASAP7_75t_R)
+     1    0.00    4.65    4.47    8.82 v _500_/Y (AOI21x1_ASAP7_75t_R)
+                                         LoadData[5] (net)
+                  4.65    0.00    8.82 v LoadData[5] (out)
+                                  8.82   data arrival time
+
+                  0.00    0.00    0.00   clock a6_memory_access_io (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00   clock reconvergence pessimism
+                         -1.00   -1.00   output external delay
+                                 -1.00   data required time
+-----------------------------------------------------------------------------
+                                 -1.00   data required time
+                                 -8.82   data arrival time
+-----------------------------------------------------------------------------
+                                  9.82   slack (MET)
+
+
+
+==========================================================================
+floorplan final report_checks -path_delay max
+--------------------------------------------------------------------------
+Startpoint: AddrLSB[1] (input port clocked by a6_memory_access_io)
+Endpoint: LoadData[10] (output port clocked by a6_memory_access_io)
+Path Group: a6_memory_access_io
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock a6_memory_access_io (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          1.00    1.00 v input external delay
+     4    5.63    0.00    0.00    1.00 v AddrLSB[1] (in)
+                                         AddrLSB[1] (net)
+                  0.00    0.00    1.00 v _247_/A (BUFx12f_ASAP7_75t_R)
+     8   12.59    9.86   12.66   13.66 v _247_/Y (BUFx12f_ASAP7_75t_R)
+                                         _009_ (net)
+                  9.86    0.00   13.66 v _248_/A (INVx8_ASAP7_75t_R)
+    10    7.35    8.76    7.28   20.94 ^ _248_/Y (INVx8_ASAP7_75t_R)
+                                         _001_ (net)
+                  8.76    0.00   20.94 ^ _552_/A (HAxp5_ASAP7_75t_R)
+     3    4.06   44.49   23.10   44.04 v _552_/CON (HAxp5_ASAP7_75t_R)
+                                         _006_ (net)
+                 44.49    0.00   44.04 v _395_/A (INVx2_ASAP7_75t_R)
+     7    4.51   23.55   19.18   63.23 ^ _395_/Y (INVx2_ASAP7_75t_R)
+                                         _121_ (net)
+                 23.55    0.00   63.23 ^ _396_/B2 (AOI22x1_ASAP7_75t_R)
+     1    1.05   16.05   12.62   75.84 v _396_/Y (AOI22x1_ASAP7_75t_R)
+                                         _122_ (net)
+                 16.05    0.00   75.84 v _397_/A (NAND2x1_ASAP7_75t_R)
+     2    3.71   28.18   19.61   95.45 ^ _397_/Y (NAND2x1_ASAP7_75t_R)
+                                         _123_ (net)
+                 28.18    0.00   95.45 ^ _399_/C (NAND3x2_ASAP7_75t_R)
+     6    7.02   22.44   15.66  111.11 v _399_/Y (NAND3x2_ASAP7_75t_R)
+                                         _125_ (net)
+                 22.44    0.00  111.11 v _436_/A (BUFx6f_ASAP7_75t_R)
+    10   10.90   13.03   21.07  132.18 v _436_/Y (BUFx6f_ASAP7_75t_R)
+                                         _152_ (net)
+                 13.03    0.00  132.18 v _471_/A2 (AOI21x1_ASAP7_75t_R)
+     1    0.00   11.50    7.19  139.37 ^ _471_/Y (AOI21x1_ASAP7_75t_R)
+                                         LoadData[10] (net)
+                 11.50    0.00  139.37 ^ LoadData[10] (out)
+                                139.37   data arrival time
+
+                  0.00   10.00   10.00   clock a6_memory_access_io (rise edge)
+                          0.00   10.00   clock network delay (ideal)
+                          0.00   10.00   clock reconvergence pessimism
+                         -1.00    9.00   output external delay
+                                  9.00   data required time
+-----------------------------------------------------------------------------
+                                  9.00   data required time
+                               -139.37   data arrival time
+-----------------------------------------------------------------------------
+                               -130.37   slack (VIOLATED)
+
+
+
+==========================================================================
+floorplan final report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: AddrLSB[1] (input port clocked by a6_memory_access_io)
+Endpoint: LoadData[10] (output port clocked by a6_memory_access_io)
+Path Group: a6_memory_access_io
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock a6_memory_access_io (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          1.00    1.00 v input external delay
+     4    5.63    0.00    0.00    1.00 v AddrLSB[1] (in)
+                                         AddrLSB[1] (net)
+                  0.00    0.00    1.00 v _247_/A (BUFx12f_ASAP7_75t_R)
+     8   12.59    9.86   12.66   13.66 v _247_/Y (BUFx12f_ASAP7_75t_R)
+                                         _009_ (net)
+                  9.86    0.00   13.66 v _248_/A (INVx8_ASAP7_75t_R)
+    10    7.35    8.76    7.28   20.94 ^ _248_/Y (INVx8_ASAP7_75t_R)
+                                         _001_ (net)
+                  8.76    0.00   20.94 ^ _552_/A (HAxp5_ASAP7_75t_R)
+     3    4.06   44.49   23.10   44.04 v _552_/CON (HAxp5_ASAP7_75t_R)
+                                         _006_ (net)
+                 44.49    0.00   44.04 v _395_/A (INVx2_ASAP7_75t_R)
+     7    4.51   23.55   19.18   63.23 ^ _395_/Y (INVx2_ASAP7_75t_R)
+                                         _121_ (net)
+                 23.55    0.00   63.23 ^ _396_/B2 (AOI22x1_ASAP7_75t_R)
+     1    1.05   16.05   12.62   75.84 v _396_/Y (AOI22x1_ASAP7_75t_R)
+                                         _122_ (net)
+                 16.05    0.00   75.84 v _397_/A (NAND2x1_ASAP7_75t_R)
+     2    3.71   28.18   19.61   95.45 ^ _397_/Y (NAND2x1_ASAP7_75t_R)
+                                         _123_ (net)
+                 28.18    0.00   95.45 ^ _399_/C (NAND3x2_ASAP7_75t_R)
+     6    7.02   22.44   15.66  111.11 v _399_/Y (NAND3x2_ASAP7_75t_R)
+                                         _125_ (net)
+                 22.44    0.00  111.11 v _436_/A (BUFx6f_ASAP7_75t_R)
+    10   10.90   13.03   21.07  132.18 v _436_/Y (BUFx6f_ASAP7_75t_R)
+                                         _152_ (net)
+                 13.03    0.00  132.18 v _471_/A2 (AOI21x1_ASAP7_75t_R)
+     1    0.00   11.50    7.19  139.37 ^ _471_/Y (AOI21x1_ASAP7_75t_R)
+                                         LoadData[10] (net)
+                 11.50    0.00  139.37 ^ LoadData[10] (out)
+                                139.37   data arrival time
+
+                  0.00   10.00   10.00   clock a6_memory_access_io (rise edge)
+                          0.00   10.00   clock network delay (ideal)
+                          0.00   10.00   clock reconvergence pessimism
+                         -1.00    9.00   output external delay
+                                  9.00   data required time
+-----------------------------------------------------------------------------
+                                  9.00   data required time
+                               -139.37   data arrival time
+-----------------------------------------------------------------------------
+                               -130.37   slack (VIOLATED)
+
+
+
+==========================================================================
+floorplan final report_power
+--------------------------------------------------------------------------
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Combinational          1.25e-03   1.80e-03   2.41e-08   3.05e-03 100.0%
+Clock                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  1.25e-03   1.80e-03   2.41e-08   3.05e-03 100.0%
+                          41.1%      58.9%       0.0%

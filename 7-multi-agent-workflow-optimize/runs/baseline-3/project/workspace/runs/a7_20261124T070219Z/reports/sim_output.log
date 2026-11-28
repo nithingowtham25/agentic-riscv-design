@@ -1,0 +1,26 @@
+=== Icarus compile ===
+$ iverilog -g2012 -s tb_memory_access -o /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-3/project/workspace/runs/a7_20261124T070219Z/reports/sim.out /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-3/project/workspace/runs/a7_20261124T070219Z/src/memory_access.sv /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-3/project/workspace/runs/a7_20261124T070219Z/tb/tb_memory_access.sv
+
+
+=== VVP simulation ===
+$ vvp /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-3/project/workspace/runs/a7_20261124T070219Z/reports/sim.out
+--- Section 1: Defaults (MemRW=00 and MemRW=11) ---
+--- Section 2: SB (Funct3=000) stores ---
+--- Section 3: SH (Funct3=001) stores ---
+--- Section 4: SW (Funct3=010) stores ---
+--- Section 5: LB (Funct3=000) loads ---
+--- Section 6: LBU (Funct3=100) loads ---
+--- Section 7: LH (Funct3=001) loads ---
+--- Section 8: LHU (Funct3=101) loads ---
+--- Section 9: LW (Funct3=010) loads ---
+--- Section 10: Store/Load path independence sweep ---
+--- Section 11: Unsupported Funct3 store defaults ---
+--- Section 12: Unsupported Funct3 load defaults ---
+--- Section 13: Targeted gap closures ---
+---
+TESTS_PASSED 139
+TESTS_ERRORS 0
+TESTS_TOTAL  139
+RESULT: PASS
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-3/project/workspace/runs/a7_20261124T070219Z/tb/tb_memory_access.sv:542: $finish called at 139000 (1ps)
+

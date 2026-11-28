@@ -1,0 +1,25 @@
+# Secrets and Claude-local configuration
+.env
+.env.*
+.claude/settings.local.json
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Runtime/container caches and images
+.sing_cache/
+.sing_tmp/
+*.sif
+
+# Rebuildable EDA products
+workspace/pd/orfs_work/
+workspace/reports/sim.out
+workspace/reports/*.vcd
+
+# Editor/OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

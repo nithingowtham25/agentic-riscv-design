@@ -1,0 +1,188 @@
+OpenROAD 26Q2-2517-g7304ba78ad 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 96 thread(s).
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_db /workspace/Assignment6/workspace/runs/a7_20261124T053859Z/pd/orfs_work/results/asap7/memory_access/a6_memory_access/1_synth.odb
+read_sdc /workspace/Assignment6/workspace/runs/a7_20261124T053859Z/pd/orfs_work/results/asap7/memory_access/a6_memory_access/1_synth.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+
+==========================================================================
+Floorplan check_setup
+--------------------------------------------------------------------------
+number instances in verilog is 308
+[INFO IFP-0107] Defining die area using utilization: 40.00% and aspect ratio: 1.
+[WARNING IFP-0028] Core area lower left (1.000, 1.000) snapped to (1.026, 1.080).
+[INFO IFP-0001] Added 33 rows of 168 site asap7sc7p5t.
+[INFO IFP-0100] Die BBox:  (  0.000  0.000 ) ( 11.120 11.120 ) um
+[INFO IFP-0101] Core BBox: (  1.026  1.080 ) ( 10.098  9.990 ) um
+[INFO IFP-0102] Core area:                           80.832 um^2
+[INFO IFP-0103] Total instances area:                33.272 um^2
+[INFO IFP-0104] Effective utilization:                0.412
+[INFO IFP-0105] Number of instances:                    308
+source /OpenROAD-flow-scripts/flow/platforms/asap7/openRoad/make_tracks.tcl
+source /OpenROAD-flow-scripts/flow/platforms/asap7/fastroute.tcl
+Repair tie lo fanout...
+Repair tie hi fanout...
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -setup -skip_last_gasp -sequence unbuffer,sizeup,swap,vt_swap -verbose
+[WARNING EST-0027] no estimated parasitics. Using wire load models.
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove 
+[INFO RSZ-0094] Found 68 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 68 out of 68 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |   StTNS    |   EnTNS    |  Viol  |  Worst  
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            |            | Endpts | St/EnPt 
+------------------------------------------------------------------------------------------------------------------------------
+       0* |       0 |       0 |        0 |      0 |     0 |    +0.0% | -172.381 |    -1983.3 |    -8905.9 |     68 | LoadData[10]
+      10* |       0 |       7 |        0 |      0 |     2 |    +0.5% | -147.575 |    -1943.0 |    -8012.3 |     68 | LoadData[10]
+      20* |       0 |      14 |        0 |      0 |     5 |    +1.2% | -130.944 |    -1928.4 |    -7416.9 |     68 | LoadData[11]
+      29* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      30* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      30* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      31* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      32* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      33* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      34* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      35* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      36* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      37* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      38* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      40* |       0 |      14 |        0 |      0 |     5 |    +1.2% | -130.944 |    -1928.2 |    -7416.9 |     68 | LoadData[22]
+      40* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      42* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      44* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      46* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      48* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      50* |       0 |      14 |        0 |      0 |     5 |    +1.2% | -130.944 |    -1928.2 |    -7416.9 |     68 | LoadData[21]
+      50* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      52* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      54* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      56* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      58* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      60* |       0 |      14 |        0 |      0 |     5 |    +1.2% | -131.090 |    -1926.1 |    -7421.4 |     68 | LoadData[10]
+      60* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      62* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      64* |       0 |      14 |        0 |      0 |     4 |    +1.2% | -130.855 |    -1925.1 |    -7416.0 |     68 | LoadData[10]
+      66* |       0 |      14 |        0 |      0 |     5 |    +1.2% | -130.619 |    -1924.1 |    -7410.7 |     68 | LoadData[10]
+      69* |       0 |      14 |        0 |      0 |     5 |    +1.2% | -130.619 |    -1924.1 |    -7410.7 |     68 | LoadData[10]
+      70* |       0 |      14 |        0 |      0 |     5 |    +1.2% | -130.619 |    -1924.1 |    -7410.7 |     68 | LoadData[10]
+      78* |       0 |      18 |        0 |      0 |     7 |    +1.4% | -130.619 |    -1928.6 |    -7374.2 |     68 | LoadData[10]
+      80* |       0 |      19 |        0 |      0 |     7 |    +1.5% | -130.619 |    -1928.2 |    -7369.4 |     68 | LoadData[10]
+      84* |       0 |      19 |        0 |      0 |     7 |    +1.5% | -130.619 |    -1928.2 |    -7369.4 |     68 | LoadData[10]
+      89* |       0 |      19 |        0 |      0 |     7 |    +1.5% | -130.619 |    -1928.2 |    -7369.4 |     68 | LoadData[10]
+      90* |       0 |      19 |        0 |      0 |     7 |    +1.5% | -130.619 |    -1928.2 |    -7369.4 |     68 | LoadData[10]
+      94* |       0 |      19 |        0 |      0 |     7 |    +1.5% | -130.619 |    -1928.2 |    -7369.4 |     68 | LoadData[10]
+      99* |       0 |      19 |        0 |      0 |     7 |    +1.5% | -130.619 |    -1928.2 |    -7369.4 |     68 | LoadData[10]
+     100* |       0 |      19 |        0 |      0 |     7 |    +1.5% | -130.619 |    -1928.2 |    -7369.4 |     68 | LoadData[10]
+     104* |       0 |      19 |        0 |      0 |     7 |    +1.5% | -130.619 |    -1928.2 |    -7369.4 |     68 | LoadData[10]
+     110* |       0 |      22 |        0 |      0 |     9 |    +2.0% | -130.618 |    -1928.2 |    -7374.0 |     68 | LoadData[10]
+     112* |       0 |      24 |        0 |      0 |     9 |    +2.5% | -130.618 |    -1925.4 |    -7314.0 |     68 | LoadData[10]
+     116* |       0 |      26 |        0 |      0 |     9 |    +2.9% | -130.618 |    -1922.7 |    -7317.2 |     68 | LoadData[10]
+     119* |       0 |      27 |        0 |      0 |     9 |    +3.3% | -130.618 |    -1922.7 |    -7320.4 |     68 | LoadData[10]
+     120* |       0 |      27 |        0 |      0 |     9 |    +3.3% | -130.618 |    -1922.7 |    -7320.4 |     68 | LoadData[10]
+     122* |       0 |      28 |        0 |      0 |     9 |    +3.7% | -130.618 |    -1923.2 |    -7323.5 |     68 | LoadData[10]
+     125* |       0 |      29 |        0 |      0 |     9 |    +4.1% | -130.618 |    -1923.6 |    -7326.5 |     68 | LoadData[10]
+     128* |       0 |      30 |        0 |      0 |     9 |    +4.5% | -130.618 |    -1924.0 |    -7329.5 |     68 | LoadData[10]
+     130* |       0 |      31 |        0 |      0 |     9 |    +4.9% | -130.618 |    -1925.4 |    -7332.3 |     68 | LoadData[10]
+     131* |       0 |      31 |        0 |      0 |     9 |    +4.9% | -130.618 |    -1925.4 |    -7332.3 |     68 | LoadData[10]
+     138* |       0 |      33 |        0 |      0 |    12 |    +5.4% | -130.618 |    -1923.0 |    -7311.6 |     68 | LoadData[10]
+     140* |       0 |      33 |        0 |      0 |    13 |    +5.4% | -130.625 |    -1922.7 |    -7323.1 |     68 | LoadData[10]
+     141* |       0 |      33 |        0 |      0 |    12 |    +5.4% | -130.618 |    -1923.0 |    -7311.6 |     68 | LoadData[10]
+     145* |       0 |      33 |        0 |      0 |    13 |    +5.4% | -130.618 |    -1923.0 |    -7309.2 |     68 | LoadData[10]
+     148* |       0 |      34 |        0 |      0 |    14 |    +5.6% | -130.618 |    -1924.5 |    -7307.4 |     68 | LoadData[10]
+     150* |       0 |      34 |        0 |      0 |    15 |    +5.6% | -130.618 |    -1924.5 |    -7304.0 |     68 | LoadData[10]
+     150* |       0 |      34 |        0 |      0 |    15 |    +5.6% | -130.618 |    -1924.5 |    -7304.0 |     68 | LoadData[10]
+     152* |       0 |      34 |        0 |      0 |    16 |    +5.6% | -130.618 |    -1924.5 |    -7300.6 |     68 | LoadData[10]
+     154* |       0 |      34 |        0 |      0 |    17 |    +5.6% | -130.618 |    -1924.5 |    -7297.2 |     68 | LoadData[10]
+     156* |       0 |      34 |        0 |      0 |    18 |    +5.6% | -130.618 |    -1924.5 |    -7293.8 |     68 | LoadData[10]
+     158* |       0 |      34 |        0 |      0 |    19 |    +5.6% | -130.618 |    -1924.5 |    -7290.4 |     68 | LoadData[10]
+     160* |       0 |      34 |        0 |      0 |    20 |    +5.6% | -130.618 |    -1924.5 |    -7307.2 |     68 | LoadData[10]
+     165* |       0 |      34 |        0 |      0 |    19 |    +5.6% | -130.618 |    -1924.5 |    -7290.4 |     68 | LoadData[10]
+     170* |       0 |      36 |        0 |      0 |    21 |    +5.8% | -130.618 |    -1923.4 |    -7273.8 |     68 | LoadData[10]
+     170* |       0 |      34 |        0 |      0 |    19 |    +5.6% | -130.618 |    -1924.5 |    -7290.4 |     68 | LoadData[10]
+     175* |       0 |      34 |        0 |      0 |    19 |    +5.6% | -130.618 |    -1924.5 |    -7290.4 |     68 | LoadData[10]
+     180* |       0 |      36 |        0 |      0 |    21 |    +5.8% | -130.618 |    -1923.4 |    -7273.8 |     68 | LoadData[10]
+     180* |       0 |      34 |        0 |      0 |    19 |    +5.6% | -130.618 |    -1924.5 |    -7290.4 |     68 | LoadData[10]
+     185* |       0 |      34 |        0 |      0 |    19 |    +5.6% | -130.618 |    -1924.5 |    -7290.4 |     68 | LoadData[10]
+     190* |       0 |      36 |        0 |      0 |    21 |    +5.8% | -130.618 |    -1923.4 |    -7273.8 |     68 | LoadData[10]
+     190* |       0 |      34 |        0 |      0 |    19 |    +5.6% | -130.618 |    -1924.5 |    -7290.4 |     68 | LoadData[10]
+     195* |       0 |      34 |        0 |      0 |    19 |    +5.6% | -130.618 |    -1924.5 |    -7290.4 |     68 | LoadData[10]
+     200* |       0 |      36 |        0 |      0 |    21 |    +5.8% | -130.618 |    -1923.4 |    -7273.8 |     68 | LoadData[10]
+     200* |       0 |      34 |        0 |      0 |    19 |    +5.6% | -130.618 |    -1924.5 |    -7290.4 |     68 | LoadData[10]
+     204* |       0 |      35 |        0 |      0 |    19 |    +6.0% | -130.618 |    -1926.0 |    -7293.6 |     68 | LoadData[10]
+     206* |       0 |      35 |        0 |      0 |    19 |    +6.0% | -130.618 |    -1926.0 |    -7293.6 |     68 | LoadData[10]
+     208* |       0 |      35 |        0 |      0 |    19 |    +6.0% | -130.618 |    -1926.0 |    -7293.6 |     68 | LoadData[10]
+     210* |       0 |      36 |        0 |      0 |    19 |    +6.0% | -130.374 |    -1925.0 |    -7261.7 |     68 | LoadData[10]
+     216* |       0 |      39 |        0 |      0 |    21 |    +6.4% | -130.374 |    -1924.6 |    -7254.2 |     68 | LoadData[10]
+     219* |       0 |      39 |        0 |      0 |    22 |    +6.4% | -130.374 |    -1924.5 |    -7254.0 |     68 | LoadData[10]
+     220* |       0 |      39 |        0 |      0 |    22 |    +6.4% | -130.374 |    -1924.5 |    -7254.0 |     68 | LoadData[10]
+     222* |       0 |      39 |        0 |      0 |    23 |    +6.4% | -130.374 |    -1924.4 |    -7253.8 |     68 | LoadData[10]
+     224* |       0 |      39 |        0 |      0 |    24 |    +6.4% | -130.374 |    -1924.4 |    -7251.9 |     68 | LoadData[10]
+     228* |       0 |      40 |        0 |      0 |    24 |    +6.5% | -130.374 |    -1925.5 |    -7250.7 |     68 | LoadData[10]
+     230* |       0 |      40 |        0 |      0 |    25 |    +6.5% | -130.374 |    -1925.5 |    -7253.0 |     68 | LoadData[10]
+     231* |       0 |      40 |        0 |      0 |    24 |    +6.5% | -130.374 |    -1925.5 |    -7250.7 |     68 | LoadData[10]
+     234* |       0 |      40 |        0 |      0 |    24 |    +6.5% | -130.374 |    -1925.5 |    -7250.7 |     68 | LoadData[10]
+     239* |       0 |      42 |        0 |      0 |    24 |    +6.7% | -130.374 |    -1923.0 |    -7243.1 |     68 | LoadData[10]
+     240* |       0 |      42 |        0 |      0 |    24 |    +6.7% | -130.374 |    -1923.0 |    -7243.1 |     68 | LoadData[10]
+     242* |       0 |      42 |        0 |      0 |    24 |    +6.7% | -130.374 |    -1923.0 |    -7243.1 |     68 | LoadData[10]
+     243* |       0 |      42 |        0 |      0 |    24 |    +6.7% | -130.374 |    -1923.0 |    -7243.1 |     68 | LoadData[10]
+     243* |       0 |      42 |        0 |      0 |    24 |    +6.7% | -130.374 |    -1923.0 |    -7243.1 |     68 | LoadData[10]
+    final |       0 |      42 |        0 |      0 |    24 |    +6.7% | -130.374 |    -1923.0 |    -7243.1 |     68 | LoadData[10]
+------------------------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0051] Resized 42 instances: 42 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 24 instances.
+[WARNING RSZ-0062] Unable to repair all setup violations.
+[INFO RSZ-0505] Runtime: 0.82s
+Default units for flow
+ time 1ps
+ capacitance 1fF
+ resistance 1kohm
+ voltage 1v
+ current 1mA
+ power 1pW
+ distance 1um
+   Layer   | Unit Resistance | Unit Capacitance 
+           |       (kohm/um) |          (fF/um)
+------------------------------------------------
+        M1 |        7.04e-02 |         1.00e-10
+        M2 |        2.97e-02 |         1.85e-01
+        M3 |        3.13e-02 |         1.54e-01
+        M4 |        1.80e-02 |         1.89e-01
+        M5 |        1.90e-02 |         1.72e-01
+        M6 |        1.19e-02 |         1.76e-01
+        M7 |        1.25e-02 |         1.47e-01
+        M8 |        0.00e+00 |         0.00e+00
+        M9 |        0.00e+00 |         0.00e+00
+       Pad |        0.00e+00 |         0.00e+00
+------------------------------------------------
+
+   Layer   | Via Resistance 
+           |         (kohm) 
+----------------------------
+        V1 |       1.72e-02 
+        V2 |       1.72e-02 
+        V3 |       1.72e-02 
+        V4 |       1.18e-02 
+        V5 |       1.18e-02 
+        V6 |       8.20e-03 
+        V7 |       8.20e-03 
+        V8 |       6.30e-03 
+        V9 |       0.00e+00 
+----------------------------
+Report metrics stage 2, floorplan final...
+
+==========================================================================
+floorplan final report_design_area
+--------------------------------------------------------------------------
+Design area 35 um^2 44% utilization.
+write_db /workspace/Assignment6/workspace/runs/a7_20261124T053859Z/pd/orfs_work/results/asap7/memory_access/a6_memory_access/2_1_floorplan.odb
+write_sdc -no_timestamp /workspace/Assignment6/workspace/runs/a7_20261124T053859Z/pd/orfs_work/results/asap7/memory_access/a6_memory_access/2_1_floorplan.sdc
+Elapsed time: 0:02.74[h:]min:sec. CPU time: user 2.53 sys 0.32 (104%). Peak memory: 220580KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+2_1_floorplan             .odb            2            215 e4a2434eb353651b644f
+2_1_floorplan             .sdc                             3101984b787116dff5e4

@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-11-24T06:32:01.937749+00:00",
+  "rtl": "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/src/memory_access.sv",
+  "tb": "/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/tb/tb_memory_access.sv",
+  "tb_top": "tb_memory_access",
+  "compile_returncode": 0,
+  "simulation_returncode": 0,
+  "passed_marker": true,
+  "failed_marker": false,
+  "status": "PASS"
+}

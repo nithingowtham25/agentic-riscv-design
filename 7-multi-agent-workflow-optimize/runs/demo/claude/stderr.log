@@ -1,0 +1,2 @@
+Claude Code doesn't recognize the model "protected.ClaudeSonnet4.6", so it assumes a context window of 1m tokens. Update Claude Code, or see https://code.claude.com/docs/en/model-config#correct-the-window-for-a-gateway-or-custom-model-id to set the window.
+[claude-code:unrecognized_model] {"model":"protected.Claude Sonnet 4.6","query_source":"sdk"}

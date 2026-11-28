@@ -1,0 +1,23 @@
+=== Icarus compile ===
+$ iverilog -g2012 -s tb_memory_access -o /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/reports/sim.out /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/src/memory_access.sv /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/tb/tb_memory_access.sv
+
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/src/memory_access.sv:21: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/src/memory_access.sv:21: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/src/memory_access.sv:21: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/src/memory_access.sv:21: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/src/memory_access.sv:21: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/src/memory_access.sv:21: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/src/memory_access.sv:21: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/src/memory_access.sv:21: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/src/memory_access.sv:21: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/src/memory_access.sv:21: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/src/memory_access.sv:21: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+
+=== VVP simulation ===
+$ vvp /home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/reports/sim.out
+TESTS_PASSED : 106
+TESTS_ERRORS : 0
+TESTS_TOTAL  : 106
+RESULT: PASS
+/home/grads/n/nithingowtham25/Fall_2026/ecen-689-agentic_hw_dsgn/agentic-riscv-design/7-multi-agent-workflow-optimize/runs/baseline-2/project/workspace/runs/a7_20261124T062636Z/tb/tb_memory_access.sv:457: $finish called at 106000 (1ps)
+

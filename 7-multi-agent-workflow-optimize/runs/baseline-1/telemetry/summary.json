@@ -1,0 +1,20 @@
+{
+  "events": 290,
+  "spans": 314,
+  "completed_agent_calls": 0,
+  "roles": {},
+  "completed_tool_calls": 81,
+  "failed_tool_calls": 3,
+  "reported_api_requests": 66,
+  "api_error_events": 0,
+  "workflow_wall_time_s": 1914.619,
+  "workflow_exit_code": 0,
+  "usage": {
+    "input_tokens": 0.0,
+    "output_tokens": 50414.0,
+    "cache_read_tokens": 0.0,
+    "cache_creation_tokens": 0.0,
+    "cost_usd": 1.00828
+  },
+  "warnings": []
+}

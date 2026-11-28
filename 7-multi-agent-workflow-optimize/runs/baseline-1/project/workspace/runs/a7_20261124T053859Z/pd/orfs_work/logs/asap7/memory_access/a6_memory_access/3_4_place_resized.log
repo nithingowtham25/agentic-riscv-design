@@ -1,0 +1,94 @@
+OpenROAD 26Q2-2517-g7304ba78ad 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 96 thread(s).
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_db /workspace/Assignment6/workspace/runs/a7_20261124T053859Z/pd/orfs_work/results/asap7/memory_access/a6_memory_access/3_3_place_gp.odb
+read_sdc /workspace/Assignment6/workspace/runs/a7_20261124T053859Z/pd/orfs_work/results/asap7/memory_access/a6_memory_access/2_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+estimate_parasitics -placement
+Perform buffer insertion and gate resizing...
+repair_design -verbose
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |       575
+       10 |     +0.0% |       0 |       0 |             0 |       565
+       20 |     +0.0% |       0 |       0 |             0 |       555
+       30 |     +0.0% |       0 |       0 |             0 |       545
+       40 |     +0.0% |       0 |       0 |             0 |       535
+       50 |     +0.0% |       0 |       0 |             0 |       525
+       60 |     +0.0% |       0 |       0 |             0 |       515
+       70 |     +0.0% |       0 |       0 |             0 |       505
+       80 |     +0.0% |       0 |       0 |             0 |       495
+       90 |     +0.0% |       0 |       0 |             0 |       485
+      100 |     +0.0% |       0 |       0 |             0 |       475
+      110 |     +0.0% |       0 |       0 |             0 |       465
+      120 |     +0.0% |       0 |       0 |             0 |       455
+      130 |     +0.0% |       0 |       0 |             0 |       445
+      140 |     +0.0% |       0 |       0 |             0 |       435
+      150 |     +0.0% |       0 |       0 |             0 |       425
+      160 |     +0.0% |       0 |       0 |             0 |       415
+      170 |     +0.0% |       0 |       0 |             0 |       405
+      180 |     +0.0% |       0 |       0 |             0 |       395
+      190 |     +0.0% |       0 |       0 |             0 |       385
+      200 |     +0.0% |       0 |       0 |             0 |       375
+      210 |     +0.0% |       0 |       0 |             0 |       365
+      220 |     +0.0% |       0 |       0 |             0 |       355
+      230 |     +0.0% |       0 |       0 |             0 |       345
+      240 |     +0.0% |       0 |       0 |             0 |       335
+      250 |     +0.0% |       0 |       0 |             0 |       325
+      260 |     +0.0% |       0 |       0 |             0 |       315
+      270 |     +0.0% |       0 |       0 |             0 |       305
+      280 |     +0.0% |       0 |       0 |             0 |       295
+      290 |     +0.0% |       0 |       0 |             0 |       285
+      300 |     +0.0% |       0 |       0 |             0 |       275
+      310 |     +0.0% |       0 |       0 |             0 |       265
+      320 |     +0.0% |       0 |       0 |             0 |       255
+      330 |     +0.0% |       0 |       0 |             0 |       245
+      340 |     +0.0% |       0 |       0 |             0 |       235
+      350 |     +0.0% |       0 |       0 |             0 |       225
+      360 |     +0.0% |       0 |       0 |             0 |       215
+      370 |     +0.0% |       0 |       0 |             0 |       205
+      380 |     +0.0% |       0 |       0 |             0 |       195
+      390 |     +0.0% |       0 |       0 |             0 |       185
+      400 |     +0.0% |       0 |       0 |             0 |       175
+      410 |     +0.0% |       0 |       0 |             0 |       165
+      420 |     +0.0% |       0 |       0 |             0 |       155
+      430 |     +0.0% |       0 |       0 |             0 |       145
+      440 |     +0.0% |       0 |       0 |             0 |       135
+      450 |     +0.0% |       0 |       0 |             0 |       125
+      460 |     +0.0% |       0 |       0 |             0 |       115
+      470 |     +0.0% |       0 |       0 |             0 |       105
+      480 |     +0.0% |       0 |       0 |             0 |        95
+      490 |     +0.0% |       0 |       0 |             0 |        85
+      500 |     +0.0% |       0 |       0 |             0 |        75
+      510 |     +0.0% |       0 |       0 |             0 |        65
+      520 |     +0.0% |       0 |       0 |             0 |        55
+      530 |     +0.0% |       0 |       0 |             0 |        45
+      540 |     +0.0% |       0 |       0 |             0 |        35
+      550 |     +0.0% |       0 |       0 |             0 |        25
+      560 |     +0.0% |       0 |       0 |             0 |        15
+      570 |     +0.0% |       0 |       0 |             0 |         5
+    final |     +0.0% |       0 |       0 |             0 |         0
+---------------------------------------------------------------------
+[INFO RSZ-0504] Runtime: 0.07s
+Floating nets: 
+Report metrics stage 3, resizer...
+No registers in design
+
+==========================================================================
+resizer report_design_area
+--------------------------------------------------------------------------
+Design area 52 um^2 64% utilization.
+Instance count before 563, after 563
+Pin count before 1451, after 1451
+write_db /workspace/Assignment6/workspace/runs/a7_20261124T053859Z/pd/orfs_work/results/asap7/memory_access/a6_memory_access/3_4_place_resized.odb
+Elapsed time: 0:02.09[h:]min:sec. CPU time: user 1.81 sys 0.26 (99%). Peak memory: 218796KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+3_4_place_resized         .odb            2            213 2e733951dcea3150efa3

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -11,7 +12,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-A4_SIF = ROOT.parent / "4-physical-design-agent" / "lab4-orfs-fall2026-v1.sif"
+# A7_ORFS_SIF is an Assignment 7 runtime configuration override.  The
+# default preserves the original Assignment 6 relative-path behavior.
+A4_SIF = Path(os.environ.get("A7_ORFS_SIF", ROOT.parent / "4-physical-design-agent" / "lab4-orfs-fall2026-v1.sif")).expanduser()
 
 
 def parse_metrics(text: str) -> dict[str, str]:

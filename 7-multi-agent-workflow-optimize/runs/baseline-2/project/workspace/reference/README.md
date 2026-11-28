@@ -1,0 +1,1 @@
+This directory holds optional known-good artifacts for context only. The active target and its generated RTL path are defined by `workspace/target.json` and the run-local controller context. Reference files are never compiled by the Assignment 6 simulation or synthesis tools.

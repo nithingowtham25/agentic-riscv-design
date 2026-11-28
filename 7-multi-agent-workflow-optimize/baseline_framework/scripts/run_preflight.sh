@@ -15,8 +15,12 @@ log="workspace/preflight/preflight_$(date -u +%Y%m%dT%H%M%SZ).log"
   echo "Claude: $(claude --version | head -1)"
   command -v singularity
   singularity --version
-  test -f "$ROOT/../4-physical-design-agent/lab4-orfs-fall2026-v1.sif"
-  echo "Assignment 4 ORFS SIF: PASS"
+  # A7_ORFS_SIF is an Assignment 7 runtime configuration override.  It lets
+  # the fresh per-run project copy use a shared ORFS image without altering
+  # the baseline agent prompts, roles, or orchestration policy.
+  ORFS_SIF="${A7_ORFS_SIF:-$ROOT/../4-physical-design-agent/lab4-orfs-fall2026-v1.sif}"
+  test -f "$ORFS_SIF"
+  echo "Assignment 4 ORFS SIF: PASS ($ORFS_SIF)"
   test -f "workspace/target.json"
   python3 -c 'import json; p=json.load(open("workspace/target.json")); print("Target:", p["module_name"]); assert p["spec_path"]'
   echo "Target configuration: PASS"
